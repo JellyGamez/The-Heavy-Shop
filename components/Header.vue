@@ -1,6 +1,7 @@
 <template>
-    <div class="bg-sky-200 h-16 border-b-4 border-gray-100">
-        <div class="max-w-6xl bg-green-100 h-full text-white mx-auto">
+    <div class="h-16 bg-black border-b-4 border-gray-500">
+        <div class="max-w-6xl h-full text-white mx-auto">
+
         </div>
     </div>
 </template>
