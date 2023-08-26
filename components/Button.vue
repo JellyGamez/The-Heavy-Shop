@@ -1,35 +1,35 @@
 <script setup>
 
 const props = defineProps({
-    style: {
+    variant: {
         type: String,
         default: 'primary',
         validator(value) {
             return ['primary', 'secondary', 'neutral'].includes(value);
-        } 
+        }
     },
     size: {
         type: String,
         default: 'medium',
         validator(value) {
             return ['small', 'medium', 'large'].includes(value);
-        } 
+        }
     }
 })
 
-const styleClasses = computed(() => {
+const variantClasses = computed(() => {
     return {
         'primary': 'bg-gray-primary hover:bg-gray-dark text-white',
         'secondary': 'bg-red-primary hover:bg-red-dark',
         'neutral': '',
-    }[props.style];
+    }[props.variant];
 })
 
 const sizeClasses = computed(() => {
     return {
-        'small': 'px-3 py-2',
+        'small': 'px-3 py-2 text-sm',
         'medium': 'px-5 py-3',
-        'large': 'px-10 py-4',
+        'large': 'px-8 py-3 text-lg',
     }[props.size];
 })
 
@@ -37,7 +37,7 @@ const sizeClasses = computed(() => {
 </script>
 
 <template>
-    <button :class="[styleClasses, sizeClasses, 'transition-colors duration-200 rounded-xl']">
-        <slot/>
+    <button :class="[variantClasses, sizeClasses, 'transition-colors duration-200 rounded-full font-normal']">
+        <slot />
     </button>
 </template>
