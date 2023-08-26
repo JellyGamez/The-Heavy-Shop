@@ -3,15 +3,11 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true
   },
-  tailwindcss: {
-    cssPath: '~/assets/css/main.css',
-  },
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {},
     },
   },
-  modules: ['@nuxtjs/tailwindcss']
-
+  css: ['~/assets/css/main.css'],
 })

@@ -1,6 +1,7 @@
 <script setup>
 
 </script>
+
 <template>
-    <h1 class="text-xl">helo</h1>
+    <!-- <img src="../components/Icons/bg2.jpg" class="w-screen"/> -->
 </template>
