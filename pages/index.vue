@@ -10,9 +10,9 @@
                     We bring the 
                     <br />
 
-                    <span class="text-4xl md:text-6xl text-red-primary "> 
+                    <span class="text-4xl md:text-6xl text-red-primary underline-effect"> 
                         HEAVY STUFF. 
-
+                        <span class="underline"/>
                     </span> 
 
                     <br />
@@ -22,9 +22,8 @@
                     You rock the 
                     <br />
 
-                    <span class="text-4xl md:text-6xl text-red-primary relative group"> 
+                    <span class="text-4xl md:text-6xl text-red-primary underline-effect"> 
                         ATTITUDE. 
-                        <span class="absolute bottom-0 left-0 w-full origin-right scale-0 duration-250 ease-in-out hover-group:origin-left hover-group:scale-x-100 transition-all h-1 bg-red-primary"/>
                     </span>
 
                     <br />
@@ -52,3 +51,27 @@
         </div>
     </div>
 </template>
+<style scoped>
+.underline-effect {
+  position: relative;
+}
+
+.underline-effect::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 4px;
+    border-radius: 4px;
+    background-color: #c70404;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .3s ease-in-out;
+  }
+
+.underline-effect:hover::before {
+  transform-origin: left;
+  transform: scaleX(1);
+}
+</style>
