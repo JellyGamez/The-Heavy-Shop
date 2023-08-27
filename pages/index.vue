@@ -3,20 +3,34 @@
 </script>
 
 <template>
-    <div class="bg-neutral-900 xl:h-screen pt-28 px-10 lg:px-20 grid grid-cols-1 xl:grid-cols-2 gap-8 mx-auto overflow-x-hidden">
-        <div class="text-white text-5xl font-bold flex items-center justify-center">
-            <div class="flex flex-col gap-8 text-center xl:text-left">
+    <div class="bg-gray-primary xl:h-screen -mt-20 pt-28 px-4 md:px-10 lg:px-20 grid grid-cols-1 xl:grid-cols-2 gap-8 overflow-x-hidden">
+        <div class="flex items-center justify-center text-white text-3xl md:text-5xl font-bold ">
+            <div class="flex flex-col gap-8 mb-8 text-center xl:text-left">
                 <span>
-                    We bring the <br />
-                    <span class="text-6xl text-red-primary"> HEAVY STUFF. </span> <br />
+                    We bring the 
+                    <br />
+
+                    <span class="text-4xl md:text-6xl text-red-primary "> 
+                        HEAVY STUFF. 
+
+                    </span> 
+
+                    <br />
                 </span>
 
                 <span>
-                    You rock the <br />
-                    <span class="text-6xl text-red-primary"> ATTITUDE. </span>
+                    You rock the 
+                    <br />
+
+                    <span class="text-4xl md:text-6xl text-red-primary relative group"> 
+                        ATTITUDE. 
+                        <span class="absolute bottom-0 left-0 w-full origin-right scale-0 duration-250 ease-in-out hover-group:origin-left hover-group:scale-x-100 transition-all h-1 bg-red-primary"/>
+                    </span>
+
+                    <br />
                 </span>
 
-                <span class="text-lg font-normal max-w-2xl">
+                <span class="text-base md:text-lg font-normal max-w-2xl">
                     Peruse through our Heavy Metal shop to discover a selection of t-shirts, accessories, and more
                     from your all-time favorite bands.
                     Embrace the genuine essence of rock and submerge yourself in the world of metal fashion.
@@ -30,11 +44,10 @@
                     </NuxtLink>
                 </div>
             </div>
-
         </div>
 
-        <div class="overflow-auto">
-            <img src="../components/Icons/MuscularMan.png" class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full block mx-auto text-white"
+        <div class="overflow-hidden xl:-mr-20">
+            <img src="../components/Images/2.png" class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full block mx-auto text-white"
                 alt="Muscular man wearing our brand">
         </div>
     </div>

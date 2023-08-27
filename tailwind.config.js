@@ -13,15 +13,12 @@ module.exports = {
       colors: {
         'red-primary': '#c70404',
         'red-dark': '#a60303',
-        'gray-primary': '#6e6d6d',
-        'gray-dark': '#404040'
+        'gray-primary': '#262626',
+        'gray-dark': '#171717'
       },
       maxWidth: {
         '8xl': '90rem',
         '9xl': '100rem',
-      },
-      screens: {
-        '3xl': '1680px'
       }
     },
   },
