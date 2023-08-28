@@ -67,7 +67,7 @@
     left: 0;
     transform-origin: right;
     transform: scaleX(0);
-    transition: transform .3s ease-in-out;
+    transition: transform .5s ease-in-out;
   }
 
 .underline-effect:hover::before {
