@@ -14,7 +14,7 @@ const loggedIn = computed(() => {
 </script>
 
 <template>
-    <div class="fixed w-full top-0 h-20 bg-gray-dark">
+    <div class="fixed w-full top-0 z-10 h-20 bg-gray-dark">
         <div class="px-10 2xl:px-0 max-w-8xl mx-auto h-full flex items-center justify-between">
             <div class="w-52">
                 <NuxtLink to="/">
