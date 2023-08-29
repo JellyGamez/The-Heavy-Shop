@@ -18,5 +18,12 @@ export default defineNuxtConfig({
     pageTransition: {
       name: 'page', mode: 'out-in'
     }
+  },
+  modules: [
+    '@sidebase/nuxt-auth',
+    'nuxt-headlessui'
+  ],
+  headlessui: {
+    prefix: 'Headless'
   }
 })

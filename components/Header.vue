@@ -7,9 +7,18 @@ const navItems = [
     { name: 'Contact', url: '/contact' }, 
 ]
 
+const { status, signIn, signOut } = useAuth()
+
 const loggedIn = computed(() => {
-    return;
+    return status.value == 'authenticated';
 })
+
+const userOptions = loggedIn ? [
+    { name: 'Sign in', url: '/auth/login' },
+    { name: 'Sign out', url: 'da'}
+] : [
+    { name: 'Sign out', url: 'da'}
+]
 
 </script>
 
@@ -28,16 +37,16 @@ const loggedIn = computed(() => {
                 </NavItem>
             </div>
             <div class="hidden w-52 md:flex justify-center">
-                <div class="flex space-x-4">
-                    <NuxtLink to="/favorites">
+                <div class="flex justify-between w-28">
+                    <NuxtLink to="/user/favorites">
                         <IconsBookmark/>
                     </NuxtLink>
 
-                    <NuxtLink to="/cart">
+                    <NuxtLink to="/user/cart">
                         <IconsCart/>
                     </NuxtLink>
 
-                    <Dropdown>
+                    <Dropdown :options="userOptions">
                         <IconsUser/>
                     </Dropdown>
                     

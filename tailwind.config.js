@@ -13,8 +13,10 @@ module.exports = {
       colors: {
         'red-primary': '#c70404',
         'red-dark': '#a60303',
+        'red-light': '',
         'gray-primary': '#262626',
-        'gray-dark': '#171717'
+        'gray-dark': '#171717',
+        'gray-light': '#303030'
       },
       maxWidth: {
         '8xl': '90rem',
