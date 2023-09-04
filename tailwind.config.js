@@ -21,6 +21,10 @@ module.exports = {
       maxWidth: {
         '8xl': '90rem',
         '9xl': '100rem',
+      },
+      fontFamily: {
+        'kanit': ['Kanit'],
+        'ubuntu': ['Ubuntu']
       }
     },
   },

@@ -5,39 +5,38 @@ const props = defineProps({
         type: String,
         default: 'primary',
         validator(value) {
-            return ['primary', 'secondary', 'neutral'].includes(value);
+            return ['primary', 'secondary', 'neutral'].includes(value)
         }
     },
     size: {
         type: String,
         default: 'medium',
         validator(value) {
-            return ['small', 'medium', 'large'].includes(value);
+            return ['small', 'medium', 'large'].includes(value)
         }
     }
 })
 
 const variantClasses = computed(() => {
     return {
-        'primary': 'bg-gray-primary hover:bg-gray-dark text-white',
+        'primary': 'bg-gray-primary hover:bg-gray-dark text-white ring-2 ring-inset ring-gray-primary hover:ring-red-primary',
         'secondary': 'bg-red-primary hover:bg-red-dark',
         'neutral': '',
-    }[props.variant];
+    }[props.variant]
 })
 
 const sizeClasses = computed(() => {
     return {
-        'small': 'px-3 py-2 text-sm',
+        'small': 'px-3 py-3 text-sm',
         'medium': 'px-5 py-3',
         'large': 'px-8 py-3 text-lg',
-    }[props.size];
+    }[props.size]
 })
-
 
 </script>
 
 <template>
-    <button :class="[variantClasses, sizeClasses, 'transition-colors duration-200 rounded-full font-normal']">
+    <button :class="[variantClasses, sizeClasses, 'transition duration-200 rounded-xl font-normal font-kanit']">
         <slot />
     </button>
 </template>

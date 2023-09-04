@@ -4,8 +4,8 @@
         <!-- <Title>
             The Heavy Shop | {{ $route.name }}
         </Title> -->
-        <div class="mt-20">
-        <slot />
+        <div class="pt-16 h-screen">
+            <slot />
         </div>
         <Footer />
     </div>

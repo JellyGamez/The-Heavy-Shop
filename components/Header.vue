@@ -1,34 +1,36 @@
 <script setup>
 
 const navItems = [
-    { name: 'Home',    url: '/'        },
-    { name: 'Shop',    url: '/shop'    },
-    { name: 'About',   url: '/about'   },
-    { name: 'Contact', url: '/contact' }, 
+    { name: 'Home', url: '/' },
+    { name: 'Shop', url: '/shop' },
+    { name: 'About', url: '/about' },
+    { name: 'Contact', url: '/contact' },
 ]
 
-const { status, signIn, signOut } = useAuth()
+const { status } = useAuth()
 
 const loggedIn = computed(() => {
-    return status.value == 'authenticated';
+    return status.value === 'authenticated'
 })
 
-const userOptions = loggedIn ? [
+const userOptions = (!loggedIn.value) ? [
     { name: 'Sign in', url: '/auth/login' },
-    { name: 'Sign out', url: 'da'}
+    { name: 'Register', url: '/auth/register' }
 ] : [
-    { name: 'Sign out', url: 'da'}
+    { name: 'Sign out', action: 'signOut' }
 ]
 
 </script>
 
 <template>
-    <div class="fixed w-full top-0 z-10 h-20 bg-gray-dark">
+    <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark">
         <div class="px-10 2xl:px-0 max-w-8xl mx-auto h-full flex items-center justify-between">
             <div class="w-52">
                 <NuxtLink to="/">
                     <!-- <img src="./Icons/Logo2.png" alt="The Heavy Shop" class="h-32"/> -->
-                    <p class="text-red-primary font-bold text-2xl"> THE HEAVY SHOP </p>
+                    <p class="text-red-primary hover:text-gray-light transition duration-200 font-bold text-2xl font-ubuntu"> 
+                        THE HEAVY SHOP 
+                    </p>
                 </NuxtLink>
             </div>
             <div class="hidden md:flex space-x-4 items-center">
@@ -39,17 +41,16 @@ const userOptions = loggedIn ? [
             <div class="hidden w-52 md:flex justify-center">
                 <div class="flex justify-between w-28">
                     <NuxtLink to="/user/favorites">
-                        <IconsBookmark/>
+                        <IconsBookmark />
                     </NuxtLink>
 
                     <NuxtLink to="/user/cart">
-                        <IconsCart/>
+                        <IconsCart />
                     </NuxtLink>
 
                     <Dropdown :options="userOptions">
-                        <IconsUser/>
+                        <IconsUser />
                     </Dropdown>
-                    
                 </div>
             </div>
         </div>
