@@ -51,16 +51,16 @@ const open = ref(false)
             </nav>
             <div class="hidden md:flex items-center justify-end mr-10">
                 <div class="flex justify-between space-x-4 items-center">
-                    <NuxtLink to="/user/favorites" aria-label="favorites">
-                        <IconsBookmark class="w-6 h-6 hover:stroke-red-primary transition duration-200" />
+                    <NuxtLink to="/user/favorites" id="favorites">
+                        <IconsBookmark class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="favorites" />
                     </NuxtLink>
 
-                    <NuxtLink to="/user/cart" aria-label="cart">
-                        <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" />
+                    <NuxtLink to="/user/cart" id="cart">
+                        <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="cart" />
                     </NuxtLink>
 
-                    <Dropdown :options="userOptions" aria-label="user-menu">
-                        <IconsUser class="w-6 h-6 hover:stroke-red-primary transition duration-200" />
+                    <Dropdown :options="userOptions">
+                        <IconsUser class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="user-menu" />
                     </Dropdown>
                 </div>
             </div>
