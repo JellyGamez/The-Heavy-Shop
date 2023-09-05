@@ -31,12 +31,12 @@ function register() {
 
 <template>
     <div class="bg-gray-light h-full flex flex-col items-center justify-center">
-        <AuthCard label="Register">
+        <AuthCard label="Create a new account">
             <form @submit.prevent="register()" autocomplete="">
                 <div class="flex flex-col gap-4">
 					<div>
                         <Label> Username </Label>
-                        <TextInput v-model="email" name="username" type="text">
+                        <TextInput v-model="username" name="username" type="text">
                             <IconsUser class="w-5 h-5" />
                         </TextInput>
                     </div>
@@ -54,7 +54,7 @@ function register() {
                     </div>
 					<div>
                         <Label> Password confirmation </Label>
-                        <TextInput v-model="password" name="password" type="password">
+                        <TextInput v-model="passwordConfirmation" name="passwordConfirmation" type="password">
                             <IconsLock class="w-5 h-5" />
                         </TextInput>
                     </div>

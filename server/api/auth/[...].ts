@@ -30,9 +30,9 @@ export default NuxtAuthHandler({
                     if (!credentials?.email)
                         throw new Error('The email field is required.')
                     else if (!credentials?.password) 
-                        throw new Error('The password field is required')
+                        throw new Error('The password field is required.')
                     else 
-                        throw new Error('Invalid credentials. Please try again')
+                        throw new Error('Invalid credentials. Please try again.')
 
                 }
 
