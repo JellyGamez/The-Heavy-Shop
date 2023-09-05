@@ -21,7 +21,6 @@ const variantClasses = computed(() => {
     return {
         'primary': 'bg-gray-primary hover:bg-gray-dark text-white ring-2 ring-inset ring-gray-primary hover:ring-red-primary',
         'secondary': 'bg-red-primary hover:bg-red-dark',
-        'neutral': '',
     }[props.variant]
 })
 
