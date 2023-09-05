@@ -1,3 +1,13 @@
+<script setup>
+
+useHead({
+	titleTemplate: (titleChunk) => {
+		return titleChunk ? `${titleChunk} - The Heavy Shop` : 'The Heavy Shop';
+	}
+})
+
+</script>
+
 <template>
 	<div>
 		<NuxtLayout>

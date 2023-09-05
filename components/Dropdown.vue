@@ -17,11 +17,9 @@ const props = defineProps({
 <template>
     <div class="text-right">
         <HeadlessMenu as="div" class="relative inline-block">
-            <div>
-                <HeadlessMenuButton>
-                    <slot />
-                </HeadlessMenuButton>
-            </div>
+            <HeadlessMenuButton class="align-top">
+                <slot />
+            </HeadlessMenuButton>
 
             <transition 
                 enter-active-class="transition duration-200 ease-out" 
@@ -32,7 +30,7 @@ const props = defineProps({
                 leave-to-class="translate-y-1 opacity-0"
             >
                 <HeadlessMenuItems
-                    class="absolute w-32 mt-1 origin-top-right -right-2 rounded-xl bg-gray-light shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
+                    class="absolute w-32 mt-2 origin-top-right -right-2 rounded-xl bg-gray-light shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
 
                     <div v-for="option in options" :key="option.name" class="px-1 py-1">
                         <HeadlessMenuItem v-slot="{ active }">

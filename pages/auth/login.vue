@@ -1,5 +1,12 @@
 <script setup>
 
+useHead({
+    title: 'Login',
+    meta: [
+        { name: 'description', content: 'Login' }
+    ],
+})
+
 const { signIn } = useAuth()
 
 definePageMeta({
@@ -36,14 +43,14 @@ async function credentialsSignIn() {
             <form @submit.prevent="credentialsSignIn()" autocomplete="">
                 <div class="flex flex-col gap-4">
                     <div>
-                        <Label class="ml-2"> Email </Label>
-                        <TextInput v-model="email" name="email" type="email">
+                        <Label class="ml-2" for="email"> Email </Label>
+                        <TextInput v-model="email" name="email" id="email" type="email">
                             <IconsEnvelope class="w-5 h-5" />
                         </TextInput>
                     </div>
                     <div>
-                        <Label class="ml-2"> Password </Label>
-                        <TextInput v-model="password" name="password" type="password">
+                        <Label class="ml-2" for="password"> Password </Label>
+                        <TextInput v-model="password" name="password" id="password" type="password">
                             <IconsLock class="w-5 h-5" />
                         </TextInput>
                         <Label class="ml-2">
@@ -55,7 +62,7 @@ async function credentialsSignIn() {
                     <Error class="text-center">
                         {{ errorMessage }}
                     </Error>
-                    <Button type="submit" size="small">
+                    <Button type="submit" size="small" name="login">
                         LOG IN
                     </Button>
                 </div>
@@ -63,10 +70,10 @@ async function credentialsSignIn() {
             <div class="mt-8 flex flex-col items-center">
                 <Label> Or log in using </Label>
                 <div class="flex gap-3">
-                    <button class="text-white hover:text-gray-hover transition duration-200" @click="githubSignIn()" type="button">
+                    <button class="text-white hover:text-gray-hover transition duration-200" @click="githubSignIn()" type="button" aria-label="github">
                         <IconsGithub />
                     </button>
-                    <button class="text-white hover:text-gray-hover transition duration-200" @click="discordSignIn()" type="button">
+                    <button class="text-white hover:text-gray-hover transition duration-200" @click="discordSignIn()" type="button" aria-label="discord">
                         <IconsDiscord />
                     </button>
                 </div>

@@ -1,5 +1,12 @@
 <script setup>
 
+useHead({
+    title: 'Register',
+    meta: [
+        { name: 'description', content: 'Register' }
+    ],
+})
+
 const { signIn } = useAuth()
 
 definePageMeta({
@@ -35,26 +42,26 @@ function register() {
             <form @submit.prevent="register()" autocomplete="">
                 <div class="flex flex-col gap-4">
 					<div>
-                        <Label class="ml-2"> Username </Label>
-                        <TextInput v-model="username" name="username" type="text">
+                        <Label class="ml-2" for="username"> Username </Label>
+                        <TextInput v-model="username" name="username" id="username" type="text">
                             <IconsUser class="w-5 h-5" />
                         </TextInput>
                     </div>
                     <div>
-                        <Label class="ml-2"> Email </Label>
-                        <TextInput v-model="email" name="email" type="email">
+                        <Label class="ml-2" for="email"> Email </Label>
+                        <TextInput v-model="email" name="email" id="email" type="email">
                             <IconsEnvelope class="w-5 h-5" />
                         </TextInput>
                     </div>
                     <div>
-                        <Label class="ml-2"> Password </Label>
-                        <TextInput v-model="password" name="password" type="password">
+                        <Label class="ml-2" for="password"> Password </Label>
+                        <TextInput v-model="password" name="password" id="password" type="password">
                             <IconsLock class="w-5 h-5" />
                         </TextInput>
                     </div>
 					<div>
-                        <Label class="ml-2"> Password confirmation </Label>
-                        <TextInput v-model="passwordConfirmation" name="passwordConfirmation" type="password">
+                        <Label class="ml-2" for="password-confirmation"> Password confirmation </Label>
+                        <TextInput v-model="passwordConfirmation" name="password-confirmation" id="password-confirmation" type="password">
                             <IconsLock class="w-5 h-5" />
                         </TextInput>
                     </div>
