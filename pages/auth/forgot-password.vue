@@ -10,5 +10,7 @@ useHead({
 </script>
 
 <template>
-    
+    <div>
+        Forgot password page
+    </div>
 </template>
