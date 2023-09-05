@@ -35,25 +35,25 @@ function register() {
             <form @submit.prevent="register()" autocomplete="">
                 <div class="flex flex-col gap-4">
 					<div>
-                        <Label> Username </Label>
+                        <Label class="ml-2"> Username </Label>
                         <TextInput v-model="username" name="username" type="text">
                             <IconsUser class="w-5 h-5" />
                         </TextInput>
                     </div>
                     <div>
-                        <Label> Email </Label>
+                        <Label class="ml-2"> Email </Label>
                         <TextInput v-model="email" name="email" type="email">
                             <IconsEnvelope class="w-5 h-5" />
                         </TextInput>
                     </div>
                     <div>
-                        <Label> Password </Label>
+                        <Label class="ml-2"> Password </Label>
                         <TextInput v-model="password" name="password" type="password">
                             <IconsLock class="w-5 h-5" />
                         </TextInput>
                     </div>
 					<div>
-                        <Label> Password confirmation </Label>
+                        <Label class="ml-2"> Password confirmation </Label>
                         <TextInput v-model="passwordConfirmation" name="passwordConfirmation" type="password">
                             <IconsLock class="w-5 h-5" />
                         </TextInput>
@@ -80,7 +80,7 @@ function register() {
             <Label class="mt-8 flex flex-wrap items-center gap-1 justify-center">
                 Already have an account?
                 <NuxtLink to="/auth/login" class="font-normal text-red-primary hover:underline">
-                    Login
+                    Log in
                 </NuxtLink>
             </Label>
         </AuthCard>

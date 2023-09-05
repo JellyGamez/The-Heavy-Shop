@@ -14,10 +14,10 @@ const navItems = [
 ]
 
 const userOptions = (!loggedIn.value) ? [
-    { name: 'Login', url: '/auth/login' },
+    { name: 'Log In', url: '/auth/login' },
     { name: 'Register', url: '/auth/register' }
 ] : [
-    { name: 'Sign out', action: 'signOut' }
+    { name: 'Log Out', action: 'signOut' }
 ]
 
 const open = ref(false)

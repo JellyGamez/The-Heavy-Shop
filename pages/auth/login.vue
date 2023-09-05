@@ -36,17 +36,17 @@ async function credentialsSignIn() {
             <form @submit.prevent="credentialsSignIn()" autocomplete="">
                 <div class="flex flex-col gap-4">
                     <div>
-                        <Label> Email </Label>
+                        <Label class="ml-2"> Email </Label>
                         <TextInput v-model="email" name="email" type="email">
                             <IconsEnvelope class="w-5 h-5" />
                         </TextInput>
                     </div>
                     <div>
-                        <Label> Password </Label>
+                        <Label class="ml-2"> Password </Label>
                         <TextInput v-model="password" name="password" type="password">
                             <IconsLock class="w-5 h-5" />
                         </TextInput>
-                        <Label class="mt-1">
+                        <Label class="ml-2">
                             <NuxtLink to="/auth/forgot-password" class="hover:underline">
                                 Forgot your password?
                             </NuxtLink>
@@ -56,12 +56,12 @@ async function credentialsSignIn() {
                         {{ errorMessage }}
                     </Error>
                     <Button type="submit" size="small">
-                        LOGIN
+                        LOG IN
                     </Button>
                 </div>
             </form>
             <div class="mt-8 flex flex-col items-center">
-                <Label> Or login using </Label>
+                <Label> Or log in using </Label>
                 <div class="flex gap-3">
                     <button class="text-white hover:text-gray-hover transition duration-200" @click="githubSignIn()" type="button">
                         <IconsGithub />
