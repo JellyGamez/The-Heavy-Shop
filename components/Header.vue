@@ -41,15 +41,15 @@ const userOptions = (!loggedIn.value) ? [
             <div class="hidden w-52 md:flex justify-center">
                 <div class="flex justify-between w-28">
                     <NuxtLink to="/user/favorites">
-                        <IconsBookmark />
+                        <IconsBookmark class="w-6 h-6 hover:stroke-red-primary transition duration-200" />
                     </NuxtLink>
 
                     <NuxtLink to="/user/cart">
-                        <IconsCart />
+                        <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" />
                     </NuxtLink>
 
                     <Dropdown :options="userOptions">
-                        <IconsUser />
+                        <IconsUser class="w-6 h-6 hover:stroke-red-primary transition duration-200" />
                     </Dropdown>
                 </div>
             </div>
