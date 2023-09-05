@@ -28,7 +28,7 @@ const variantClasses = computed(() => {
 const sizeClasses = computed(() => {
     return {
         'small': 'px-3 py-3 text-sm',
-        'medium': 'px-5 py-3',
+        'medium': 'px-5 py-3 text-base',
         'large': 'px-8 py-3 text-lg',
     }[props.size]
 })

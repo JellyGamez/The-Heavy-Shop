@@ -14,7 +14,7 @@ const loggedIn = computed(() => {
 })
 
 const userOptions = (!loggedIn.value) ? [
-    { name: 'Sign in', url: '/auth/login' },
+    { name: 'Login', url: '/auth/login' },
     { name: 'Register', url: '/auth/register' }
 ] : [
     { name: 'Sign out', action: 'signOut' }
@@ -28,12 +28,12 @@ const userOptions = (!loggedIn.value) ? [
             <div class="w-52">
                 <NuxtLink to="/">
                     <!-- <img src="./Icons/Logo2.png" alt="The Heavy Shop" class="h-32"/> -->
-                    <p class="text-red-primary hover:text-gray-light transition duration-200 font-bold text-2xl font-ubuntu"> 
+                    <p class="text-red-primary hover:text-gray-hover transition duration-200 font-bold text-xl lg:text-2xl font-ubuntu"> 
                         THE HEAVY SHOP 
                     </p>
                 </NuxtLink>
             </div>
-            <div class="hidden md:flex space-x-4 items-center">
+            <div class="hidden md:flex space-x-3 items-center">
                 <NavItem v-for="item in navItems" :key="item.name" :to="item.url">
                     {{ item.name }}
                 </NavItem>

@@ -35,13 +35,14 @@
                         Embrace the genuine essence of rock and submerge yourself in the world of metal fashion.
                     </span>
 
-                    <div>
-                        <NuxtLink to="/shop">
-                            <Button variant="secondary" size="large">
-                                Shop now
-                            </Button>
-                        </NuxtLink>
-                    </div>
+                    <NuxtLink to="/shop" class="mx-auto xl:mx-0">
+                        <Button variant="secondary" size="large" class="hidden md:block">
+                            SHOP NOW
+                        </Button>
+                        <Button variant="secondary" size="medium" class="block md:hidden">
+                            SHOP NOW
+                        </Button>
+                    </NuxtLink>
                 </div>
             </div>
 

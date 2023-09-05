@@ -12,8 +12,9 @@ module.exports = {
     extend: {
       colors: {
         'red-primary': '#c70404',
-        'red-dark': '#a60303',
-        'red-light': '',
+        'red-dark': '#990000',
+        'red-light': '#eb1809',
+        'gray-hover': '#474747',
         'gray-primary': '#262626',
         'gray-dark': '#171717',
         'gray-light': '#303030'
