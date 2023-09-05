@@ -20,13 +20,13 @@ devDependencies:
     specifier: 0.6.0-beta.4
     version: 0.6.0-beta.4(next-auth@4.21.1)(vue@3.3.4)
   '@types/node':
-    specifier: ^18.17.14
+    specifier: ^18.17.12
     version: 18.17.14
   autoprefixer:
     specifier: ^10.4.15
     version: 10.4.15(postcss@8.4.29)
   nuxt:
-    specifier: ^3.7.1
+    specifier: ^3.7.0
     version: 3.7.1(@types/node@18.17.14)(typescript@5.2.2)
   nuxt-headlessui:
     specifier: ^1.1.4
