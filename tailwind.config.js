@@ -21,7 +21,7 @@ module.exports = {
       },
       maxWidth: {
         '8xl': '90rem',
-        '9xl': '100rem',
+        '9xl': '110rem',
       },
       fontFamily: {
         'kanit':  ['Kanit'],
