@@ -39,7 +39,7 @@ function register() {
 <template>
     <div class="bg-gray-light h-full flex flex-col items-center justify-center">
         <AuthCard label="Create a new account">
-            <form @submit.prevent="register()" autocomplete="">
+            <form @submit.prevent="register()" autocomplete="on">
                 <div class="flex flex-col gap-4">
 					<div>
                         <Label class="ml-2" for="username"> Username </Label>

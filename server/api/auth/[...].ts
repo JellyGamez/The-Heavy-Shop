@@ -1,6 +1,6 @@
 import GithubProvider from 'next-auth/providers/github'
-import CredentialsProvider from 'next-auth/providers/credentials'
 import DiscordProvider from 'next-auth/providers/discord'
+import CredentialsProvider from 'next-auth/providers/credentials'
 
 import { NuxtAuthHandler } from '#auth'
 
@@ -20,6 +20,7 @@ export default NuxtAuthHandler({
         CredentialsProvider.default({
             name: 'Credentials',
             authorize(credentials: any) {
+                $fetch('api/prisma/get-user')
                 const user = {
                     email: 'admin@test.com',
                     password: 'password'
@@ -28,14 +29,21 @@ export default NuxtAuthHandler({
                     return user
                 } else {
                     if (!credentials?.email)
-                        throw new Error('The email field is required.')
+                        throw createError({
+                            statusCode: 400, 
+                            statusMessage: 'The email field is required.'
+                        })
                     else if (!credentials?.password) 
-                        throw new Error('The password field is required.')
+                        throw createError({
+                            statusCode: 400, 
+                            statusMessage: 'The password field is required.'
+                        })
                     else 
-                        throw new Error('Invalid credentials. Please try again.')
-
+                        throw createError({
+                            statusCode: 400, 
+                            statusMessage: 'Invalid credentials. Please try again.'
+                        })
                 }
-
             }
         })
     ],

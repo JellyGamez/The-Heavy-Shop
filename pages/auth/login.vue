@@ -40,7 +40,7 @@ async function credentialsSignIn() {
 <template>
     <div class="bg-gray-light h-full flex flex-col items-center justify-center">
         <AuthCard label="Welcome back!">
-            <form @submit.prevent="credentialsSignIn()" autocomplete="">
+            <form @submit.prevent="credentialsSignIn()" autocomplete="on">
                 <div class="flex flex-col gap-4">
                     <div>
                         <Label class="ml-2" for="email"> Email </Label>

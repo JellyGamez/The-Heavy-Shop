@@ -7,17 +7,18 @@ const loggedIn = computed(() => {
 })
 
 const navItems = [
-    { name: 'Home', url: '/' },
-    { name: 'Shop', url: '/shop' },
-    { name: 'About', url: '/about' },
+    { name: 'Home',    url: '/'        },
+    { name: 'Shop',    url: '/shop'    },
+    { name: 'About',   url: '/about'   },
     { name: 'Contact', url: '/contact' },
 ]
 
 const userOptions = (!loggedIn.value) ? [
-    { name: 'Log In', url: '/auth/login' },
+    { name: 'Log In',   url: '/auth/login'    },
     { name: 'Register', url: '/auth/register' }
 ] : [
-    { name: 'Log Out', action: 'signOut' }
+    { name: 'Profile', url: '/user/profile' },
+    { name: 'Log Out', action: 'signOut'    }
 ]
 
 const open = ref(false)

@@ -6,11 +6,15 @@ useHead({
         { name: 'description', content: 'Profile' }
     ],
 })
+const { data } = useFetch('/api/session')
 
 </script>
 
 <template>
     <div>
-        Profile page
+        /Profile page
+        <pre>
+            {{ data }}
+        </pre>
     </div>
 </template>
