@@ -38,7 +38,7 @@ const open = ref(false)
                 </button>
             </nav>
             <div class="col-start-2 justify-center flex flex-nowrap md:col-start-1 md:justify-start items-center">
-                <NuxtLink to="/">
+                <NuxtLink to="/" class="flex items-center">
                     <!-- <img src="./Icons/Logo2.webp" alt="The Heavy Shop" class="h-32"/> -->
                     <span class="text-red-primary hover:text-gray-hover transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap"> 
                         THE HEAVY SHOP 

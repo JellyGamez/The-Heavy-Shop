@@ -6,7 +6,7 @@ useHead({
         { name: 'description', content: 'Profile' }
     ],
 })
-const { data } = useFetch('/api/session')
+const { data } = await useFetch('/api/session')
 
 </script>
 

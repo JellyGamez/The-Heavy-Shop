@@ -1,6 +1,8 @@
 import GithubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'
 import CredentialsProvider from 'next-auth/providers/credentials'
+import { getByEmail } from '../prisma/user'
+import bcrypt from "bcrypt"
 
 import { NuxtAuthHandler } from '#auth'
 
@@ -19,31 +21,32 @@ export default NuxtAuthHandler({
         // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
         CredentialsProvider.default({
             name: 'Credentials',
-            authorize(credentials: any) {
-                $fetch('api/prisma/get-user')
-                const user = {
-                    email: 'admin@test.com',
-                    password: 'password'
+            async authorize(credentials: any) {
+                if (!credentials?.email) {
+                    throw createError({
+                        statusCode: 400,
+                        statusMessage: 'The email field is required.'
+                    })
                 }
-                if (credentials?.email === user.email && credentials?.password === user.password) {
-                    return user
-                } else {
-                    if (!credentials?.email)
+                else if (!credentials?.password) {
+                    throw createError({
+                        statusCode: 400,
+                        statusMessage: 'The password field is required.'
+                    })
+                }
+                else {
+                    const user = await getByEmail(credentials?.email)
+                    console.log(user)
+                    if (bcrypt.compareSync(credentials?.password, user.password))
+                        return user
+                    else {
                         throw createError({
-                            statusCode: 400, 
-                            statusMessage: 'The email field is required.'
-                        })
-                    else if (!credentials?.password) 
-                        throw createError({
-                            statusCode: 400, 
-                            statusMessage: 'The password field is required.'
-                        })
-                    else 
-                        throw createError({
-                            statusCode: 400, 
+                            statusCode: 400,
                             statusMessage: 'Invalid credentials. Please try again.'
                         })
+                    }
                 }
+
             }
         })
     ],

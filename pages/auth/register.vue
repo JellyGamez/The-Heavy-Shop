@@ -30,8 +30,20 @@ async function credentialsSignIn() {
     if (!error)
         navigateTo(url, { external: true })
 }
-function register() {
 
+async function register() {
+    const { error } = await useFetch('/api/register', {
+        method: 'POST',
+        body: {
+            username: username.value,
+            email: email.value,
+            password: password.value,
+            passwordConfirmation: passwordConfirmation.value
+        }
+    })
+    errorMessage.value = error.value?.statusMessage
+    if (!error.value)
+        credentialsSignIn()
 }
 
 </script>
