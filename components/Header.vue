@@ -36,6 +36,23 @@ const open = ref(false)
                         <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{ '-rotate-45': open, ' translate-y-1.5': !open }" />
                     </div>
                 </button>
+                <div v-if="open" class="flex flex-col md:hidden absolute top-16 right-0 w-full bg-gray-light p-4 space-y-2">
+                    <NavItem v-for="item in navItems" :key="item.name" :to="item.url">
+                        {{ item.name }}
+                    </NavItem>
+
+                    <NuxtLink to="/user/favorites" id="favorites">
+                        <IconsBookmark class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="favorites" />
+                    </NuxtLink>
+
+                    <NuxtLink to="/user/cart" id="cart">
+                        <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="cart" />
+                    </NuxtLink>
+
+                    <Dropdown :options="userOptions" class="flex justify-start">
+                        <IconsUser class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="user-menu" />
+                    </Dropdown>
+                </div>
             </nav>
             <div class="col-start-2 justify-center flex flex-nowrap md:col-start-1 md:justify-start items-center">
                 <NuxtLink to="/" class="flex items-center">

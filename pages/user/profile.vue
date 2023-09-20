@@ -12,7 +12,7 @@ const { data } = await useFetch('/api/session')
 
 <template>
     <div>
-        /Profile page
+        Profile page
         <pre>
             {{ data }}
         </pre>
