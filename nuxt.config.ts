@@ -24,6 +24,7 @@ export default defineNuxtConfig({
   },
   modules: [
     '@sidebase/nuxt-auth',
+    '@nuxtjs/robots',
     'nuxt-headlessui'
   ],
   headlessui: {

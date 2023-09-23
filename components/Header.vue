@@ -36,7 +36,7 @@ const open = ref(false)
                         <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-500 ease-in-out" :class="{ '-rotate-45': open, ' translate-y-1.5': !open }" />
                     </div>
                 </button>
-                <div v-if="open" class="flex flex-col md:hidden absolute top-16 right-0 w-full bg-gray-light p-4 space-y-2">
+                <div v-if="open" class="flex flex-col justify-center md:hidden absolute top-16 right-0 w-full bg-gray-light p-4 space-y-2 shadow-xl ring-1 ring-black ring-opacity-5">
                     <NavItem v-for="item in navItems" :key="item.name" :to="item.url">
                         {{ item.name }}
                     </NavItem>
@@ -49,7 +49,7 @@ const open = ref(false)
                         <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="cart" />
                     </NuxtLink>
 
-                    <Dropdown :options="userOptions" class="flex justify-start">
+                    <Dropdown :options="userOptions" class="flex">
                         <IconsUser class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="user-menu" />
                     </Dropdown>
                 </div>
