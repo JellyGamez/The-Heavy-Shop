@@ -1,7 +1,8 @@
 <script setup>
 
 const props = defineProps({
-    label: String
+    label: String,
+    description: String
 })
 
 </script>
@@ -9,7 +10,10 @@ const props = defineProps({
 <template>
     <div class="w-full flex justify-center">
         <div class="w-full m-4 max-w-sm bg-gray-dark p-5 pt-8 rounded-xl">
-            <p class="text-center text-red-primary text-3xl font-semibold font-kanit mb-8"> {{ label }} </p>
+            <div class="mb-6">
+                <h2 class="text-center text-red-primary text-[26px] font-semibold font-kanit mb-3"> {{ label }} </h2>
+                <p class="text-center text-white font-extralight text-sm"> {{ description }} </p>
+            </div>
             <slot />
         </div>
     </div>

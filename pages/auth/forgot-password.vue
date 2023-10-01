@@ -7,6 +7,14 @@ useHead({
     ],
 })
 
+definePageMeta({
+    middleware: 'auth',
+    auth: {
+        unauthenticatedOnly: true,
+        navigateAuthenticatedTo: '/',
+    },
+})
+
 function sendEmail()
 {
 
@@ -15,8 +23,8 @@ function sendEmail()
 
 <template>
     <div class="bg-gray-light min-h-full flex flex-col items-center justify-center">
-        <AuthCard label="Reset password">
-            <form @submit.prevent="sendEmail()" autocomplete="on">
+        <AuthCard label="Reset password" description="Enter the email address associated with your account and we'll send you a link to reset your password">
+            <form @submit.prevent="sendEmail" autocomplete="on">
                 <div class="flex flex-col gap-4">
                     <div> 
                         <Label class="ml-2" for="email"> Email </Label>
@@ -33,13 +41,9 @@ function sendEmail()
                 </div>
             </form>
 
-            <div class="mt-8 flex justify-center items-center">
-                <NuxtLink to="/auth/login" class="font-normal text-red-primary hover:underline">
-                    Log in
-                </NuxtLink>
-                <div class="mx-2 w-1 h-1 rounded-full bg-gray-light" />
-                <NuxtLink to="/auth/register" class="font-normal text-red-primary hover:underline">
-                    Register
+            <div class="mt-8 flex justify-center items-center space-x-10">
+                <NuxtLink to="/auth/login" class="font-normal text-red-primary hover:underline text-sm">
+                    Return to login page
                 </NuxtLink>
             </div>
         </AuthCard>

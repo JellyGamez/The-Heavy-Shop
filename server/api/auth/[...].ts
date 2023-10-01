@@ -8,17 +8,17 @@ import { NuxtAuthHandler } from '#auth'
 
 export default NuxtAuthHandler({
     providers: [
-        // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
+        // @ts-expect-error
         GithubProvider.default({
             clientId: process.env.GITHUB_CLIENT_ID,
             clientSecret: process.env.GITHUB_CLIENT_SECRET
         }),
-        // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
+        // @ts-expect-error
         DiscordProvider.default({
             clientId: process.env.DISCORD_CLIENT_ID,
             clientSecret: process.env.DISCORD_CLIENT_SECRET
         }),
-        // @ts-expect-error You need to use .default here for it to work during SSR. May be fixed via Vite at some point
+        // @ts-expect-error
         CredentialsProvider.default({
             name: 'Credentials',
             async authorize(credentials: any) {

@@ -68,7 +68,6 @@ useHead({
 .underline-effect {
     position: relative;
 }
-
 .underline-effect::before {
     content: '';
     position: absolute;
@@ -80,9 +79,23 @@ useHead({
     left: 0;
     transform-origin: right;
     transform: scaleX(0);
-    transition: transform .5s ease-in-out;
+    transition: transform .45s ease-in-out;
 }
-
+@media screen and (max-width: 768px) {
+    .underline-effect::before {
+        content: '';
+        position: absolute;
+        width: 100%;
+        height: 3px;
+        border-radius: 4px;
+        background-color: #c70404;
+        bottom: 0;
+        left: 0;
+        transform-origin: right;
+        transform: scaleX(0);
+        transition: transform .45s ease-in-out;
+    }
+}
 .underline-effect:hover::before {
     transform-origin: left;
     transform: scaleX(1);

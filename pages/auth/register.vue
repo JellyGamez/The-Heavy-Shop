@@ -7,8 +7,6 @@ useHead({
     ],
 })
 
-const { signIn } = useAuth()
-
 definePageMeta({
     middleware: 'auth',
     auth: {
@@ -16,6 +14,8 @@ definePageMeta({
         navigateAuthenticatedTo: '/',
     },
 })
+
+const { signIn } = useAuth()
 
 const username = ref('')
 const email = ref('')
@@ -85,17 +85,6 @@ async function register() {
                     </Button>
                 </div>
             </form>
-            <!-- <div class="mt-8 flex flex-col items-center">
-                <Label> Or login using </Label>
-                <div class="flex gap-3">
-                    <button class="text-white hover:text-gray-hover transition duration-200" @click="githubSignIn()" type="button">
-                        <IconsGithub />
-                    </button>
-                    <button class="text-white hover:text-gray-hover transition duration-200" @click="discordSignIn()" type="button">
-                        <IconsDiscord />
-                    </button>
-                </div>
-            </div> -->
             <Label class="mt-8 flex flex-wrap items-center gap-1 justify-center">
                 Already have an account?
                 <NuxtLink to="/auth/login" class="font-normal text-red-primary hover:underline">
