@@ -33,3 +33,9 @@ pnpm run preview
 ```
 
 Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
+
+TODO:
+Add validation when email is already taken
+Add password minimum length
+Add notifications for logging in and registering
+Fix hamburger menu and dropdown not closing
