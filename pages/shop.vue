@@ -12,6 +12,6 @@ useHead({
 <template>
     <div class="flex flex-col justify-center items-center">
         Shop page
-        <ProductCard />
+        <PreviewProductCard />
     </div>
 </template>

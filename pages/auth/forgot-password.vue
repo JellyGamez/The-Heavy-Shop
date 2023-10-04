@@ -23,7 +23,7 @@ function sendEmail()
 
 <template>
     <div class="bg-gray-light min-h-full flex flex-col items-center justify-center">
-        <AuthCard label="Reset password" description="Enter the email address associated with your account and we'll send you a link to reset your password">
+        <AuthCard label="Forgot password" description="Enter the email address associated with your account and we'll send you a link to reset your password">
             <form @submit.prevent="sendEmail" autocomplete="on">
                 <div class="flex flex-col gap-4">
                     <div> 
