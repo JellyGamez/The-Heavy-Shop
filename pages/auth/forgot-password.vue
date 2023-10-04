@@ -19,6 +19,7 @@ function sendEmail()
 {
 
 }
+
 </script>
 
 <template>

@@ -19,6 +19,7 @@ function resetPassword()
 {
 
 }
+
 </script>
 
 <template>

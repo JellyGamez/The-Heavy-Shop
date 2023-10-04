@@ -10,8 +10,9 @@ useHead({
 </script>
 
 <template>
-    <div class="flex flex-col justify-center items-center">
-        Shop page
-        <PreviewProductCard />
+    <div class="">
+        <div class="grid grid-cols-6 gap-4">
+            <PreviewProductCard v-for="n in 10" label="Red T-shirt"/>
+        </div>
     </div>
 </template>
