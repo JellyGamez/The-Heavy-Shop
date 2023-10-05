@@ -28,7 +28,7 @@ const props = defineProps({
                                 v-if="option.url"
                                 :to="option.url"
                                 :class="[
-                                    { 'bg-gray-dark' : active },
+                                    { 'bg-red-dark' : active },
                                     'group flex w-full items-center rounded-xl px-2 py-2 text-white text-sm text-center transition duration-200 ',
                                 ]"
                             >
@@ -38,7 +38,7 @@ const props = defineProps({
                                 v-else
                                 @click="$emit('action', option.action)"
                                 :class="[
-                                    { 'bg-gray-dark' : active },
+                                    { 'bg-red-dark' : active },
                                     'group flex w-full items-center rounded-xl px-2 py-2 text-white text-sm text-center transition duration-200 ',
                                 ]"
                             >

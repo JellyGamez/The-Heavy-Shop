@@ -47,8 +47,6 @@ function resetPassword()
                     </Button>
                 </div>
             </form>
-
-?
         </AuthCard>
     </div>
 </template>

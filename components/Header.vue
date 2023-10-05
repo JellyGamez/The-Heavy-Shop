@@ -33,14 +33,11 @@ const userOptions = (!loggedIn.value) ? [
     { name: 'Log Out', action: 'signOut'    }
 ]
 
-const open = ref(false)
-
 </script>
 
 <template>
     <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark">
         <div class="px-3 md:px-10 max-w-8xl mx-auto h-full grid grid-cols-3">
-            <!-- Mobile menu -->
             <div class="flex md:hidden">
                 <HeadlessMenu as="div" class="flex items-center" v-slot="{ open }">
                     <HeadlessMenuButton class="flex items-center">
@@ -60,7 +57,7 @@ const open = ref(false)
                         leave-from-class="transform scale-y-100"
                         leave-to-class="transform scale-y-0"
                     >
-                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark w-full p-4 space-y-2 shadow-2xl">
+                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark border-t border-gray-light w-full p-4 space-y-2 shadow-2xl">
                             <HeadlessMenuItem v-for="item in navItems" :key="item.name" v-slot="{ close }">
                                 <NavItem :to="item.url" @click="close">
                                     {{ item.name }}

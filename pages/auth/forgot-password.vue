@@ -41,7 +41,6 @@ function sendEmail()
                     </Button>
                 </div>
             </form>
-
             <div class="mt-8 flex justify-center items-center space-x-10">
                 <NuxtLink to="/auth/login" class="font-normal text-red-primary hover:underline text-sm">
                     Return to login page
