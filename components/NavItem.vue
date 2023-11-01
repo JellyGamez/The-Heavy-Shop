@@ -8,7 +8,7 @@ const props = defineProps({
 const route = useRoute()
 
 function match(url) {
-    return '/' + route.name.replace('-', '/') == url || route.name == 'index' && url == '/'
+    return '/' + route.name?.replace('-', '/') == url || route.name == 'index' && url == '/'
 }
 
 </script>

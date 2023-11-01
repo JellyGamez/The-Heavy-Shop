@@ -24,7 +24,7 @@ function resetPassword()
 
 <template>
     <div class="bg-gray-light min-h-full flex flex-col items-center justify-center">
-        <AuthCard label="Reset password" description="Enter a new secure password for your account">
+        <AuthCard title="Reset password" description="Enter a new secure password for your account">
             <form @submit.prevent="resetPassword" autocomplete="on">
                 <div class="flex flex-col gap-4">
                     <div>

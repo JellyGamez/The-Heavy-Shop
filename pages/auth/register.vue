@@ -50,7 +50,7 @@ async function register() {
 
 <template>
     <div class="bg-gray-light min-h-full flex flex-col items-center justify-center">
-        <AuthCard label="Create a new account">
+        <AuthCard title="Create a new account">
             <form @submit.prevent="register()" autocomplete="on">
                 <div class="flex flex-col gap-4">
 					<div>
