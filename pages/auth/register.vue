@@ -40,6 +40,7 @@ async function register() {
             password: password.value,
             passwordConfirmation: passwordConfirmation.value
         },
+        key: `${username.value} ${email.value} ${password.value}  ${passwordConfirmation.value}`
     })
     errorMessage.value = error.value?.statusMessage
     if (!error.value)

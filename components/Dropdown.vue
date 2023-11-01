@@ -22,14 +22,14 @@ const props = defineProps({
                     leave-to-class="transform scale-y-0"
                 >
                 <HeadlessMenuItems class="absolute w-32 mt-2 origin-top left-1/2 -translate-x-1/2 rounded-xl bg-gray-light shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none">
-                    <div v-for="option in options" :key="option.name" class="p-1">
+                    <div v-for="option in options" :key="option.name" class="p-1 text-center text-white text-sm">
                         <HeadlessMenuItem v-slot="{ active }">
                             <NuxtLink 
                                 v-if="option.url"
                                 :to="option.url"
                                 :class="[
-                                    { 'bg-red-dark' : active },
-                                    'group flex w-full items-center rounded-xl px-2 py-2 text-white text-sm text-center transition duration-200 ',
+                                    { 'bg-gray-dark' : active },
+                                    'flex w-full items-center rounded-xl px-2 py-2 transition duration-200',
                                 ]"
                             >
                                 {{ option.name }}
@@ -38,8 +38,8 @@ const props = defineProps({
                                 v-else
                                 @click="$emit('action', option.action)"
                                 :class="[
-                                    { 'bg-red-dark' : active },
-                                    'group flex w-full items-center rounded-xl px-2 py-2 text-white text-sm text-center transition duration-200 ',
+                                    { 'bg-gray-dark' : active },
+                                    'flex w-full items-center rounded-xl px-2 py-2 transition duration-200',
                                 ]"
                             >
                                 {{ option.name }}
