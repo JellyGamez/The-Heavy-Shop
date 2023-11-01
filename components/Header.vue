@@ -40,14 +40,12 @@ const userOptions = (!loggedIn.value) ? [
         <div class="px-3 md:px-10 max-w-8xl mx-auto h-full grid grid-cols-3">
             <div class="flex md:hidden">
                 <HeadlessMenu as="div" class="flex items-center" v-slot="{ open }">
-                    <HeadlessMenuButton class="flex items-center">
-                        <button class="text-white w-10 h-10 relative focus:outline-none" aria-label="mobile-menu">
-                            <div class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
-                                <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-300 ease-in-out" :class="{ 'rotate-45': open,' -translate-y-1.5': !open }" />
-                                <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-300 ease-in-out" :class="{ 'opacity-0': open } " />
-                                <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-300 ease-in-out" :class="{ '-rotate-45': open, ' translate-y-1.5': !open }" />
-                            </div>
-                        </button>
+                    <HeadlessMenuButton class="flex items-center text-white w-10 h-10 relative focus:outline-none" aria-label="mobile-menu">
+                        <div class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
+                            <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-300 ease-in-out" :class="{ 'rotate-45': open,' -translate-y-1.5': !open }" />
+                            <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-300 ease-in-out" :class="{ 'opacity-0': open } " />
+                            <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-300 ease-in-out" :class="{ '-rotate-45': open, ' translate-y-1.5': !open }" />
+                        </div>
                     </HeadlessMenuButton>
                     <transition
                         enter-active-class="transition duration-300 ease-in-out"

@@ -17,12 +17,12 @@ definePageMeta({
 
 const { signIn } = useAuth()
 
-const username = ref('')
-const email = ref('')
-const password = ref('')
-const passwordConfirmation = ref('')
+const username = ref()
+const email = ref()
+const password = ref()
+const passwordConfirmation = ref()
 
-const errorMessage = ref('')
+const errorMessage = ref()
 
 async function credentialsSignIn() {
     const { url, error } = await signIn('credentials', { email: email.value, password: password.value, redirect: false })
@@ -32,14 +32,14 @@ async function credentialsSignIn() {
 }
 
 async function register() {
-    const { error } = await useFetch('/api/register', {
+    const { error } = await useFetch(() => '/api/register', {
         method: 'POST',
         body: {
             username: username.value,
             email: email.value,
             password: password.value,
             passwordConfirmation: passwordConfirmation.value
-        }
+        },
     })
     errorMessage.value = error.value?.statusMessage
     if (!error.value)

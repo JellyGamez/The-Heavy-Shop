@@ -17,10 +17,10 @@ definePageMeta({
 
 const { signIn } = useAuth()
 
-const email = ref('')
-const password = ref('')
+const email = ref()
+const password = ref()
 
-const errorMessage = ref('')
+const errorMessage = ref()
 
 async function githubSignIn() {
     await signIn('github')

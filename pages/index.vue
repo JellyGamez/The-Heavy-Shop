@@ -11,7 +11,7 @@ useHead({
 
 <template>
 
-    <div class="bg-[url('public/img/texture.webp')] bg-cover min-h-full xl:h-full flex">
+    <div class="bg-[url('/img/texture.webp')] bg-cover min-h-full xl:h-full flex">
         <div class="flex-1 bg-gray-dark bg-opacity-90 pt-8 px-4 md:px-10 lg:px-20 grid grid-cols-1 xl:grid-cols-2 gap-8 overflow-x-hidden">
             <div class="flex items-center justify-center text-white text-3xl md:text-5xl font-bold ">
                 <div class="flex flex-col gap-8 mb-8 text-center xl:text-left font-ubuntu">
@@ -56,7 +56,7 @@ useHead({
             </div>
 
             <div class="overflow-hidden xl:-mr-20">
-                <img src="img/2.webp" class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full block mx-auto text-white"
+                <img src="/img/2.webp" class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full block mx-auto text-white"
                     alt="Muscular man wearing our brand"
                 >
             </div>

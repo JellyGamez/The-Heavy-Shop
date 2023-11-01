@@ -5,30 +5,30 @@ export default defineEventHandler(async (event) => {
     const { username, email, password, passwordConfirmation } = body
 
     if (!username)
-        return sendError(event, createError({
+        throw createError({
             statusCode: 400,
             statusMessage: 'The username field is required.'
-        }))
+        })
     else if (!email)
-        return sendError(event, createError({
+        throw createError({
             statusCode: 400,
             statusMessage: 'The email field is required.'
-        }))
+        })
     else if (!password)
-        return sendError(event, createError({
+        throw createError({
             statusCode: 400,
             statusMessage: 'The password field is required.'
-        }))
+        })
     else if (!passwordConfirmation)
-        return sendError(event, createError({
+        throw createError({
             statusCode: 400,
             statusMessage: 'The password confirmation field is required.'
-        }))
+        })
     else if (password !== passwordConfirmation)
-        return sendError(event, createError({
+        throw createError({
             statusCode: 400,
             statusMessage: 'The passwords do not match.'
-        }))
+        })
 
     const data = {
         username,

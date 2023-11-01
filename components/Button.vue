@@ -5,7 +5,7 @@ const props = defineProps({
         type: String,
         default: 'primary',
         validator(value) {
-            return ['primary', 'secondary', 'neutral'].includes(value)
+            return ['primary', 'secondary'].includes(value)
         }
     },
     size: {
@@ -19,16 +19,16 @@ const props = defineProps({
 
 const variantClasses = computed(() => {
     return {
-        'primary': 'bg-gray-primary hover:bg-gray-dark text-white ring-2 ring-inset ring-gray-primary hover:ring-red-primary',
-        'secondary': 'bg-red-primary hover:bg-red-dark',
+        'primary'   : 'bg-gray-primary hover:bg-gray-dark text-white ring-2 ring-inset ring-gray-primary hover:ring-red-primary',
+        'secondary' : 'bg-red-primary hover:bg-red-dark',
     }[props.variant]
 })
 
 const sizeClasses = computed(() => {
     return {
-        'small': 'px-3 py-2.5 text-sm',
-        'medium': 'px-5 py-3 text-base',
-        'large': 'px-8 py-3 text-lg',
+        'small'  : 'px-3 py-2.5 text-sm',
+        'medium' : 'px-5 py-3 text-base',
+        'large'  : 'px-8 py-3 text-lg',
     }[props.size]
 })
 
