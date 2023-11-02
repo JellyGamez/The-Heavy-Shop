@@ -15,17 +15,30 @@ definePageMeta({
     },
 })
 
-function sendEmail()
-{
+const email = ref('')
 
+const errorMessage = ref()
+const temp = ref()
+
+async function sendEmail()
+{
+    const { error, data } = await useFetch('/api/send-email', {
+        method: 'POST',
+        body: {
+            email: email.value,
+        },
+    })
+    errorMessage.value = error.value?.statusMessage
+    console.log(data.value.message)
 }
 
 </script>
 
 <template>
     <div class="bg-gray-light min-h-full flex flex-col items-center justify-center">
+        {{ temp }}
         <AuthCard title="Forgot password" description="Enter the email address associated with your account and we'll send you a link to reset your password">
-            <form @submit.prevent="sendEmail" autocomplete="on">
+            <form @submit.prevent="sendEmail">
                 <div class="flex flex-col gap-4">
                     <div> 
                         <Label class="ml-2" for="email"> Email </Label>

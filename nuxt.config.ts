@@ -25,6 +25,7 @@ export default defineNuxtConfig({
   modules: [
     '@sidebase/nuxt-auth',
     '@nuxtjs/robots',
+    '@vue-email/nuxt',
     'nuxt-headlessui',
   ],
   headlessui: {

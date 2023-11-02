@@ -15,7 +15,7 @@ definePageMeta({
     },
 })
 
-function resetPassword()
+async function resetPassword()
 {
 
 }
@@ -25,7 +25,7 @@ function resetPassword()
 <template>
     <div class="bg-gray-light min-h-full flex flex-col items-center justify-center">
         <AuthCard title="Reset password" description="Enter a new secure password for your account">
-            <form @submit.prevent="resetPassword" autocomplete="on">
+            <form @submit.prevent="resetPassword">
                 <div class="flex flex-col gap-4">
                     <div>
                         <Label class="ml-2" for="password"> Password </Label>

@@ -17,8 +17,8 @@ definePageMeta({
 
 const { signIn } = useAuth()
 
-const email = ref()
-const password = ref()
+const email = ref('')
+const password = ref('')
 
 const errorMessage = ref()
 
@@ -40,7 +40,7 @@ async function credentialsSignIn() {
 <template>
     <div class="bg-gray-light min-h-full flex flex-col items-center justify-center">
         <AuthCard title="Welcome back!">
-            <form @submit.prevent="credentialsSignIn()" autocomplete="on">
+            <form @submit.prevent="credentialsSignIn()">
                 <div class="flex flex-col gap-4">
                     <div>
                         <Label class="ml-2" for="email"> Email </Label>
