@@ -16,7 +16,6 @@
     "autoprefixer": "^10.4.16",
     "bcrypt": "^5.1.1",
     "nuxt": "^3.8.0",
-    "nuxt-delay-hydration": "^1.2.3",
     "nuxt-headlessui": "^1.1.4",
     "postcss": "^8.4.31",
     "prisma": "^5.5.2",

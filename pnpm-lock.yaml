@@ -43,9 +43,6 @@ devDependencies:
   nuxt:
     specifier: ^3.8.0
     version: 3.8.0(@types/node@18.18.8)(typescript@5.2.2)(vite@4.5.0)
-  nuxt-delay-hydration:
-    specifier: ^1.2.3
-    version: 1.2.3
   nuxt-headlessui:
     specifier: ^1.1.4
     version: 1.1.4(vue@3.3.7)
@@ -1099,7 +1096,7 @@ packages:
     dependencies:
       '@npmcli/node-gyp': 3.0.0
       '@npmcli/promise-spawn': 7.0.0
-      node-gyp: 10.0.0
+      node-gyp: 10.0.1
       read-package-json-fast: 3.0.2
       which: 4.0.0
     transitivePeerDependencies:
@@ -2350,7 +2347,7 @@ packages:
     hasBin: true
     dependencies:
       caniuse-lite: 1.0.30001559
-      electron-to-chromium: 1.4.573
+      electron-to-chromium: 1.4.574
       node-releases: 2.0.13
       update-browserslist-db: 1.0.13(browserslist@4.22.1)
 
@@ -2979,8 +2976,8 @@ packages:
     resolution: {integrity: sha512-WMwm9LhRUo+WUaRN+vRuETqG89IgZphVSNkdFgeb6sS/E4OrDIN7t48CAewSHXc6C8lefD8KKfr5vY61brQlow==}
     dev: true
 
-  /electron-to-chromium@1.4.573:
-    resolution: {integrity: sha512-tzxxvKDTO3V5vzN2F+3v9jrK9gEbCdf1YYJUx/zVq1cyzyh+x1ddeYNNWh0ZS2ETNCVK3+Pns1LHIBq4w20X2Q==}
+  /electron-to-chromium@1.4.574:
+    resolution: {integrity: sha512-bg1m8L0n02xRzx4LsTTMbBPiUd9yIR+74iPtS/Ao65CuXvhVZHP0ym1kSdDG3yHFDXqHQQBKujlN1AQ8qZnyFg==}
 
   /emoji-regex@8.0.0:
     resolution: {integrity: sha512-MSjYzcWNOA0ewAHpz0MxpYFvwg6yjy1NG3xteoqz644VCo/RPgnr1/GGt+ic3iJTzQ8Eu3TdM14SawnVUmGE6A==}
@@ -3985,10 +3982,6 @@ packages:
       pkg-types: 1.0.3
     dev: true
 
-  /lodash-es@4.17.21:
-    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==}
-    dev: true
-
   /lodash.debounce@4.0.8:
     resolution: {integrity: sha512-FT1yDzDYEoYWhnSGnpE/4Kj1fLZkDFyqRb7fNt6FdYOSxlUWAtp42Eh6Wb0rGIv/m9Bgo7x4GhQbm5Ys4SG5ow==}
     dev: true
@@ -4498,8 +4491,8 @@ packages:
     hasBin: true
     dev: true
 
-  /node-gyp@10.0.0:
-    resolution: {integrity: sha512-LkaKUbjyacJGRHiuhUeUblzZNxTF1/XNooyAl6aiaJ6ZpeurR4Mk9sjxncGNSI7pETqyqM+hLAER0788oSxt0A==}
+  /node-gyp@10.0.1:
+    resolution: {integrity: sha512-gg3/bHehQfZivQVfqIyy8wTdSymF9yTyP4CJifK73imyNMU8AIGQE2pUa7dNWfmMeG9cDVF2eehiRMv0LC1iAg==}
     engines: {node: ^16.14.0 || >=18.0.0}
     hasBin: true
     dependencies:
@@ -4651,18 +4644,6 @@ packages:
     hasBin: true
     optionalDependencies:
       fsevents: 2.3.3
-
-  /nuxt-delay-hydration@1.2.3:
-    resolution: {integrity: sha512-Z+axsE2DbG/UuZLvMxeAf8XXzyuH4qkU5fJ84Q/CNoLtWUD+oudiOCbo+bahreZG5SYKQi5p8MCY1T0yLl9FyQ==}
-    dependencies:
-      '@nuxt/kit': 3.8.0
-      lodash-es: 4.17.21
-      packrup: 0.1.0
-      radix3: 1.1.0
-    transitivePeerDependencies:
-      - rollup
-      - supports-color
-    dev: true
 
   /nuxt-headlessui@1.1.4(vue@3.3.7):
     resolution: {integrity: sha512-/8C1w/nfBJBFzWvD/WUxwHFviPECO6owj8JgmwOK348E0IE7ZKhpFuEuy8rZ2hSm/JWexvz3QbmMRfndfzl3qw==}
@@ -4899,10 +4880,6 @@ packages:
     engines: {node: '>=10'}
     dependencies:
       aggregate-error: 3.1.0
-    dev: true
-
-  /packrup@0.1.0:
-    resolution: {integrity: sha512-HnUl9ztHGty5ZK13WM8Q7854SWPKH/eCT+MiTO0P1qCu1Y4S5PPJ8E9MwD3cnjSr7PUPzXDnmOVJIKM043OfJQ==}
     dev: true
 
   /pacote@17.0.4:

@@ -26,12 +26,8 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth',
     '@nuxtjs/robots',
     'nuxt-headlessui',
-    // 'nuxt-delay-hydration',
   ],
   headlessui: {
     prefix: 'Headless'
   },
-  // delayHydration: {
-  //   debug: process.env.NODE_ENV === 'development'
-  // }
 })
