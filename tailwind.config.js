@@ -13,19 +13,19 @@ module.exports = {
       colors: {
         'red-primary'  : '#c70404',
         'red-dark'     : '#990000',
-        'red-light'    : '#eb1809',
+        'red-light'    : '#fb4242',
         'gray-hover'   : '#474747',
         'gray-primary' : '#262626',
         'gray-dark'    : '#171717',
-        'gray-light'   : '#303030'
+        'gray-light'   : '#303030',
       },
       maxWidth: {
-        '8xl': '90rem',
-        '9xl': '110rem',
+        '8xl' : '90rem',
+        '9xl' : '110rem',
       },
       fontFamily: {
         'kanit'  : ['Kanit'],
-        'ubuntu' : ['Ubuntu']
+        'ubuntu' : ['Ubuntu'],
       }
     },
   },

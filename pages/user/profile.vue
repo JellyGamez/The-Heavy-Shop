@@ -6,6 +6,12 @@ useHead({
         { name: 'description', content: 'Profile' }
     ],
 })
+
+definePageMeta({
+    middleware: 'auth',
+    redirect: '/auth/login'
+})
+
 const { data } = await useFetch('/api/session')
 
 </script>

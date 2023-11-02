@@ -56,16 +56,16 @@ const userOptions = (!loggedIn.value) ? [
                         leave-to-class="transform scale-y-0"
                     >
                         <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark border-t border-gray-light w-full p-4 space-y-2 shadow-2xl">
-                            <HeadlessMenuItem v-for="item in navItems" :key="item.name" v-slot="{ close }">
-                                <NavItem :to="item.url" @click="close">
+                            <HeadlessMenuItem v-for="item in navItems" :key="item.name">
+                                <NavItem :url="item.url">
                                     {{ item.name }}
                                 </NavItem>
                             </HeadlessMenuItem>
                             <br>
                             <div class="flex w-full justify-between">
                                 <div class="flex flex-col space-y-2">
-                                    <HeadlessMenuItem v-for="option in userOptions" :key="option.name" v-slot="{ close }">
-                                        <NavItem :to="option.url" :action="option.action" @action="handleAction" @click="close">
+                                    <HeadlessMenuItem v-for="option in userOptions" :key="option.name">
+                                        <NavItem :url="option.url" :action="option.action" @action="handleAction">
                                             {{ option.name }}
                                         </NavItem>
                                     </HeadlessMenuItem>
@@ -94,7 +94,7 @@ const userOptions = (!loggedIn.value) ? [
                 </NuxtLink>
             </div>
             <nav class="hidden md:flex space-x-3 items-center justify-center">
-                <NavItem v-for="item in navItems" :key="item.name" :to="item.url">
+                <NavItem v-for="item in navItems" :key="item.name" :url="item.url">
                     {{ item.name }}
                 </NavItem>
             </nav>

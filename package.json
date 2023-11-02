@@ -12,7 +12,7 @@
     "@nuxt/devtools": "latest",
     "@sidebase/nuxt-auth": "0.6.0-beta.4",
     "@types/bcrypt": "^5.0.1",
-    "@types/node": "^18.18.7",
+    "@types/node": "^18.18.8",
     "autoprefixer": "^10.4.16",
     "bcrypt": "^5.1.1",
     "nuxt": "^3.8.0",
