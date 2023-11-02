@@ -4,6 +4,8 @@ const props = defineProps({
     options: Array
 })
 
+const router = useRouter()
+
 </script>
 
 <template>
@@ -24,19 +26,8 @@ const props = defineProps({
                 <HeadlessMenuItems class="absolute w-32 mt-2 origin-top left-1/2 -translate-x-1/2 rounded-xl bg-gray-light shadow-lg ring-1 ring-black ring-opacity-10 focus:outline-none">
                     <div v-for="option in options" :key="option.name" class="p-1 text-center text-white text-sm">
                         <HeadlessMenuItem v-slot="{ active }">
-                            <NuxtLink 
-                                v-if="option.url"
-                                :to="option.url"
-                                :class="[
-                                    { 'bg-gray-dark' : active },
-                                    'flex w-full items-center rounded-xl px-2 py-2 transition duration-200',
-                                ]"
-                            >
-                                {{ option.name }}
-                            </NuxtLink>
                             <button
-                                v-else
-                                @click="$emit('action', option.action)"
+                                @click="() => { option.url ? router.push({ path: option.url }) : $emit('action', option.action) }"
                                 :class="[
                                     { 'bg-gray-dark' : active },
                                     'flex w-full items-center rounded-xl px-2 py-2 transition duration-200',
