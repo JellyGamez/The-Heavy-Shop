@@ -15,9 +15,36 @@ definePageMeta({
     },
 })
 
+const password = ref('')
+const passwordConfirmation = ref('')
+
+const errorMessage = ref()
+
+async function credentialsSignIn() {
+    const { url, error } = await signIn('credentials', { email: email.value, password: password.value, redirect: false })
+    errorMessage.value = error
+    if (!error)
+        navigateTo(url, { external: true })
+}
+
 async function resetPassword()
 {
-
+    const { error, data } = await useFetch('/api/update-password', {
+        method: 'POST',
+        body: {
+            password: password.value,
+            passwordConfirmation: passwordConfirmation.value
+        },
+        key: `${password.value}  ${passwordConfirmation.value}`
+    })
+    errorMessage.value = error.value?.statusMessage
+    
+    if (!error.value)
+    {
+        //toast notification
+        credentialsSignIn()
+    }
+    console.log(data.value)
 }
 
 </script>
