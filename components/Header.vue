@@ -1,6 +1,7 @@
 <script setup>
 
 const { status, signOut } = useAuth()
+const router = useRouter()
 
 const loggedIn = computed(() => {
     return status.value === 'authenticated'
@@ -71,13 +72,17 @@ const userOptions = (!loggedIn.value) ? [
                                 </div>
                                 
                                 <div class="flex flex-col justify-center space-y-2">
-                                    <NuxtLink to="/user/favorites" id="favorites">
-                                        <IconsBookmark class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="favorites" />
-                                    </NuxtLink>
-
-                                    <NuxtLink to="/user/cart" id="cart">
-                                        <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="cart" />
-                                    </NuxtLink>
+                                    <HeadlessMenuItem>
+                                        <button @click="() => router.push({ path: '/user/favorites' })" id="favorites">
+                                            <IconsBookmark class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="favorites" />
+                                        </button>
+                                    </HeadlessMenuItem>
+                                    
+                                    <HeadlessMenuItem>
+                                        <button @click="() => router.push({ path: '/user/cart' })" id="cart">
+                                            <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="cart" />
+                                        </button>
+                                    </HeadlessMenuItem>
                                 </div>
                             </div>
                         </HeadlessMenuItems>
@@ -86,7 +91,6 @@ const userOptions = (!loggedIn.value) ? [
             </div>
             <div class="col-start-2 justify-center flex flex-nowrap md:col-start-1 md:justify-start items-center">
                 <NuxtLink to="/" class="flex items-center">
-                    <!-- <img src="./Icons/Logo2.webp" alt="The Heavy Shop" class="h-32"/> -->
                     <span class="text-red-primary hover:text-gray-hover transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap"> 
                         THE HEAVY SHOP 
                     </span>
