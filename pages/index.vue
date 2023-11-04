@@ -56,7 +56,8 @@ useHead({
             </div>
 
             <div class="overflow-hidden xl:-mr-20">
-                <img src="/img/2.webp" class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full block mx-auto text-white"
+                <img 
+                    src="/img/2.webp" class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full block mx-auto text-white"
                     alt="Muscular man wearing our brand"
                 >
             </div>

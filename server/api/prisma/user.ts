@@ -1,30 +1,54 @@
-import { prisma } from "."
+import { PrismaClient, Prisma } from '@prisma/client'
 import bcrypt from "bcrypt"
 
-export const create = (data: any) => {
-    return prisma.user.create({
+const prisma = new PrismaClient()
+
+export const create = async (data: any) => {
+    try {
+        return await prisma.user.create({
+            data: {
+                ...data,
+                password: bcrypt.hashSync(data.password, 10)
+            }
+        })
+    }
+    catch (e) {
+        if (e instanceof Prisma.PrismaClientKnownRequestError)
+            if (e.code === 'P2002')
+                throw createError({
+                statusCode: 400,
+                statusMessage: 'The provided email isn\'t available.'
+            })
+    } 
+}
+
+export const update = async (data: any) => {
+    // verificationToken will be unique in practice
+    return await prisma.user.updateMany({
+        where: {
+            verificationToken: data.verificationToken
+        },
         data: {
-            ...data,
             password: bcrypt.hashSync(data.password, 10)
         }
     })
 }
 
 export const getByEmail = async (email: any) => {
-    return prisma.user.findUniqueOrThrow({
+    return await prisma.user.findUniqueOrThrow({
         where: {
             email: email
         }
-    }).catch((e) => {
+    }).catch(() => {
         throw createError({
             statusCode: 400,
-            statusMessage: 'No account with the given email was found.'
+            statusMessage: 'No account found for the provided email.'
         })
     })
 }
 
-export const getById = (id: any) => {
-    return prisma.user.findUniqueOrThrow({
+export const getById = async (id: any) => {
+    return await prisma.user.findUniqueOrThrow({
         where: {
             id: id
         }

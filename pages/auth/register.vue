@@ -25,13 +25,16 @@ const passwordConfirmation = ref('')
 const errorMessage = ref()
 
 async function credentialsSignIn() {
+    errorMessage.value = null;
     const { url, error } = await signIn('credentials', { email: email.value, password: password.value, redirect: false })
     errorMessage.value = error
+    
     if (!error)
         navigateTo(url, { external: true })
 }
 
 async function register() {
+    errorMessage.value = null;
     const { error } = await useFetch('/api/register', {
         method: 'POST',
         body: {
