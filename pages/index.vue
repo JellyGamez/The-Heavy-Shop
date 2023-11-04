@@ -18,24 +18,24 @@ useHead({
                     
                     <span>
                         We bring the 
-                        <br />
+                        <br>
 
                         <span class="text-4xl md:text-6xl text-red-primary underline-effect"> 
                             HEAVY STUFF. 
                         </span> 
 
-                        <br />
+                        <br>
                     </span>
 
                     <span>
                         You rock the 
-                        <br />
+                        <br>
 
                         <span class="text-4xl md:text-6xl text-red-primary underline-effect"> 
                             ATTITUDE.
                         </span>
 
-                        <br />
+                        <br>
                     </span>
 
                     <span class="text-base md:text-lg font-light max-w-2xl font-kanit">

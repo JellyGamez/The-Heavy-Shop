@@ -1,8 +1,11 @@
 <script setup>
+
 const props = defineProps({
     label: String
 })
+
 </script>
+
 <template>
     <div class="flex flex-col gap-4 max-w-sm w-full bg-neutral-600 rounded-xl p-2">
         {{ label }}
