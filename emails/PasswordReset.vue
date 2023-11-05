@@ -21,7 +21,7 @@ const props = defineProps({
         </e-text>
 
         <e-text>
-            If you did not request a password change, please ignore this email.
+            If you did not request a password change, you can ignore this email.
         </e-text>
     </e-html>
 </template>

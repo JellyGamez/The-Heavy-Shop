@@ -33,16 +33,24 @@ export default NuxtAuthHandler({
                         statusMessage: 'The password field is required.'
                     })
                 else {
-                    const user = await getByEmail(credentials?.email)
-                    if (bcrypt.compareSync(credentials?.password, user.password))
-                        return user
-                    else 
+                    try {
+                        const user = await getByEmail(credentials?.email)
+                            if (bcrypt.compareSync(credentials?.password, user.password))
+                                return user
+                            else 
+                                throw createError({
+                                    statusCode: 400,
+                                    statusMessage: 'Invalid credentials. Please try again.'
+                                })
+                    }
+                    catch (e) {
                         throw createError({
                             statusCode: 400,
                             statusMessage: 'Invalid credentials. Please try again.'
                         })
-                }
+                    }
 
+                }
             }
         })
     ],

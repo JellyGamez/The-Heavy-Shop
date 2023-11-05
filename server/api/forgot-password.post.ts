@@ -21,6 +21,7 @@ function signToken(email: string, token: string) {
 
 export default defineEventHandler(async (event) => {
     const { email } = await readBody(event)
+
     if (!email)
         throw createError({
             statusCode: 400,
@@ -31,7 +32,12 @@ export default defineEventHandler(async (event) => {
     await getByEmail(email)
 
     const token = generateToken()
-    await updateToken({ email: email, token: token })
+
+    await updateToken({
+        email: email,
+        passwordResetToken: token
+    })
+
     const signedToken = signToken(email, token)
 
     const template = await useCompiler('PasswordReset.vue', {
@@ -58,5 +64,6 @@ export default defineEventHandler(async (event) => {
     }
 
     await transporter.sendMail(options)
+    
     return { message: 'Email sent successfully' }
 });

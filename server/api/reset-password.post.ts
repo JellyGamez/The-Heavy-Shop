@@ -6,13 +6,13 @@ function verifySignedToken(token: string) {
         if (error?.name === 'TokenExpiredError') {
             throw createError({
                 statusCode: 400,
-                statusMessage: 'The provided token is expired.'
+                statusMessage: 'The token is expired.'
             })
         }
         else if (error?.name === 'JsonWebTokenError') {
             throw createError({
                 statusCode: 400,
-                statusMessage: 'The provided token is invalid.'
+                statusMessage: 'The token is invalid.'
             })
         }
 
@@ -22,7 +22,7 @@ function verifySignedToken(token: string) {
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
-    const { password, passwordConfirmation, token } = body
+    const { password, passwordConfirmation, signedToken } = body
 
     if (!password)
         throw createError({
@@ -40,16 +40,19 @@ export default defineEventHandler(async (event) => {
             statusMessage: 'The passwords do not match.'
         })
 
-    const decodedToken: any = verifySignedToken(token)
+    const decodedToken: any = verifySignedToken(signedToken)
+    console.log(decodedToken)
 
     await updatePassword({
         email: decodedToken.email,
-        token: decodedToken.token,
+        passwordResetToken: decodedToken.token,
         password: password
     })
+
     await updateToken({
         email: decodedToken.email,
-        token: null
+        passwordResetToken: null
     })
+
     return { message: 'Password reset successfully'}
 })

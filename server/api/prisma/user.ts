@@ -17,7 +17,7 @@ export const create = async (data: any) => {
             if (e.code === 'P2002')
                 throw createError({
                 statusCode: 400,
-                statusMessage: 'The provided email isn\'t available.'
+                statusMessage: 'The email isn\'t available.'
             })
     } 
 }
@@ -28,7 +28,7 @@ export const updateToken = async (data: any) => {
             email: data.email
         },
         data: {
-            passwordResetToken: data.token
+            passwordResetToken: data.passwordResetToken
         }
     })
 }
@@ -38,7 +38,7 @@ export const updatePassword = async (data: any) => {
         return await prisma.user.update({
             where: {
                 email: data.email,
-                passwordResetToken: data.token
+                passwordResetToken: data.passwordResetToken
             },
             data: {
                 password: bcrypt.hashSync(data.password, 10)
@@ -50,7 +50,7 @@ export const updatePassword = async (data: any) => {
             if (e.code === 'P2025')
                 throw createError({
                 statusCode: 400,
-                statusMessage: 'The provided token is invalid.'
+                statusMessage: 'The token is invalid.'
             })
     } 
 

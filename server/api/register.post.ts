@@ -30,12 +30,11 @@ export default defineEventHandler(async (event) => {
             statusMessage: 'The passwords do not match.'
         })
 
-    const data = {
-        username,
-        email,
-        password
-    }
+    await create({
+        username: username,
+        email: email,
+        password: password
+    })
 
-    await create(data)
     return { message: 'User created successfully' }
 })
