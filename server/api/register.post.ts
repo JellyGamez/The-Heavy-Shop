@@ -36,6 +36,6 @@ export default defineEventHandler(async (event) => {
         password
     }
 
-    const user = await create(data)
-    return user
+    await create(data)
+    return { message: 'User created successfully' }
 })

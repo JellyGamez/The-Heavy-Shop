@@ -15,6 +15,8 @@ definePageMeta({
     },
 })
 
+const route = useRoute()
+
 const password = ref('')
 const passwordConfirmation = ref('')
 
@@ -29,9 +31,10 @@ async function credentialsSignIn() {
 
 async function resetPassword()
 {
-    const { error, data } = await useFetch('/api/update-password', {
+    const { error, data } = await useFetch('/api/reset-password', {
         method: 'POST',
         body: {
+            token: route.query.token,
             password: password.value,
             passwordConfirmation: passwordConfirmation.value
         },
@@ -42,7 +45,7 @@ async function resetPassword()
     if (!error.value)
     {
         //toast notification
-        credentialsSignIn()
+        navigateTo('/auth/login', { external: true })
     }
     console.log(data.value)
 }

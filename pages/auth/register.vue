@@ -35,7 +35,7 @@ async function credentialsSignIn() {
 
 async function register() {
     errorMessage.value = null;
-    const { error } = await useFetch('/api/register', {
+    const { error, data } = await useFetch('/api/register', {
         method: 'POST',
         body: {
             username: username.value,
@@ -48,6 +48,7 @@ async function register() {
     errorMessage.value = error.value?.statusMessage
     if (!error.value)
         credentialsSignIn()
+    console.log(data.value?.message)
 }
 
 </script>

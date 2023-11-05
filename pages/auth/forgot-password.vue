@@ -27,7 +27,7 @@ async function sendEmail()
         body: {
             email: email.value,
         },
-        key: `${email.value}`
+        key: `${email.value}1`
     })
     errorMessage.value = error.value?.statusMessage
     
@@ -35,7 +35,7 @@ async function sendEmail()
     {
         //toast notification
     }
-    console.log(data.value)
+    console.log(data.value?.message)
 }
 
 </script>

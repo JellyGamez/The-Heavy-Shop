@@ -22,16 +22,38 @@ export const create = async (data: any) => {
     } 
 }
 
-export const update = async (data: any) => {
-    // verificationToken will be unique in practice
-    return await prisma.user.updateMany({
+export const updateToken = async (data: any) => {
+    return await prisma.user.update({
         where: {
-            verificationToken: data.verificationToken
+            email: data.email
         },
         data: {
-            password: bcrypt.hashSync(data.password, 10)
+            passwordResetToken: data.token
         }
     })
+}
+
+export const updatePassword = async (data: any) => {
+    try {
+        return await prisma.user.update({
+            where: {
+                email: data.email,
+                passwordResetToken: data.token
+            },
+            data: {
+                password: bcrypt.hashSync(data.password, 10)
+            }
+        })
+    }
+    catch (e) {
+        if (e instanceof Prisma.PrismaClientKnownRequestError)
+            if (e.code === 'P2025')
+                throw createError({
+                statusCode: 400,
+                statusMessage: 'The provided token is invalid.'
+            })
+    } 
+
 }
 
 export const getByEmail = async (email: any) => {

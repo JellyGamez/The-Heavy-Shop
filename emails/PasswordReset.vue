@@ -11,15 +11,15 @@ const props = defineProps({
         <e-text>
             Hello,
             <br>
+            <br>
             You are receiving this email in response to your request to reset your password.
             <br>
-            Please follow the link below:
-        </e-text>
-        <e-tailwind>
-            <e-button :href="url" class="bg-[#262626] no-underline text-white px-8 py-3 rounded-xl">
+            Please follow this link:
+            <e-link :href="url">
                 Reset Password
-            </e-button>
-        </e-tailwind>
+            </e-link>
+        </e-text>
+
         <e-text>
             If you did not request a password change, please ignore this email.
         </e-text>

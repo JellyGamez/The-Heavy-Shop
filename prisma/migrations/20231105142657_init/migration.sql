@@ -6,8 +6,7 @@ CREATE TABLE "User" (
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "username" TEXT NOT NULL,
-    "verificationToken" TEXT,
-    "verificationTokenExpire" TIMESTAMP(3),
+    "passwordResetToken" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
