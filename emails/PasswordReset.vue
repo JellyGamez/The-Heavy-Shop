@@ -15,9 +15,11 @@ const props = defineProps({
             <br>
             Please follow the link below:
         </e-text>
-        <e-button :href="url" style="background-color: #262626; color: white; text-decoration: none; border-radius: 12px" px="8" py="4">
-            Reset Password
-        </e-button>
+        <e-tailwind>
+            <e-button :href="url" class="bg-[#262626] no-underline text-white px-8 py-3 rounded-xl">
+                Reset Password
+            </e-button>
+        </e-tailwind>
         <e-text>
             If you did not request a password change, please ignore this email.
         </e-text>
