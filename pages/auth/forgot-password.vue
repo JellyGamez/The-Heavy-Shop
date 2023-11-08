@@ -22,12 +22,12 @@ const errorMessage = ref()
 async function sendEmail()
 {
     errorMessage.value = null;
-    const { error, data } = await useFetch('/api/forgot-password', {
+    const { error, data } = await useFetch('/api/auth/forgot-password', {
         method: 'POST',
         body: {
             email: email.value,
         },
-        key: `${email.value}1`
+        key: `${email.value}`
     })
     errorMessage.value = error.value?.statusMessage
     

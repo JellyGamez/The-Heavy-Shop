@@ -22,16 +22,9 @@ const passwordConfirmation = ref('')
 
 const errorMessage = ref()
 
-async function credentialsSignIn() {
-    const { url, error } = await signIn('credentials', { email: email.value, password: password.value, redirect: false })
-    errorMessage.value = error
-    if (!error)
-        navigateTo(url, { external: true })
-}
-
 async function resetPassword()
 {
-    const { error, data } = await useFetch('/api/reset-password', {
+    const { error, data } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
         body: {
             signedToken: route.query.token,

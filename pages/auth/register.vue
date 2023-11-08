@@ -35,7 +35,7 @@ async function credentialsSignIn() {
 
 async function register() {
     errorMessage.value = null;
-    const { error, data } = await useFetch('/api/register', {
+    const { error, data } = await useFetch('/api/auth/register', {
         method: 'POST',
         body: {
             username: username.value,
