@@ -25,16 +25,16 @@ defineOptions({
 </template>
 
 <style scoped>
-    input:-webkit-autofill,
-    input:-webkit-autofill:hover{
-        transition: background-color 50000s ease-in-out 0.2s;
-        -webkit-text-fill-color: white;
-        caret-color: white; /* Change the caret (cursor) color */
-    }
-    input:-webkit-autofill:focus, 
-    input:-webkit-autofill:active{
-        transition: background-color 50000s ease-in-out 0s;
-        -webkit-text-fill-color: white;
-        caret-color: white; /* Change the caret (cursor) color */
-    }
+input:-webkit-autofill,
+input:-webkit-autofill:hover{
+    transition: background-color 50000s ease-in-out 0.2s;
+    -webkit-text-fill-color: white;
+    caret-color: white; /* Change the caret (cursor) color */
+}
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active{
+    transition: background-color 50000s ease-in-out 0s;
+    -webkit-text-fill-color: white;
+    caret-color: white; /* Change the caret (cursor) color */
+}
 </style>
