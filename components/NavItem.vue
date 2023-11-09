@@ -15,7 +15,6 @@ function match(url) {
 </script>
 
 <template>
-
     <button @click="() => { url ? router.push({ path: url }) : $emit('action', action) }">
         <p 
             :class="match(url) ? 'text-red-primary' : 'text-white'"
