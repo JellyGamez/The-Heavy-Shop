@@ -1,5 +1,9 @@
 <script setup>
 
+definePageMeta({
+    layout: 'home'
+})
+
 useHead({
     title: 'Home',
     meta: [
@@ -66,6 +70,7 @@ useHead({
 </template>
 
 <style scoped>
+
 .underline-effect {
     position: relative;
 }
@@ -101,4 +106,5 @@ useHead({
     transform-origin: left;
     transform: scaleX(1);
 }
+
 </style>

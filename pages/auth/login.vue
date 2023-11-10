@@ -8,6 +8,7 @@ useHead({
 })
 
 definePageMeta({
+    layout: 'auth',
     middleware: 'auth',
     auth: {
         unauthenticatedOnly: true,
@@ -42,52 +43,50 @@ async function credentialsSignIn() {
 </script>
 
 <template>
-    <div class="bg-gray-light min-h-full flex flex-col items-center justify-center">
-        <AuthCard title="Welcome back!">
-            <form @submit.prevent="credentialsSignIn()">
-                <div class="flex flex-col gap-4">
-                    <div>
-                        <Label class="ml-2" for="email"> Email </Label>
-                        <TextInput v-model="email" name="email" id="email" type="email">
-                            <IconsEnvelope class="w-5 h-5" />
-                        </TextInput>
-                    </div>
-                    <div>
-                        <Label class="ml-2" for="password"> Password </Label>
-                        <TextInput v-model="password" name="password" id="password" type="password">
-                            <IconsLock class="w-5 h-5" />
-                        </TextInput>
-                        <Label class="ml-2">
-                            <NuxtLink to="/auth/forgot-password" class="hover:underline">
-                                Forgot your password?
-                            </NuxtLink>
-                        </Label>
-                    </div>
-                    <Error class="text-center">
-                        {{ errorMessage }}
-                    </Error>
-                    <Button type="submit" size="small" name="login">
-                        LOG IN
-                    </Button>
+    <AuthCard title="Welcome back!">
+        <form @submit.prevent="credentialsSignIn()">
+            <div class="flex flex-col gap-4">
+                <div>
+                    <Label class="ml-2" for="email"> Email </Label>
+                    <TextInput v-model="email" name="email" id="email" type="email">
+                        <IconsEnvelope class="w-5 h-5" />
+                    </TextInput>
                 </div>
-            </form>
-            <div class="mt-6 flex flex-col items-center">
-                <Label> Or log in using </Label>
-                <div class="flex gap-3">
-                    <button class="text-white hover:text-gray-hover transition duration-200" @click="githubSignIn()" type="button" aria-label="github">
-                        <IconsGithub />
-                    </button>
-                    <button class="text-white hover:text-gray-hover transition duration-200" @click="discordSignIn()" type="button" aria-label="discord">
-                        <IconsDiscord />
-                    </button>
+                <div>
+                    <Label class="ml-2" for="password"> Password </Label>
+                    <TextInput v-model="password" name="password" id="password" type="password">
+                        <IconsLock class="w-5 h-5" />
+                    </TextInput>
+                    <Label class="ml-2">
+                        <NuxtLink to="/auth/forgot-password" class="hover:underline">
+                            Forgot your password?
+                        </NuxtLink>
+                    </Label>
                 </div>
+                <Error class="text-center">
+                    {{ errorMessage }}
+                </Error>
+                <Button type="submit" size="small" name="login">
+                    LOG IN
+                </Button>
             </div>
-            <Label class="mt-6 flex flex-wrap items-center gap-1 justify-center">
-                Don't have an account yet? 
-                <NuxtLink to="/auth/register" class="font-medium text-red-primary hover:underline">
-                    Register
-                </NuxtLink>
-            </Label>
-        </AuthCard>
-    </div>
+        </form>
+        <div class="mt-6 flex flex-col items-center">
+            <Label> Or log in using </Label>
+            <div class="flex gap-3">
+                <button class="text-white hover:text-gray-hover transition duration-200" @click="githubSignIn()" type="button" aria-label="github">
+                    <IconsGithub />
+                </button>
+                <button class="text-white hover:text-gray-hover transition duration-200" @click="discordSignIn()" type="button" aria-label="discord">
+                    <IconsDiscord />
+                </button>
+            </div>
+        </div>
+        <Label class="mt-6 flex flex-wrap items-center gap-1 justify-center">
+            Don't have an account yet? 
+            <NuxtLink to="/auth/register" class="font-medium text-red-primary hover:underline">
+                Register
+            </NuxtLink>
+        </Label>
+    </AuthCard>
 </template>
