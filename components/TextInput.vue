@@ -27,16 +27,19 @@ defineOptions({
 <style scoped>
 
 input:-webkit-autofill,
-input:-webkit-autofill:hover{
-    transition: background-color 50000s ease-in-out 0.2s;
+input:-webkit-autofill:hover {
+    -webkit-box-shadow: 0 0 0px 20px #262626 inset;
     -webkit-text-fill-color: white;
-    caret-color: white; /* Change the caret (cursor) color */
+    transition: background-color 50000s;
+    caret-color: white;
 }
+
 input:-webkit-autofill:focus, 
-input:-webkit-autofill:active{
-    transition: background-color 50000s ease-in-out 0s;
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 2px #c70404 inset;
     -webkit-text-fill-color: white;
-    caret-color: white; /* Change the caret (cursor) color */
+    transition: background-color 50000s;
+    caret-color: white;
 }
 
 </style>
