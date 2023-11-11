@@ -66,7 +66,7 @@ async function resetPassword()
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" size="small">
+                <Button type="submit">
                     RESET PASSWORD
                 </Button>
             </div>

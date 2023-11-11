@@ -91,7 +91,7 @@ async function register() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" size="small">
+                <Button type="submit">
                     REGISTER
                 </Button>
             </div>

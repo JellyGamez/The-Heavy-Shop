@@ -64,7 +64,7 @@ export const getByEmail = async (email: any) => {
     }).catch(() => {
         throw createError({
             statusCode: 400,
-            statusMessage: 'We couldn\'t find an account with that email.'
+            statusMessage: 'We couldn\'t find that account.'
         })
     })
 }

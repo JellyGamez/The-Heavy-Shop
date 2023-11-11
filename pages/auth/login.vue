@@ -66,7 +66,7 @@ async function credentialsSignIn() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" size="small" name="login">
+                <Button type="submit" name="login">
                     LOG IN
                 </Button>
             </div>
