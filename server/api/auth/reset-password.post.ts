@@ -1,5 +1,5 @@
 import jwt, { Secret } from 'jsonwebtoken'
-import { updatePassword, updateToken } from "../prisma/user"
+import { updatePassword, updatePasswordResetToken } from "@/prisma/user"
 
 function verifySignedToken(token: string) {
     return jwt.verify(token, process.env.AUTH_SECRET as Secret, function (error, decoded) {
@@ -41,7 +41,6 @@ export default defineEventHandler(async (event) => {
         })
 
     const decodedToken: any = verifySignedToken(signedToken)
-    console.log(decodedToken)
 
     await updatePassword({
         email: decodedToken.email,
@@ -49,7 +48,7 @@ export default defineEventHandler(async (event) => {
         password: password
     })
 
-    await updateToken({
+    await updatePasswordResetToken({
         email: decodedToken.email,
         passwordResetToken: null
     })

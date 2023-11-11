@@ -1,8 +1,9 @@
 import GithubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import { getByEmail } from '../prisma/user'
 import bcrypt from "bcrypt"
+import { getByEmail } from '@/prisma/user'
+
 
 import { NuxtAuthHandler } from '#auth'
 

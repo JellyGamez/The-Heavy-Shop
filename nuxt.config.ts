@@ -28,7 +28,4 @@ export default defineNuxtConfig({
     '@vue-email/nuxt',
     'nuxt-headlessui',
   ],
-  headlessui: {
-    prefix: 'Headless'
-  },
 })

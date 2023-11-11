@@ -22,7 +22,7 @@ export const create = async (data: any) => {
     } 
 }
 
-export const updateToken = async (data: any) => {
+export const updatePasswordResetToken = async (data: any) => {
     return await prisma.user.update({
         where: {
             email: data.email

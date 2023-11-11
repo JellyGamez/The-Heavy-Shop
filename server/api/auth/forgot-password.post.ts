@@ -2,7 +2,7 @@ import crypto from 'crypto'
 import jwt, { Secret } from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 import { useCompiler } from '#vue-email'
-import { getByEmail, updateToken } from '../prisma/user';
+import { getByEmail, updatePasswordResetToken } from '@/prisma/user';
 
 function generateToken() {
     return crypto.randomBytes(30).toString('hex')
@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
 
     const token = generateToken()
 
-    await updateToken({
+    await updatePasswordResetToken({
         email: email,
         passwordResetToken: token
     })
