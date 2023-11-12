@@ -1,5 +1,5 @@
 import jwt, { Secret } from 'jsonwebtoken'
-import { updatePassword, updatePasswordResetToken } from "@/prisma/user"
+import { updatePassword, updatePasswordResetToken } from '@/prisma/user'
 
 function verifySignedToken(token: string) {
     return jwt.verify(token, process.env.AUTH_SECRET as Secret, function (error, decoded) {
@@ -53,5 +53,5 @@ export default defineEventHandler(async (event) => {
         passwordResetToken: null
     })
 
-    return { message: 'Password reset successfully'}
+    return { message: 'Password reset successfully!'}
 })

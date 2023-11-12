@@ -1,4 +1,4 @@
-import { create } from "@/prisma/user"
+import { create } from '@/prisma/user'
 
 export default defineEventHandler(async (event) => {
     const body = await readBody(event)
@@ -36,5 +36,5 @@ export default defineEventHandler(async (event) => {
         password: password
     })
 
-    return { message: 'User created successfully' }
+    return { message: 'User created successfully!' }
 })

@@ -33,7 +33,6 @@ input:-webkit-autofill:hover {
     transition: background-color 50000s;
     caret-color: white;
 }
-
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active {
     -webkit-box-shadow: 0 0 0px 2px #c70404 inset;

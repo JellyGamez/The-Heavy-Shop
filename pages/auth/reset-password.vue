@@ -1,5 +1,7 @@
 <script setup>
 
+import toast from '@/composables/useToast'
+
 useHead({
     title: 'Reset password',
     meta: [
@@ -25,7 +27,7 @@ const errorMessage = ref()
 
 async function resetPassword()
 {
-    errorMessage.value = null;
+    errorMessage.value = null
     const { error, data } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
         key: `${password.value}  ${passwordConfirmation.value}`,
@@ -36,11 +38,10 @@ async function resetPassword()
         }
     })
     errorMessage.value = error.value?.statusMessage
-    
     if (!error.value)
     {
-        //toast notification
-        navigateTo('/auth/login', { external: true })
+        await navigateTo('/auth/login')
+        toast("Password reset successfully!")
     }
     console.log(data.value)
 }

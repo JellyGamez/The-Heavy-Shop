@@ -30,14 +30,15 @@ async function discordSignIn() {
     await signIn('discord')
 }
 async function credentialsSignIn() {
-    errorMessage.value = null;
+    errorMessage.value = null
     const { url, error } = await signIn('credentials', {
-        email: email.value, password: password.value, redirect: false
+        email: email.value,
+        password: password.value,
+        redirect: false
     })
     errorMessage.value = error
-    
     if (!error)
-        navigateTo(url, {external: true})
+        await navigateTo(url, {external: true})
 }
 
 </script>

@@ -1,7 +1,7 @@
 import GithubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'
 import CredentialsProvider from 'next-auth/providers/credentials'
-import bcrypt from "bcrypt"
+import bcrypt from 'bcrypt'
 import { getByEmail } from '@/prisma/user'
 
 
@@ -41,13 +41,13 @@ export default NuxtAuthHandler({
                             else 
                                 throw createError({
                                     statusCode: 400,
-                                    statusMessage: 'Invalid credentials. Please try again.'
+                                    statusMessage: 'Invalid credentials.'
                                 })
                     }
                     catch (e) {
                         throw createError({
                             statusCode: 400,
-                            statusMessage: 'Invalid credentials. Please try again.'
+                            statusMessage: 'Invalid credentials.'
                         })
                     }
 

@@ -63,7 +63,7 @@ export default defineEventHandler(async (event) => {
         html: template,
     }
 
-    await transporter.sendMail(options)
+    transporter.sendMail(options)
     
-    return { message: 'Email sent successfully' }
-});
+    return { message: 'Email sent successfully!' }
+})

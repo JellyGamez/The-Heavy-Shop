@@ -1,7 +1,6 @@
 <script setup>
 
-import { useToast } from 'vue-toastification'
-const toast = useToast()
+import toast from '@/composables/useToast'
 
 useHead({
     title: 'Forgot password',
@@ -25,21 +24,7 @@ const errorMessage = ref()
 
 async function sendEmail()
 {
-    toast.success("I'm a toast!", {
-        position: "bottom-center",
-        timeout: 3048,
-        closeOnClick: true,
-        pauseOnFocusLoss: true,
-        pauseOnHover: true,
-        draggable: false,
-        draggablePercent: 0.6,
-        showCloseButtonOnHover: false,
-        hideProgressBar: true,
-        closeButton: "button",
-        icon: true,
-        rtl: false
-    });
-    errorMessage.value = null;
+    errorMessage.value = null
     const { error, data } = await useFetch('/api/auth/forgot-password', {
         method: 'POST',
         key: `${email.value}`,
@@ -48,10 +33,8 @@ async function sendEmail()
         },
     })
     errorMessage.value = error.value?.statusMessage
-    
     if (!error.value)
-    {
-    }
+        toast("Email sent successfully!")
     console.log(data.value?.message)
 }
 

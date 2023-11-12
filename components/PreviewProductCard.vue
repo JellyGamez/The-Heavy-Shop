@@ -12,4 +12,4 @@ const props = defineProps({
         <img src="img/test.webp" :alt="label">
         <Button size="small"> Add to cart</Button>
     </div>
-</template> 
+</template>

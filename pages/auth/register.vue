@@ -1,5 +1,7 @@
 <script setup>
 
+import toast from '~/composables/useToast';
+
 useHead({
     title: 'Register',
     meta: [
@@ -25,19 +27,8 @@ const passwordConfirmation = ref('')
 
 const errorMessage = ref()
 
-async function credentialsSignIn() {
-    errorMessage.value = null;
-    const { url, error } = await signIn('credentials', {
-        email: email.value, password: password.value, redirect: false
-    })
-    errorMessage.value = error
-    
-    if (!error)
-        navigateTo(url, { external: true })
-}
-
 async function register() {
-    errorMessage.value = null;
+    errorMessage.value = null
     const { error, data } = await useFetch('/api/auth/register', {
         method: 'POST',
         key: `${username.value} ${email.value} ${password.value}  ${passwordConfirmation.value}`,
@@ -49,11 +40,15 @@ async function register() {
         }
     })
     errorMessage.value = error.value?.statusMessage
-
     if (!error.value)
     {
-        // toast notification
-        credentialsSignIn()
+        await signIn('credentials', {
+            email: email.value,
+            password: password.value,
+            redirect: false
+        })
+        await navigateTo('/')
+        toast("Account created successfully!")  
     }
     console.log(data.value?.message)
 }
