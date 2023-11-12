@@ -21,8 +21,7 @@ function verifySignedToken(token: string) {
 }
 
 export default defineEventHandler(async (event) => {
-    const body = await readBody(event)
-    const { password, passwordConfirmation, signedToken } = body
+    const { password, passwordConfirmation, signedToken } = await readBody(event)
 
     if (!password)
         throw createError({

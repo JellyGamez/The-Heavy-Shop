@@ -28,7 +28,7 @@ export default defineEventHandler(async (event) => {
             statusMessage: 'The email field is required.'
         })
     
-    // throw error if no user with that email is found
+    // throw error if no account with that email address is found
     await getByEmail(email)
 
     const token = generateToken()

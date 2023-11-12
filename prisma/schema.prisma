@@ -8,21 +8,33 @@ datasource db {
 }
 
 model User {
-    id                 Int      @id @default(autoincrement())
+    id                 Int        @id @default(autoincrement())
+    createdAt          DateTime   @default(now())
+    updatedAt          DateTime   @updatedAt
     username           String
-    email              String   @unique
+    email              String     @unique
     password           String
     passwordResetToken String?
-    updatedAt          DateTime @updatedAt
-    createdAt          DateTime @default(now())
+    favorites          Favorites?
 }
 
 model Item {
-    id          Int      @id @default(autoincrement())
+    id          Int       @id @default(autoincrement())
+    createdAt   DateTime  @default(now())
+    updatedAt   DateTime  @updatedAt
     name        String
     description String
     photoUrl    String
     price       Int
-    updatedAt   DateTime @updatedAt
-    createdAt   DateTime @default(now())
+    favoritesId Int
+    favorites   Favorites @relation(fields: [favoritesId], references: [id])
+}
+
+model Favorites {
+    id        Int      @id @default(autoincrement())
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+    userId    Int      @unique
+    user      User     @relation(fields: [userId], references: [id])
+    items     Item[]
 }

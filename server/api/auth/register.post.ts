@@ -1,8 +1,7 @@
 import { create } from '@/prisma/user'
 
 export default defineEventHandler(async (event) => {
-    const body = await readBody(event)
-    const { username, email, password, passwordConfirmation } = body
+    const { username, email, password, passwordConfirmation } = await readBody(event)
 
     if (!username)
         throw createError({

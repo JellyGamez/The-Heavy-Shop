@@ -1,6 +1,6 @@
 <script setup>
 
-import toast from '~/composables/useToast';
+import toast from '@/composables/useToast'
 
 useHead({
     title: 'Register',

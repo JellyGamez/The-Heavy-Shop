@@ -36,18 +36,18 @@ export default NuxtAuthHandler({
                 else {
                     try {
                         const user = await getByEmail(credentials?.email)
-                            if (bcrypt.compareSync(credentials?.password, user.password))
-                                return user
-                            else 
-                                throw createError({
-                                    statusCode: 400,
-                                    statusMessage: 'Invalid credentials.'
-                                })
+                        if (bcrypt.compareSync(credentials?.password, user.password))
+                            return user
+                        else 
+                            throw createError({
+                                statusCode: 400,
+                                statusMessage: 'These credentials don\'t match our records.'
+                            })
                     }
                     catch (e) {
                         throw createError({
                             statusCode: 400,
-                            statusMessage: 'Invalid credentials.'
+                            statusMessage: 'These credentials don\'t match our records.'
                         })
                     }
 
