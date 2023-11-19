@@ -1,6 +1,7 @@
 <script setup>
 
 const { status, signOut } = useAuth()
+
 const router = useRouter()
 
 const loggedIn = computed(() => {
@@ -30,14 +31,17 @@ const userOptions = (!loggedIn.value) ? [
     { name: 'Log In',   url: '/auth/login'    },
     { name: 'Register', url: '/auth/register' }
 ] : [
-    { name: 'Log Out', action: 'signOut'    }
+    { name: 'Placeholder'                     },
+    { name: 'Log Out',  action: 'signOut'     }
 ]
+
+const iconClasses = "w-6 h-6 hover:stroke-red-primary transition duration-200"
 
 </script>
 
 <template>
-    <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark">
-        <div class="px-3 md:px-10 max-w-8xl mx-auto h-full grid grid-cols-3">
+    <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark shadow-lg">
+        <div class="px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto h-full grid grid-cols-3">
             <div class="flex md:hidden">
                 <HeadlessMenu as="div" class="flex items-center" v-slot="{ open }">
                     <HeadlessMenuButton class="flex items-center text-white w-10 h-10 relative focus:outline-none" aria-label="mobile-menu">
@@ -49,11 +53,11 @@ const userOptions = (!loggedIn.value) ? [
                     </HeadlessMenuButton>
                     <transition
                         enter-active-class="transition duration-300 ease-in-out"
-                        enter-from-class="transform scale-y-0"
+                        enter-from-class="transform scale-y-0 opacity-0"
                         enter-to-class="transform scale-y-100"
                         leave-active-class="transition duration-300 ease-in-out"
                         leave-from-class="transform scale-y-100"
-                        leave-to-class="transform scale-y-0"
+                        leave-to-class="transform scale-y-0 opacity-0"
                     >
                         <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark border-t border-gray-light w-full p-4 space-y-2 shadow-2xl">
                             <HeadlessMenuItem v-for="item in navItems" :key="item.name">
@@ -74,13 +78,13 @@ const userOptions = (!loggedIn.value) ? [
                                 <div class="flex flex-col justify-center space-y-2">
                                     <HeadlessMenuItem>
                                         <button @click="() => router.push({ path: '/user/favorites' })" id="favorites">
-                                            <IconsBookmark class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="favorites" />
+                                            <IconsBookmark :class="iconClasses" aria-label="favorites" />
                                         </button>
                                     </HeadlessMenuItem>
                                     
                                     <HeadlessMenuItem>
                                         <button @click="() => router.push({ path: '/user/cart' })" id="cart">
-                                            <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="cart" />
+                                            <IconsCart :class="iconClasses" aria-label="cart" />
                                         </button>
                                     </HeadlessMenuItem>
                                 </div>
@@ -104,15 +108,15 @@ const userOptions = (!loggedIn.value) ? [
             <div class="hidden md:flex items-center justify-end mr-10">
                 <div class="flex justify-between space-x-4 items-center">
                     <NuxtLink to="/user/favorites" id="favorites">
-                        <IconsBookmark class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="favorites"/>
+                        <IconsBookmark :class="iconClasses" aria-label="favorites"/>
                     </NuxtLink>
 
                     <Dropdown :options="userOptions" @action="handleAction">
-                        <IconsUser class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="user-menu" />
+                        <IconsUser :class="iconClasses" aria-label="user-menu" />
                     </Dropdown>
 
                     <NuxtLink to="/user/cart" id="cart">
-                        <IconsCart class="w-6 h-6 hover:stroke-red-primary transition duration-200" aria-label="cart" />
+                        <IconsCart :class="iconClasses" aria-label="cart" />
                     </NuxtLink>
                 </div>
             </div>

@@ -12,7 +12,7 @@ const props = defineProps({
         type: String,
         default: 'small',
         validator(value) {
-            return ['small', 'medium', 'large'].includes(value)
+            return ['tiny', 'small', 'medium', 'large'].includes(value)
         }
     }
 })
@@ -26,6 +26,7 @@ const variantClasses = computed(() => {
 
 const sizeClasses = computed(() => {
     return {
+        'tiny'   : 'px-2 py-2 text-xs',
         'small'  : 'px-3 py-2.5 text-sm',
         'medium' : 'px-5 py-3 text-base',
         'large'  : 'px-8 py-3 text-lg',

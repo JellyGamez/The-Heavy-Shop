@@ -41,7 +41,10 @@ async function sendEmail()
 </script>
 
 <template>
-    <AuthCard title="Forgot password" description="Enter the email address associated with your account and we'll send you a link to reset your password">
+    <AuthCard 
+        title="Forgot password" 
+        description="Enter the email address associated with your account and we'll send you a link to reset your password"
+    >
         <form @submit.prevent="sendEmail">
             <div class="flex flex-col gap-4">
                 <div> 

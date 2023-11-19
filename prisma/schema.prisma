@@ -26,8 +26,7 @@ model Item {
     description String
     photoUrl    String
     price       Int
-    favoritesId Int
-    favorites   Favorites @relation(fields: [favoritesId], references: [id])
+    favorites   Favorites[]
 }
 
 model Favorites {
