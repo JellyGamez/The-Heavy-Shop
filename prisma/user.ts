@@ -8,17 +8,32 @@ export const create = async (data: any) => {
         return await prisma.user.create({
             data: {
                 ...data,
-                password: bcrypt.hashSync(data.password, 10)
+                password: bcrypt.hashSync(data.password, 10),
+                favorites: {
+                    create: {
+                        items: {
+                            create: []
+                        }
+                    }
+                },
             }
         })
     }
     catch (e) {
-        if (e instanceof Prisma.PrismaClientKnownRequestError)
+        console.log(e)
+        if (e instanceof Prisma.PrismaClientKnownRequestError) {
             if (e.code === 'P2002')
                 throw createError({
-                statusCode: 400,
-                statusMessage: 'The email isn\'t available.'
+                    statusCode: 400,
+                    statusMessage: 'The email isn\'t available.'
+                })
+        }
+        else
+            throw createError({
+                statusCode: 500,
+                statusMessage: 'An error occured.'
             })
+        
     } 
 }
 
