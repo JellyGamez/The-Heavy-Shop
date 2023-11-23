@@ -13,6 +13,10 @@ const loggedIn = computed(() => {
     return status.value === 'authenticated'
 })
 
+const favorites = computed(() => {
+    loggedIn ? localStorage.getItem('favorites') : useFetch()
+})
+
 </script>
 
 <template>

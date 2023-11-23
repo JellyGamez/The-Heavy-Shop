@@ -30,7 +30,7 @@ const loggedIn = computed(() => {
         </div>
         <AuthPrompt v-if="!loggedIn" class="mt-6">
             <p>
-                To save your shopping cart, please log in or create an account. 
+                To save your cart, please log in or create an account. 
             </p>
             <p class="hidden md:block">
                 Your preferences will be stored for future visits. 
@@ -42,10 +42,10 @@ const loggedIn = computed(() => {
             </template>
             <template #content>
                 <p>
-                    Elevate your shopping experience by exploring our premium merchandise. 
+                    It looks like you haven't added any items to your cart yet.
                 </p>
                 <p class="hidden md:block">
-                    Add the finest selections to your cart and proceed to checkout for a seamless transaction.
+                    Start browsing our store and find the perfect items to add to your collection.  
                 </p>
             </template>
         </EmptyState>
