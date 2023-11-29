@@ -1,7 +1,7 @@
 import crypto from 'crypto'
-import jwt, { Secret } from 'jsonwebtoken'
 import nodemailer from 'nodemailer'
 import { useCompiler } from '#vue-email'
+import jwt, { Secret } from 'jsonwebtoken'
 import { getByEmail, updatePasswordResetToken } from '@/prisma/user';
 
 function generateToken() {

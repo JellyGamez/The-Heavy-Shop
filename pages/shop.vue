@@ -23,7 +23,7 @@ useHead({
             </p>
         </div>
         <div class="grid grid-cols-6 gap-4 mt-6">
-            <PreviewProductCard v-for="n in 10" label="Red T-shirt"/>
+            <PreviewItemCard v-for="n in 10" :item="{name: 'Red T-shirt'}"/>
         </div>
     </div>
 </template>

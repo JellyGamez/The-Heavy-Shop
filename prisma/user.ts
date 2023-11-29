@@ -83,11 +83,3 @@ export const getByEmail = async (email: any) => {
         })
     })
 }
-
-export const getById = async (id: any) => {
-    return await prisma.user.findUniqueOrThrow({
-        where: {
-            id: id
-        }
-    })
-}

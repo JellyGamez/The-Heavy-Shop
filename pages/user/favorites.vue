@@ -14,7 +14,7 @@ const loggedIn = computed(() => {
 })
 
 const favorites = computed(() => {
-    loggedIn ? localStorage.getItem('favorites') : useFetch()
+    return loggedIn ? localStorage.getItem('favorites') : useFetch()
 })
 
 </script>
@@ -40,7 +40,11 @@ const favorites = computed(() => {
                 Your preferences will be stored for future visits. 
             </p>
         </AuthPrompt>
-        <EmptyState class="mt-6">
+        <div v-if="favorites.length">
+            <ExtendedItemCard v-for="item in favorites"
+            />
+        </div>
+        <EmptyState v-else class="mt-6">
             <template #title>
                 No favorite items yet
             </template>
