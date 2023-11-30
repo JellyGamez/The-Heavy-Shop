@@ -1,5 +1,5 @@
 import jwt, { Secret } from 'jsonwebtoken'
-import { updatePassword, updatePasswordResetToken } from '@/prisma/user'
+import { updatePassword, updatePasswordResetToken } from '~/server/utils/user'
 
 function verifySignedToken(token: string) {
     return jwt.verify(token, process.env.AUTH_SECRET as Secret, function (error, decoded) {

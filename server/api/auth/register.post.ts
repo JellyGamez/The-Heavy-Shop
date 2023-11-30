@@ -1,4 +1,4 @@
-import { create } from '@/prisma/user'
+import { create } from '~/server/utils/user'
 
 export default defineEventHandler(async (event) => {
     const { username, email, password, passwordConfirmation } = await readBody(event)

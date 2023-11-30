@@ -1,9 +1,9 @@
 <script setup>
 
 useHead({
-    title: 'Contact',
+    title: 'Gallery',
     meta: [
-        { name: 'description', content: 'Contact' }
+        { name: 'description', content: 'Gallery' }
     ],
 })
 
@@ -11,6 +11,6 @@ useHead({
 
 <template>
     <div>
-        Contact page
+        Gallery page
     </div>
 </template>

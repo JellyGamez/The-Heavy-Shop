@@ -21,17 +21,16 @@ async function handleAction(action)
 }
 
 const navItems = [
-    { name: 'Home',    url: '/'        },
-    { name: 'Shop',    url: '/shop'    },
-    { name: 'About',   url: '/about'   },
-    { name: 'Contact', url: '/contact' },
+    { name: 'Home',    url: '/',        icon: IconsHome        },
+    { name: 'Shop',    url: '/shop',    icon: IconsShoppingBag },
+    { name: 'About',   url: '/about',   icon: Icons                 },
+    { name: 'Gallery', url: '/gallery', icon: Icons            },
 ]
 
 const userOptions = (!loggedIn.value) ? [
     { name: 'Log In',   url: '/auth/login'    },
     { name: 'Register', url: '/auth/register' }
 ] : [
-    { name: 'Placeholder'                     },
     { name: 'Log Out',  action: 'signOut'     }
 ]
 
@@ -40,7 +39,7 @@ const iconClasses = "w-6 h-6 hover:stroke-red-primary transition duration-200"
 </script>
 
 <template>
-    <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark shadow-lg">
+    <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark">
         <div class="px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto h-full grid grid-cols-3">
             <div class="flex md:hidden">
                 <HeadlessMenu as="div" class="flex items-center" v-slot="{ open }">
@@ -65,29 +64,27 @@ const iconClasses = "w-6 h-6 hover:stroke-red-primary transition duration-200"
                                     {{ item.name }}
                                 </NavItem>
                             </HeadlessMenuItem>
-                            <br>
-                            <div class="flex w-full justify-between">
-                                <div class="flex flex-col space-y-2">
-                                    <HeadlessMenuItem v-for="option in userOptions" :key="option.name">
-                                        <NavItem :url="option.url" :action="option.action" @action="handleAction">
-                                            {{ option.name }}
-                                        </NavItem>
-                                    </HeadlessMenuItem>
-                                </div>
+                            
+                            <div class="flex space-x-2">
+                                <HeadlessMenuItem>
+                                    <button @click="() => router.push({ path: '/user/favorites' })" id="favorites">
+                                        <IconsBookmark :class="iconClasses" aria-label="favorites" />
+                                    </button>
+                                </HeadlessMenuItem>
                                 
-                                <div class="flex flex-col justify-center space-y-2">
-                                    <HeadlessMenuItem>
-                                        <button @click="() => router.push({ path: '/user/favorites' })" id="favorites">
-                                            <IconsBookmark :class="iconClasses" aria-label="favorites" />
-                                        </button>
-                                    </HeadlessMenuItem>
-                                    
-                                    <HeadlessMenuItem>
-                                        <button @click="() => router.push({ path: '/user/cart' })" id="cart">
-                                            <IconsCart :class="iconClasses" aria-label="cart" />
-                                        </button>
-                                    </HeadlessMenuItem>
-                                </div>
+                                <HeadlessMenuItem>
+                                    <button @click="() => router.push({ path: '/user/cart' })" id="cart">
+                                        <IconsShoppingCart :class="iconClasses" aria-label="cart" />
+                                    </button>
+                                </HeadlessMenuItem>
+                            </div>
+
+                            <div class="flex flex-col space-y-2">
+                                <HeadlessMenuItem v-for="option in userOptions" :key="option.name">
+                                    <NavItem :url="option.url" :action="option.action" @action="handleAction">
+                                        {{ option.name }}
+                                    </NavItem>
+                                </HeadlessMenuItem>
                             </div>
                         </HeadlessMenuItems>
                     </transition>
@@ -107,16 +104,16 @@ const iconClasses = "w-6 h-6 hover:stroke-red-primary transition duration-200"
             </nav>
             <div class="hidden md:flex items-center justify-end mr-10">
                 <div class="flex justify-between space-x-4 items-center">
-                    <NuxtLink to="/user/favorites" id="favorites">
+                    <NavItem url="/user/favorites" id="favorites">
                         <IconsBookmark :class="iconClasses" aria-label="favorites"/>
-                    </NuxtLink>
+                    </NavItem>
 
                     <Dropdown :options="userOptions" @action="handleAction">
                         <IconsUser :class="iconClasses" aria-label="user-menu" />
                     </Dropdown>
 
                     <NuxtLink to="/user/cart" id="cart">
-                        <IconsCart :class="iconClasses" aria-label="cart" />
+                        <IconsShoppingCart :class="iconClasses" aria-label="cart" />
                     </NuxtLink>
                 </div>
             </div>

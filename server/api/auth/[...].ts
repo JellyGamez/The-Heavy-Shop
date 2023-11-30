@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import { NuxtAuthHandler } from '#auth'
-import { getByEmail } from '@/prisma/user'
+import { getByEmail } from '~/server/utils/user'
 
 import GithubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'
@@ -34,7 +34,7 @@ export default NuxtAuthHandler({
                     })
                 else {
                     try {
-                        const user = await getByEmail(credentials?.email)
+                        const user = await getByEmail({ email: credentials?.email })
                         if (bcrypt.compareSync(credentials?.password, user.password))
                             return user
                         else 
@@ -55,6 +55,10 @@ export default NuxtAuthHandler({
         })
     ],
     pages: {
-        signIn: '/auth/login'
+        signIn: '/auth/login',
+        signOut: '/',
+        newUser: '/',
+        error: '/error',
+        verifyRequest: '/'
     }
 })

@@ -16,14 +16,14 @@ useHead({
 <template>
     <div class="bg-[url('/img/texture.webp')] bg-cover min-h-full xl:h-full flex">
         <div class="flex-1 bg-gray-dark bg-opacity-90 pt-8 px-4 md:px-10 lg:px-20 grid grid-cols-1 xl:grid-cols-2 gap-8 overflow-x-hidden">
-            <div class="flex items-center justify-center text-white text-3xl md:text-5xl font-bold ">
+            <div class="flex items-center justify-center text-white text-3xl sm:text-5xl font-bold ">
                 <div class="flex flex-col gap-8 mb-8 text-center xl:text-left font-ubuntu">
                     
                     <span>
                         We bring the 
                         <br>
 
-                        <span class="text-4xl md:text-6xl text-red-primary underline-effect"> 
+                        <span class="text-4xl sm:text-6xl text-red-primary underline-effect"> 
                             HEAVY STUFF. 
                         </span> 
 
@@ -34,24 +34,24 @@ useHead({
                         You rock the 
                         <br>
 
-                        <span class="text-4xl md:text-6xl text-red-primary underline-effect"> 
+                        <span class="text-4xl sm:text-6xl text-red-primary underline-effect"> 
                             ATTITUDE.
                         </span>
 
                         <br>
                     </span>
 
-                    <span class="text-base md:text-lg font-light max-w-2xl font-kanit">
+                    <span class="text-base sm:text-lg font-light max-w-2xl font-kanit">
                         Peruse through our Heavy Metal shop to discover a selection of t-shirts, accessories, and more
                         from your all-time favorite bands.
                         Embrace the genuine essence of rock and submerge yourself in the world of metal fashion.
                     </span>
 
                     <NuxtLink to="/shop" class="mx-auto xl:mx-0">
-                        <Button variant="secondary" size="large" class="hidden md:block" name="shop">
+                        <Button variant="secondary" size="large" class="hidden sm:block" name="shop">
                             SHOP NOW    
                         </Button>
-                        <Button variant="secondary" size="medium" class="block md:hidden" name="shop">
+                        <Button variant="secondary" size="medium" class="block sm:hidden" name="shop">
                             SHOP NOW
                         </Button>
                     </NuxtLink>
@@ -84,9 +84,9 @@ useHead({
     left: 0;
     transform-origin: right;
     transform: scaleX(0);
-    transition: transform .45s ease-in-out;
+    transition: transform .40s;
 }
-@media screen and (max-width: 768px) {
+@media screen and (max-width: 640px) {
     .underline-effect::before {
         content: '';
         position: absolute;
@@ -98,7 +98,7 @@ useHead({
         left: 0;
         transform-origin: right;
         transform: scaleX(0);
-        transition: transform .45s ease-in-out;
+        transition: transform .40s;
     }
 }
 .underline-effect:hover::before {

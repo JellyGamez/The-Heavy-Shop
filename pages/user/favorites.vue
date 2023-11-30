@@ -13,9 +13,13 @@ const loggedIn = computed(() => {
     return status.value === 'authenticated'
 })
 
-const favorites = computed(() => {
-    return loggedIn ? localStorage.getItem('favorites') : useFetch()
-})
+const favorites = [
+    { name: 'a' },
+    { name: 'b' },
+    { name: 'c' },
+    { name: 'd' },
+    { name: 'e' },
+]
 
 </script>
 
@@ -28,11 +32,8 @@ const favorites = computed(() => {
                     Favorites
                 </h1>
             </div>
-            <p class="text-sm md:text-base text-center">
-                Bookmark your favorite items here
-            </p>
         </div>
-        <AuthPrompt v-if="!loggedIn" class="mt-6">
+        <AuthPrompt v-if="!loggedIn && favorites.length" class="mt-6">
             <p>
                 To save your favorite items, please log in or create an account. 
             </p>
@@ -40,9 +41,8 @@ const favorites = computed(() => {
                 Your preferences will be stored for future visits. 
             </p>
         </AuthPrompt>
-        <div v-if="favorites.length">
-            <ExtendedItemCard v-for="item in favorites"
-            />
+        <div v-if="favorites.length" class="flex flex-col mt-6 space-y-3">
+            <ExtendedItemCard v-for="item in favorites" :item="item" />
         </div>
         <EmptyState v-else class="mt-6">
             <template #title>

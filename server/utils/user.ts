@@ -20,7 +20,6 @@ export const create = async (data: any) => {
         })
     }
     catch (e) {
-        console.log(e)
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             if (e.code === 'P2002')
                 throw createError({
@@ -28,12 +27,12 @@ export const create = async (data: any) => {
                     statusMessage: 'The email isn\'t available.'
                 })
         }
-        else
+        else {
             throw createError({
                 statusCode: 500,
                 statusMessage: 'An error occured.'
             })
-        
+        }
     } 
 }
 
@@ -64,17 +63,16 @@ export const updatePassword = async (data: any) => {
         if (e instanceof Prisma.PrismaClientKnownRequestError)
             if (e.code === 'P2025')
                 throw createError({
-                statusCode: 400,
-                statusMessage: 'The token is invalid.'
-            })
+                    statusCode: 400,
+                    statusMessage: 'The token is invalid.'
+                })
     } 
-
 }
 
-export const getByEmail = async (email: any) => {
+export const getByEmail = async (data: any) => {
     return await prisma.user.findUniqueOrThrow({
         where: {
-            email: email
+            email: data.email
         }
     }).catch(() => {
         throw createError({
@@ -82,4 +80,15 @@ export const getByEmail = async (email: any) => {
             statusMessage: 'We couldn\'t find that account.'
         })
     })
+}
+
+export const addItemToFavorites = async (data: any) => {
+    return await prisma.favorites.update({
+        where: {
+            userId: data.user.id
+        },
+        data: {
+            items: { connect: { id: data.item.id } }
+        },
+    });
 }
