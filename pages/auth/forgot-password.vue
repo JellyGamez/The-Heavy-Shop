@@ -49,7 +49,7 @@ async function sendEmail() {
                 <div> 
                     <Label class="ml-2" for="email"> Email </Label>
                     <TextInput v-model="email" name="email" id="email" type="email">
-                        <IconsEnvelope />
+                        <IconsMail />
                     </TextInput>
                 </div>
                 <Error class="text-center">

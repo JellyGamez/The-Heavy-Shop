@@ -1,6 +1,6 @@
 <script setup>
 
-import { IconsBookmark, IconsHome, IconsShoppingBag, IconsShoppingCart, IconsDocument, IconsCamera } from '#components'
+import { IconsBookmark, IconsHome, IconsShoppingBag, IconsShoppingCart, IconsDocument, IconsGallery } from '#components'
 
 const props = defineProps({
     url: String,
@@ -28,7 +28,7 @@ function handleClick() {
 const icon = computed(() => {
     return {
         'Home'         : IconsHome,        
-        'Camera'       : IconsCamera,   
+        'Gallery'      : IconsGallery,   
         'Document'     : IconsDocument,
         'Bookmark'     : IconsBookmark,    
         'ShoppingBag'  : IconsShoppingBag, 

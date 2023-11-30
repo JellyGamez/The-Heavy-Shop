@@ -68,19 +68,19 @@ async function register() {
                 <div>
                     <Label class="ml-2" for="email"> Email </Label>
                     <TextInput v-model="email" name="email" id="email" type="email">
-                        <IconsEnvelope />
+                        <IconsMail />
                     </TextInput>
                 </div>
                 <div>
                     <Label class="ml-2" for="password"> Password </Label>
                     <TextInput v-model="password" name="password" id="password" type="password">
-                        <IconsLock />
+                        <IconsKey />
                     </TextInput>
                 </div>
                 <div>
                     <Label class="ml-2" for="password-confirmation"> Password confirmation </Label>
                     <TextInput v-model="passwordConfirmation" name="password-confirmation" id="password-confirmation" type="password">
-                        <IconsLock />
+                        <IconsKey />
                     </TextInput>
                 </div>
                 <Error class="text-center">

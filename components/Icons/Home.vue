@@ -1,7 +1,9 @@
 <template>
 
-    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
-        <path stroke-linecap="round" stroke-linejoin="round" d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25" />
+    <svg viewBox="0 0 512 512" xmlns="http://www.w3.org/2000/svg" stroke="currentColor" class="w-6 h-6">
+        <path d="M80,212V448a16,16,0,0,0,16,16h96V328a24,24,0,0,1,24-24h80a24,24,0,0,1,24,24V464h96a16,16,0,0,0,16-16V212" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+        <path d="M480,256,266.89,52c-5-5.28-16.69-5.34-21.78,0L32,256" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
+        <polyline points="400 179 400 64 352 64 352 133" fill="none" stroke-linecap="round" stroke-linejoin="round" stroke-width="32"/>
     </svg>
 
 </template>

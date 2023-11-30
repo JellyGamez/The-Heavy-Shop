@@ -20,7 +20,7 @@ const navItems = [
     { id: 'home',    name: 'Home',    icon: 'Home',        url: '/'         },
     { id: 'shop',    name: 'Shop',    icon: 'ShoppingBag', url: '/shop'     },
     { id: 'about',   name: 'About',   icon: 'Document',    url: '/about'    },
-    { id: 'gallery', name: 'Gallery', icon: 'Camera',      url: '/gallery'  }
+    { id: 'gallery', name: 'Gallery', icon: 'Gallery',      url: '/gallery'  }
 ]
 
 const userNavItems = [
@@ -58,7 +58,7 @@ const userOptions = (!loggedIn.value) ? [
                         leave-from-class="transform scale-y-100"
                         leave-to-class="transform scale-y-0 opacity-0"
                     >
-                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark border-t space-y-2 border-gray-light w-full p-4 shadow-2xl">
+                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark space-y-2 w-full p-5 shadow-2xl">
                             <div class="flex flex-col space-y-2 pb-2">
                                 <HeadlessMenuItem v-for="item in navItems">
                                     <NavItem 
@@ -120,7 +120,7 @@ const userOptions = (!loggedIn.value) ? [
                         :class="index ? 'order-3' : 'order-1'"
                     />
                     <Dropdown :options="userOptions" @action="handleAction" class="order-2">
-                        <IconsUser class="hover:stroke-red-primary transition duration-200" aria-label="user-menu" />
+                        <IconsUser class="text-white hover:text-red-primary transition duration-200" aria-label="user-menu" />
                     </Dropdown>
                 </div>
             </div>
