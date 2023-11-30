@@ -1,8 +1,12 @@
 <script setup>
 
+import { IconsBookmark, IconsHome, IconsShoppingBag, IconsShoppingCart, IconsDocument, IconsCamera } from '#components'
+
 const props = defineProps({
     url: String,
-    action: String
+    action: String,
+    label: String,
+    icon: String
 })
 
 const emit = defineEmits(['action'])
@@ -21,15 +25,24 @@ function handleClick() {
         emit('action', props.action)
 }
 
+const icon = computed(() => {
+    return {
+        'Home'         : IconsHome,        
+        'Camera'       : IconsCamera,   
+        'Document'     : IconsDocument,
+        'Bookmark'     : IconsBookmark,    
+        'ShoppingBag'  : IconsShoppingBag, 
+        'ShoppingCart' : IconsShoppingCart
+    }[props.icon]
+})
+
 </script>
 
 <template>
     <button @click="handleClick">
-        <p 
-            :class="match(url) ? 'text-red-primary' : 'text-white'"
-            class="hover:text-red-primary text-lg transition duration-200 text-left"
-        >
-            <slot />
-        </p>
+        <div :class="match(url) ? 'text-red-primary' : 'text-white'" class="hover:text-red-primary text-lg transition duration-200 text-left flex items-center space-x-2">
+            <component v-if="icon" :is="icon" />
+            <span v-if="label"> {{ label }} </span>
+        </div>
     </button>
 </template>

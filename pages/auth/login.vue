@@ -50,13 +50,13 @@ async function credentialsSignIn() {
                 <div>
                     <Label class="ml-2" for="email"> Email </Label>
                     <TextInput v-model="email" name="email" id="email" type="email">
-                        <IconsEnvelope class="w-5 h-5" />
+                        <IconsEnvelope />
                     </TextInput>
                 </div>
                 <div>
                     <Label class="ml-2" for="password"> Password </Label>
                     <TextInput v-model="password" name="password" id="password" type="password">
-                        <IconsLock class="w-5 h-5" />
+                        <IconsLock />
                     </TextInput>
                     <Label class="ml-2">
                         <NuxtLink to="/auth/forgot-password" class="hover:underline">

@@ -25,8 +25,7 @@ const passwordConfirmation = ref('')
 
 const errorMessage = ref()
 
-async function resetPassword()
-{
+async function resetPassword() {
     errorMessage.value = null
     const { error, data } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
@@ -55,13 +54,13 @@ async function resetPassword()
                 <div>
                     <Label class="ml-2" for="password"> Password </Label>
                     <TextInput v-model="password" name="password" id="password" type="password">
-                        <IconsLock class="w-5 h-5" />
+                        <IconsLock />
                     </TextInput>
                 </div>
                 <div>
                     <Label class="ml-2" for="password-confirmation"> Password confirmation </Label>
                     <TextInput v-model="passwordConfirmation" name="password-confirmation" id="password-confirmation" type="password">
-                        <IconsLock class="w-5 h-5" />
+                        <IconsLock />
                     </TextInput>
                 </div>
                 <Error class="text-center">

@@ -1,7 +1,6 @@
 import { useToast } from 'vue-toastification'
 
-export default function toast(message)
-{
+export default function toast(message) {
     useToast().success(message, {
         position: "bottom-center",
         timeout: 2500,

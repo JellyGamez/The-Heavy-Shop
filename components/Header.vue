@@ -2,16 +2,12 @@
 
 const { status, signOut } = useAuth()
 
-const router = useRouter()
-
 const loggedIn = computed(() => {
     return status.value === 'authenticated'
 })
 
-async function handleAction(action)
-{
-    switch (action)
-    {
+async function handleAction(action) {
+    switch (action) {
         case 'signOut':
             await signOut()
             break
@@ -21,10 +17,15 @@ async function handleAction(action)
 }
 
 const navItems = [
-    { name: 'Home',    url: '/',        icon: IconsHome        },
-    { name: 'Shop',    url: '/shop',    icon: IconsShoppingBag },
-    { name: 'About',   url: '/about',   icon: Icons                 },
-    { name: 'Gallery', url: '/gallery', icon: Icons            },
+    { id: 'home',    name: 'Home',    icon: 'Home',        url: '/'         },
+    { id: 'shop',    name: 'Shop',    icon: 'ShoppingBag', url: '/shop'     },
+    { id: 'about',   name: 'About',   icon: 'Document',    url: '/about'    },
+    { id: 'gallery', name: 'Gallery', icon: 'Camera',      url: '/gallery'  }
+]
+
+const userNavItems = [
+    { id: 'favorites', name: 'Favorites', icon: 'Bookmark',     url: '/user/favorites' },
+    { id: 'cart',      name: 'Cart',      icon: 'ShoppingCart', url: '/user/cart'      }
 ]
 
 const userOptions = (!loggedIn.value) ? [
@@ -34,14 +35,13 @@ const userOptions = (!loggedIn.value) ? [
     { name: 'Log Out',  action: 'signOut'     }
 ]
 
-const iconClasses = "w-6 h-6 hover:stroke-red-primary transition duration-200"
-
 </script>
 
 <template>
     <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark">
         <div class="px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto h-full grid grid-cols-3">
             <div class="flex md:hidden">
+                <component :is="IconsShoppingCart"/>
                 <HeadlessMenu as="div" class="flex items-center" v-slot="{ open }">
                     <HeadlessMenuButton class="flex items-center text-white w-10 h-10 relative focus:outline-none" aria-label="mobile-menu">
                         <div class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -58,32 +58,38 @@ const iconClasses = "w-6 h-6 hover:stroke-red-primary transition duration-200"
                         leave-from-class="transform scale-y-100"
                         leave-to-class="transform scale-y-0 opacity-0"
                     >
-                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark border-t border-gray-light w-full p-4 space-y-2 shadow-2xl">
-                            <HeadlessMenuItem v-for="item in navItems" :key="item.name">
-                                <NavItem :url="item.url">
-                                    {{ item.name }}
-                                </NavItem>
-                            </HeadlessMenuItem>
-                            
-                            <div class="flex space-x-2">
-                                <HeadlessMenuItem>
-                                    <button @click="() => router.push({ path: '/user/favorites' })" id="favorites">
-                                        <IconsBookmark :class="iconClasses" aria-label="favorites" />
-                                    </button>
+                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark border-t space-y-2 border-gray-light w-full p-4 shadow-2xl">
+                            <div class="flex flex-col space-y-2 pb-2">
+                                <HeadlessMenuItem v-for="item in navItems">
+                                    <NavItem 
+                                        :label="item.name" 
+                                        :icon="item.icon" 
+                                        :url="item.url" 
+                                        :id="item.id"
+                                    />
                                 </HeadlessMenuItem>
-                                
-                                <HeadlessMenuItem>
-                                    <button @click="() => router.push({ path: '/user/cart' })" id="cart">
-                                        <IconsShoppingCart :class="iconClasses" aria-label="cart" />
-                                    </button>
+                            </div>
+                            
+                            <div class="flex flex-col space-y-2 py-2">
+                                <HeadlessMenuItem v-for="item in userNavItems">
+                                    <NavItem 
+                                        :id="item.id"
+                                        :label="item.name" 
+                                        :icon="item.icon" 
+                                        :url="item.url" 
+                                    />
                                 </HeadlessMenuItem>
                             </div>
 
-                            <div class="flex flex-col space-y-2">
-                                <HeadlessMenuItem v-for="option in userOptions" :key="option.name">
-                                    <NavItem :url="option.url" :action="option.action" @action="handleAction">
-                                        {{ option.name }}
-                                    </NavItem>
+                            <div class="flex flex-col space-y-2 pt-2">
+                                <HeadlessMenuItem v-for="option in userOptions">
+                                    <NavItem
+                                        :id="option.id"
+                                        :label="option.name"
+                                        :url="option.url" 
+                                        :action="option.action" 
+                                        @action="handleAction"
+                                    />
                                 </HeadlessMenuItem>
                             </div>
                         </HeadlessMenuItems>
@@ -97,24 +103,25 @@ const iconClasses = "w-6 h-6 hover:stroke-red-primary transition duration-200"
                     </span>
                 </NuxtLink>
             </div>
-            <nav class="hidden md:flex space-x-3 items-center justify-center">
-                <NavItem v-for="item in navItems" :key="item.name" :url="item.url">
-                    {{ item.name }}
-                </NavItem>
-            </nav>
+            <div class="hidden md:flex space-x-3 items-center justify-center">
+                <NavItem
+                    v-for="item in navItems" 
+                    :id="item.id"
+                    :label="item.name" 
+                    :url="item.url"
+                />
+            </div>
             <div class="hidden md:flex items-center justify-end mr-10">
-                <div class="flex justify-between space-x-4 items-center">
-                    <NavItem url="/user/favorites" id="favorites">
-                        <IconsBookmark :class="iconClasses" aria-label="favorites"/>
-                    </NavItem>
-
-                    <Dropdown :options="userOptions" @action="handleAction">
-                        <IconsUser :class="iconClasses" aria-label="user-menu" />
+                <div class="flex space-x-4">
+                    <NavItem
+                        v-for="(item, index) in userNavItems" 
+                        :icon="item.icon"
+                        :url="item.url"
+                        :class="index ? 'order-3' : 'order-1'"
+                    />
+                    <Dropdown :options="userOptions" @action="handleAction" class="order-2">
+                        <IconsUser class="hover:stroke-red-primary transition duration-200" aria-label="user-menu" />
                     </Dropdown>
-
-                    <NuxtLink to="/user/cart" id="cart">
-                        <IconsShoppingCart :class="iconClasses" aria-label="cart" />
-                    </NuxtLink>
                 </div>
             </div>
         </div>

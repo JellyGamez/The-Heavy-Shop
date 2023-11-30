@@ -32,6 +32,9 @@ const favorites = [
                     Favorites
                 </h1>
             </div>
+            <!-- <p class="text-sm md:text-base text-center">
+                Bookmark your favorite items here
+            </p> -->
         </div>
         <AuthPrompt v-if="!loggedIn && favorites.length" class="mt-6">
             <p>

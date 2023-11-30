@@ -22,8 +22,7 @@ const email = ref('')
 
 const errorMessage = ref()
 
-async function sendEmail()
-{
+async function sendEmail() {
     errorMessage.value = null
     const { error, data } = await useFetch('/api/auth/forgot-password', {
         method: 'POST',
@@ -50,7 +49,7 @@ async function sendEmail()
                 <div> 
                     <Label class="ml-2" for="email"> Email </Label>
                     <TextInput v-model="email" name="email" id="email" type="email">
-                        <IconsEnvelope class="w-5 h-5" />
+                        <IconsEnvelope />
                     </TextInput>
                 </div>
                 <Error class="text-center">

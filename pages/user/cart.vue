@@ -24,6 +24,9 @@ const loggedIn = computed(() => {
                     Cart
                 </h1>
             </div>
+            <!-- <p class="text-sm md:text-base text-center">
+                Organize your selected items for checkout
+            </p> -->
         </div>
         <AuthPrompt v-if="!loggedIn" class="mt-6">
             <p>
