@@ -41,7 +41,6 @@ const userOptions = (!loggedIn.value) ? [
     <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark">
         <div class="px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto h-full grid grid-cols-3">
             <div class="flex md:hidden">
-                <component :is="IconsShoppingCart"/>
                 <HeadlessMenu as="div" class="flex items-center" v-slot="{ open }">
                     <HeadlessMenuButton class="flex items-center text-white w-10 h-10 relative focus:outline-none" aria-label="mobile-menu">
                         <div class="block w-5 absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2">
@@ -98,7 +97,7 @@ const userOptions = (!loggedIn.value) ? [
             </div>
             <div class="col-start-2 justify-center flex flex-nowrap md:col-start-1 md:justify-start items-center">
                 <NuxtLink to="/" class="flex items-center">
-                    <span class="text-red-primary hover:text-gray-hover transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap"> 
+                    <span class="text-red-primary  transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap underline-effect"> 
                         THE HEAVY SHOP 
                     </span>
                 </NuxtLink>
@@ -127,3 +126,28 @@ const userOptions = (!loggedIn.value) ? [
         </div>
     </div>
 </template>
+
+<style scoped>
+
+.underline-effect {
+    position: relative;
+}
+.underline-effect::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    border-radius: 100px;
+    background-color: #c70404;
+    bottom: 0;
+    left: 0;
+    transform-origin: right;
+    transform: scaleX(0);
+    transition: transform .40s;
+}
+.underline-effect:hover::before {
+    transform-origin: left;
+    transform: scaleX(1);
+}
+
+</style>
