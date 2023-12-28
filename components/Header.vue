@@ -38,7 +38,7 @@ const userOptions = (!loggedIn.value) ? [
 </script>
 
 <template>
-    <div class="fixed w-full top-0 z-10 h-16 bg-gray-dark">
+    <div class="fixed w-[100vw] top-0 z-10 h-16 bg-gray-dark">
         <div class="px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto h-full grid grid-cols-3">
             <div class="flex md:hidden">
                 <HeadlessMenu as="div" class="flex items-center" v-slot="{ open }">
@@ -116,6 +116,7 @@ const userOptions = (!loggedIn.value) ? [
                         v-for="(item, index) in userNavItems" 
                         :icon="item.icon"
                         :url="item.url"
+                        :aria-label="item.id"
                         :class="index ? 'order-3' : 'order-1'"
                     />
                     <Dropdown :options="userOptions" @action="handleAction" class="order-2">
