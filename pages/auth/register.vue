@@ -20,7 +20,7 @@ definePageMeta({
 
 const { signIn } = useAuth()
 
-const username = ref('')
+const name = ref('')
 const email = ref('')
 const password = ref('')
 const passwordConfirmation = ref('')
@@ -31,9 +31,9 @@ async function register() {
     errorMessage.value = null
     const { error, data } = await useFetch('/api/auth/register', {
         method: 'POST',
-        key: `${username.value} ${email.value} ${password.value}  ${passwordConfirmation.value}`,
+        key: `${name.value} ${email.value} ${password.value}  ${passwordConfirmation.value}`,
         body: {
-            username: username.value,
+            name: name.value,
             email: email.value,
             password: password.value,
             passwordConfirmation: passwordConfirmation.value
@@ -57,11 +57,11 @@ async function register() {
 
 <template>
     <AuthCard title="Create a new account">
-        <form @submit.prevent="register()">
+        <form @submit.prevent="register">
             <div class="flex flex-col gap-4">
                 <div>
-                    <Label class="ml-2" for="username"> Username </Label>
-                    <TextInput v-model="username" name="username" id="username" type="text">
+                    <Label class="ml-2" for="name"> Name </Label>
+                    <TextInput v-model="name" name="name" id="name" type="text">
                         <IconsUser class="!w-5 !h-5 text-white" />
                     </TextInput>
                 </div>

@@ -55,7 +55,7 @@ async function sendEmail() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" name="login">
+                <Button type="submit">
                     SEND PASSWORD RESET EMAIL
                 </Button>
             </div>

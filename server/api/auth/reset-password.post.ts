@@ -52,5 +52,5 @@ export default defineEventHandler(async (event) => {
         passwordResetToken: null
     })
 
-    return { message: 'Password reset successfully!'}
+    return { message: 'Password reset successfully!' }
 })

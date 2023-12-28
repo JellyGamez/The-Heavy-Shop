@@ -7,21 +7,21 @@ const props = defineProps({
 </script>
 
 <template>
-    <e-html lang="en">
-        <e-text>
+    <EHtml lang="en">
+        <EText>
             Hello,
             <br>
             <br>
             You are receiving this email in response to your request to reset your password.
             <br>
             Please follow this link:
-            <e-link :href="url">
+            <ELink :href="url">
                 Reset Password
-            </e-link>
-        </e-text>
+            </ELink>
+        </EText>
 
-        <e-text>
+        <EText>
             If you did not request a password change, you can ignore this email.
-        </e-text>
-    </e-html>
+        </EText>
+    </EHtml>
 </template>

@@ -3,10 +3,10 @@
 import { IconsBookmark, IconsHome, IconsShoppingBag, IconsShoppingCart, IconsDocument, IconsGallery } from '#components'
 
 const props = defineProps({
-    url: String,
     action: String,
     label: String,
-    icon: String
+    icon: String,
+    url: String
 })
 
 const emit = defineEmits(['action'])

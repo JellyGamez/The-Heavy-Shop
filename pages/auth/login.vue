@@ -45,7 +45,7 @@ async function credentialsSignIn() {
 
 <template>
     <AuthCard title="Welcome back!">
-        <form @submit.prevent="credentialsSignIn()">
+        <form @submit.prevent="credentialsSignIn">
             <div class="flex flex-col gap-4">
                 <div>
                     <Label class="ml-2" for="email"> Email </Label>
@@ -67,7 +67,7 @@ async function credentialsSignIn() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" name="login">
+                <Button type="submit">
                     LOG IN
                 </Button>
             </div>
@@ -75,10 +75,10 @@ async function credentialsSignIn() {
         <div class="mt-6 flex flex-col items-center">
             <Label> Or log in using </Label>
             <div class="flex gap-3">
-                <button class="text-white hover:text-gray-hover transition duration-200" @click="githubSignIn()" type="button" aria-label="github">
+                <button @click="githubSignIn" aria-label="github" class="text-white hover:text-gray-hover transition duration-200">
                     <IconsGithub />
                 </button>
-                <button class="text-white hover:text-gray-hover transition duration-200" @click="discordSignIn()" type="button" aria-label="discord">
+                <button @click="discordSignIn" aria-label="discord" class="text-white hover:text-gray-hover transition duration-200">
                     <IconsDiscord />
                 </button>
             </div>

@@ -10,7 +10,7 @@ useHead({
 </script>
 
 <template>
-    <div>
-        About page
+    <div class="text-center text-white text-5xl">
+        WORK IN PROGRESS
     </div>
 </template>

@@ -17,10 +17,10 @@ async function handleAction(action) {
 }
 
 const navItems = [
-    { id: 'home',    name: 'Home',    icon: 'Home',        url: '/'         },
-    { id: 'shop',    name: 'Shop',    icon: 'ShoppingBag', url: '/shop'     },
-    { id: 'about',   name: 'About',   icon: 'Document',    url: '/about'    },
-    { id: 'gallery', name: 'Gallery', icon: 'Gallery',      url: '/gallery'  }
+    { id: 'home',    name: 'Home',    icon: 'Home',        url: '/'        },
+    { id: 'shop',    name: 'Shop',    icon: 'ShoppingBag', url: '/shop'    },
+    { id: 'about',   name: 'About',   icon: 'Document',    url: '/about'   },
+    { id: 'gallery', name: 'Gallery', icon: 'Gallery',     url: '/gallery' }
 ]
 
 const userNavItems = [
@@ -61,9 +61,9 @@ const userOptions = (!loggedIn.value) ? [
                             <div class="flex flex-col space-y-2 pb-2">
                                 <HeadlessMenuItem v-for="item in navItems">
                                     <NavItem 
-                                        :label="item.name" 
-                                        :icon="item.icon" 
-                                        :url="item.url" 
+                                        :label="item.name"
+                                        :icon="item.icon"
+                                        :url="item.url"
                                         :id="item.id"
                                     />
                                 </HeadlessMenuItem>
@@ -72,10 +72,10 @@ const userOptions = (!loggedIn.value) ? [
                             <div class="flex flex-col space-y-2 py-2">
                                 <HeadlessMenuItem v-for="item in userNavItems">
                                     <NavItem 
+                                        :label="item.name"
+                                        :icon="item.icon"
+                                        :url="item.url"
                                         :id="item.id"
-                                        :label="item.name" 
-                                        :icon="item.icon" 
-                                        :url="item.url" 
                                     />
                                 </HeadlessMenuItem>
                             </div>
@@ -83,10 +83,10 @@ const userOptions = (!loggedIn.value) ? [
                             <div class="flex flex-col space-y-2 pt-2">
                                 <HeadlessMenuItem v-for="option in userOptions">
                                     <NavItem
-                                        :id="option.id"
                                         :label="option.name"
-                                        :url="option.url" 
-                                        :action="option.action" 
+                                        :url="option.url"
+                                        :id="option.id"
+                                        :action="option.action"
                                         @action="handleAction"
                                     />
                                 </HeadlessMenuItem>
@@ -98,29 +98,29 @@ const userOptions = (!loggedIn.value) ? [
             <div class="col-start-2 justify-center flex flex-nowrap md:col-start-1 md:justify-start items-center">
                 <NuxtLink to="/" class="flex items-center">
                     <span class="text-red-primary  transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap underline-effect"> 
-                        THE HEAVY SHOP 
+                        THE HEAVY SHOP
                     </span>
                 </NuxtLink>
             </div>
             <div class="hidden md:flex space-x-3 items-center justify-center">
                 <NavItem
-                    v-for="item in navItems" 
-                    :id="item.id"
+                    v-for="item in navItems"
                     :label="item.name" 
                     :url="item.url"
+                    :id="item.id"
                 />
             </div>
             <div class="hidden md:flex items-center justify-end mr-10">
                 <div class="flex space-x-4">
                     <NavItem
                         v-for="(item, index) in userNavItems" 
+                        :aria-label="item.id"
                         :icon="item.icon"
                         :url="item.url"
-                        :aria-label="item.id"
                         :class="index ? 'order-3' : 'order-1'"
                     />
                     <Dropdown :options="userOptions" @action="handleAction" class="order-2">
-                        <IconsUser class="text-white hover:text-red-primary transition duration-200" aria-label="user-menu" />
+                        <IconsUser aria-label="user-menu" class="text-white hover:text-red-primary transition duration-200" />
                     </Dropdown>
                 </div>
             </div>

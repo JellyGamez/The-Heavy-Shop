@@ -1,12 +1,12 @@
 import { create } from '~/server/utils/user'
 
 export default defineEventHandler(async (event) => {
-    const { username, email, password, passwordConfirmation } = await readBody(event)
+    const { name, email, password, passwordConfirmation } = await readBody(event)
 
-    if (!username)
+    if (!name)
         throw createError({
             statusCode: 400,
-            statusMessage: 'The username field is required.'
+            statusMessage: 'The name field is required.'
         })
     else if (!email)
         throw createError({
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
         })
 
     await create({
-        username: username,
+        name: name,
         email: email,
         password: password
     })

@@ -2,7 +2,7 @@ import crypto from 'crypto'
 import nodemailer from 'nodemailer'
 import { useCompiler } from '#vue-email'
 import jwt, { Secret } from 'jsonwebtoken'
-import { getByEmail, updatePasswordResetToken } from '~/server/utils/user';
+import { getByEmail, updatePasswordResetToken } from '~/server/utils/user'
 
 function generateToken() {
     return crypto.randomBytes(30).toString('hex')

@@ -1,39 +1,50 @@
 generator client {
-    provider = "prisma-client-js"
+  provider = "prisma-client-js"
 }
 
 datasource db {
-    provider = "postgresql"
-    url      = env("DATABASE_URL")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
 }
 
 model User {
-    id                 Int        @id @default(autoincrement())
-    createdAt          DateTime   @default(now())
-    updatedAt          DateTime   @updatedAt
-    username           String
-    email              String     @unique
-    password           String
-    passwordResetToken String?
-    favorites          Favorites?
+  id                 Int        @id @default(autoincrement())
+  createdAt          DateTime   @default(now())
+  updatedAt          DateTime   @updatedAt
+  name               String
+  email              String     @unique
+  password           String
+  passwordResetToken String?
+  cart               Cart?
+  favorites          Favorites?
 }
 
 model Item {
-    id          Int       @id @default(autoincrement())
-    createdAt   DateTime  @default(now())
-    updatedAt   DateTime  @updatedAt
-    name        String
-    description String
-    photoUrl    String
-    price       Int
-    favorites   Favorites[]
+  id          Int         @id @default(autoincrement())
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  name        String
+  description String
+  photoUrl    String
+  price       Int
+  carts       Cart[]      @relation("CartToItem")
+  favorites   Favorites[] @relation("FavoritesToItem")
 }
 
 model Favorites {
-    id        Int      @id @default(autoincrement())
-    createdAt DateTime @default(now())
-    updatedAt DateTime @updatedAt
-    userId    Int      @unique
-    user      User     @relation(fields: [userId], references: [id])
-    items     Item[]
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+  items     Item[]   @relation("FavoritesToItem")
+}
+
+model Cart {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int      @unique
+  user      User     @relation(fields: [userId], references: [id])
+  items     Item[]   @relation("CartToItem")
 }

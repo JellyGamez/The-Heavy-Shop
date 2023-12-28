@@ -3,13 +3,20 @@ import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
-export const create = async (data: any) => {
+async function create(data: any) {
     try {
         return await prisma.user.create({
             data: {
                 ...data,
                 password: bcrypt.hashSync(data.password, 10),
                 favorites: {
+                    create: {
+                        items: {
+                            create: []
+                        }
+                    }
+                },
+                cart: {
                     create: {
                         items: {
                             create: []
@@ -36,7 +43,20 @@ export const create = async (data: any) => {
     } 
 }
 
-export const updatePasswordResetToken = async (data: any) => {
+async function getByEmail(data: any) {
+    return await prisma.user.findUniqueOrThrow({
+        where: {
+            email: data.email
+        }
+    }).catch(() => {
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'We couldn\'t find that account.'
+        })
+    })
+}
+
+async function updatePasswordResetToken(data: any) {
     return await prisma.user.update({
         where: {
             email: data.email
@@ -47,7 +67,7 @@ export const updatePasswordResetToken = async (data: any) => {
     })
 }
 
-export const updatePassword = async (data: any) => {
+async function updatePassword(data: any) {
     try {
         return await prisma.user.update({
             where: {
@@ -69,20 +89,7 @@ export const updatePassword = async (data: any) => {
     } 
 }
 
-export const getByEmail = async (data: any) => {
-    return await prisma.user.findUniqueOrThrow({
-        where: {
-            email: data.email
-        }
-    }).catch(() => {
-        throw createError({
-            statusCode: 400,
-            statusMessage: 'We couldn\'t find that account.'
-        })
-    })
-}
-
-export const addItemToFavorites = async (data: any) => {
+async function addItemToFavorites(data: any) {
     return await prisma.favorites.update({
         where: {
             userId: data.user.id
@@ -90,5 +97,18 @@ export const addItemToFavorites = async (data: any) => {
         data: {
             items: { connect: { id: data.item.id } }
         },
-    });
+    })
 }
+
+async function addItemToCart(data: any) {
+    return await prisma.cart.update({
+        where: {
+            userId: data.user.id
+        },
+        data: {
+            items: { connect: { id: data.item.id } }
+        },
+    })
+}
+
+export { create, getByEmail, updatePassword, updatePasswordResetToken, addItemToFavorites, addItemToCart }

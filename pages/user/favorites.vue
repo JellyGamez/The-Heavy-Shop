@@ -14,11 +14,11 @@ const loggedIn = computed(() => {
 })
 
 const favorites = [
-    { name: 'a' },
-    { name: 'b' },
-    { name: 'c' },
-    { name: 'd' },
-    { name: 'e' },
+    { name: 'Lorem ipsum dolor sit amet, adipiscing color sitewsam' },
+    // { name: 'Blue Band T-shirt, Latest Edition' },
+    // { name: 'Gray Band T-shirt, Latest Edition' },
+    // { name: 'White Band T-shirt, Latest Edition' },
+    // { name: 'Pink Band T-shirt, Latest Edition' },
 ]
 
 </script>
@@ -27,14 +27,14 @@ const favorites = [
     <div>
         <div class="flex flex-col items-center sm:items-start text-white">
             <div class="flex items-center space-x-2">
-                <IconsBookmark class="w-6 h-6 md:w-8 md:h-8 md:mt-0.5"/>
+                <IconsBookmark class="w-6 h-6 md:w-8 md:h-8 md:mt-0.5" />
                 <h1 class="text-2xl md:text-4xl text-white">
                     Favorites
                 </h1>
             </div>
-            <!-- <p class="text-sm md:text-base text-center">
+            <p class="text-sm md:text-base text-center">
                 Bookmark your favorite items here
-            </p> -->
+            </p>
         </div>
         <AuthPrompt v-if="!loggedIn && favorites.length" class="mt-6">
             <p>
@@ -56,7 +56,7 @@ const favorites = [
                     Your favorites collection is currently awaiting your personal touch.
                 </p>
                 <p class="hidden md:block">
-                    Explore our store, discover standout items, and build your distinguished favorites collection.
+                    Explore our store, discover standout items, and build your distinguished favorites selection.
                 </p>
             </template>
         </EmptyState>
