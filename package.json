@@ -18,9 +18,9 @@
     "@sidebase/nuxt-auth": "0.6.0-beta.4",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",
-    "@types/node": "^18.19.3",
+    "@types/node": "^18.19.4",
     "@types/nodemailer": "^6.4.14",
-    "@vue-email/nuxt": "0.8.0-beta.4",
+    "@vue-email/nuxt": "0.8.5",
     "autoprefixer": "^10.4.16",
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
@@ -37,7 +37,7 @@
     "@nuxtjs/robots": "^3.0.0",
     "@prisma/client": "^5.7.1",
     "next-auth": "4.21.1",
-    "nodemailer": "^6.9.7",
+    "nodemailer": "^6.9.8",
     "nuxi": "^3.10.0"
   }
 }

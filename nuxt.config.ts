@@ -27,6 +27,6 @@ export default defineNuxtConfig({
     '@nuxtjs/robots',
     '@vue-email/nuxt',
     'nuxt-headlessui',
-    "@nuxt/image"
+    '@nuxt/image'
   ],
 })

@@ -7,6 +7,7 @@ import DiscordProvider from 'next-auth/providers/discord'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
 export default NuxtAuthHandler({
+    secret: process.env.AUTH_SECRET,
     providers: [
         // @ts-expect-error
         GithubProvider.default({
