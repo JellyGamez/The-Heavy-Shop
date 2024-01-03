@@ -29,7 +29,7 @@ async function main() {
         },
     })
 
-    for (let i = 1; i <= 100; i++) {
+    for (let i = 1; i <= 10; i++) {
         await prisma.item.create({
             data: {
                 name: faker.commerce.productName(),
@@ -50,3 +50,4 @@ main()
         await prisma.$disconnect()
         process.exit(1)
     })
+    

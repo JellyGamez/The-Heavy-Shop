@@ -24,7 +24,7 @@ const errorMessage = ref()
 
 async function sendEmail() {
     errorMessage.value = null
-    const { error, data } = await useFetch('/api/auth/forgot-password', {
+    const { error } = await useFetch('/api/auth/forgot-password', {
         method: 'POST',
         key: `${email.value}`,
         body: {
@@ -34,7 +34,6 @@ async function sendEmail() {
     errorMessage.value = error.value?.statusMessage
     if (!error.value)
         toast("Email sent successfully!")
-    console.log(data.value?.message)
 }
 
 </script>
@@ -47,7 +46,7 @@ async function sendEmail() {
         <form @submit.prevent="sendEmail">
             <div class="flex flex-col gap-4">
                 <div> 
-                    <Label class="ml-2" for="email"> Email </Label>
+                    <Label for="email"> Email </Label>
                     <TextInput v-model="email" name="email" id="email" type="email">
                         <IconsMail />
                     </TextInput>

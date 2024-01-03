@@ -89,26 +89,4 @@ async function updatePassword(data: any) {
     } 
 }
 
-async function addItemToFavorites(data: any) {
-    return await prisma.favorites.update({
-        where: {
-            userId: data.user.id
-        },
-        data: {
-            items: { connect: { id: data.item.id } }
-        },
-    })
-}
-
-async function addItemToCart(data: any) {
-    return await prisma.cart.update({
-        where: {
-            userId: data.user.id
-        },
-        data: {
-            items: { connect: { id: data.item.id } }
-        },
-    })
-}
-
-export { create, getByEmail, updatePassword, updatePasswordResetToken, addItemToFavorites, addItemToCart }
+export { create, getByEmail, updatePassword, updatePasswordResetToken }

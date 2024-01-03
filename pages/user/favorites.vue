@@ -13,13 +13,14 @@ const loggedIn = computed(() => {
     return status.value === 'authenticated'
 })
 
-const favorites = [
-    { name: 'Lorem ipsum dolor sit amet, adipiscing color sitewsam' },
-    // { name: 'Blue Band T-shirt, Latest Edition' },
-    // { name: 'Gray Band T-shirt, Latest Edition' },
-    // { name: 'White Band T-shirt, Latest Edition' },
-    // { name: 'Pink Band T-shirt, Latest Edition' },
-]
+const favorites = useFavorites()
+const favoritesList = ref(await favorites.getItems())
+
+async function removeItem(id) {
+    await favorites.removeItem(id)
+    const data = await favorites.getItems()
+    favoritesList.value = data.value
+}
 
 </script>
 
@@ -36,7 +37,7 @@ const favorites = [
                 Bookmark your favorite items here
             </p>
         </div>
-        <AuthPrompt v-if="!loggedIn && favorites.length" class="mt-6">
+        <AuthPrompt v-if="!loggedIn && favoritesList?.length" class="mt-6">
             <p>
                 To save your favorite items, please log in or create an account. 
             </p>
@@ -44,21 +45,42 @@ const favorites = [
                 Your preferences will be stored for future visits. 
             </p>
         </AuthPrompt>
-        <div v-if="favorites.length" class="flex flex-col mt-6 space-y-3">
-            <ExtendedItemCard v-for="item in favorites" :item="item" />
-        </div>
-        <EmptyState v-else class="mt-6">
-            <template #title>
-                No favorite items yet
+        <ClientOnly>
+            <div v-if="favoritesList?.length" class="flex flex-col mt-6 space-y-3">
+                <ExtendedItemCard v-for="item in favoritesList" :item="item">
+                    <template #actions>
+                        <div class="flex flex-col gap-2 justify-center mr-6 shrink-0 w-40">
+                            <Button variant="secondary" class="flex items-center justify-center space-x-1" > 
+                                <IconsShoppingCart class="!w-5 !h-5" />
+                                <span> Add to cart </span>
+                            </Button>
+                            <Button variant="primary" class="flex items-center justify-center space-x-1" @click="removeItem(item.id)"> 
+                                <IconsTrashBin class="!w-5 !h-5" />
+                                <span> Remove </span>
+                            </Button>
+                        </div>
+                    </template>
+                </ExtendedItemCard>
+            </div>
+            <EmptyState v-else-if="favoritesList" class="mt-6">
+                <template #title>
+                    No favorite items yet
+                </template>
+                <template #content>
+                    <p>
+                        Your favorites collection is currently awaiting your personal touch.
+                    </p>
+                    <p class="hidden md:block">
+                        Explore our store, discover standout items, and build your distinguished favorites selection.
+                    </p>
+                </template>
+            </EmptyState>
+
+            <template #fallback>
+                <h1 class="text-xl text-center text-white py-10">
+                    Loading items...
+                </h1>
             </template>
-            <template #content>
-                <p>
-                    Your favorites collection is currently awaiting your personal touch.
-                </p>
-                <p class="hidden md:block">
-                    Explore our store, discover standout items, and build your distinguished favorites selection.
-                </p>
-            </template>
-        </EmptyState>
+        </ClientOnly>
     </div>
 </template>

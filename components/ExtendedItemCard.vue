@@ -9,20 +9,13 @@ const props = defineProps({
 <template>
     <div class="bg-gray-dark p-4 rounded-xl flex justify-between w-ful">
         <div class="flex gap-8">
-            <img src="/img/test.webp" class="w-32 h-32 object-cover">
+            <img :src="item.photoUrl" :alt="item.name" class="w-40 h-40 object-cover rounded-xl">
             <div class="flex flex-col text-white">
-                {{ item.name }}
+                <p> {{ item.name }} </p>
+                <p> ${{ item.price }} </p>
+                <p class="max-w-[60%]"> {{ item.description }} </p>
             </div>
         </div>
-        <div class="flex gap-2 items-center mr-6">
-            <Button class="flex items-center justify-center space-x-1" variant="secondary"> 
-                <IconsShoppingCart class="!w-5 !h-5" />
-                <p> Add to cart </p>
-            </Button>
-            <Button class="flex items-center justify-center space-x-1"> 
-                <IconsTrashBin class="!w-5 !h-5" />
-                <p> Remove </p>
-            </Button>
-        </div>
+        <slot name="actions" />
     </div>
 </template>

@@ -38,7 +38,7 @@ async function credentialsSignIn() {
     })
     errorMessage.value = error
     if (!error)
-        await navigateTo(url, {external: true})
+        await navigateTo(url, { external: true })
 }
 
 </script>
@@ -48,17 +48,17 @@ async function credentialsSignIn() {
         <form @submit.prevent="credentialsSignIn">
             <div class="flex flex-col gap-4">
                 <div>
-                    <Label class="ml-2" for="email"> Email </Label>
+                    <Label for="email"> Email </Label>
                     <TextInput v-model="email" name="email" id="email" type="email">
                         <IconsMail />
                     </TextInput>
                 </div>
                 <div>
-                    <Label class="ml-2" for="password"> Password </Label>
+                    <Label for="password"> Password </Label>
                     <TextInput v-model="password" name="password" id="password" type="password">
                         <IconsKey />
                     </TextInput>
-                    <Label class="ml-2">
+                    <Label>
                         <NuxtLink to="/auth/forgot-password" class="hover:underline">
                             Forgot your password?
                         </NuxtLink>
@@ -73,18 +73,20 @@ async function credentialsSignIn() {
             </div>
         </form>
         <div class="mt-6 flex flex-col items-center">
-            <Label> Or log in using </Label>
+            <Label class="!ml-0"> Or log in using </Label>
             <div class="flex gap-3">
-                <button @click="githubSignIn" aria-label="github" class="text-white hover:text-gray-hover transition duration-200">
+                <button @click="githubSignIn" aria-label="github"
+                    class="text-white hover:text-gray-hover transition duration-200">
                     <IconsGithub />
                 </button>
-                <button @click="discordSignIn" aria-label="discord" class="text-white hover:text-gray-hover transition duration-200">
+                <button @click="discordSignIn" aria-label="discord"
+                    class="text-white hover:text-gray-hover transition duration-200">
                     <IconsDiscord />
                 </button>
             </div>
         </div>
-        <Label class="mt-6 flex flex-wrap items-center gap-1 justify-center">
-            Don't have an account yet? 
+        <Label class="mt-6 !ml-0 flex flex-wrap items-center justify-center gap-1">
+            Don't have an account yet?
             <NuxtLink to="/auth/register" class="font-medium text-red-primary hover:underline">
                 Register
             </NuxtLink>

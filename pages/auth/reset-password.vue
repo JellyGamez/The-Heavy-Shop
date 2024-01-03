@@ -27,7 +27,7 @@ const errorMessage = ref()
 
 async function resetPassword() {
     errorMessage.value = null
-    const { error, data } = await useFetch('/api/auth/reset-password', {
+    const { error } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
         key: `${password.value}  ${passwordConfirmation.value}`,
         body: {
@@ -42,7 +42,6 @@ async function resetPassword() {
         await navigateTo('/auth/login')
         toast("Password reset successfully!")
     }
-    console.log(data.value)
 }
 
 </script>
@@ -52,13 +51,13 @@ async function resetPassword() {
         <form @submit.prevent="resetPassword">
             <div class="flex flex-col gap-4">
                 <div>
-                    <Label class="ml-2" for="password"> Password </Label>
+                    <Label for="password"> Password </Label>
                     <TextInput v-model="password" name="password" id="password" type="password">
                         <IconsKey />
                     </TextInput>
                 </div>
                 <div>
-                    <Label class="ml-2" for="password-confirmation"> Password confirmation </Label>
+                    <Label for="password-confirmation"> Password confirmation </Label>
                     <TextInput v-model="passwordConfirmation" name="password-confirmation" id="password-confirmation" type="password">
                         <IconsKey />
                     </TextInput>

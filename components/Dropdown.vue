@@ -23,7 +23,6 @@ function handleClick(option) {
             <HeadlessMenuButton class="align-top">
                 <slot />
             </HeadlessMenuButton>
-
                 <transition
                     enter-active-class="transition duration-200 ease-in-out"
                     enter-from-class="transform scale-y-0 opacity-0"

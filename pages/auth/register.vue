@@ -29,7 +29,7 @@ const errorMessage = ref()
 
 async function register() {
     errorMessage.value = null
-    const { error, data } = await useFetch('/api/auth/register', {
+    const { error } = await useFetch('/api/auth/register', {
         method: 'POST',
         key: `${name.value} ${email.value} ${password.value}  ${passwordConfirmation.value}`,
         body: {
@@ -50,7 +50,6 @@ async function register() {
         await navigateTo('/')
         toast("Account created successfully!")  
     }
-    console.log(data.value?.message)
 }
 
 </script>
@@ -60,25 +59,25 @@ async function register() {
         <form @submit.prevent="register">
             <div class="flex flex-col gap-4">
                 <div>
-                    <Label class="ml-2" for="name"> Name </Label>
+                    <Label for="name"> Name </Label>
                     <TextInput v-model="name" name="name" id="name" type="text">
                         <IconsUser class="!w-5 !h-5 text-white" />
                     </TextInput>
                 </div>
                 <div>
-                    <Label class="ml-2" for="email"> Email </Label>
+                    <Label for="email"> Email </Label>
                     <TextInput v-model="email" name="email" id="email" type="email">
                         <IconsMail />
                     </TextInput>
                 </div>
                 <div>
-                    <Label class="ml-2" for="password"> Password </Label>
+                    <Label for="password"> Password </Label>
                     <TextInput v-model="password" name="password" id="password" type="password">
                         <IconsKey />
                     </TextInput>
                 </div>
                 <div>
-                    <Label class="ml-2" for="password-confirmation"> Password confirmation </Label>
+                    <Label for="password-confirmation"> Password confirmation </Label>
                     <TextInput v-model="passwordConfirmation" name="password-confirmation" id="password-confirmation" type="password">
                         <IconsKey />
                     </TextInput>
@@ -91,7 +90,8 @@ async function register() {
                 </Button>
             </div>
         </form>
-        <Label class="mt-8 flex flex-wrap items-center gap-1 justify-center">
+        <div class="text-white text-sm font-extralight my-1"></div>
+        <Label class="mt-8 !ml-0 flex flex-wrap items-center justify-center gap-1 ">
             Already have an account?
             <NuxtLink to="/auth/login" class="font-medium text-red-primary hover:underline">
                 Log in

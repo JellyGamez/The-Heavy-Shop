@@ -1,8 +1,8 @@
-import { useToast } from 'vue-toastification'
+import { POSITION, useToast } from 'vue-toastification'
 
-export default function toast(message) {
+export default function toast(message: any) {
     useToast().success(message, {
-        position: "bottom-center",
+        position: POSITION.BOTTOM_CENTER,
         timeout: 2500,
         closeOnClick: true,
         pauseOnFocusLoss: true,

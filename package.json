@@ -14,6 +14,7 @@
   "devDependencies": {
     "@faker-js/faker": "^8.3.1",
     "@nuxt/devtools": "latest",
+    "@nuxt/image": "^1.1.0",
     "@sidebase/nuxt-auth": "0.6.0-beta.4",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.5",
