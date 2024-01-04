@@ -19,6 +19,7 @@ definePageMeta({
 })
 
 const { signIn } = useAuth()
+const { syncItems } = useFavorites()
 
 const name = ref('')
 const email = ref('')
@@ -47,8 +48,10 @@ async function register() {
             password: password.value,
             redirect: false
         })
+
         await navigateTo('/')
-        toast("Account created successfully!")  
+        toast("Account created successfully!")
+        await syncItems()
     }
 }
 

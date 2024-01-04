@@ -17,6 +17,7 @@ definePageMeta({
 })
 
 const { signIn } = useAuth()
+const { syncItems } = useFavorites()
 
 const email = ref('')
 const password = ref('')
@@ -31,14 +32,16 @@ async function discordSignIn() {
 }
 async function credentialsSignIn() {
     errorMessage.value = null
-    const { url, error } = await signIn('credentials', {
+    const { error } = await signIn('credentials', {
         email: email.value,
         password: password.value,
         redirect: false
     })
     errorMessage.value = error
-    if (!error)
-        await navigateTo(url, { external: true })
+    if (!error) {
+        await navigateTo('/')
+        await syncItems()
+    }
 }
 
 </script>

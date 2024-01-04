@@ -1,6 +1,8 @@
-import { PrismaClient } from '@prisma/client'
+import prisma from './prisma'
 
-const prisma = new PrismaClient()
+async function getAll() {
+    return await prisma.item.findMany()
+}
 
 async function getById(data: any) {
     return await prisma.item.findMany({
@@ -12,4 +14,4 @@ async function getById(data: any) {
     })
 }
 
-export { getById }
+export { getAll, getById }

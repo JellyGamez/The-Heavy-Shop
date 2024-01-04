@@ -1,7 +1,6 @@
-import { PrismaClient, Prisma } from '@prisma/client'
+import { Prisma } from '@prisma/client'
+import prisma from './prisma'
 import bcrypt from 'bcrypt'
-
-const prisma = new PrismaClient()
 
 async function create(data: any) {
     try {

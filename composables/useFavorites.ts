@@ -1,4 +1,6 @@
-export default function  useFavorites() {
+import toast from '@/composables/useToast'
+
+export default function useFavorites() {
     const { status } = useAuth()
 
     const loggedIn = status.value === 'authenticated'
@@ -14,9 +16,10 @@ export default function  useFavorites() {
             return data
         }
         else {
+            const ids = getIds()
             const { data } = await useFetch('/api/guest/favorites', {
                 query: {
-                    ids: getIds()
+                    ids: ids
                 }
             })
             return data
@@ -30,13 +33,13 @@ export default function  useFavorites() {
             })
         }
         else if (process.client) {
-            const favorites = getIds()
-
-            if (!favorites.includes(id)) {
-                favorites.push(id)
-                localStorage.setItem('favorites', JSON.stringify(Array.from(favorites)))
+            const ids = getIds()
+            if (!ids.includes(id)) {
+                ids.push(id)
+                localStorage.setItem('favorites', JSON.stringify(Array.from(ids)))
             }
         }
+        toast("Item added to favorites")
     }
 
     async function removeItem(id: Number) {
@@ -46,17 +49,27 @@ export default function  useFavorites() {
             })
         }
         else if (process.client) {
-            const favorites = getIds()
-            const index = favorites.indexOf(id)
+            const ids = getIds()
+            const index = ids.indexOf(id)
             if (index !== -1) {
-                favorites.splice(index, 1);
-                localStorage.setItem('favorites', JSON.stringify(Array.from(favorites)))
+                ids.splice(index, 1);
+                localStorage.setItem('favorites', JSON.stringify(Array.from(ids)))
             }
         }
+        toast("Item removed from favorites")
     }
 
     async function syncItems() {
-        
+        const ids = getIds()
+        if (ids.length) {
+            for (const id of ids) {
+                await useFetch(`/api/user/favorites/${id}`, {
+                    method: 'POST'
+                })
+            }
+            localStorage.removeItem('favorites')
+            toast("Your favorites have been synced!")
+        }
     }
 
     return { getIds, getItems, syncItems, addItem, removeItem }

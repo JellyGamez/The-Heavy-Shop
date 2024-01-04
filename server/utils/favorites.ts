@@ -1,17 +1,14 @@
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import prisma from './prisma'
 
 async function getItems(data: any) {
-    const response = await prisma.favorites.findUnique({
+    return (await prisma.favorites.findUnique({
         where: {
             userId: data.userId
         },
         select: {
             items: true
         }
-    })
-    return response?.items
+    }))?.items
 }
 
 async function addItem(data: any) {

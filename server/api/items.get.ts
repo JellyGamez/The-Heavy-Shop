@@ -1,8 +1,5 @@
-import { PrismaClient } from '@prisma/client'
-
-const prisma = new PrismaClient()
+import { getAll } from '~/server/utils/item'
 
 export default defineEventHandler(async (event) => {
-    const items = await prisma.item.findMany()
-    return items
+    return await getAll()
 })

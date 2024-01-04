@@ -1,6 +1,4 @@
-// import { PrismaClient } from '@prisma/client'
-
-// const prisma = new PrismaClient()
+// import prisma from './prisma'
 
 // async function getItems(data: any) {
 //     return await prisma.cart.findUnique({
