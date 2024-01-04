@@ -25,11 +25,7 @@ const { data: items } = await useFetch('/api/items')
             </p>
         </div>
         <div class="grid grid-cols-5 gap-x-6 gap-y-10 mt-6">
-            <PreviewItemCard 
-                v-for="item in items" 
-                :key="item.id" 
-                :item="item"
-            />
+            <PreviewItemCard v-for="item in items" :key="item.id" :item="item" />
         </div>
     </div>
 </template>

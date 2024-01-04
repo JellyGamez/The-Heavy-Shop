@@ -3,6 +3,15 @@ export default defineNuxtConfig({
   devtools: {
     enabled: true
   },
+  build: {
+    transpile: ['vue-toastification'],
+  },
+  googleFonts: {
+    families: {
+      Kanit: [100, 200, 300, 400, 500, 600, 700, 800, 900],
+      Ubuntu: [300, 400, 500, 700]
+    }
+  },
   postcss: {
     plugins: {
       tailwindcss: {},
@@ -24,9 +33,10 @@ export default defineNuxtConfig({
   },
   modules: [
     '@sidebase/nuxt-auth',
-    '@nuxtjs/robots',
-    '@vue-email/nuxt',
     'nuxt-headlessui',
-    '@nuxt/image'
+    '@vue-email/nuxt',
+    '@nuxt/image',
+    '@nuxtjs/robots',
+    '@nuxtjs/google-fonts'
   ],
 })
