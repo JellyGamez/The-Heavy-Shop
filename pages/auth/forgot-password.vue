@@ -26,7 +26,6 @@ async function sendEmail() {
     errorMessage.value = null
     const { error } = await useFetch('/api/auth/forgot-password', {
         method: 'POST',
-        key: `${email.value}`,
         body: {
             email: email.value,
         },

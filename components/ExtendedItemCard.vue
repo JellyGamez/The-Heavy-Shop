@@ -14,6 +14,10 @@ const props = defineProps({
                 <p> {{ item.name }} </p>
                 <p> ${{ item.price }} </p>
                 <p class="max-w-[60%]"> {{ item.description }} </p>
+                <div class="flex">
+                    <IconsStar class="text-yellow-500" v-for="n in 5" />
+                </div>
+                
             </div>
         </div>
         <slot name="actions" />

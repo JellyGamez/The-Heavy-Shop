@@ -32,7 +32,6 @@ async function register() {
     errorMessage.value = null
     const { error } = await useFetch('/api/auth/register', {
         method: 'POST',
-        key: `${name.value} ${email.value} ${password.value}  ${passwordConfirmation.value}`,
         body: {
             name: name.value,
             email: email.value,

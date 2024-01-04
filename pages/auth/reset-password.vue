@@ -29,7 +29,6 @@ async function resetPassword() {
     errorMessage.value = null
     const { error } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
-        key: `${password.value}  ${passwordConfirmation.value}`,
         body: {
             signedToken: route.query.token,
             password: password.value,
