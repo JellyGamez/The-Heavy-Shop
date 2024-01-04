@@ -30,8 +30,7 @@ async function sendEmail() {
             email: email.value,
         },
     })
-    errorMessage.value = error.value?.statusMessage
-    console.log(error)
+    errorMessage.value = error.value?.data.statusMessage
     if (!error.value)
         toast("Email sent successfully!")
 }

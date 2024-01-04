@@ -39,7 +39,7 @@ async function register() {
             passwordConfirmation: passwordConfirmation.value
         }
     })
-    errorMessage.value = error.value?.statusMessage
+    errorMessage.value = error.value?.data.statusMessage
     if (!error.value)
     {
         await signIn('credentials', {

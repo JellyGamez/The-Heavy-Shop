@@ -35,7 +35,7 @@ async function resetPassword() {
             passwordConfirmation: passwordConfirmation.value
         }
     })
-    errorMessage.value = error.value?.statusMessage
+    errorMessage.value = error.value?.data.statusMessage
     if (!error.value)
     {
         await navigateTo('/auth/login')
