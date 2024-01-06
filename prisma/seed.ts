@@ -34,7 +34,7 @@ async function main() {
             data: {
                 name: faker.commerce.productName(),
                 description: faker.commerce.productDescription(),
-                price: faker.number.int(1000),
+                price: faker.number.float({ min: 10, max: 500, precision: 0.01 }),
                 photoUrl: faker.image.url()
             }
         })

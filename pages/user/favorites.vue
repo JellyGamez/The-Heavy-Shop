@@ -46,10 +46,10 @@ async function removeItem(id) {
             </p>
         </AuthPrompt>
         <ClientOnly>
-            <div v-if="favoritesList?.length" class="flex flex-col mt-6 space-y-3">
+            <div v-if="favoritesList?.length" class="flex flex-col mt-4 space-y-4">
                 <ExtendedItemCard v-for="item in favoritesList" :item="item">
                     <template #actions>
-                        <div class="flex flex-col gap-2 justify-center mr-6 shrink-0 w-40">
+                        <div class="flex flex-col gap-2 justify-center mr-4 shrink-0 w-40">
                             <Button variant="secondary" class="flex items-center justify-center space-x-1" > 
                                 <IconsShoppingCart class="!w-5 !h-5" />
                                 <span> Add to cart </span>

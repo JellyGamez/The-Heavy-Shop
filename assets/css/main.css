@@ -8,10 +8,6 @@
         width: 100vw;
         overflow-x: hidden;
     }
-    body {
-        text-rendering: optimizeLegibility !important;
-        -webkit-font-smoothing: antialiased !important;
-    }
 }
 
 /* Scroll bar stylings */

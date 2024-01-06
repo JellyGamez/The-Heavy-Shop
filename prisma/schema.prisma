@@ -27,7 +27,7 @@ model Item {
   name        String
   description String
   photoUrl    String
-  price       Int
+  price       Float
   carts       Cart[]      @relation("CartToItem")
   favorites   Favorites[] @relation("FavoritesToItem")
 }

@@ -13,13 +13,13 @@ CREATE TABLE "User" (
 
 -- CreateTable
 CREATE TABLE "Item" (
-    "id" SERIAL NOT NULL,
+    "id" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
     "photoUrl" TEXT NOT NULL,
-    "price" INTEGER NOT NULL,
+    "price" DOUBLE PRECISION NOT NULL,
 
     CONSTRAINT "Item_pkey" PRIMARY KEY ("id")
 );
@@ -47,13 +47,13 @@ CREATE TABLE "Cart" (
 -- CreateTable
 CREATE TABLE "_FavoritesToItem" (
     "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL
+    "B" TEXT NOT NULL
 );
 
 -- CreateTable
 CREATE TABLE "_CartToItem" (
     "A" INTEGER NOT NULL,
-    "B" INTEGER NOT NULL
+    "B" TEXT NOT NULL
 );
 
 -- CreateIndex

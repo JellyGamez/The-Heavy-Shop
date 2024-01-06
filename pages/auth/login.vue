@@ -79,11 +79,11 @@ async function credentialsSignIn() {
             <Label class="!ml-0"> Or log in using </Label>
             <div class="flex gap-3">
                 <button @click="githubSignIn" aria-label="github"
-                    class="text-white hover:text-gray-hover transition duration-200">
+                    class="text-white hover:text-gray-lighter transition duration-200">
                     <IconsGithub />
                 </button>
                 <button @click="discordSignIn" aria-label="discord"
-                    class="text-white hover:text-gray-hover transition duration-200">
+                    class="text-white hover:text-gray-lighter transition duration-200">
                     <IconsDiscord />
                 </button>
             </div>
