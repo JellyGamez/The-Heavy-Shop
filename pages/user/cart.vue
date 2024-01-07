@@ -28,7 +28,7 @@ const loggedIn = computed(() => {
                 Organize your selected items for checkout
             </p>
         </div>
-        <AuthPrompt v-if="!loggedIn" class="mt-6">
+        <AuthPrompt v-if="!loggedIn" class="mt-4">
             <p>
                 To save your cart, please log in or create an account. 
             </p>
@@ -36,7 +36,7 @@ const loggedIn = computed(() => {
                 Your preferences will be stored for future visits. 
             </p>
         </AuthPrompt>
-        <EmptyState class="mt-6">
+        <EmptyState class="mt-4">
             <template #title>
                 Your cart is empty
             </template>

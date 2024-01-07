@@ -39,7 +39,7 @@ const userOptions = (!loggedIn.value) ? [
 
 <template>
     <div class="fixed w-[100vw] top-0 z-10 h-16 bg-gray-dark">
-        <div class="px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto h-full grid grid-cols-3">
+        <div class="grid grid-cols-3 px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto h-full">
             <div class="flex md:hidden">
                 <HeadlessMenu as="div" class="flex items-center" v-slot="{ open }">
                     <HeadlessMenuButton class="flex items-center text-white w-10 h-10 relative focus:outline-none" aria-label="mobile-menu">

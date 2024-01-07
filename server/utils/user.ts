@@ -21,7 +21,7 @@ async function create(data: any) {
                             create: []
                         }
                     }
-                },
+                }
             }
         })
     }

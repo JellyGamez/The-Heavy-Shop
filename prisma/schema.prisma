@@ -3,7 +3,7 @@ generator client {
 }
 
 datasource db {
-  provider  = "postgresql"
+  provider = "postgresql"
   url       = env("POSTGRES_PRISMA_URL")
   directUrl = env("POSTGRES_URL_NON_POOLING")
 }
@@ -18,6 +18,7 @@ model User {
   passwordResetToken String?
   cart               Cart?
   favorites          Favorites?
+  reviews            Review[]
 }
 
 model Item {
@@ -28,6 +29,7 @@ model Item {
   description String
   photoUrl    String
   price       Float
+  reviews     Review[]
   carts       Cart[]      @relation("CartToItem")
   favorites   Favorites[] @relation("FavoritesToItem")
 }
@@ -48,4 +50,16 @@ model Cart {
   userId    Int      @unique
   user      User     @relation(fields: [userId], references: [id])
   items     Item[]   @relation("CartToItem")
+}
+
+model Review {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  rating    Int
+  content   String
+  userId    Int
+  user      User     @relation(fields: [userId], references: [id])
+  itemId    String
+  item      Item     @relation(fields: [itemId], references: [id])
 }

@@ -40,11 +40,11 @@ export default defineEventHandler(async (event) => {
 
     const signedToken = signToken(email, token)
 
-    const template = await useCompiler('PasswordReset.vue', {
+    const template = (await useCompiler('PasswordReset.vue', {
         props: {
-            url:  `http://localhost:3000/auth/reset-password?token=${signedToken}`,
+            url: `http://localhost:3000/auth/reset-password?token=${signedToken}`
         }
-    })
+    }))?.html
 
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -52,18 +52,16 @@ export default defineEventHandler(async (event) => {
         secure: false,
         auth: {
             user: process.env.MAIL_USER,
-            pass: process.env.MAIL_PASSWORD,
-        },
+            pass: process.env.MAIL_PASSWORD
+        }
     })
 
-    const options = {
+    transporter.sendMail({
         from: 'The Heavy Shop',
         to: email,
         subject: 'Password reset - The Heavy Shop',
-        html: template,
-    }
-
-    transporter.sendMail(options)
+        html: template
+    })
     
     return { message: 'Email sent successfully!' }
 })

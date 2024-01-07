@@ -18,7 +18,7 @@ async function addItem(data: any) {
         },
         data: {
             items: { connect: { id: data.itemId } }
-        },
+        }
     })
 }
 
@@ -29,7 +29,7 @@ async function removeItem(data: any) {
         },
         data: {
             items: { disconnect: { id: data.itemId } }
-        },
+        }
     })
 }
 

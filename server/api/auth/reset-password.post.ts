@@ -39,7 +39,7 @@ export default defineEventHandler(async (event) => {
             statusMessage: 'The passwords do not match.'
         })
 
-    const decodedToken: any = verifySignedToken(signedToken)
+    const decodedToken = verifySignedToken(signedToken) as any
 
     await updatePassword({
         email: decodedToken.email,

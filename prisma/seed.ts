@@ -35,7 +35,21 @@ async function main() {
                 name: faker.commerce.productName(),
                 description: faker.commerce.productDescription(),
                 price: faker.number.float({ min: 10, max: 500, precision: 0.01 }),
-                photoUrl: faker.image.url()
+                photoUrl: faker.image.url(),
+                reviews: {
+                    create: [
+                        {
+                            rating: faker.number.int({ min: 1, max: 5 }),
+                            content: faker.lorem.paragraph(),
+                            userId: 1
+                        },
+                        {
+                            rating: faker.number.int({ min: 1, max: 5 }),
+                            content: faker.lorem.paragraph(),
+                            userId: 1
+                        }
+                    ]
+                }
             }
         })
     }

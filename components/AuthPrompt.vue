@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col sm:flex-row items-center gap-3 p-4 w-full rounded-xl bg-gray-dark text-white">
+    <div class="flex flex-col sm:flex-row items-center gap-3 p-4 w-full rounded-2xl bg-gray-dark text-white">
         <IconsUser class="hidden sm:block !w-8 !h-8 shrink-0" />
         <div class="text-sm text-center sm:text-left w-full flex flex-col"> 
             <slot />
