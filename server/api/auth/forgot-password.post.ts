@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'The email field is required.'
         })
-    
+
     // throw error if no account with that email address is found
     await getByEmail({ email: email })
 
@@ -56,12 +56,12 @@ export default defineEventHandler(async (event) => {
         }
     })
 
-    transporter.sendMail({
+    await transporter.sendMail({
         from: 'The Heavy Shop',
         to: email,
         subject: 'Password reset - The Heavy Shop',
         html: template
     })
-    
+
     return { message: 'Email sent successfully!' }
 })

@@ -50,7 +50,6 @@ export default NuxtAuthHandler({
                             statusMessage: 'These credentials don\'t match our records.'
                         })
                     }
-
                 }
             }
         })
