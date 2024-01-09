@@ -90,7 +90,7 @@ async function credentialsSignIn() {
         </div>
         <Label class="mt-6 !ml-0 flex flex-wrap items-center justify-center gap-1">
             Don't have an account yet?
-            <NuxtLink to="/auth/register" class="font-medium text-red-primary hover:underline">
+            <NuxtLink to="/auth/register" class="font-normal text-red-primary hover:underline">
                 Register
             </NuxtLink>
         </Label>

@@ -95,7 +95,7 @@ async function register() {
         <div class="text-white text-sm font-extralight my-1"></div>
         <Label class="mt-8 !ml-0 flex flex-wrap items-center justify-center gap-1 ">
             Already have an account?
-            <NuxtLink to="/auth/login" class="font-medium text-red-primary hover:underline">
+            <NuxtLink to="/auth/login" class="font-normal text-red-primary hover:underline">
                 Log in
             </NuxtLink>
         </Label>
