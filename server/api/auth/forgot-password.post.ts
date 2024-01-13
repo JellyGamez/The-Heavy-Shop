@@ -42,7 +42,7 @@ export default defineEventHandler(async (event) => {
 
     const template = (await useCompiler('PasswordReset.vue', {
         props: {
-            url: `http://localhost:3000/auth/reset-password?token=${signedToken}`
+            url: `${process.env.AUTH_ORIGIN}/auth/reset-password?token=${signedToken}`
         }
     }))?.html
 
