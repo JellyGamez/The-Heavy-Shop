@@ -46,7 +46,7 @@ async function sendEmail() {
             <div class="flex flex-col gap-4">
                 <div> 
                     <Label for="email"> Email </Label>
-                    <TextInput v-model="email" name="email" id="email" type="email">
+                    <TextInput v-model="email" name="email" id="email" type="email" autocomplete="email">
                         <IconsMail />
                     </TextInput>
                 </div>

@@ -62,13 +62,13 @@ async function register() {
             <div class="flex flex-col gap-4">
                 <div>
                     <Label for="name"> Name </Label>
-                    <TextInput v-model="name" name="name" id="name" type="text">
+                    <TextInput v-model="name" name="name" id="name" type="text" autocomplete="name">
                         <IconsUser class="!w-5 !h-5 text-white" />
                     </TextInput>
                 </div>
                 <div>
                     <Label for="email"> Email </Label>
-                    <TextInput v-model="email" name="email" id="email" type="email">
+                    <TextInput v-model="email" name="email" id="email" type="email" autocomplete="email">
                         <IconsMail />
                     </TextInput>
                 </div>
