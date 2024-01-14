@@ -46,7 +46,10 @@ async function resetPassword() {
 </script>
 
 <template>
-    <AuthCard title="Reset password" description="Enter a new secure password for your account">
+    <AuthCard 
+        title="Reset password" 
+        description="Enter a new secure password for your account"
+    >
         <form @submit.prevent="resetPassword">
             <div class="flex flex-col gap-4">
                 <div>

@@ -18,7 +18,6 @@ useHead({
         <div class="flex-1 bg-gray-dark bg-opacity-90 pt-8 px-4 md:px-10 lg:px-20 grid grid-cols-1 xl:grid-cols-2 gap-8 overflow-x-hidden">
             <div class="flex items-center justify-center text-white text-3xl sm:text-5xl font-bold ">
                 <div class="flex flex-col gap-8 mb-8 text-center xl:text-left font-ubuntu">
-                    
                     <span>
                         We bring the 
                         <br>
@@ -58,11 +57,11 @@ useHead({
                 </div>
             </div>
 
-            <div class="overflow-hidden xl:-mr-20">
+            <div class="overflow-hidden xl:-mr-20 mt-auto xl:mt-0">
                 <img 
                     src="/img/2.webp" 
                     alt="Muscular man wearing our merch"
-                    class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full block mx-auto text-white"
+                    class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full mx-auto text-white"
                 >
             </div>
         </div>

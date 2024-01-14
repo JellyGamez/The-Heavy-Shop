@@ -7,7 +7,9 @@
             <slot name="content" />
         </div>
         <NuxtLink to="/shop">
-            <Button variant="secondary" class="w-40"> SHOP NOW </Button>
+            <Button variant="secondary" class="w-40"> 
+                SHOP NOW 
+            </Button>
         </NuxtLink>
     </div>
 </template>

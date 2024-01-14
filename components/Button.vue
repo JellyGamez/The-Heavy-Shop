@@ -4,23 +4,19 @@ const props = defineProps({
     variant: {
         type: String,
         default: 'primary',
-        validator(value) {
-            return ['primary', 'secondary'].includes(value)
-        }
     },
     size: {
         type: String,
         default: 'small',
-        validator(value) {
-            return ['tiny', 'small', 'medium', 'large'].includes(value)
-        }
     }
 })
 
 const variantClasses = computed(() => {
     return {
-        'primary'   : 'bg-gray-primary hover:bg-gray-dark text-white ring-2 ring-inset ring-gray-primary hover:ring-red-primary',
-        'secondary' : 'bg-red-primary hover:bg-red-dark text-white',
+        'primary'   : 'text-white bg-gray-primary hover:bg-gray-dark ring-2 ring-inset ring-gray-primary hover:ring-red-primary',
+        'secondary' : 'text-white bg-red-primary hover:bg-red-dark',
+        'neutral'   : 'text-white',
+        'disabled'  : 'text-gray-light'
     }[props.variant]
 })
 
