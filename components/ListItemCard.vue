@@ -7,19 +7,24 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="flex justify-between w-full p-2 rounded-2xl bg-gray-dark">
-        <div class="flex w-full mr-20">
-            <NuxtImg :src="item.photoUrl" :alt="item.name" class="w-44 h-44 object-cover rounded-xl" preload />
-            <div class="flex flex-col w-full justify-between my-1 text-white ml-8">
+    <div class="relative flex justify-between w-full p-1 md:p-1.5 rounded-2xl bg-gray-dark">
+        <div class="flex w-full md:mr-10 lg:mr-20">
+            <NuxtImg 
+                :src="item.photoUrl" 
+                :alt="item.name" 
+                class="w-32 h-32 md:w-44 md:h-44 object-cover rounded-xl" 
+                preload 
+            />
+            <div class="flex flex-col w-full justify-between overflow-hidden text-white my-1 md:my-2 mr-2 ml-4 md:ml-8">
                 <div>
-                    <p class="text-lg truncate"> {{ item.name }} </p>
-                    <p class="line-clamp-2 font-light text-neutral-400"> {{ item.description }} </p>
-                    <div class="flex my-2">
+                    <p class="text-base md:text-lg truncate w-full"> {{ item.name }} </p>
+                    <p class="text-sm md:text-base font-light text-gray-lightest line-clamp-2 w-full"> {{ item.description }} </p>
+                    <div class="flex my-1 md:my-2">
                         <IconsStar class="text-yellow-500" v-for="n in 4" />
                         <IconsStar class="text-gray-light" v-for="n in 1" />
                     </div>
                 </div>
-                <p class="text-lg"> $ {{ item.price }} </p>
+                <p class="text-base md:text-lg"> $ {{ item.price }} </p>
             </div>
         </div>
         <slot name="actions" />

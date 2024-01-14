@@ -7,19 +7,15 @@ useHead({
     ],
 })
 
-const { status } = useAuth()
-
-const loggedIn = computed(() => {
-    return status.value === 'authenticated'
-})
+const loggedIn = useStatus()
 
 const favorites = useFavorites()
-const favoritesList = ref(await favorites.getItems())
+const favoriteItems = ref(await favorites.getItems())
 
 async function removeItem(id) {
     await favorites.removeItem(id)
     const data = await favorites.getItems()
-    favoritesList.value = data.value
+    favoriteItems.value = data.value
 }
 
 </script>
@@ -38,7 +34,7 @@ async function removeItem(id) {
             </p>
         </div>
         <div class="mt-4 md:mt-6">
-            <AuthPrompt v-if="!loggedIn && favoritesList?.length">
+            <AuthPrompt v-if="!loggedIn && favoriteItems?.length">
                 <p>
                     To save your favorite items, please log in or create an account. 
                 </p>
@@ -47,24 +43,29 @@ async function removeItem(id) {
                 </p>
             </AuthPrompt>
             <ClientOnly>
-                <div v-if="favoritesList?.length" class="flex flex-col mt-4 space-y-4">
-                    <ListItemCard v-for="item in favoritesList" :item="item">
+                <div v-if="favoriteItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
+                    <ListItemCard v-for="item in favoriteItems" :item="item">
                         <template #actions>
-                            <div class="flex flex-col gap-2 justify-center mr-4 shrink-0 w-40">
-                                <Button variant="secondary" class="flex items-center justify-center space-x-1"> 
+                            <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
+                                <Button variant="secondary" size="small" class="flex items-center justify-center space-x-1"> 
                                     <IconsShoppingCart class="!w-5 !h-5" />
                                     <span> Add to cart </span>
                                 </Button>
-                                <Button variant="primary" class="flex items-center justify-center space-x-1" @click="removeItem(item.id)"> 
+                                <Button size="small" class="flex items-center justify-center space-x-1" @click="removeItem(item.id)"> 
                                     <IconsTrashBin class="!w-5 !h-5" />
                                     <span> Remove </span>
+                                </Button>
+                            </div>
+                            <div class="md:hidden absolute bottom-1 right-1">
+                                <Button size="small" class="!p-2.5" @click="removeItem(item.id)"> 
+                                    <IconsTrashBin class="!w-4 !h-4" />
                                 </Button>
                             </div>
                         </template>
                     </ListItemCard>
                 </div>
 
-                <EmptyState v-else-if="favoritesList">
+                <EmptyState v-else-if="favoriteItems">
                     <template #title>
                         No favorite items yet
                     </template>

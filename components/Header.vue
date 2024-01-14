@@ -1,10 +1,8 @@
 <script setup>
 
-const { status, signOut } = useAuth()
+const { signOut } = useAuth()
 
-const loggedIn = computed(() => {
-    return status.value === 'authenticated'
-})
+const loggedIn = useStatus()
 
 async function handleAction(action) {
     switch (action) {
@@ -28,7 +26,7 @@ const userNavItems = [
     { id: 'cart',      name: 'Cart',      icon: 'ShoppingCart', url: '/user/cart'      }
 ]
 
-const userOptions = (!loggedIn.value) ? [
+const userOptions = (!loggedIn) ? [
     { name: 'Log In',   url: '/auth/login'    },
     { name: 'Register', url: '/auth/register' }
 ] : [
@@ -113,7 +111,7 @@ const userOptions = (!loggedIn.value) ? [
             <div class="hidden md:flex items-center justify-end mr-10">
                 <div class="flex space-x-4">
                     <NavItem
-                        v-for="(item, index) in userNavItems" 
+                        v-for="(item, index) in userNavItems"
                         :aria-label="item.id"
                         :icon="item.icon"
                         :url="item.url"

@@ -1,9 +1,7 @@
 import toast from '@/composables/useToast'
 
 export default function useFavorites() {
-    const { status } = useAuth()
-
-    const loggedIn = status.value === 'authenticated'
+    const loggedIn = useStatus()
     
     function getIds() {
         if (process.client)
@@ -18,9 +16,7 @@ export default function useFavorites() {
         else {
             const ids = getIds()
             const { data } = await useFetch('/api/guest/favorites', {
-                query: {
-                    ids: ids
-                }
+                query: { ids: ids }
             })
             return data
         }

@@ -47,11 +47,8 @@ useHead({
                     </span>
 
                     <NuxtLink to="/shop" class="mx-auto xl:mx-0">
-                        <Button variant="secondary" size="large" class="hidden sm:block" name="shop">
+                        <Button variant="secondary" size="large" name="shop">
                             SHOP NOW    
-                        </Button>
-                        <Button variant="secondary" size="medium" class="block sm:hidden" name="shop">
-                            SHOP NOW
                         </Button>
                     </NuxtLink>
                 </div>
