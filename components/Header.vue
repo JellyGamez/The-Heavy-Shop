@@ -55,7 +55,7 @@ const userOptions = (!loggedIn) ? [
                         leave-from-class="transform scale-y-100"
                         leave-to-class="transform scale-y-0 opacity-0"
                     >
-                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark space-y-2 w-full p-5 shadow-2xl">
+                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark space-y-2 p-5 w-full shadow-2xl">
                             <div class="flex flex-col space-y-2 pb-2">
                                 <HeadlessMenuItem v-for="item in navItems">
                                     <NavItem 

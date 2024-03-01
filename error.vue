@@ -19,7 +19,7 @@ const handleError = () => clearError({ redirect: '/' })
     <div>
         <Header />
         <div class="pt-16 min-h-screen bg-gray-light flex flex-col items-center justify-center">
-            <div class="w-full flex justify-center p-4">
+            <div class="flex justify-center w-full px-2 py-4">
                 <div class="w-full max-w-sm bg-gray-dark p-5 rounded-2xl">
                     <div class="mb-6">
                         <h1 class="text-center text-red-primary text-[26px] font-medium mb-3"> 

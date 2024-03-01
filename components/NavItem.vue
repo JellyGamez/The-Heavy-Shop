@@ -40,7 +40,12 @@ const icon = computed(() => {
 
 <template>
     <button @click="handleClick">
-        <div :class="match(url) ? 'text-red-primary' : 'text-white'" class="hover:text-red-primary text-lg transition duration-200 text-left flex items-center space-x-2">
+        <div 
+            :class="[
+                match(url) ? 'text-red-primary' : 'text-white',
+                'flex items-center space-x-2 text-lg text-left hover:text-red-primary transition duration-200'
+            ]"
+        >
             <component v-if="icon" :is="icon" />
             <span v-if="label"> {{ label }} </span>
         </div>

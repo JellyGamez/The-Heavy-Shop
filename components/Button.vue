@@ -33,7 +33,7 @@ const sizeClasses = computed(() => {
 </script>
 
 <template>
-    <button :class="[variantClasses, sizeClasses, 'transition duration-200 rounded-xl font-normal font-kanit']">
+    <button :class="[variantClasses, sizeClasses, 'transition duration-200 rounded-xl font-normal']">
         <slot />
     </button>
 </template>

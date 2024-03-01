@@ -22,7 +22,7 @@ async function removeItem(id) {
 
 <template>
     <div>
-        <div class="flex flex-col items-center sm:items-start text-white">
+        <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
             <div class="flex items-center space-x-2">
                 <IconsBookmark class="w-6 h-6 md:w-8 md:h-8 md:mt-0.5" />
                 <h1 class="text-2xl md:text-4xl text-white">
@@ -44,7 +44,7 @@ async function removeItem(id) {
             </AuthPrompt>
             <ClientOnly>
                 <div v-if="favoriteItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
-                    <ListItemCard v-for="item in favoriteItems" :item="item">
+                    <ListItemCard v-for="item in favoriteItems" :key="item.id" :item="item">
                         <template #actions>
                             <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
                                 <Button variant="secondary" size="small" class="flex items-center justify-center space-x-1"> 

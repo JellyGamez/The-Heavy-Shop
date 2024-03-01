@@ -46,8 +46,8 @@ useHead({
                         Embrace the genuine essence of rock and submerge yourself in the world of metal fashion.
                     </span>
 
-                    <NuxtLink to="/shop" class="mx-auto xl:mx-0">
-                        <Button variant="secondary" size="large" name="shop">
+                    <NuxtLink to="/shop" class="w-fit mx-auto xl:mx-0">
+                        <Button variant="secondary" size="large" class="font-kanit">
                             SHOP NOW    
                         </Button>
                     </NuxtLink>
@@ -55,11 +55,12 @@ useHead({
             </div>
 
             <div class="overflow-hidden xl:-mr-20 mt-auto xl:mt-0">
-                <img 
+                <NuxtImg 
                     src="/img/2.webp" 
                     alt="Muscular man wearing our merch"
                     class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full mx-auto text-white"
-                >
+                    preload
+                />
             </div>
         </div>
     </div>
