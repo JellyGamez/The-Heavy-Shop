@@ -8,37 +8,48 @@ const favorites = useFavorites()
 
 const favorite = ref(false)
 
+function toggleFavorite() {
+    if (favorite.value)
+        favorites.removeItem(props.item.id)
+    else
+        favorites.addItem(props.item.id)
+
+    favorite.value = !favorite.value
+}
 </script>
 
 <template>
     <div class="flex flex-col max-w-sm w-full h-full p-1 md:p-1.5 gap-2 rounded-2xl text-white bg-gray-dark">
         <div class="relative">
-            <NuxtImg 
-                :src="item.photoUrl" 
-                :alt="item.name" 
-                class="rounded-xl h-48 xl:h-56 object-cover" 
-                preload 
-            />
+            <NuxtLink :to='`/items/${item.id}`'>
+                <NuxtImg 
+                    :src="item.photoUrl" 
+                    :alt="item.name" 
+                    class="h-48 xl:h-56 w-full object-cover rounded-xl" 
+                    preload 
+                />
+            </NuxtLink>
             <button 
-                @click="favorites.addItem(item.id), favorite = !favorite"
+                @click="toggleFavorite"
                 class="absolute top-0.5 right-0.5 md:top-1 md:right-1 p-1.5 bg-gray-primary rounded-xl shrink-0 h-fit w-fit focus:outline-none" 
             > 
                 <IconsBookmark
                     variant="solid"
-                    class="!w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200" 
-                    :class="favorite ? 'stroke-gray-primary' : 'text-gray-primary stroke-white'"
+                    :class="[
+                        favorite ? 'stroke-gray-primary' : 'text-gray-primary stroke-white',
+                        '!w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200'
+                    ]"
                 />
             </button>
         </div>
         
         <div class="flex flex-col mx-2">
-            <p class="text-base md:text-lg h-11 md:h-14 leading-snug"> {{ item.name }} </p>
+            <NuxtLink :to='`/items/${item.id}`'>
+                <p class="text-base md:text-lg h-11 md:h-14 leading-snug line-clamp-2"> {{ item.name }} </p>
+            </NuxtLink>
             <div class="flex flex-wrap-reverse justify-between items-center w-full gap-2 mt-2">
                 <p class="text-sm md:text-base font-medium"> $ {{ item.price }} </p>
-                <div class="flex mb-0.5">
-                    <IconsStar v-for="n in 4" class="text-yellow-500" />
-                    <IconsStar v-for="n in 1" class="text-gray-light" />
-                </div>
+                <Rating :score="item.rating" class="mb-0.5" />
             </div>
         </div>
 
