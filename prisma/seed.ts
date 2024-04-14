@@ -31,12 +31,11 @@ async function main() {
 
     for (let i = 1; i <= 50; i++) {
         const a = faker.number.int({ min: 1, max: 5 }), b = faker.number.int({ min: 1, max: 5 })
-        console.log((a + b) / 2)
         await prisma.item.create({
             data: {
                 name: faker.commerce.productName(),
                 description: faker.commerce.productDescription(),
-                price: faker.number.float({ min: 10, max: 500, precision: 0.01 }),
+                price: faker.number.float({ min: 10, max: 500, multipleOf: 0.01 }),
                 photoUrl: faker.image.url(),
                 rating: (a + b) / 2,
                 reviews: {
@@ -44,12 +43,12 @@ async function main() {
                         {
                             rating: a,
                             content: faker.lorem.paragraph(),
-                            userId: 1
+                            authorId: 1
                         },
                         {
                             rating: b,
                             content: faker.lorem.paragraph(),
-                            userId: 1
+                            authorId: 1
                         }
                     ]
                 }

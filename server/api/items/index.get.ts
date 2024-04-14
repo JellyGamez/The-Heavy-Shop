@@ -1,5 +1,9 @@
-import { getAll } from '~/server/utils/item'
+import prisma from '~/server/utils'
 
 export default defineEventHandler(async (event) => {
-    return await getAll()
+    return await prisma.item.findMany({
+        include: {
+            reviews: true
+        }
+    })
 })
