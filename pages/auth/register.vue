@@ -19,7 +19,8 @@ definePageMeta({
 })
 
 const { signIn } = useAuth()
-const { syncItems } = useFavorites()
+const { syncItems: syncCart } = useCart()
+const { syncItems: syncFavorites } = useFavorites()
 
 const name = ref('')
 const email = ref('')
@@ -50,7 +51,9 @@ async function register() {
 
         await navigateTo('/')
         toast("Account created successfully!")
-        await syncItems()
+        
+        await syncCart()
+        await syncFavorites()
     }
 }
 

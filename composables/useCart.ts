@@ -22,7 +22,7 @@ export default function useCart() {
         }
     }
 
-    async function addItem(id: Number) {
+    async function addItem(id: String) {
         if (loggedIn) {
             await useFetch(`/api/user/cart/${id}`, {
                 method: 'POST'
@@ -38,7 +38,7 @@ export default function useCart() {
         toast("Item added to cart")
     }
 
-    async function removeItem(id: Number) {
+    async function removeItem(id: String) {
         if (loggedIn) {
             await useFetch(`/api/user/cart/${id}`, {
                 method: 'DELETE'

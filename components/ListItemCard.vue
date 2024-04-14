@@ -9,7 +9,7 @@ const props = defineProps({
 <template>
     <div class="relative flex justify-between w-full p-1 md:p-1.5 rounded-2xl bg-gray-dark">
         <div class="flex w-full md:mr-10 lg:mr-20">
-            <NuxtLink :to='`/items/${item.id}`' class="shrink-0">
+            <NuxtLink :to='`/item/${item.id}`' class="shrink-0">
                 <NuxtImg 
                     :src="item.photoUrl" 
                     :alt="item.name" 
@@ -19,7 +19,7 @@ const props = defineProps({
             </NuxtLink>
             <div class="flex flex-col w-full justify-between overflow-hidden text-white my-1 md:my-2 mr-2 ml-4 md:ml-6">
                 <div>
-                    <NuxtLink :to='`/items/${item.id}`'>
+                    <NuxtLink :to='`/item/${item.id}`'>
                         <p class="text-base md:text-lg truncate w-full"> {{ item.name }} </p>
                         <p class="text-sm md:text-base font-light text-gray-lightest line-clamp-2 w-full"> {{ item.description }} </p>
                     </NuxtLink>

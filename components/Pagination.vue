@@ -3,7 +3,7 @@
 const props = defineProps({
     url: String,
     page: Number,
-    currentitemCount: Number,
+    currentItemCount: Number,
     totalItemCount: Number
 })
 
@@ -29,7 +29,7 @@ const hasNextPage = computed(() => props.page != 10)
 
             <div v-for="n in 10">
                 <NuxtLink :to='`${url}?page=${n}`' >
-                    <Button :variant="n != page ? 'primary' : 'secondary'" class="font-ubuntu w-9 h-9 flex items-center justify-center">
+                    <Button :variant="n != page ? 'primary' : 'secondary'" class="w-9 h-9 flex items-center justify-center">
                         {{ n }}
                     </Button>
                 </NuxtLink>

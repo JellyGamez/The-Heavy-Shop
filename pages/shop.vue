@@ -10,9 +10,30 @@ useHead({
 const route = useRoute()
 
 const page = computed(() => route.query.page ?? 1)
-const { data: items } = await useFetch('/api/items', {
+const { data: items } = await useFetch('/api/item', {
     query: { page: page.value ?? 1 }
 })
+
+const favorites = useFavorites()
+const cart = useCart()
+
+const userFavorites = ref(await favorites.getIds())
+function isFavorite(id) {
+    return userFavorites?.value?.some(item => item === id)
+}
+
+async function toggleFavorite(id) {
+    if (isFavorite(id))
+        favorites.removeItem(id)
+    else
+        favorites.addItem(id)
+
+    userFavorites.value = await favorites.getIds()
+}
+
+function addToCart(id) {
+    cart.addItem(id)
+}
 
 </script>
 
@@ -30,7 +51,11 @@ const { data: items } = await useFetch('/api/items', {
             </p>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 mt-4 md:mt-6">
-            <GridItemCard v-for="item in items" :key="item.id" :item="item" />
+            <GridItemCard v-for="item in items" :key="item.id" :item="{ ...item, favorite: isFavorite(item.id) }" 
+                @toggleFavorite="toggleFavorite(item.id)"
+                @addToCart="addToCart(item.id)"
+            />
         </div>
+
     </div>
 </template>

@@ -3,9 +3,14 @@ import toast from '@/composables/useToast'
 export default function useFavorites() {
     const loggedIn = useStatus()
     
-    function getIds() {
-        if (process.client)
+    async function getIds() {
+        if (loggedIn) {
+            const { data } = await useFetch('/api/user/favorites')
+            return (data.value as any).map((item: any) => item.id)
+        }
+        else if (process.client) {
             return JSON.parse(localStorage.getItem('favorites') ?? '[]')
+        }
     }
     
     async function getItems() {
@@ -13,7 +18,7 @@ export default function useFavorites() {
             const { data } = await useFetch('/api/user/favorites')
             return data
         }
-        else {
+        else if (process.client) {
             const ids = getIds()
             const { data } = await useFetch('/api/guest/favorites', {
                 query: { ids: ids }
@@ -22,14 +27,14 @@ export default function useFavorites() {
         }
     }
 
-    async function addItem(id: Number) {
+    async function addItem(id: String) {
         if (loggedIn) {
             await useFetch(`/api/user/favorites/${id}`, {
                 method: 'POST'
             })
         }
         else if (process.client) {
-            const ids = getIds()
+            const ids = await getIds()
             if (!ids.includes(id)) {
                 ids.push(id)
                 localStorage.setItem('favorites', JSON.stringify(Array.from(ids)))
@@ -38,14 +43,14 @@ export default function useFavorites() {
         toast("Item added to favorites")
     }
 
-    async function removeItem(id: Number) {
+    async function removeItem(id: String) {
         if (loggedIn) {
             await useFetch(`/api/user/favorites/${id}`, {
                 method: 'DELETE'
             })
         }
         else if (process.client) {
-            const ids = getIds()
+            const ids = await getIds()
             const index = ids.indexOf(id)
             if (index !== -1) {
                 ids.splice(index, 1);
@@ -56,7 +61,7 @@ export default function useFavorites() {
     }
 
     async function syncItems() {
-        const ids = getIds()
+        const ids = await getIds()
         if (ids.length) {
             for (const id of ids) {
                 await useFetch(`/api/user/favorites/${id}`, {

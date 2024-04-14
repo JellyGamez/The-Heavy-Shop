@@ -17,7 +17,8 @@ definePageMeta({
 })
 
 const { signIn } = useAuth()
-const { syncItems } = useFavorites()
+const { syncItems: syncCart } = useCart()
+const { syncItems: syncFavorites } = useFavorites()
 
 const email = ref('')
 const password = ref('')
@@ -40,7 +41,9 @@ async function credentialsSignIn() {
     errorMessage.value = error
     if (!error) {
         await navigateTo('/')
-        await syncItems()
+
+        await syncCart()
+        await syncFavorites()
     }
 }
 

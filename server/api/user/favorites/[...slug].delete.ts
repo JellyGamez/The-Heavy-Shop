@@ -7,7 +7,11 @@ async function removeItem(data: any) {
             userId: data.userId
         },
         data: {
-            items: { disconnect: { id: data.itemId } }
+            items: { 
+                disconnect: { 
+                    id: data.itemId 
+                } 
+            }
         }
     })
 }

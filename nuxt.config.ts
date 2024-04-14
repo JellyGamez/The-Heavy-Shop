@@ -8,8 +8,8 @@ export default defineNuxtConfig({
   },
   googleFonts: {
     families: {
-      Kanit: [100, 200, 300, 400, 500, 600, 700, 800, 900],
-      Ubuntu: [300, 400, 500, 700]
+      Kanit: [200, 300, 400, 500],
+      Ubuntu: [400, 700]
     }
   },
   postcss: {

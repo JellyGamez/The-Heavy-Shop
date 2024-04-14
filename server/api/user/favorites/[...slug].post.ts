@@ -7,7 +7,11 @@ async function addItem(data: any) {
             userId: data.userId
         },
         data: {
-            items: { connect: { id: data.itemId } }
+            items: { 
+                connect: { 
+                    id: data.itemId 
+                } 
+            }
         }
     })
 }
