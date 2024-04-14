@@ -18,6 +18,7 @@ const favorites = useFavorites()
 const cart = useCart()
 
 const userFavorites = ref(await favorites.getIds())
+
 function isFavorite(id) {
     return userFavorites?.value?.some(item => item === id)
 }
@@ -27,12 +28,11 @@ async function toggleFavorite(id) {
         favorites.removeItem(id)
     else
         favorites.addItem(id)
-
     userFavorites.value = await favorites.getIds()
 }
 
-function addToCart(id) {
-    cart.addItem(id)
+async function addToCart(id) {
+    await cart.addItem(id)
 }
 
 </script>

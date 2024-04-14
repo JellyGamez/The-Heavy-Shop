@@ -16,14 +16,14 @@ export default function useFavorites() {
     async function getItems() {
         if (loggedIn) {
             const { data } = await useFetch('/api/user/favorites')
-            return data
+            return data.value
         }
         else if (process.client) {
-            const ids = getIds()
+            const ids = await getIds()
             const { data } = await useFetch('/api/guest/favorites', {
                 query: { ids: ids }
             })
-            return data
+            return data.value
         }
     }
 
