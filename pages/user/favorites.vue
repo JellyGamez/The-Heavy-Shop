@@ -17,7 +17,6 @@ async function removeItem(id) {
     const data = await favorites.getItems()
     favoriteItems.value = data.value
 }
-
 </script>
 
 <template>

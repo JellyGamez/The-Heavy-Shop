@@ -1,4 +1,46 @@
-import { create } from '~/server/utils/user'
+import bcrypt from 'bcrypt'
+import { Prisma } from '@prisma/client'
+import prisma from '~/server/utils'
+
+async function create(data: any) {
+    try {
+        return await prisma.user.create({
+            data: {
+                ...data,
+                password: bcrypt.hashSync(data.password, 10),
+                favorites: {
+                    create: {
+                        items: {
+                            create: []
+                        }
+                    }
+                },
+                cart: {
+                    create: {
+                        items: {
+                            create: []
+                        }
+                    }
+                }
+            }
+        })
+    }
+    catch (e) {
+        if (e instanceof Prisma.PrismaClientKnownRequestError) {
+            if (e.code === 'P2002')
+                throw createError({
+                    statusCode: 400,
+                    statusMessage: 'The email isn\'t available.'
+                })
+        }
+        else {
+            throw createError({
+                statusCode: 500,
+                statusMessage: 'An error occured.'
+            })
+        }
+    } 
+}
 
 export default defineEventHandler(async (event) => {
     const { name, email, password, passwordConfirmation } = await readBody(event)

@@ -1,8 +1,8 @@
-import { Prisma } from '@prisma/client'
-import prisma from './prisma'
-import bcrypt from 'bcrypt'
+import { PrismaClient } from '@prisma/client'
+const prisma = new PrismaClient()
+export default prisma
 
-async function getByEmail(data: any) {
+async function getUserByEmail(data: any) {
     return await prisma.user.findUniqueOrThrow({
         where: {
             email: data.email
@@ -15,4 +15,4 @@ async function getByEmail(data: any) {
     })
 }
 
-export { getByEmail }
+export { getUserByEmail }

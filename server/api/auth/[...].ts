@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
 import { NuxtAuthHandler } from '#auth'
-import { getByEmail } from '~/server/utils/user'
+import { getUserByEmail } from '~/server/utils'
 
 import GithubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'
@@ -35,7 +35,7 @@ export default NuxtAuthHandler({
                     })
                 else {
                     try {
-                        const user = await getByEmail({ email: credentials?.email })
+                        const user = await getUserByEmail({ email: credentials?.email })
                         if (bcrypt.compareSync(credentials?.password, user.password))
                             return user
                         else 
