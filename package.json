@@ -9,7 +9,7 @@
     "dev": "nuxt dev",
     "generate": "nuxt generate",
     "preview": "nuxt preview",
-    "postinstall": "nuxt prepare && prisma generate && prisma db push && prisma migrate reset --force"
+    "postinstall": "nuxt prepare && prisma generate && prisma migrate reset --force"
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
