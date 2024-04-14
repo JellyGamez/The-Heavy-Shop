@@ -25,9 +25,9 @@ function isFavorite(id) {
 
 async function toggleFavorite(id) {
     if (isFavorite(id))
-        favorites.removeItem(id)
+        await favorites.removeItem(id)
     else
-        favorites.addItem(id)
+        await favorites.addItem(id)
     userFavorites.value = await favorites.getIds()
 }
 
