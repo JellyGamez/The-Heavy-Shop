@@ -1,3 +1,3 @@
 export default function useStatus() {
-    return useAuth().status.value == 'authenticated'
+    return useAuth().status.value === 'authenticated'
 }

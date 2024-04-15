@@ -1,4 +1,4 @@
-import { PrismaClient, Review } from '@prisma/client'
+import { PrismaClient, Item } from '@prisma/client'
 const prisma = new PrismaClient()
 export default prisma
 
@@ -7,6 +7,11 @@ async function getUserByEmail(email: string | null | undefined) {
         return await prisma.user.findUniqueOrThrow({
             where: {
                 email: email as string
+            },
+            select: {
+                id: true,
+                name: true,
+                email: true
             }
         })
     }
@@ -18,8 +23,18 @@ async function getUserByEmail(email: string | null | undefined) {
     }
 }
 
-function getItemRating(reviews: Array<Review>) {
-    return reviews.map(r => r.rating).reduce((x, y) => x + y) / reviews.length
+function getItemRating(item: any) {
+    if (item.reviews.length === 0)
+        return 0
+    return item.reviews.map((r: any) => r.rating).reduce((x: any, y: any) => x + y) / item.reviews.length
 }
 
-export { getUserByEmail, getItemRating }
+function formatter(date: any) {
+    return new Date(date).toLocaleDateString("en-GB", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    });
+}
+
+export { getUserByEmail, getItemRating, formatter }

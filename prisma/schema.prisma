@@ -3,11 +3,11 @@ generator client {
 }
 
 datasource db {
-  // provider = "postgresql"
-  // url      = env("DATABASE_URL")
-  provider  = "postgresql"
-  url       = env("POSTGRES_PRISMA_URL")
-  directUrl = env("POSTGRES_URL_NON_POOLING")
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+  // provider  = "postgresql"
+  // url       = env("POSTGRES_PRISMA_URL")
+  // directUrl = env("POSTGRES_URL_NON_POOLING")
 }
 
 model User {
@@ -41,7 +41,7 @@ model Favorites {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    Int      @unique
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   items     Item[]   @relation("FavoritesToItem")
 }
 
@@ -50,7 +50,7 @@ model Cart {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    Int      @unique
-  user      User     @relation(fields: [userId], references: [id])
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
   items     Item[]   @relation("CartToItem")
 }
 
@@ -62,6 +62,6 @@ model Review {
   content   String
   itemId    String
   authorId  Int
-  item      Item     @relation(fields: [itemId], references: [id])
-  author    User     @relation(fields: [authorId], references: [id])
+  item      Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
+  author    User     @relation(fields: [authorId], references: [id], onDelete: Cascade)
 }

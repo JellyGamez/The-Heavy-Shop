@@ -6,8 +6,10 @@ export default defineEventHandler(async (event) => {
             reviews: true
         }
     })
+
+    console.log(items)
     items?.forEach((item: any, index) => {
-        items[index] = { ...item, rating: getItemRating(item.reviews) }
+        items[index] = { ...item, rating: getItemRating(item) }
     })
 
     return items

@@ -1,10 +1,26 @@
 import bcrypt from 'bcrypt'
+import prisma from '~/server/utils'
 import { NuxtAuthHandler } from '#auth'
-import { getUserByEmail } from '~/server/utils'
 
 import GithubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'
 import CredentialsProvider from 'next-auth/providers/credentials'
+
+async function getUserByEmail(email: string) {
+    try {
+        return await prisma.user.findUniqueOrThrow({
+            where: {
+                email: email as string
+            }
+        })
+    }
+    catch(e) { 
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'We couldn\'t find that account.'
+        })
+    }
+}
 
 export default NuxtAuthHandler({
     secret: process.env.AUTH_SECRET,

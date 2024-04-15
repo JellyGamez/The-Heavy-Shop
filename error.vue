@@ -26,7 +26,7 @@ const router = useRouter()
                             {{ `Error ${error.statusCode}` }} 
                         </h1>
                         <p class="text-center text-white font-extralight text-sm">
-                            {{ error.statusCode == 404 ? `The page you were looking for couldn't be found.` : error.message }}
+                            {{ error.statusCode === 404 ? `The page you were looking for couldn't be found.` : error.message }}
                         </p>
                     </div>
                     <Button @click="() => { clearError(); router.back() }" class="w-full">

@@ -15,7 +15,7 @@ const route = useRoute()
 const router = useRouter()
 
 function match(url) {
-    return '/' + route.name?.replace('-', '/') == url || route.name == 'index' && url == '/'
+    return '/' + route.name?.replace('-', '/') === url || route.name === 'index' && url === '/'
 }
 
 function handleClick() {

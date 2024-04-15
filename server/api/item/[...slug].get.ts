@@ -1,4 +1,4 @@
-import prisma, { getItemRating } from "~/server/utils"
+import prisma, { getItemRating, formatter } from "~/server/utils"
 
 export default defineEventHandler(async (event) => {
     try {
@@ -7,11 +7,23 @@ export default defineEventHandler(async (event) => {
                 id: [ event.context.params?.slug ][0]
             },
             include: {
-                reviews: true
+                reviews: {
+                    include: {
+                        author: {
+                            select: {
+                                id: true,
+                                name: true
+                            }
+                        }
+                    }
+                }
             }
         })
+        item.reviews?.forEach((review: any, index) => {
+            item.reviews[index] = { ...review, createdAt: formatter(review.createdAt) }
+        })
 
-        return { ...item, rating: getItemRating(item?.reviews) }
+        return { ...item, rating: getItemRating(item) }
     } 
     catch(e) {
         throw createError({
