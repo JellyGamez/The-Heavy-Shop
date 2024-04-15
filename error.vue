@@ -11,8 +11,6 @@ const props = defineProps({
     error: Object
 })
 
-const handleError = () => clearError({ redirect: '/' })
-
 </script>
 
 <template>
@@ -29,7 +27,7 @@ const handleError = () => clearError({ redirect: '/' })
                             {{ error.statusCode == 404 ? `The page you were looking for couldn't be found.` : error.message }}
                         </p>
                     </div>
-                    <Button @click="handleError" class="w-full">
+                    <Button @click="() => clearError({ redirect: '/' })" class="w-full">
                         Go back home
                     </Button>
                 </div>
