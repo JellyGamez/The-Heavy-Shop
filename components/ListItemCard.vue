@@ -23,7 +23,10 @@ const props = defineProps({
                         <p class="text-base md:text-lg truncate w-full"> {{ item.name }} </p>
                         <p class="text-sm md:text-base font-light text-gray-lightest line-clamp-2 w-full"> {{ item.description }} </p>
                     </NuxtLink>
-                    <Rating :score="item.rating" class="my-1 md:my-2" />
+                    <div class="flex items-center my-1 md:my-2 gap-1.5">
+                    <Rating :score="item.rating"  />
+                    <p class="text-gray-lightest"> ({{ item._count.reviews }}) </p>
+                </div>
                 </div>
                 <p class="text-base md:text-lg"> $ {{ item.price }} </p>
             </div>

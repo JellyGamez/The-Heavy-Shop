@@ -12,6 +12,13 @@ export default defineEventHandler(async (event) => {
             id: {
                 in: ids
             }
+        },
+        include: {
+            _count: {
+                select: {
+                    reviews: true
+                }
+            }
         }
     })
 })

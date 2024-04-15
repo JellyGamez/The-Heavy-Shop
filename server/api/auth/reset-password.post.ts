@@ -1,17 +1,17 @@
 import bcrypt from 'bcrypt'
-import { Prisma } from '@prisma/client'
 import prisma from '~/server/utils'
+import { Prisma } from '@prisma/client'
 import jwt, { Secret } from 'jsonwebtoken'
 
-async function updatePassword(data: any) {
+async function updatePassword(email: string, passwordResetToken: string, password: string) {
     try {
         return await prisma.user.update({
             where: {
-                email: data.email,
-                passwordResetToken: data.passwordResetToken
+                email: email,
+                passwordResetToken: passwordResetToken
             },
             data: {
-                password: bcrypt.hashSync(data.password, 10)
+                password: bcrypt.hashSync(password, 10)
             }
         })
     }
@@ -25,13 +25,13 @@ async function updatePassword(data: any) {
     } 
 }
 
-async function updatePasswordResetToken(data: any) {
+async function updatePasswordResetToken(email: string, passwordResetToken: string | null) {
     return await prisma.user.update({
         where: {
-            email: data.email
+            email: email
         },
         data: {
-            passwordResetToken: data.passwordResetToken
+            passwordResetToken: passwordResetToken
         }
     })
 }
@@ -76,16 +76,11 @@ export default defineEventHandler(async (event) => {
 
     const decodedToken = verifySignedToken(signedToken) as any
 
-    await updatePassword({
-        email: decodedToken.email,
-        passwordResetToken: decodedToken.token,
-        password: password
-    })
+    await updatePassword(decodedToken.email, decodedToken.token, password)
 
-    await updatePasswordResetToken({
-        email: decodedToken.email,
-        passwordResetToken: null
-    })
+    await updatePasswordResetToken(decodedToken.email, null)
 
-    return { message: 'Password reset successfully!' }
+    return { 
+        message: 'Password reset successfully!' 
+    }
 })

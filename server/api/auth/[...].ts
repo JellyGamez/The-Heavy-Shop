@@ -35,7 +35,7 @@ export default NuxtAuthHandler({
                     })
                 else {
                     try {
-                        const user = await getUserByEmail({ email: credentials?.email })
+                        const user = await getUserByEmail(credentials?.email)
                         if (bcrypt.compareSync(credentials?.password, user.password))
                             return user
                         else 

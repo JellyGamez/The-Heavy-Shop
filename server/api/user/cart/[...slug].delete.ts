@@ -1,20 +1,24 @@
-import { getUserByEmail } from '~/server/utils'
+import prisma, { getUserByEmail } from '~/server/utils'
 import { getServerSession } from '#auth'
 
-async function removeItem(data: any) {
+async function removeItem(userId: number, itemId: string | undefined) {
     return await prisma.cart.update({
         where: {
-            userId: data.userId
+            userId: userId
         },
         data: {
-            items: { disconnect: { id: data.itemId } }
+            items: { 
+                disconnect: { 
+                    id: itemId 
+                } 
+            }
         }
     })
 }
 
 export default defineEventHandler(async (event) => {
     const session = await getServerSession(event)
-    const user = await getUserByEmail({ email: session?.user?.email })
+    const user = await getUserByEmail(session?.user?.email)
 
-    return await removeItem({ userId: user.id, itemId: event.context.params?.slug })
+    return await removeItem(user.id, event.context.params?.slug)
 })

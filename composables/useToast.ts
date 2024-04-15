@@ -1,6 +1,6 @@
 import { POSITION, useToast } from 'vue-toastification'
 
-export default function toast(message: any) {
+export default function toast(message: string) {
     useToast().success(message, {
         position: POSITION.BOTTOM_CENTER,
         timeout: 2500,

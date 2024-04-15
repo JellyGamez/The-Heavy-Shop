@@ -2,15 +2,15 @@ import crypto from 'crypto'
 import nodemailer from 'nodemailer'
 import { useCompiler } from '#vue-email'
 import jwt, { Secret } from 'jsonwebtoken'
-import { getUserByEmail } from '~/server/utils'
+import prisma, { getUserByEmail } from '~/server/utils'
 
-async function updatePasswordResetToken(data: any) {
+async function updatePasswordResetToken(email: string, passwordResetToken: string) {
     return await prisma.user.update({
         where: {
-            email: data.email
+            email: email
         },
         data: {
-            passwordResetToken: data.passwordResetToken
+            passwordResetToken: passwordResetToken
         }
     })
 }
@@ -40,14 +40,11 @@ export default defineEventHandler(async (event) => {
         })
 
     // throw error if no account with that email address is found
-    await getUserByEmail({ email: email })
+    await getUserByEmail(email)
 
     const token = generateToken()
 
-    await updatePasswordResetToken({
-        email: email,
-        passwordResetToken: token
-    })
+    await updatePasswordResetToken(email,token)
 
     const signedToken = signToken(email, token)
 
@@ -74,5 +71,7 @@ export default defineEventHandler(async (event) => {
         html: template
     })
 
-    return { message: 'Email sent successfully!' }
+    return { 
+        message: 'Email sent successfully!' 
+    }
 })

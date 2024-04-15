@@ -47,7 +47,10 @@ const isFavorite = ref(props.item.favorite)
             </NuxtLink>
             <div class="flex flex-wrap-reverse justify-between items-center w-full gap-2 mt-2">
                 <p class="text-sm md:text-base font-medium"> $ {{ item.price }} </p>
-                <Rating :score="item.rating" class="mb-0.5" />
+                <div class="flex items-center mb-0.5 gap-1.5">
+                    <Rating :score="item.rating"  />
+                    <p class="text-gray-lightest"> ({{ item._count.reviews }}) </p>
+                </div>
             </div>
         </div>
 

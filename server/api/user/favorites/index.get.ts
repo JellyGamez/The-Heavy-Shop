@@ -1,19 +1,27 @@
-import { getUserByEmail } from '~/server/utils'
+import prisma, { getUserByEmail } from '~/server/utils'
 import { getServerSession } from '#auth'
 
-async function getItems(data: any) {
+async function getItems(userId: number) {
     return (await prisma.favorites.findUnique({
         where: {
-            userId: data.userId
+            userId: userId
         },
         select: {
-            items: true
+            items: {
+                include: {
+                    _count: {
+                        select: {
+                            reviews: true
+                        }
+                    }
+                }
+            }
         }
     }))?.items
 }
 
 export default defineEventHandler(async (event) => {
     const session = await getServerSession(event)
-    const user = await getUserByEmail({ email: session?.user?.email })
-    return await getItems({ userId: user.id })
+    const user = await getUserByEmail(session?.user?.email)
+    return await getItems(user.id)
 })

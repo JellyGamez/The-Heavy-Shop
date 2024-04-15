@@ -1,6 +1,6 @@
 import bcrypt from 'bcrypt'
-import { Prisma } from '@prisma/client'
 import prisma from '~/server/utils'
+import { Prisma } from '@prisma/client'
 
 async function create(data: any) {
     try {
@@ -77,5 +77,7 @@ export default defineEventHandler(async (event) => {
         password: password
     })
 
-    return { message: 'User created successfully!' }
+    return { 
+        message: 'User created successfully!' 
+    }
 })
