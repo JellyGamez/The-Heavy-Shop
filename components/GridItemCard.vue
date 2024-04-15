@@ -49,7 +49,7 @@ const isFavorite = ref(props.item.favorite)
                 <p class="text-sm md:text-base font-medium"> $ {{ item.price }} </p>
                 <div class="flex items-center mb-0.5 gap-1.5">
                     <Rating :score="item.rating"  />
-                    <p class="text-gray-lightest"> ({{ item._count.reviews }}) </p>
+                    <p class="text-gray-lightest"> ({{ item.reviews.length }}) </p>
                 </div>
             </div>
         </div>

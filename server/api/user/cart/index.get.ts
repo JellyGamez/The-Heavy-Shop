@@ -1,23 +1,24 @@
-import prisma, { getUserByEmail } from '~/server/utils'
+import prisma, { getUserByEmail, getItemRating } from '~/server/utils'
 import { getServerSession } from '#auth'
 
 async function getItems(userId: number) {
-    return (await prisma.cart.findUnique({
+    const items = (await prisma.cart.findUnique({
         where: {
             userId: userId
         },
         select: {
             items: {
                 include: {
-                    _count: {
-                        select: {
-                            reviews: true
-                        }
-                    }
+                    reviews: true,
                 }
             }
         }
     }))?.items
+    items?.forEach((item: any, index) => {
+        items[index] = { ...item, rating: getItemRating(item.reviews) }
+    })
+
+    return items
 }
 
 export default defineEventHandler(async (event) => {

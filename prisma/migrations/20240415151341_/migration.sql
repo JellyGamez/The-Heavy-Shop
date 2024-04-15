@@ -20,7 +20,6 @@ CREATE TABLE "Item" (
     "description" TEXT NOT NULL,
     "photoUrl" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
-    "rating" DOUBLE PRECISION NOT NULL,
 
     CONSTRAINT "Item_pkey" PRIMARY KEY ("id")
 );

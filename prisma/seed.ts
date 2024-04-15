@@ -37,7 +37,6 @@ async function main() {
                 description: faker.commerce.productDescription(),
                 price: faker.number.float({ min: 10, max: 500, multipleOf: 0.01 }),
                 photoUrl: faker.image.url(),
-                rating: (a + b) / 2,
                 reviews: {
                     create: [
                         {

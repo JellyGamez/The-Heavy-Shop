@@ -1,13 +1,14 @@
-import prisma from '~/server/utils'
+import prisma, { getItemRating } from '~/server/utils'
 
 export default defineEventHandler(async (event) => {
-    return await prisma.item.findMany({
+    let items = await prisma.item.findMany({
         include: {
-            _count: {
-                select: {
-                    reviews: true
-                }
-            }
+            reviews: true
         }
     })
+    items?.forEach((item: any, index) => {
+        items[index] = { ...item, rating: getItemRating(item.reviews) }
+    })
+
+    return items
 })

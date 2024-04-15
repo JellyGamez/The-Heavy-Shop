@@ -25,7 +25,7 @@ const props = defineProps({
                     </NuxtLink>
                     <div class="flex items-center my-1 md:my-2 gap-1.5">
                     <Rating :score="item.rating"  />
-                    <p class="text-gray-lightest"> ({{ item._count.reviews }}) </p>
+                    <p class="text-gray-lightest"> ({{ item.reviews.length }}) </p>
                 </div>
                 </div>
                 <p class="text-base md:text-lg"> $ {{ item.price }} </p>

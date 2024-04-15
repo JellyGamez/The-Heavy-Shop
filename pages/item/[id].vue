@@ -2,14 +2,18 @@
 
 const route = useRoute()
 
-const { data: item } = await useFetch(`/api${route.path}`)
+const { error, data: item } = await useFetch(`/api${route.path}`)
 
 useHead({
-    title: item.value.name,
+    title: item?.value?.name,
     meta: [
-        { name: 'description', content: item.value.name }
+        { name: 'description', content: item?.value?.name }
     ],
 })
+
+if (error.value) {
+    throw createError(error.value)
+}
 
 </script>
 <template>
@@ -30,8 +34,11 @@ useHead({
                     />
                     <div class="flex flex-col w-full justify-between overflow-hidden text-white my-1 md:my-2 mr-2 ml-4 md:ml-6">
                         <div>
+                            <div class="flex items-center gap-2">
+                                <p class="text-lg"> {{ parseFloat(item.rating).toFixed(2) }}</p>
+                                <Rating :score="item.rating" class="my-1 md:my-2" />
+                            </div>
                             <p class="text-lg md:text-xl font-light text-gray-lightest w-full"> {{ item.description }} </p>
-                            <Rating :score="item.rating" class="my-1 md:my-2" />
                         </div>
                     </div>
                 </div>

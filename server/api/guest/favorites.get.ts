@@ -14,11 +14,7 @@ export default defineEventHandler(async (event) => {
             }
         },
         include: {
-            _count: {
-                select: {
-                    reviews: true
-                }
-            }
+            reviews: true
         }
     })
 })
