@@ -11,7 +11,6 @@ async function deleteReview(userId: number, reviewId: number) {
         })
     }
     catch(e) {
-        console.log(e)
         throw createError({
             statusCode: 500,
             statusMessage: 'Either the review doesn\'t exist or you\'re not authorized to delete it.'

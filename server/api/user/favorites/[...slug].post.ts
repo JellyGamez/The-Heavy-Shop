@@ -19,6 +19,6 @@ async function addItem(userId: number, itemId: string) {
 export default defineEventHandler(async (event) => {
     const session = await getServerSession(event)
     const user = await getUserByEmail(session?.user?.email)
-
+    
     return await addItem(user.id, event.context.params?.slug as string)
 })

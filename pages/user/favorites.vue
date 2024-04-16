@@ -9,12 +9,17 @@ useHead({
 
 const loggedIn = useStatus()
 
+const cart = useCart()
 const favorites = useFavorites()
 const favoriteItems = ref(await favorites.getItems())
 
 async function removeItem(id) {
     await favorites.removeItem(id)
     favoriteItems.value = await favorites.getItems()
+}
+
+async function addItemToCart(id) {
+    await cart.addItem(id)
 }
 
 </script>
@@ -33,20 +38,21 @@ async function removeItem(id) {
             </p>
         </div>
         <div class="mt-4 md:mt-6">
-            <AuthPrompt v-if="!loggedIn && favoriteItems?.length">
-                <p>
-                    To save your favorite items, please log in or create an account. 
-                </p>
-                <p class="hidden md:block">
-                    Your preferences will be stored for future visits. 
-                </p>
-            </AuthPrompt>
             <ClientOnly>
+                <AuthPrompt v-if="!loggedIn && favoriteItems?.length">
+                    <p>
+                        To save your favorite items, please log in or create an account. 
+                    </p>
+                    <p class="hidden md:block">
+                        Your preferences will be stored for future visits. 
+                    </p>
+                </AuthPrompt>
+
                 <div v-if="favoriteItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
                     <ListItemCard v-for="item in favoriteItems" :key="item.id" :item="item">
                         <template #actions>
                             <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
-                                <Button variant="secondary" size="small" class="flex items-center justify-center space-x-1"> 
+                                <Button variant="secondary" size="small" class="flex items-center justify-center space-x-1" @click="addItemToCart(item.id)"> 
                                     <IconsShoppingCart class="!w-5 !h-5" />
                                     <span> Add to cart </span>
                                 </Button>

@@ -14,8 +14,7 @@ const cartItems = ref(await cart.getItems())
 
 async function removeItem(id) {
     await cart.removeItem(id)
-    const data = await cart.getItems()
-    cartItems.value = data.value
+    cartItems.value = await cart.getItems()
 }
 
 </script>
@@ -34,15 +33,16 @@ async function removeItem(id) {
             </p>
         </div>
         <div class="mt-4 md:mt-6">
-            <AuthPrompt v-if="!loggedIn && cartItems?.length">
-                <p>
-                    To save your cart, please log in or create an account. 
-                </p>
-                <p class="hidden md:block">
-                    Your preferences will be stored for future visits. 
-                </p>
-            </AuthPrompt>
             <ClientOnly>
+                <AuthPrompt v-if="!loggedIn && cartItems?.length">
+                    <p>
+                        To save your cart, please log in or create an account. 
+                    </p>
+                    <p class="hidden md:block">
+                        Your preferences will be stored for future visits. 
+                    </p>
+                </AuthPrompt>
+                
                 <div v-if="cartItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
                     <ListItemCard v-for="item in cartItems" :item="item">
                         <template #actions>

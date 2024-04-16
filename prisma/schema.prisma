@@ -60,6 +60,7 @@ model Review {
   updatedAt DateTime @updatedAt
   rating    Int
   content   String
+  verified  Boolean  @default(false)
   itemId    String
   authorId  Int
   item      Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)

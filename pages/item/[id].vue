@@ -1,8 +1,11 @@
 <script setup>
 
+import toast from '@/composables/useToast'
+
 const route = useRoute()
 
-const { error, data: item } = await useFetch(`/api${route.path}`)
+const { data: user } = await useFetch('/api/user')
+const { error, data: item } = await useAsyncData('item', () => $fetch(`/api${route.path}`))
 if (error.value) {
     throw createError(error.value)
 }
@@ -14,10 +17,17 @@ useHead({
     ],
 })
 
-const { data: user } = await useFetch('/api/user')
-
 function isOwner(review) {
     return review.authorId === user?.value?.id
+}
+
+async function deleteReview(id) {
+    await useFetch(`/api/review/${id}`, {
+        method: 'DELETE'
+    })
+
+    refreshNuxtData('item')
+    toast('Review deleted!')
 }
 
 </script>
@@ -52,7 +62,7 @@ function isOwner(review) {
         </div>
         <div class="flex flex-col gap-2 md:gap-3 mt-4 md:mt-6">
             <p class="text-white text-3xl"> Reviews </p>
-            <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)"/>
+            <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" @delete="deleteReview(review.id)"/>
         </div>
     </div>
 </template>

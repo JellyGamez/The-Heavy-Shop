@@ -29,7 +29,7 @@ function getItemRating(item: any) {
     return item.reviews.map((r: any) => r.rating).reduce((x: any, y: any) => x + y) / item.reviews.length
 }
 
-function formatter(date: any) {
+function dateFormatter(date: any) {
     return new Date(date).toLocaleDateString("en-GB", {
         day: "numeric",
         month: "long",
@@ -37,4 +37,4 @@ function formatter(date: any) {
     });
 }
 
-export { getUserByEmail, getItemRating, formatter }
+export { getUserByEmail, getItemRating, dateFormatter }

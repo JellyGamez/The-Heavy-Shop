@@ -5,10 +5,8 @@ import bcrypt from 'bcrypt'
 const prisma = new PrismaClient()
 
 async function main() {
-    await prisma.user.upsert({
-        where: { email: 'admin@theheavyshop.com' },
-        update: {},
-        create: {
+    await prisma.user.create({
+        data: {
             email: 'admin@theheavyshop.com',
             name: 'Admin',
             password: bcrypt.hashSync('password', 10),
@@ -29,6 +27,30 @@ async function main() {
         },
     })
 
+    for (let i = 1; i <= 10; i++) {
+        await prisma.user.create({
+            data: {
+                email: faker.internet.email(),
+                name: faker.person.fullName(),
+                password: bcrypt.hashSync('password', 10),
+                favorites: {
+                    create: {
+                        items: {
+                            create: []
+                        }
+                    },
+                },
+                cart: {
+                    create: {
+                        items: {
+                            create: []
+                        }
+                    },
+                },
+            },
+        })
+    }
+
     for (let i = 1; i <= 50; i++) {
         const a = faker.number.int({ min: 1, max: 5 }), b = faker.number.int({ min: 1, max: 5 })
         await prisma.item.create({
@@ -42,13 +64,15 @@ async function main() {
                         {
                             rating: a,
                             content: faker.lorem.paragraph(),
-                            authorId: 1
+                            verified: faker.datatype.boolean(),
+                            authorId: faker.number.int({ min: 1, max: 10 })
                         },
                         {
                             rating: b,
                             content: faker.lorem.paragraph(),
-                            authorId: 1
-                        }
+                            verified: faker.datatype.boolean(),
+                            authorId: faker.number.int({ min: 1, max: 10 })
+                        },
                     ]
                 }
             }

@@ -14,6 +14,7 @@ async function getItems(userId: number) {
             }
         }
     }))?.items
+
     items?.forEach((item: any, index) => {
         items[index] = { ...item, rating: getItemRating(item) }
     })
@@ -24,5 +25,6 @@ async function getItems(userId: number) {
 export default defineEventHandler(async (event) => {
     const session = await getServerSession(event)
     const user = await getUserByEmail(session?.user?.email)
+    
     return await getItems(user.id)
 })

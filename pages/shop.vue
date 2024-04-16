@@ -31,7 +31,7 @@ async function toggleFavorite(id) {
     userFavorites.value = await favorites.getIds()
 }
 
-async function addToCart(id) {
+async function addItemToCart(id) {
     await cart.addItem(id)
 }
 
@@ -53,7 +53,7 @@ async function addToCart(id) {
         <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 mt-4 md:mt-6">
             <GridItemCard v-for="item in items" :key="item.id" :item="{ ...item, favorite: isFavorite(item.id) }" 
                 @toggleFavorite="toggleFavorite(item.id)"
-                @addToCart="addToCart(item.id)"
+                @addToCart="addItemToCart(item.id)"
             />
         </div>
 

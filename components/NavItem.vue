@@ -6,7 +6,9 @@ const props = defineProps({
     action: String,
     label: String,
     icon: String,
-    url: String
+    url: String,
+
+    count: Number
 })
 
 const emit = defineEmits(['action'])
@@ -39,7 +41,15 @@ const icon = computed(() => {
 </script>
 
 <template>
-    <button @click="handleClick">
+    <button @click="handleClick" class="relative flex items-center">
+        <div v-if="count" class="font-ubuntu text-white order-2">
+            <div class="hidden md:block bg-red-light rounded-full absolute size-4 -top-1.5 -right-1.5 pt-[0.5px] text-[10px]">
+                {{ count }}
+            </div>
+            <div class="ml-2 block md:hidden bg-red-light rounded-full size-5 flex items-center justify-center text-xs">
+                {{ count }}
+            </div>
+        </div>
         <div 
             :class="[
                 match(url) ? 'text-red-primary' : 'text-white',

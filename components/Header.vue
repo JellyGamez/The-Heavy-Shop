@@ -1,5 +1,7 @@
 <script setup>
 
+import { useEventBus } from '@vueuse/core'
+
 const { signOut } = useAuth()
 
 const loggedIn = useStatus()
@@ -32,6 +34,23 @@ const userOptions = (!loggedIn) ? [
 ] : [
     { name: 'Log Out',  action: 'signOut'     }
 ]
+
+const favorites = useFavorites()
+const cart = useCart()
+
+const count = reactive({
+    favorites: await favorites.getCount(),
+    cart: await cart.getCount()
+})
+
+const bus = useEventBus('count')
+
+bus.on(async function (event) {
+    if (event === 'favorites')
+        count.favorites = await favorites.getCount()
+    else if (event === 'cart')
+        count.cart = await cart.getCount()
+})
 
 </script>
 
@@ -74,6 +93,7 @@ const userOptions = (!loggedIn) ? [
                                         :icon="item.icon"
                                         :url="item.url"
                                         :id="item.id"
+                                        :count="count[item.id]"
                                     />
                                 </HeadlessMenuItem>
                             </div>
@@ -116,6 +136,7 @@ const userOptions = (!loggedIn) ? [
                         :icon="item.icon"
                         :url="item.url"
                         :class="index ? 'order-3' : 'order-1'"
+                        :count="count[item.id]"
                     />
                     <Dropdown :options="userOptions" @action="handleAction" class="order-2">
                         <IconsUser aria-label="user-menu" class="text-white hover:text-red-primary transition duration-200" />

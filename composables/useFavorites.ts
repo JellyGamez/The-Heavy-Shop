@@ -1,7 +1,9 @@
+import { useEventBus } from '@vueuse/core'
 import toast from '@/composables/useToast'
 
 export default function useFavorites() {
     const loggedIn = useStatus()
+    const bus = useEventBus('count')
     
     async function getIds() {
         if (loggedIn) {
@@ -11,6 +13,10 @@ export default function useFavorites() {
         else if (process.client) {
             return JSON.parse(localStorage.getItem('favorites') ?? '[]')
         }
+    }
+
+    async function getCount() {
+        return (await getIds())?.length
     }
     
     async function getItems() {
@@ -40,6 +46,7 @@ export default function useFavorites() {
                 localStorage.setItem('favorites', JSON.stringify(Array.from(ids)))
             }
         }
+        bus.emit('favorites')
         toast("Item added to favorites")
     }
 
@@ -57,6 +64,7 @@ export default function useFavorites() {
                 localStorage.setItem('favorites', JSON.stringify(Array.from(ids)))
             }
         }
+        bus.emit('favorites')
         toast("Item removed from favorites")
     }
 
@@ -69,9 +77,10 @@ export default function useFavorites() {
                 })
             }
             localStorage.removeItem('favorites')
+            bus.emit('favorites')
             toast("Your favorites have been synced!")
         }
     }
 
-    return { getIds, getItems, syncItems, addItem, removeItem }
+    return { getIds, getCount, getItems, syncItems, addItem, removeItem }
 }

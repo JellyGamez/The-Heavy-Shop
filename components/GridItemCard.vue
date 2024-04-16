@@ -46,7 +46,7 @@ const isFavorite = ref(props.item.favorite)
                 <p class="text-base md:text-lg h-11 md:h-14 leading-snug line-clamp-2"> {{ item.name }} </p>
             </NuxtLink>
             <div class="flex flex-wrap-reverse justify-between items-center w-full gap-2 mt-2">
-                <p class="text-sm md:text-base font-medium"> $ {{ item.price }} </p>
+                <p class="text-sm md:text-base"> $ {{ item.price }} </p>
                 <div class="flex items-center mb-0.5 gap-1.5">
                     <Rating :rating="item.rating"  />
                     <p class="text-gray-lightest"> ({{ item.reviews.length }}) </p>
