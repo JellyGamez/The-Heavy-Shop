@@ -33,12 +33,13 @@ async function deleteReview(id) {
 </script>
 <template>
     <div>
+        <AddReviewModal />
         <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
             <h1 class="text-2xl md:text-4xl text-white">
                 {{ item.name }}
             </h1>
         </div>
-        <div class="mt-4 md:mt-6">
+        <div class="mt-2 md:mt-6">
             <div class="grid grid-cols-4">
                 <div class="flex items-center col-span-3 p-2 bg-gray-dark rounded-2xl">
                     <NuxtImg 
@@ -60,8 +61,8 @@ async function deleteReview(id) {
                 </div>
             </div>
         </div>
-        <div class="flex flex-col gap-2 md:gap-3 mt-4 md:mt-6">
-            <p class="text-white text-3xl"> Reviews </p>
+        <p class="text-white text-xl md:text-3xl mt-4 md:mt-6"> Reviews </p>
+        <div class="flex flex-col gap-2 md:gap-3 mt-2 md:mt-4">
             <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" @delete="deleteReview(review.id)"/>
         </div>
     </div>
