@@ -1,10 +1,54 @@
 <script setup>
 
+import { useEventBus } from '@vueuse/core'
+
+const props = defineProps({
+	itemId: String
+})
+
+const emit = defineEmits(['addReview'])
+
+const isOpen = ref(false)
+
+const rating = ref(0)
+const hoverRating = ref(0)
+const review = ref()
+
+const bus = useEventBus('modal')
+
+bus.on(function (event, attribute) {
+    if (event === 'review')
+	{
+		rating.value = hoverRating.value = attribute
+		isOpen.value = true
+	}
+})
+
+const errorMessage = ref()
+
+async function addReview() {
+	errorMessage.value = null
+    const { error } = await useFetch('/api/review', {
+        method: 'POST',
+        body: {
+            rating: rating.value,
+			review: review.value,
+			itemId: props.itemId
+        }
+    })
+	errorMessage.value = error?.value?.statusMessage
+	
+	if (!error.value) {
+		isOpen.value = false
+		emit('addReview')
+	}
+}
+
 </script>
 
 <template>
 	<HeadlessTransitionRoot appear :show="isOpen" as="template">
-		<HeadlessDialog as="div" @close="closeModal" class="relative z-10">
+		<HeadlessDialog as="div" @close="isOpen = false" class="relative z-10">
 			<HeadlessTransitionChild as="template" enter="duration-200 ease-out" enter-from="opacity-0" enter-to="opacity-100" leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
 				<div class="fixed inset-0 bg-black/20" />
 			</HeadlessTransitionChild>
@@ -12,7 +56,7 @@
 				<div class="flex min-h-full items-center justify-center p-2 sm:p-4 text-center">
 					<HeadlessTransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95" enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100" leave-to="opacity-0 scale-95">
 						<HeadlessDialogPanel class="flex flex-col text-white max-w-md w-full transform overflow-hidden rounded-2xl bg-gray-dark p-3 pt-7 sm:p-4 sm:pt-8 text-left align-middle">
-							<button class="absolute top-4 right-4" @click="closeModal">
+							<button class="absolute top-4 right-4" @click="isOpen = false">
                                 <IconsClose class="text-white" />
                             </button>
                             
@@ -21,14 +65,29 @@
 							</HeadlessDialogTitle>
 
 							<form @submit.prevent="addReview">
-								<Label> Rating </Label>
-								<RatingInput v-model="rating" />
-
-								<Label> Review </Label>
-								<textarea class="h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" />
-								
-								<div class="mt-4">
-									<Button size="small" class="mt-1 w-full" type="submit">
+								<div class="flex flex-col gap-4">
+									<div class="flex hover:cursor-pointer w-fit mx-auto" @mouseleave="() => hoverRating = rating">
+										<template v-for="n in parseInt(hoverRating)">
+											<IconsStar class="text-yellow-primary !w-7 !h-7" 
+												@mouseover="() => hoverRating = n" 
+												@click="() => rating = hoverRating" 
+											/>
+										</template>
+										<template v-for="n in 5 - parseInt(hoverRating)">
+											<IconsStar class="text-gray-light !w-7 !h-7" 
+												@mouseover="() => hoverRating = hoverRating + n" 
+												@click="() => rating = hoverRating" 
+											/>
+										</template>
+									</div>
+									<div>
+										<Label for="review"> Review </Label>
+										<textarea v-model="review" name="review" id="review" type="text" class="h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" />
+									</div>
+									<Error class="text-center -mt-1.5">
+										{{ errorMessage }}
+									</Error>
+									<Button type="submit">
 										ADD REVIEW
 									</Button>
 								</div>
@@ -40,15 +99,3 @@
 		</HeadlessDialog>
 	</HeadlessTransitionRoot>
 </template>
-
-<script setup>
-
-const isOpen = ref(true)
-
-function closeModal() {
-	isOpen.value = false
-}
-function openModal() {
-	isOpen.value = true
-}
-</script>

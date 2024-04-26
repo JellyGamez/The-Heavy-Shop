@@ -23,7 +23,7 @@ async function removeItem(id) {
     <div>
         <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
             <div class="flex items-center space-x-2">
-                <IconsBookmark class="w-6 h-6 md:w-8 md:h-8 md:mt-0.5" />
+                <IconsShoppingCart class="w-6 h-6 md:w-8 md:h-8 md:mt-0.5" />
                 <h1 class="text-2xl md:text-4xl text-white">
                     Cart
                 </h1>
