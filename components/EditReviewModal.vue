@@ -3,10 +3,12 @@
 import { useEventBus } from '@vueuse/core'
 
 const props = defineProps({
-	itemId: String
+	itemId: String,
+    rating: Number,
+    review: String
 })
 
-const emit = defineEmits(['addReview'])
+const emit = defineEmits(['editReview'])
 
 const isOpen = ref(false)
 
@@ -19,17 +21,16 @@ const bus = useEventBus('modal')
 bus.on(function (event, attribute) {
     if (event === 'review')
 	{
-		rating.value = hoverRating.value = attribute
 		isOpen.value = true
 	}
 })
 
 const errorMessage = ref()
 
-async function addReview() {
+async function editReview() {
 	errorMessage.value = null
     const { error } = await useFetch('/api/review', {
-        method: 'POST',
+        method: 'PUT',
         body: {
             rating: rating.value,
 			review: review.value,
@@ -40,7 +41,7 @@ async function addReview() {
 	
 	if (!error.value) {
 		isOpen.value = false
-		emit('addReview')
+		emit('editReview')
 	}
 }
 

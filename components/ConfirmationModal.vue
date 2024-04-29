@@ -2,47 +2,16 @@
 
 import { useEventBus } from '@vueuse/core'
 
-const props = defineProps({
-	itemId: String
-})
-
-const emit = defineEmits(['addReview'])
+const emit = defineEmits(['cancel', 'continue'])
 
 const isOpen = ref(false)
-
-const rating = ref(0)
-const hoverRating = ref(0)
-const review = ref()
 
 const bus = useEventBus('modal')
 
 bus.on(function (event, attribute) {
-    if (event === 'review')
-	{
-		rating.value = hoverRating.value = attribute
+    if (event === 'cancel')
 		isOpen.value = true
-	}
 })
-
-const errorMessage = ref()
-
-async function addReview() {
-	errorMessage.value = null
-    const { error } = await useFetch('/api/review', {
-        method: 'POST',
-        body: {
-            rating: rating.value,
-			review: review.value,
-			itemId: props.itemId
-        }
-    })
-	errorMessage.value = error.value?.data.statusMessage
-	
-	if (!error.value) {
-		isOpen.value = false
-		emit('addReview')
-	}
-}
 
 </script>
 
@@ -61,7 +30,7 @@ async function addReview() {
                             </button>
                             
                             <HeadlessDialogTitle as="h3" class="text-xl sm:text-2xl text-center mb-4">
-								Add a review
+								Are you sure you want to delete this item?
 							</HeadlessDialogTitle>
 
 							<form @submit.prevent="addReview">

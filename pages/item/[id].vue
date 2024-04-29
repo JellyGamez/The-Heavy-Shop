@@ -63,13 +63,12 @@ async function deleteReview(id) {
                 </div>
             </div>
         </div>
-        <div class="flex items-center space-x-2 mt-6 md:mt-8 sm:ml-1 text-white">
+        <div class="flex justify-center sm:justify-start items-center space-x-2 mt-6 md:mt-8 sm:ml-1 text-white">
             <IconsReview class="w-6 h-6 md:w-8 md:h-8 md:mt-0.5" />
             <h1 class="text-2xl md:text-4xl">
                 Reviews
             </h1>
         </div>
-
         <div class="flex flex-col gap-2 md:gap-3 mt-2 md:mt-4">
             <AddReviewCard v-if="loggedIn" />
             <AuthPrompt v-else>
