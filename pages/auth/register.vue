@@ -28,8 +28,10 @@ const password = ref('')
 const passwordConfirmation = ref('')
 
 const errorMessage = ref()
+const pending = ref(false)
 
 async function register() {
+    pending.value = true
     errorMessage.value = null
     const { error } = await useFetch('/api/auth/register', {
         method: 'POST',
@@ -55,6 +57,7 @@ async function register() {
         await syncCart()
         await syncFavorites()
     }
+    pending.value = false
 }
 
 </script>
@@ -90,7 +93,7 @@ async function register() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit">
+                <Button type="submit" :variant="pending ? 'loading' : 'primary'">
                     REGISTER
                 </Button>
             </div>

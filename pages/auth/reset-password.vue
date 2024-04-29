@@ -24,8 +24,10 @@ const password = ref('')
 const passwordConfirmation = ref('')
 
 const errorMessage = ref()
+const pending = ref(false)
 
 async function resetPassword() {
+    pending.value = true
     errorMessage.value = null
     const { error } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
@@ -41,6 +43,7 @@ async function resetPassword() {
         await navigateTo('/auth/login')
         toast("Password reset successfully!")
     }
+    pending.value = false
 }
 
 </script>
@@ -67,7 +70,7 @@ async function resetPassword() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit">
+                <Button type="submit" :variant="pending ? 'loading' : 'primary'">
                     RESET PASSWORD
                 </Button>
             </div>

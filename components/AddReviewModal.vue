@@ -25,8 +25,10 @@ bus.on(function (event, attribute) {
 })
 
 const errorMessage = ref()
+const pending = ref(false)
 
 async function addReview() {
+	pending.value = true
 	errorMessage.value = null
     const { error } = await useFetch('/api/review', {
         method: 'POST',
@@ -41,6 +43,7 @@ async function addReview() {
 		isOpen.value = false
 		emit('addReview')
 	}
+	pending.value = false
 }
 
 </script>
@@ -86,7 +89,7 @@ async function addReview() {
 									<Error class="text-center -mt-2 -mb-0.5">
 										{{ errorMessage }}
 									</Error>
-									<Button type="submit">
+									<Button type="submit" :variant="pending ? 'loading' : 'primary'">
 										ADD REVIEW
 									</Button>
 								</div>
