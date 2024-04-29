@@ -20,9 +20,9 @@ const router = useRouter()
         <Header />
         <div class="pt-16 min-h-screen bg-gray-light flex flex-col items-center justify-center">
             <div class="flex justify-center w-full px-2 py-4">
-                <div class="w-full max-w-sm bg-gray-dark p-5 rounded-2xl">
+                <div class="w-full max-w-sm bg-gray-dark p-4 sm:p-5 rounded-2xl">
                     <div class="mb-6">
-                        <h1 class="text-center text-red-primary text-[26px] font-medium mb-3"> 
+                        <h1 class="text-center text-red-primary text-2xl sm:text-[26px] font-medium mb-3"> 
                             {{ `Error ${error.statusCode}` }} 
                         </h1>
                         <p class="text-center text-white font-extralight text-sm">

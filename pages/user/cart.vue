@@ -51,7 +51,7 @@ async function removeItem(id) {
                                     <IconsShoppingCart class="!w-5 !h-5" />
                                     <span> Add to cart </span>
                                 </Button> -->
-                                <Button size="small" class="flex items-center justify-center space-x-1" @click="removeItem(item.id)"> 
+                                <Button size="small" @click="removeItem(item.id)"> 
                                     <IconsTrashBin class="!w-5 !h-5" />
                                     <span> Remove </span>
                                 </Button>

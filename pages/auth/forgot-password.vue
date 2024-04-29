@@ -21,9 +21,11 @@ definePageMeta({
 const email = ref('')
 
 const errorMessage = ref()
+const pending = ref(false)
 
 async function sendEmail() {
     errorMessage.value = null
+    pending.value = true
     const { error } = await useFetch('/api/auth/forgot-password', {
         method: 'POST',
         body: {
@@ -31,6 +33,7 @@ async function sendEmail() {
         },
     })
     errorMessage.value = error.value?.data.statusMessage
+    pending.value = false
     if (!error.value)
         toast("Email sent successfully!")
 }
@@ -53,7 +56,7 @@ async function sendEmail() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit">
+                <Button type="submit" :variant="pending ? 'loading' : 'primary'">
                     SEND PASSWORD RESET EMAIL
                 </Button>
             </div>

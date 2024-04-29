@@ -37,7 +37,6 @@ async function addReview() {
         }
     })
 	errorMessage.value = error.value?.data.statusMessage
-	
 	if (!error.value) {
 		isOpen.value = false
 		emit('addReview')

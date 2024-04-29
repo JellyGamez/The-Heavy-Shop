@@ -52,11 +52,11 @@ async function addItemToCart(id) {
                     <ListItemCard v-for="item in favoriteItems" :key="item.id" :item="item">
                         <template #actions>
                             <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
-                                <Button variant="secondary" size="small" class="flex items-center justify-center space-x-1" @click="addItemToCart(item.id)"> 
+                                <Button variant="secondary" size="small" @click="addItemToCart(item.id)"> 
                                     <IconsShoppingCart class="!w-5 !h-5" />
                                     <span> Add to cart </span>
                                 </Button>
-                                <Button size="small" class="flex items-center justify-center space-x-1" @click="removeItem(item.id)"> 
+                                <Button size="small" @click="removeItem(item.id)"> 
                                     <IconsTrashBin class="!w-5 !h-5" />
                                     <span> Remove </span>
                                 </Button>

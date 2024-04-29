@@ -7,13 +7,8 @@ const { signOut } = useAuth()
 const loggedIn = useStatus()
 
 async function handleAction(action) {
-    switch (action) {
-        case 'signOut':
-            await signOut()
-            break
-        default:
-            return
-    }
+    if (action === 'signOut')
+        await signOut()
 }
 
 const navItems = [

@@ -55,7 +55,7 @@ const isFavorite = ref(props.item.favorite)
         </div>
 
         <div class="flex items-end h-full">
-            <Button size="small" class="w-full flex items-center justify-center space-x-1" @click="$emit('addToCart')"> 
+            <Button size="small" @click="$emit('addToCart')"> 
                 <IconsShoppingCart class="!w-4 !h-4 sm:mb-0.5" />
                 <span> Add to cart </span>
             </Button>

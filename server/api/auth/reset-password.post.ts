@@ -20,7 +20,7 @@ async function updatePassword(email: string, passwordResetToken: string, passwor
             if (e.code === 'P2025')
                 throw createError({
                     statusCode: 400,
-                    statusMessage: 'The token is invalid.'
+                    statusMessage: 'The password reset token is invalid.'
                 })
     } 
 }
@@ -41,13 +41,13 @@ function verifySignedToken(token: string) {
         if (error?.name === 'TokenExpiredError') {
             throw createError({
                 statusCode: 400,
-                statusMessage: 'The token is expired.'
+                statusMessage: 'The password reset token is expired.'
             })
         }
         else if (error?.name === 'JsonWebTokenError') {
             throw createError({
                 statusCode: 400,
-                statusMessage: 'The token is invalid.'
+                statusMessage: 'The password reset token is invalid.'
             })
         }
 
