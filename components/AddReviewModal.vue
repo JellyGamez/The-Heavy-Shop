@@ -25,10 +25,8 @@ bus.on(function (event, attribute) {
 })
 
 const errorMessage = ref()
-const pending = ref(false)
 
 async function addReview() {
-	pending.value = true
 	errorMessage.value = null
     const { error } = await useFetch('/api/review', {
         method: 'POST',
@@ -43,7 +41,6 @@ async function addReview() {
 		isOpen.value = false
 		emit('addReview')
 	}
-	pending.value = false
 }
 
 </script>
@@ -86,10 +83,10 @@ async function addReview() {
 										<Label for="review"> Review </Label>
 										<textarea v-model="review" name="review" id="review" type="text" class="h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" />
 									</div>
-									<Error class="text-center -mt-2 -mb-0.5">
+									<Error class="text-center -mt-2.5 -mb-0.5">
 										{{ errorMessage }}
 									</Error>
-									<Button type="submit" :variant="pending ? 'loading' : 'primary'">
+									<Button type="submit">
 										ADD REVIEW
 									</Button>
 								</div>
