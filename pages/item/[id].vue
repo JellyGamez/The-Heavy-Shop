@@ -31,7 +31,7 @@ async function deleteReview(id) {
     })
 
     if (!error.value) {
-        // refreshNuxtData('item')
+        refreshNuxtData('item')
         toast.success('Review deleted!')
     }
     else 
@@ -43,11 +43,11 @@ async function deleteReview(id) {
     <div>
         <ConfirmationModal @confirm="deleteReview" />
         <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
-            <h1 class="text-2xl md:text-4xl text-white">
+            <h1 class="text-2xl lg:text-3xl text-white">
                 {{ item.name }}
             </h1>
         </div>
-        <div class="mt-2 md:mt-6">
+        <div class="mt-4 lg:mt-6">
             <div class="grid grid-cols-4">
                 <div class="flex items-center col-span-3 p-2 bg-gray-dark rounded-2xl">
                     <NuxtImg 
@@ -69,16 +69,21 @@ async function deleteReview(id) {
                 </div>
             </div>
         </div>
-        <div class="flex justify-center sm:justify-start items-center space-x-2 mt-6 md:mt-8 sm:ml-1 text-white">
-            <IconsReview class="w-6 h-6 md:w-8 md:h-8 md:mt-0.5" />
-            <h1 class="text-2xl md:text-4xl">
-                Reviews
-            </h1>
+        <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white mt-4 lg:mt-6">
+            <div class="flex items-center gap-1.5 lg:gap-2">
+                <IconsReview class="size-6 lg:size-7" />
+                <h1 class="text-2xl lg:text-3xl">
+                    Reviews
+                </h1>
+            </div>
+            <p class="text-sm lg:text-base text-center">
+                Read genuine customer experiences
+            </p>
         </div>
-        <div class="flex flex-col gap-2 md:gap-3 mt-2 md:mt-4">
+        <div class="flex flex-col gap-2 md:gap-3 mt-4 lg:mt-6">
             <AddReviewCard v-if="loggedIn" />
             <AuthPrompt v-else>
-                <p class="mx-8">
+                <p class="mx-8 sm:mx-0">
                     To leave a review for this item, please log in or create an account. 
                 </p>
                 <p class="hidden md:block">

@@ -5,9 +5,12 @@ definePageMeta({
 })
 
 useHead({
-    title: 'Home',
     meta: [
-        { name: 'description', content: 'Home' }
+        { name: 'description', content: '\
+            Welcome to The Heavy Shop, your premier destination for officially licensed heavy metal merchandise. \
+            We offer a curated selection of apparel, accessories, and collectibles, all designed to celebrate the music you love. \
+            Explore our extensive collection and discover the perfect items to express your passion for the genre!'
+        }
     ],
 })
 
@@ -41,9 +44,9 @@ useHead({
                     </span>
 
                     <span class="text-base sm:text-lg font-light max-w-2xl font-kanit">
-                        Peruse through our Heavy Metal shop to discover a selection of t-shirts, accessories, and more
-                        from your all-time favorite bands.
-                        Embrace the genuine essence of rock and submerge yourself in the world of metal fashion.
+                        Welcome to The Heavy Shop, your premier destination for officially licensed heavy metal merchandise. 
+                        We offer a curated selection of apparel, accessories, and collectibles, all designed to celebrate the music you love. 
+                        Explore our extensive collection and discover the perfect items to express your passion for the genre!
                     </span>
 
                     <NuxtLink to="/shop" class="w-fit mx-auto xl:mx-0">

@@ -27,20 +27,20 @@ async function addItemToCart(id) {
 <template>
     <div>
         <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
-            <div class="flex items-center space-x-2">
-                <IconsBookmark class="w-6 h-6 md:w-8 md:h-8 md:mt-0.5" />
-                <h1 class="text-2xl md:text-4xl">
+            <div class="flex items-center gap-1.5 lg:gap-2">
+                <IconsBookmark class="size-6 lg:size-7" />
+                <h1 class="text-2xl lg:text-3xl">
                     Favorites
                 </h1>
             </div>
-            <p class="text-sm md:text-base text-center">
+            <p class="text-sm lg:text-base text-center">
                 Bookmark your favorite items here
             </p>
         </div>
-        <div class="mt-4 md:mt-6">
+        <div class="mt-4 lg:mt-6">
             <ClientOnly>
                 <AuthPrompt v-if="!loggedIn && favoriteItems?.length">
-                    <p class="mx-8">
+                    <p class="mx-8 sm:mx-0">
                         To save your favorite items, please log in or create an account. 
                     </p>
                     <p class="hidden md:block">
