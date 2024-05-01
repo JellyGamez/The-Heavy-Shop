@@ -21,6 +21,7 @@ const isFavorite = ref(props.item.favorite)
             </NuxtLink>
                 <button 
                     @click="() => { $emit('toggleFavorite'); isFavorite = !isFavorite }"
+                    aria-label="favorite"
                     class="absolute top-0.5 right-0.5 md:top-1 md:right-1 p-1.5 bg-gray-primary rounded-xl shrink-0 h-fit w-fit focus:outline-none" 
                 > 
                     <ClientOnly>

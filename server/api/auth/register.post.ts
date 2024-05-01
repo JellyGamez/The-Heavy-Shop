@@ -78,6 +78,6 @@ export default defineEventHandler(async (event) => {
     })
 
     return { 
-        message: 'User created successfully!' 
+        message: 'Account created successfully!' 
     }
 })

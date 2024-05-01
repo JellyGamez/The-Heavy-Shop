@@ -7,7 +7,7 @@ definePageMeta({
 useHead({
     meta: [
         { name: 'description', content: '\
-            Welcome to The Heavy Shop, your premier destination for officially licensed heavy metal merchandise. \
+            Welcome to The Heavy Shop, your premier destination for licensed heavy metal merchandise. \
             We offer a curated selection of apparel, accessories, and collectibles, all designed to celebrate the music you love. \
             Explore our extensive collection and discover the perfect items to express your passion for the genre!'
         }
@@ -44,7 +44,7 @@ useHead({
                     </span>
 
                     <span class="text-base sm:text-lg font-light max-w-2xl font-kanit">
-                        Welcome to The Heavy Shop, your premier destination for officially licensed heavy metal merchandise. 
+                        Welcome to The Heavy Shop, your premier destination for licensed heavy metal merchandise. 
                         We offer a curated selection of apparel, accessories, and collectibles, all designed to celebrate the music you love. 
                         Explore our extensive collection and discover the perfect items to express your passion for the genre!
                     </span>

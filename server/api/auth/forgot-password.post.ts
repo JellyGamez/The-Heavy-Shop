@@ -42,16 +42,15 @@ export default defineEventHandler(async (event) => {
     await getUserByEmail(email)
 
     const token = generateToken()
-
-    await updatePasswordResetToken(email,token)
-
     const signedToken = signToken(email, token)
+
+    await updatePasswordResetToken(email, token)
 
     const template = (await useCompiler('PasswordReset.vue', {
         props: {
             url: `${process.env.AUTH_ORIGIN}/auth/reset-password?token=${signedToken}`
         }
-    }))?.html
+    }))
 
     const transporter = nodemailer.createTransport({
         host: 'smtp.gmail.com',
@@ -67,7 +66,7 @@ export default defineEventHandler(async (event) => {
         from: 'The Heavy Shop',
         to: email,
         subject: 'Password reset - The Heavy Shop',
-        html: template
+        html: template.html
     })
 
     return { 

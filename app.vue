@@ -36,7 +36,7 @@ useHead({
 }
 .toast-enter-active {
   	animation-name: slideIn;
- 	animation-duration: 300ms;
+ 	animation-duration: 200ms;
 }
 .toast-leave-active {
   	animation-name: slideOut;
