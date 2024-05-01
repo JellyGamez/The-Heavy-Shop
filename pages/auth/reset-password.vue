@@ -1,6 +1,8 @@
 <script setup>
 
-import toast from '@/composables/useToast'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 useHead({
     title: 'Reset password',
@@ -24,26 +26,25 @@ const password = ref('')
 const passwordConfirmation = ref('')
 
 const errorMessage = ref()
-const pending = ref(false)
+const loading = ref(false)
 
 async function resetPassword() {
-    pending.value = true
+    loading.value = true
     errorMessage.value = null
     const { error } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
         body: {
-            signedToken: route.query.token,
+            signedToken: route.params.token,
             password: password.value,
             passwordConfirmation: passwordConfirmation.value
         }
     })
     errorMessage.value = error.value?.data.statusMessage
-    if (!error.value)
-    {
+    if (!error.value) {
         await navigateTo('/auth/login')
-        toast("Password reset successfully!")
+        toast.success("Password reset successfully!")
     }
-    pending.value = false
+    loading.value = false
 }
 
 </script>
@@ -70,7 +71,7 @@ async function resetPassword() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" :variant="pending ? 'loading' : 'primary'">
+                <Button type="submit" :variant="loading ? 'loading' : 'primary'">
                     RESET PASSWORD
                 </Button>
             </div>

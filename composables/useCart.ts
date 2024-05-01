@@ -1,5 +1,7 @@
 import { useEventBus } from '@vueuse/core'
-import toast from '@/composables/useToast'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 export default function useCart() {
     const loggedIn = useStatus()
@@ -47,7 +49,7 @@ export default function useCart() {
             }
         }
         bus.emit('cart')
-        toast("Item added to cart")
+        toast.success("Item added to cart")
     }
 
     async function removeItem(id: String) {
@@ -65,7 +67,7 @@ export default function useCart() {
             }
         }
         bus.emit('cart')
-        toast("Item removed from cart")
+        toast.success("Item removed from cart")
     }
 
     async function syncItems() {
@@ -78,7 +80,7 @@ export default function useCart() {
             }
             localStorage.removeItem('cart')
             bus.emit('cart')
-            toast("Your cart has been synced!")
+            toast.success("Your cart has been synced!")
         }
     }
 

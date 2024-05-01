@@ -46,7 +46,7 @@ const icon = computed(() => {
             <div class="hidden md:block bg-red-light rounded-full absolute size-4 -top-1.5 -right-1.5 pt-[0.5px] text-[10px]">
                 {{ count }}
             </div>
-            <div class="ml-2 block md:hidden bg-red-light rounded-full size-5 flex items-center justify-center text-xs">
+            <div class="ml-2 flex md:hidden bg-red-light rounded-full size-5 items-center justify-center text-xs">
                 {{ count }}
             </div>
         </div>

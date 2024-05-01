@@ -1,6 +1,8 @@
 <script setup>
 
-import toast from '@/composables/useToast'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 useHead({
     title: 'Forgot password',
@@ -21,10 +23,10 @@ definePageMeta({
 const email = ref('')
 
 const errorMessage = ref()
-const pending = ref(false)
+const loading = ref(false)
 
 async function sendEmail() {
-    pending.value = true
+    loading.value = true
     errorMessage.value = null
     const { error } = await useFetch('/api/auth/forgot-password', {
         method: 'POST',
@@ -34,8 +36,8 @@ async function sendEmail() {
     })
     errorMessage.value = error.value?.data.statusMessage
     if (!error.value)
-        toast("Email sent successfully!")
-    pending.value = false
+        toast.success("Email sent successfully!")
+    loading.value = false
 }
 
 </script>
@@ -56,7 +58,7 @@ async function sendEmail() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" :variant="pending ? 'loading' : 'primary'">
+                <Button type="submit" :variant="loading ? 'loading' : 'primary'">
                     SEND PASSWORD RESET EMAIL
                 </Button>
             </div>

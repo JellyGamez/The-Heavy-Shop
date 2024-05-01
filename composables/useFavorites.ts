@@ -1,5 +1,7 @@
 import { useEventBus } from '@vueuse/core'
-import toast from '@/composables/useToast'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 export default function useFavorites() {
     const loggedIn = useStatus()
@@ -47,7 +49,7 @@ export default function useFavorites() {
             }
         }
         bus.emit('favorites')
-        toast("Item added to favorites")
+        toast.success("Item added to favorites")
     }
 
     async function removeItem(id: String) {
@@ -65,7 +67,7 @@ export default function useFavorites() {
             }
         }
         bus.emit('favorites')
-        toast("Item removed from favorites")
+        toast.success("Item removed from favorites")
     }
 
     async function syncItems() {
@@ -78,7 +80,7 @@ export default function useFavorites() {
             }
             localStorage.removeItem('favorites')
             bus.emit('favorites')
-            toast("Your favorites have been synced!")
+            toast.success("Your favorites have been synced!")
         }
     }
 

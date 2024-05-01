@@ -39,7 +39,6 @@ const count = reactive({
 })
 
 const bus = useEventBus('count')
-
 bus.on(async function (event) {
     if (event === 'favorites')
         count.favorites = await favorites.getCount()
@@ -153,7 +152,7 @@ bus.on(async function (event) {
     width: 100%;
     height: 2px;
     border-radius: 100px;
-    background-color: #c70404;
+    background-color: #C70404;
     bottom: 0;
     left: 0;
     transform-origin: right;

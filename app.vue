@@ -18,21 +18,19 @@ useHead({
 
 @keyframes slideIn {
 	from {
-		transform: translateY(100%) scale(0);
-		opacity: 0;
+		transform: translateY(100%);
 	}
 	to {
-		transform: translateY(0%) scale(1);
-		opacity: 1;
+		transform: translateY(0%);
 	}
 }
 @keyframes slideOut {
 	from {
-		transform: translateY(0%) scale(1);
+		transform: translateX(0%);
 		opacity: 1;
 	}
 	to {
-		transform: translateY(100%) scale(0);
+		transform: translateX(100%);
 		opacity: 0;
 	}
 }

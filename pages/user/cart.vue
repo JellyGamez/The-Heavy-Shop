@@ -35,7 +35,7 @@ async function removeItem(id) {
         <div class="mt-4 md:mt-6">
             <ClientOnly>
                 <AuthPrompt v-if="!loggedIn && cartItems?.length">
-                    <p>
+                    <p class="mx-8">
                         To save your cart, please log in or create an account. 
                     </p>
                     <p class="hidden md:block">

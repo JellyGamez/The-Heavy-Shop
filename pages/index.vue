@@ -48,7 +48,7 @@ useHead({
 
                     <NuxtLink to="/shop" class="w-fit mx-auto xl:mx-0">
                         <Button variant="secondary" size="large" class="font-kanit">
-                            SHOP NOW    
+                            SHOP NOW
                         </Button>
                     </NuxtLink>
                 </div>
@@ -77,7 +77,7 @@ useHead({
     width: 100%;
     height: 4px;
     border-radius: 4px;
-    background-color: #c70404;
+    background-color: #C70404;
     bottom: 0;
     left: 0;
     transform-origin: right;
@@ -91,7 +91,7 @@ useHead({
         width: 100%;
         height: 3px;
         border-radius: 4px;
-        background-color: #c70404;
+        background-color: #C70404;
         bottom: 0;
         left: 0;
         transform-origin: right;

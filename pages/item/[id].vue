@@ -1,6 +1,8 @@
 <script setup>
 
-import toast from '@/composables/useToast'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 const route = useRoute()
 
@@ -24,18 +26,22 @@ function isOwner(review) {
 }
 
 async function deleteReview(id) {
-    await useFetch(`/api/review/${id}`, {
+    const { error } = await useFetch(`/api/review/${id}`, {
         method: 'DELETE'
     })
 
-    refreshNuxtData('item')
-    toast('Review deleted!')
+    if (!error.value) {
+        // refreshNuxtData('item')
+        toast.success('Review deleted!')
+    }
+    else 
+        toast.error(error.value?.data.statusMessage, 'error')
 }
 
 </script>
 <template>
     <div>
-        <AddReviewModal :itemId="item.id" @addReview="() => { refreshNuxtData('item'); toast('Review added successfully!') }" />
+        <ConfirmationModal @confirm="deleteReview" />
         <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
             <h1 class="text-2xl md:text-4xl text-white">
                 {{ item.name }}
@@ -72,14 +78,14 @@ async function deleteReview(id) {
         <div class="flex flex-col gap-2 md:gap-3 mt-2 md:mt-4">
             <AddReviewCard v-if="loggedIn" />
             <AuthPrompt v-else>
-                <p>
+                <p class="mx-8">
                     To leave a review for this item, please log in or create an account. 
                 </p>
                 <p class="hidden md:block">
                     Your preferences will be stored for future visits. 
                 </p>
             </AuthPrompt>
-            <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" @delete="deleteReview(review.id)"/>
+            <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" />
         </div>
     </div>
 </template>

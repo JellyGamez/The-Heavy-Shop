@@ -9,7 +9,7 @@ const isFavorite = ref(props.item.favorite)
 </script>
 
 <template>
-    <div class="flex flex-col max-w-sm w-full h-full p-1 md:p-1.5 gap-2 rounded-2xl text-white bg-gray-dark">
+    <div class="flex flex-col max-w-60 sm:max-w-72 w-full h-full p-1 md:p-1.5 gap-2 rounded-2xl text-white bg-gray-dark">
         <div class="relative">
             <NuxtLink :to='`/item/${item.id}`'>
                 <NuxtImg 
@@ -45,10 +45,10 @@ const isFavorite = ref(props.item.favorite)
             <NuxtLink :to='`/item/${item.id}`'>
                 <p class="text-base md:text-lg h-11 md:h-14 leading-snug line-clamp-2"> {{ item.name }} </p>
             </NuxtLink>
-            <div class="flex flex-wrap-reverse justify-between items-center w-full gap-2 mt-2">
+            <div class="justify-self-end flex flex-wrap-reverse justify-between items-center w-full gap-2 mt-2">
                 <p class="text-sm md:text-base"> $ {{ item.price }} </p>
                 <div class="flex items-center mb-0.5 gap-1.5">
-                    <Rating :rating="item.rating"  />
+                    <Rating :rating="item.rating" />
                     <p class="text-gray-lightest"> ({{ item.reviews.length }}) </p>
                 </div>
             </div>

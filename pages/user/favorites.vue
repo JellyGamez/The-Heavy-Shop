@@ -40,7 +40,7 @@ async function addItemToCart(id) {
         <div class="mt-4 md:mt-6">
             <ClientOnly>
                 <AuthPrompt v-if="!loggedIn && favoriteItems?.length">
-                    <p>
+                    <p class="mx-8">
                         To save your favorite items, please log in or create an account. 
                     </p>
                     <p class="hidden md:block">

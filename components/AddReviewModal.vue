@@ -1,30 +1,27 @@
 <script setup>
 
 import { useEventBus } from '@vueuse/core'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 const props = defineProps({
-	itemId: String
+	itemId: String,
+	rating: Number
 })
-
-const emit = defineEmits(['addReview'])
 
 const isOpen = ref(false)
-
-const rating = ref(0)
-const hoverRating = ref(0)
+const rating = ref(props.rating)
+const hoverRating = ref(props.rating)
 const review = ref()
 
-const bus = useEventBus('modal')
-
-bus.on(function (event, attribute) {
-    if (event === 'review')
-	{
-		rating.value = hoverRating.value = attribute
-		isOpen.value = true
-	}
-})
-
 const errorMessage = ref()
+
+const bus = useEventBus('modal')
+bus.on(function (event) {
+    if (event === 'review')
+		isOpen.value = true
+})
 
 async function addReview() {
 	errorMessage.value = null
@@ -38,63 +35,54 @@ async function addReview() {
     })
 	errorMessage.value = error.value?.data.statusMessage
 	if (!error.value) {
+		refreshNuxtData('item')
+		toast.success('Review added succesfully!')
 		isOpen.value = false
-		emit('addReview')
 	}
 }
+
+watch(() => props.rating, (newValue) => {
+	rating.value = hoverRating.value = newValue;
+})
 
 </script>
 
 <template>
-	<HeadlessTransitionRoot appear :show="isOpen" as="template">
-		<HeadlessDialog as="div" @close="isOpen = false" class="relative z-10">
-			<HeadlessTransitionChild as="template" enter="duration-200 ease-out" enter-from="opacity-0" enter-to="opacity-100" leave="duration-200 ease-in" leave-from="opacity-100" leave-to="opacity-0">
-				<div class="fixed inset-0 bg-black/20" />
-			</HeadlessTransitionChild>
-			<div class="fixed inset-0 overflow-y-auto">
-				<div class="flex min-h-full items-center justify-center p-2 sm:p-4 text-center">
-					<HeadlessTransitionChild as="template" enter="duration-300 ease-out" enter-from="opacity-0 scale-95" enter-to="opacity-100 scale-100" leave="duration-200 ease-in" leave-from="opacity-100 scale-100" leave-to="opacity-0 scale-95">
-						<HeadlessDialogPanel class="flex flex-col text-white max-w-md w-full transform overflow-hidden rounded-2xl bg-gray-dark p-3 pt-7 sm:p-4 sm:pt-8 text-left align-middle">
-							<button class="absolute top-4 right-4" @click="isOpen = false">
-                                <IconsClose class="text-white" />
-                            </button>
-                            
-                            <HeadlessDialogTitle as="h3" class="text-xl sm:text-2xl text-center mb-4">
-								Add a review
-							</HeadlessDialogTitle>
-
-							<form @submit.prevent="addReview">
-								<div class="flex flex-col gap-4">
-									<div class="flex hover:cursor-pointer w-fit mx-auto" @mouseleave="() => hoverRating = rating">
-										<template v-for="n in parseInt(hoverRating)">
-											<IconsStar class="text-yellow-primary !w-7 !h-7" 
-												@mouseover="() => hoverRating = n" 
-												@click="() => rating = hoverRating" 
-											/>
-										</template>
-										<template v-for="n in 5 - parseInt(hoverRating)">
-											<IconsStar class="text-gray-light !w-7 !h-7" 
-												@mouseover="() => hoverRating = hoverRating + n" 
-												@click="() => rating = hoverRating" 
-											/>
-										</template>
-									</div>
-									<div>
-										<Label for="review"> Review </Label>
-										<textarea v-model="review" name="review" id="review" type="text" class="h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" />
-									</div>
-									<Error class="text-center -mt-2.5 -mb-0.5">
-										{{ errorMessage }}
-									</Error>
-									<Button type="submit">
-										ADD REVIEW
-									</Button>
-								</div>
-							</form>
-						</HeadlessDialogPanel>
-					</HeadlessTransitionChild>
+	<Modal v-model="isOpen">
+		<template #title>
+			Add a review
+		</template>
+		<template #content>
+			<form @submit.prevent="addReview">
+				<div class="flex flex-col gap-4">
+					<div class="flex hover:cursor-pointer w-fit mx-auto" @mouseleave="() => hoverRating = rating">
+						<template v-for="n in parseInt(hoverRating)">
+							<IconsStar 
+								class="text-yellow-primary !w-7 !h-7" 
+								@mouseover="() => hoverRating = n" 
+								@click="() => rating = hoverRating" 
+							/>
+						</template>
+						<template v-for="n in 5 - parseInt(hoverRating)">
+							<IconsStar 
+								class="text-gray-light !w-7 !h-7" 
+								@mouseover="() => hoverRating = hoverRating + n" 
+								@click="() => rating = hoverRating" 
+							/>
+						</template>
+					</div>
+					<div class="flex flex-col">
+						<Label for="review"> Review </Label>
+						<textarea v-model="review" name="review" id="review" type="text" class="h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" />
+					</div>
+					<Error class="text-center !mt-0">
+						{{ errorMessage }}
+					</Error>
+					<Button type="submit">
+						ADD REVIEW
+					</Button>
 				</div>
-			</div>
-		</HeadlessDialog>
-	</HeadlessTransitionRoot>
+			</form>
+		</template>
+	</Modal>
 </template>

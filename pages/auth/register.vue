@@ -1,6 +1,8 @@
 <script setup>
 
-import toast from '@/composables/useToast'
+import { useToast } from 'vue-toastification'
+
+const toast = useToast()
 
 useHead({
     title: 'Register',
@@ -28,10 +30,10 @@ const password = ref('')
 const passwordConfirmation = ref('')
 
 const errorMessage = ref()
-const pending = ref(false)
+const loading = ref(false)
 
 async function register() {
-    pending.value = true
+    loading.value = true
     errorMessage.value = null
     const { error } = await useFetch('/api/auth/register', {
         method: 'POST',
@@ -43,8 +45,7 @@ async function register() {
         }
     })
     errorMessage.value = error.value?.data.statusMessage
-    if (!error.value)
-    {
+    if (!error.value) {
         await signIn('credentials', {
             email: email.value,
             password: password.value,
@@ -52,12 +53,12 @@ async function register() {
         })
 
         await navigateTo('/')
-        toast("Account created successfully!")
+        toast.success("Account created successfully!")
         
         await syncCart()
         await syncFavorites()
     }
-    pending.value = false
+    loading.value = false
 }
 
 </script>
@@ -93,7 +94,7 @@ async function register() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" :variant="pending ? 'loading' : 'primary'">
+                <Button type="submit" :variant="loading ? 'loading' : 'primary'">
                     REGISTER
                 </Button>
             </div>

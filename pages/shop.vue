@@ -9,7 +9,7 @@ useHead({
 
 const route = useRoute()
 
-const page = computed(() => route.query.page ?? 1)
+const page = computed(() => route.params.page ?? 1)
 const { data: items } = await useFetch('/api/item', {
     query: { page: page.value ?? 1 }
 })
@@ -50,7 +50,7 @@ async function addItemToCart(id) {
                 Explore and curate your heavy metal haven
             </p>
         </div>
-        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 mt-4 md:mt-6">
+        <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 mt-4 md:mt-6 max-w-fit mx-auto">
             <GridItemCard v-for="item in items" :key="item.id" :item="{ ...item, favorite: isFavorite(item.id) }" 
                 @toggleFavorite="toggleFavorite(item.id)"
                 @addToCart="addItemToCart(item.id)"

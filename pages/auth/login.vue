@@ -24,7 +24,7 @@ const email = ref('')
 const password = ref('')
 
 const errorMessage = ref()
-const pending = ref(false)
+const loading = ref(false)
 
 async function githubSignIn() {
     await signIn('github')
@@ -33,7 +33,7 @@ async function discordSignIn() {
     await signIn('discord')
 }
 async function credentialsSignIn() {
-    pending.value = true
+    loading.value = true
     errorMessage.value = null
     const { error } = await signIn('credentials', {
         email: email.value,
@@ -46,7 +46,7 @@ async function credentialsSignIn() {
         await syncCart()
         await syncFavorites()
     }
-    pending.value = false
+    loading.value = false
 }
 
 </script>
@@ -75,7 +75,7 @@ async function credentialsSignIn() {
                 <Error class="text-center">
                     {{ errorMessage }}
                 </Error>
-                <Button type="submit" :variant="pending ? 'loading' : 'primary'">
+                <Button type="submit" :variant="loading ? 'loading' : 'primary'">
                     LOG IN
                 </Button>
             </div>
