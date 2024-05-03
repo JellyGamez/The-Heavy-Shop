@@ -9,7 +9,7 @@ const isFavorite = ref(props.item.favorite)
 </script>
 
 <template>
-    <div class="flex flex-col max-w-60 sm:max-w-72 w-full h-full p-1 md:p-1.5 gap-2 rounded-2xl text-white bg-gray-dark">
+    <div class="flex flex-col max-w-56 sm:max-w-72 w-full h-full p-1 md:p-1.5 gap-2 rounded-2xl text-white bg-gray-dark">
         <div class="relative">
             <NuxtLink :to='`/item/${item.id}`'>
                 <NuxtImg 
