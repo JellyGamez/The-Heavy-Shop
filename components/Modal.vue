@@ -31,7 +31,7 @@ const isOpen = defineModel()
 					>
 						<HeadlessDialogPanel class="flex flex-col text-white max-w-md w-full transform overflow-hidden rounded-2xl bg-gray-dark p-3 pt-10 sm:p-4 sm:pt-11 text-left align-middle">
 							<button class="absolute top-4 right-4" @click="() => isOpen = false">
-                                <IconsClose class="text-white" />
+                                <IconsClose class="text-white hover:text-gray-lighter transition duration-200" />
                             </button>
 
                             <HeadlessDialogTitle as="h3" class="text-xl sm:text-2xl text-center max-w-xs sm:max-w-sm mx-auto mb-4">

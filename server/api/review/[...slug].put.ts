@@ -4,15 +4,8 @@ import { getServerSession } from '#auth'
 export default defineEventHandler(async (event) => {
     const session = await getServerSession(event)
     const user = await getUserByEmail(session?.user?.email)
-
-    const { rating, review, itemId } = await readBody(event)
-
-    const existingReview = await prisma.review.findFirst({
-        where: {
-            itemId: itemId,
-            authorId: user.id
-        }
-    })
+    
+    const { rating, review } = await readBody(event)
 
     if (!user)
         throw createError({
@@ -29,22 +22,27 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'The review field is required.'
         })
-    else if (existingReview)
-        throw createError({
-            statusCode: 400,
-            statusMessage: 'You already left a review for this item.'
-        })
 
-    await prisma.review.create({
-        data: {
-            rating: rating,
-            content: review,
-            itemId: itemId,
-            authorId: user.id
-        }
-    })
+    try {
+        await prisma.review.update({
+            where: {
+                id: parseInt(event.context.params?.slug as string),
+                authorId: user.id
+            },
+            data: {
+                rating: rating,
+                content: review
+            }
+        })
+    }
+    catch(e) {
+        throw createError({
+            statusCode: 500,
+            statusMessage: 'Either the review doesn\'t exist or you\'re not authorized to edit it.'
+        })
+    }
 
     return { 
-        message: 'Review added successfully!' 
+        message: 'Review edited successfully!' 
     }
 })

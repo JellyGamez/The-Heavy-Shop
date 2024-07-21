@@ -1,12 +1,15 @@
 import prisma, { getUserByEmail } from '~/server/utils'
 import { getServerSession } from '#auth'
 
-async function deleteReview(userId: number, reviewId: number) {
+export default defineEventHandler(async (event) => {
+    const session = await getServerSession(event)
+    const user = await getUserByEmail(session?.user?.email)
+
     try {
-        return await prisma.review.delete({
+        await prisma.review.delete({
             where: {
-                id: reviewId,
-                authorId: userId
+                id: parseInt(event.context.params?.slug as string),
+                authorId: user.id
             }
         })
     }
@@ -16,11 +19,8 @@ async function deleteReview(userId: number, reviewId: number) {
             statusMessage: 'Either the review doesn\'t exist or you\'re not authorized to delete it.'
         })
     }
-}
 
-export default defineEventHandler(async (event) => {
-    const session = await getServerSession(event)
-    const user = await getUserByEmail(session?.user?.email)
-
-    return await deleteReview(user.id, parseInt(event.context.params?.slug as string))
+    return { 
+        message: 'Review deleted successfully!' 
+    }
 })

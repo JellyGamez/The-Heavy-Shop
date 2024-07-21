@@ -39,14 +39,17 @@ async function addItemToCart(id) {
         </div>
         <div class="mt-4 lg:mt-6">
             <ClientOnly>
-                <AuthPrompt v-if="!loggedIn && favoriteItems?.length">
-                    <p class="mx-8 sm:mx-0">
-                        To save your favorite items, please log in or create an account. 
-                    </p>
-                    <p class="hidden md:block">
-                        Your preferences will be stored for future visits. 
-                    </p>
-                </AuthPrompt>
+                <div v-if="!loggedIn && favoriteItems?.length" class="flex flex-col gap-2 md:gap-3">
+                    <AuthPrompt>
+                        <p class="mx-8 sm:mx-0">
+                            To save your favorite items, please log in or create an account. 
+                        </p>
+                        <p class="hidden md:block">
+                            Your preferences will be stored for future visits. 
+                        </p>
+                    </AuthPrompt>
+                    <Separator />
+                </div>
 
                 <div v-if="favoriteItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
                     <ListItemCard v-for="item in favoriteItems" :key="item.id" :item="item">
@@ -85,9 +88,12 @@ async function addItemToCart(id) {
                 </EmptyState>
 
                 <template #fallback>
-                    <h1 class="text-xl text-center text-white py-10">
-                        Loading items...
-                    </h1>
+                    <div class="flex w-full items-center justify-center gap-1">
+                        <IconsSpinner class="w-5 h-5 text-white animate-spin mr-1" />
+                        <h1 class="text-xl text-center text-white py-10">
+                            Loading items...
+                        </h1>
+                    </div>
                 </template>
             </ClientOnly>
         </div>

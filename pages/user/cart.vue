@@ -34,14 +34,17 @@ async function removeItem(id) {
         </div>
         <div class="mt-4 lg:mt-6">
             <ClientOnly>
-                <AuthPrompt v-if="!loggedIn && cartItems?.length">
-                    <p class="mx-8 sm:mx-0">
-                        To save your cart, please log in or create an account. 
-                    </p>
-                    <p class="hidden md:block">
-                        Your preferences will be stored for future visits. 
-                    </p>
-                </AuthPrompt>
+                <div v-if="!loggedIn && cartItems?.length" class="flex flex-col gap-2 md:gap-3">
+                    <AuthPrompt>
+                        <p class="mx-8 sm:mx-0">
+                            To save your cart, please log in or create an account. 
+                        </p>
+                        <p class="hidden md:block">
+                            Your preferences will be stored for future visits. 
+                        </p>
+                    </AuthPrompt>
+                    <Separator />
+                </div>
                 
                 <div v-if="cartItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
                     <ListItemCard v-for="item in cartItems" :item="item">
@@ -78,11 +81,13 @@ async function removeItem(id) {
                         </p>
                     </template>
                 </EmptyState>
-
                 <template #fallback>
-                    <h1 class="text-xl text-center text-white py-10">
-                        Loading items...
-                    </h1>
+                    <div class="flex w-full items-center justify-center gap-1">
+                        <IconsSpinner class="w-5 h-5 text-white animate-spin mr-1" />
+                        <h1 class="text-xl text-center text-white py-10">
+                            Loading items...
+                        </h1>
+                    </div>
                 </template>
             </ClientOnly>
         </div>

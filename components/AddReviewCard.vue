@@ -4,8 +4,6 @@ import { useEventBus } from '@vueuse/core'
 
 const bus = useEventBus('modal')
 
-const route = useRoute()
-
 const rating = ref(0)
 const hoverRating = ref(0)
 
@@ -13,7 +11,6 @@ const hoverRating = ref(0)
 
 <template>
     <div>
-        <AddReviewModal :itemId="route.params.id" :rating="rating" />
         <div class="flex flex-col items-center gap-2 p-3 w-full rounded-2xl bg-gray-dark text-white">
             <div class="text-lg sm:text-xl"> 
                 Bought or used this product?
@@ -42,8 +39,9 @@ const hoverRating = ref(0)
                     />
                 </template>
             </div>
-            <Button @click="() => bus.emit('review')" variant="secondary" size="small" class="mt-1 max-w-32 sm:max-w-40"> 
-                ADD REVIEW
+            <Button @click="() => bus.emit('addReview', { rating: rating })" variant="secondary" size="small" class="mt-1 max-w-32 sm:max-w-40"> 
+                <IconsReview class="!w-4 !h-4 sm:!w-5 sm:!h-5"/>
+                <span> ADD A REVIEW </span>
             </Button>
         </div>
     </div>

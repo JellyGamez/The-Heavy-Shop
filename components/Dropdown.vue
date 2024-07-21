@@ -38,7 +38,7 @@ function handleClick(option) {
                                 @click="handleClick(option)"
                                 :class="[
                                     { 'bg-gray-primary' : active },
-                                    'flex w-full items-center rounded-xl px-2 py-2 transition duration-200',
+                                    'flex w-full items-center rounded-[9px] px-2 py-2 transition duration-200',
                                 ]"
                             >
                                 {{ option.name }}

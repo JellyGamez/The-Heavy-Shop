@@ -3,24 +3,29 @@
 import { useEventBus } from '@vueuse/core'
 import { useToast } from 'vue-toastification'
 
+const route = useRoute()
+
 const toast = useToast()
 
-const props = defineProps({
-	itemId: String,
-	rating: Number
-})
-
+const id = ref()
+const itemId = ref(route.params.id)
 const isOpen = ref(false)
-const rating = ref(props.rating)
-const hoverRating = ref(props.rating)
+const rating = ref(0)
+const hoverRating = ref(0)
 const review = ref()
+const action = ref()
 
 const errorMessage = ref()
 
 const bus = useEventBus('modal')
-bus.on(function (event) {
-    if (event === 'review')
+bus.on(function (event, data) {
+    if (event === 'addReview' || event === 'editReview') {
+		action.value = event
 		isOpen.value = true
+		rating.value = hoverRating.value = data.rating
+		review.value = data.review
+		id.value = data.id
+	}
 })
 
 async function addReview() {
@@ -30,30 +35,48 @@ async function addReview() {
         body: {
             rating: rating.value,
 			review: review.value,
-			itemId: props.itemId
+			itemId: itemId.value
         }
     })
 	errorMessage.value = error.value?.data.statusMessage
 	if (!error.value) {
 		refreshNuxtData('item')
-		toast.success('Review added!')
+		toast.success('Review added successfully!')
 		isOpen.value = false
 	}
 }
 
-watch(() => props.rating, (newValue) => {
-	rating.value = hoverRating.value = newValue;
-})
+async function editReview() {
+    const { error } = await useFetch(`/api/review/${id.value}`, {
+        method: 'PUT',
+		body: {
+			rating: rating.value,
+			review: review.value
+		}
+    })
+	errorMessage.value = error.value?.data.statusMessage
+    if (!error.value) {
+        refreshNuxtData('item')
+        toast.success('Review edited successfully!')
+		isOpen.value = false
+    }
+}
 
 </script>
 
 <template>
 	<Modal v-model="isOpen">
 		<template #title>
-			Add a review
+			{{ action === 'addReview' ? 'Add a review' : 'Edit review' }}
 		</template>
 		<template #content>
-			<form @submit.prevent="addReview">
+			<form @submit.prevent="() => {
+				if (action === 'addReview')
+					addReview()
+				else
+					editReview()
+				}
+			">
 				<div class="flex flex-col gap-4">
 					<div class="flex hover:cursor-pointer w-fit mx-auto" @mouseleave="() => hoverRating = rating">
 						<template v-for="n in parseInt(hoverRating)">
@@ -78,8 +101,13 @@ watch(() => props.rating, (newValue) => {
 					<Error class="text-center !mt-0">
 						{{ errorMessage }}
 					</Error>
-					<Button type="submit">
-						ADD REVIEW
+					<Button v-if="action === 'addReview'" type="submit">
+						<IconsReview class="!w-4 !h-4" />
+						<span> ADD REVIEW </span>
+					</Button>
+					<Button v-else type="submit">
+						<IconsPencil class="!w-4 !h-4" />
+						<span> EDIT REVIEW </span>
 					</Button>
 				</div>
 			</form>

@@ -21,9 +21,7 @@ useHead({
 
 const loggedIn = useStatus()
 
-function isOwner(review) {
-    return review.authorId === user?.value?.id
-}
+const userReview = computed(() => item?.value?.reviews?.find(review => review?.authorId === user?.value?.id))
 
 async function deleteReview(id) {
     const { error } = await useFetch(`/api/review/${id}`, {
@@ -32,15 +30,17 @@ async function deleteReview(id) {
 
     if (!error.value) {
         refreshNuxtData('item')
-        toast.success('Review deleted!')
+        toast.success('Review deleted successfully!')
     }
     else 
-        toast.error(error.value?.data.statusMessage, 'error')
+        toast.error(error.value?.data.statusMessage)
 }
 
 </script>
+
 <template>
     <div>
+        <ReviewModal />
         <ConfirmationModal @confirm="deleteReview" />
         <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
             <h1 class="text-2xl lg:text-3xl text-white">
@@ -69,6 +69,28 @@ async function deleteReview(id) {
                 </div>
             </div>
         </div>
+        <Separator class="mt-4 lg:mt-6" />
+        <div v-if="loggedIn && userReview" class="sm:ml-1 flex flex-col items-center sm:items-start text-white mt-4 lg:mt-6">
+            <div class="flex items-center gap-1.5 lg:gap-2">
+                <IconsReview class="size-6 lg:size-7" />
+                <h1 class="text-2xl lg:text-3xl">
+                    Your Review
+                </h1>
+            </div>
+        </div>
+        <div class="flex flex-col mt-4 lg:mt-6">
+            <ReviewCard v-if="loggedIn && userReview" :review="userReview" :isOwner="true" />
+            <AddReviewCard v-else-if="loggedIn" />
+            <AuthPrompt v-else>
+                <p class="mx-8 sm:mx-0">
+                    To leave a review for this item, please log in or create an account. 
+                </p>
+                <p class="hidden md:block">
+                    Your preferences will be stored for future visits. 
+                </p>
+            </AuthPrompt>
+        </div>
+        <Separator class="mt-4 lg:mt-6" />
         <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white mt-4 lg:mt-6">
             <div class="flex items-center gap-1.5 lg:gap-2">
                 <IconsReview class="size-6 lg:size-7" />
@@ -81,16 +103,7 @@ async function deleteReview(id) {
             </p>
         </div>
         <div class="flex flex-col gap-2 md:gap-3 mt-4 lg:mt-6">
-            <AddReviewCard v-if="loggedIn" />
-            <AuthPrompt v-else>
-                <p class="mx-8 sm:mx-0">
-                    To leave a review for this item, please log in or create an account. 
-                </p>
-                <p class="hidden md:block">
-                    Your preferences will be stored for future visits. 
-                </p>
-            </AuthPrompt>
-            <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" />
+            <ReviewCard v-for="review in item.reviews.filter(review => review !== userReview)" :review="review" :isOwner="false" />
         </div>
     </div>
 </template>

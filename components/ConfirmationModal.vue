@@ -26,11 +26,11 @@ bus.on(function (event, attribute) {
 			</p>
 
 			<div class="mt-8 flex gap-4">
-				<Button variant="primary" @click="() => { isOpen = false; $emit('confirm', id) }">
-					CONFIRM
-				</Button>
 				<Button variant="secondary" @click="() => isOpen = false">
 					CANCEL
+				</Button>
+				<Button variant="primary" @click="() => { isOpen = false; $emit('confirm', id) }">
+					CONFIRM
 				</Button>
 			</div>
 		</template>

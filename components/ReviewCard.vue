@@ -15,8 +15,8 @@ const bus = useEventBus('modal')
     <div>
         <div class="relative flex justify-between w-full p-3.5 md:p-4 rounded-2xl bg-gray-dark">
             <div class="flex flex-col w-full gap-3 overflow-hidden">
-                <div class="flex text-white justify-between shrink-0 ">
-                    <div class="flex flex-col gap-2 ">
+                <div class="flex text-white justify-between gap-2">
+                    <div class="flex flex-col gap-2 truncate">
                         <div class="flex items-center gap-2 w-fit">
                             <NuxtImg 
                                 src="/img/avatar.webp" 
@@ -24,7 +24,7 @@ const bus = useEventBus('modal')
                                 class="w-11 h-11 object-cover rounded-full" 
                                 preload 
                             />
-                            <p class="line-clamp-2 w-full"> {{ review.author.name }} </p>
+                            <p class="truncate"> {{ review.author.name }} </p>
                         </div>
                         <div v-if="review.verified" class="flex items-center gap-x-1">
                             <IconsCheck class="text-red-light shrink-0" />
@@ -32,8 +32,11 @@ const bus = useEventBus('modal')
                         </div>
                     </div>
 
-                    <div v-if="isOwner">
-                        <Button size="small" class="!p-2.5" @click="() => bus.emit('confirmation', review.id)"> 
+                    <div v-if="isOwner" class="flex h-fit shrink-0 gap-2">
+                        <Button @click="() => bus.emit('editReview', { id: review.id, rating: review.rating, review: review.content })" size="small" class="!p-2.5"> 
+                            <IconsPencil class="!w-4 !h-4" />
+                        </Button>
+                        <Button @click="() => bus.emit('confirmation', review.id)" size="small" class="!p-2.5"> 
                             <IconsTrashBin class="!w-4 !h-4" />
                         </Button>
                     </div>
