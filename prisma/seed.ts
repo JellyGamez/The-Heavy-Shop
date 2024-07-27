@@ -52,7 +52,20 @@ async function main() {
     }
 
     for (let i = 1; i <= 50; i++) {
-        const a = faker.number.int({ min: 1, max: 5 }), b = faker.number.int({ min: 1, max: 5 })
+        const n = faker.number.int({ min: 0, max: 20 })
+        const template = () => {
+            return {
+                rating: faker.number.int({ min: 1, max: 5 }),
+                content: faker.lorem.paragraph(),
+                verified: faker.datatype.boolean(),
+                authorId: faker.number.int({ min: 1, max: 10 })
+            }
+        }
+        
+        let reviews = []
+        for (let j = 1; j <= n; j++)
+            reviews.push(template() as any)
+
         await prisma.item.create({
             data: {
                 name: faker.commerce.productName(),
@@ -60,20 +73,7 @@ async function main() {
                 price: faker.number.float({ min: 10, max: 500, multipleOf: 0.01 }),
                 photoUrl: faker.image.url(),
                 reviews: {
-                    create: [
-                        {
-                            rating: a,
-                            content: faker.lorem.paragraph(),
-                            verified: faker.datatype.boolean(),
-                            authorId: faker.number.int({ min: 1, max: 10 })
-                        },
-                        {
-                            rating: b,
-                            content: faker.lorem.paragraph(),
-                            verified: faker.datatype.boolean(),
-                            authorId: faker.number.int({ min: 1, max: 10 })
-                        },
-                    ]
+                    create: reviews
                 }
             }
         })
