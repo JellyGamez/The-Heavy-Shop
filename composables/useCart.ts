@@ -49,7 +49,7 @@ export default function useCart() {
             }
         }
         bus.emit('cart')
-        toast.success("Item added to cart")
+        toast.success("Item added to cart!")
     }
 
     async function removeItem(id: String) {
@@ -67,7 +67,7 @@ export default function useCart() {
             }
         }
         bus.emit('cart')
-        toast.success("Item removed from cart")
+        toast.success("Item removed from cart!")
     }
 
     async function syncItems() {

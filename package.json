@@ -18,7 +18,7 @@
     "@sidebase/nuxt-auth": "0.6.3",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.6",
-    "@types/node": "^18.19.41",
+    "@types/node": "^18.19.42",
     "@types/nodemailer": "^6.4.15",
     "@vue-email/nuxt": "0.8.5",
     "autoprefixer": "^10.4.19",
@@ -26,11 +26,11 @@
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.12.4",
     "nuxt-headlessui": "^1.2.0",
-    "postcss": "^8.4.39",
+    "postcss": "^8.4.40",
     "prisma": "^5.17.0",
-    "tailwindcss": "^3.4.6",
+    "tailwindcss": "^3.4.7",
     "ts-node": "^10.9.2",
-    "typescript": "^5.5.3",
+    "typescript": "^5.5.4",
     "vue-toastification": "2.0.0-rc.5"
   },
   "dependencies": {

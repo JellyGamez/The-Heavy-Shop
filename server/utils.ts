@@ -16,17 +16,18 @@ async function getUserByEmail(email: string | null | undefined) {
         })
     }
     catch(e) { 
-        throw createError({
-            statusCode: 400,
-            statusMessage: 'We couldn\'t find that account.'
-        })
+        if (email)
+            throw createError({
+                statusCode: 400,
+                statusMessage: 'We couldn\'t find that account.'
+            })
     }
 }
 
 function getItemRating(item: any) {
-    if (item.reviews.length === 0)
+    if (item.reviews?.length === 0)
         return 0
-    return item.reviews.map((r: any) => r.rating).reduce((x: any, y: any) => x + y) / item.reviews.length
+    return item.reviews?.map((review: any) => review?.rating).reduce((x: any, y: any) => x + y) / item.reviews?.length
 }
 
 function dateFormatter(date: any) {

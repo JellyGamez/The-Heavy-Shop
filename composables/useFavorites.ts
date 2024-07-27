@@ -49,7 +49,7 @@ export default function useFavorites() {
             }
         }
         bus.emit('favorites')
-        toast.success("Item added to favorites")
+        toast.success("Item added to favorites!")
     }
 
     async function removeItem(id: String) {
@@ -67,7 +67,7 @@ export default function useFavorites() {
             }
         }
         bus.emit('favorites')
-        toast.success("Item removed from favorites")
+        toast.success("Item removed from favorites!")
     }
 
     async function syncItems() {

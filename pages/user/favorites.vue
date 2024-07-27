@@ -85,6 +85,14 @@ async function addItemToCart(id) {
                             Explore our store, discover standout items, and build your distinguished favorites selection.
                         </p>
                     </template>
+                    <template #action>
+                        <NuxtLink to="/shop" class="max-w-32 sm:max-w-40 w-full">
+                            <Button variant="secondary" size="small" class="mt-1"> 
+                                <IconsShoppingCart class="!w-5 !h-5" />
+                                SHOP NOW 
+                            </Button>
+                        </NuxtLink>
+                    </template>
                 </EmptyState>
 
                 <template #fallback>

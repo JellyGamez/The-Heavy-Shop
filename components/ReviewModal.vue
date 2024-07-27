@@ -42,6 +42,7 @@ async function addReview() {
 	if (!error.value) {
 		refreshNuxtData('item')
 		toast.success('Review added successfully!')
+		errorMessage.value = null
 		isOpen.value = false
 	}
 }
@@ -54,12 +55,19 @@ async function editReview() {
 			review: review.value
 		}
     })
-	errorMessage.value = error.value?.data.statusMessage
-    if (!error.value) {
-        refreshNuxtData('item')
-        toast.success('Review edited successfully!')
+	if (error.value?.data.statusCode === 500) {
+		errorMessage.value = null
 		isOpen.value = false
-    }
+		toast.error(error.value?.data.statusMessage)
+	}
+	else {
+		errorMessage.value = error.value?.data.statusMessage
+		if (!error.value) {
+			refreshNuxtData('item')
+			toast.success('Review edited successfully!')
+			isOpen.value = false
+		}
+	}
 }
 
 </script>
@@ -96,7 +104,7 @@ async function editReview() {
 					</div>
 					<div class="flex flex-col">
 						<Label for="review"> Review </Label>
-						<textarea v-model="review" name="review" id="review" type="text" class="h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" />
+						<textarea v-model="review" name="review" id="review" type="text" class="scrollbar h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" />
 					</div>
 					<Error class="text-center !mt-0">
 						{{ errorMessage }}
@@ -114,3 +122,9 @@ async function editReview() {
 		</template>
 	</Modal>
 </template>
+
+<style scoped>
+.scrollbar::-webkit-scrollbar {
+    width: 11px;
+}
+</style>

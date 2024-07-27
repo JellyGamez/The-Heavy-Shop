@@ -6,10 +6,6 @@
         <div class="text-sm font-light max-w-xl text-center"> 
             <slot name="content" />
         </div>
-        <NuxtLink to="/shop" class="max-w-32 sm:max-w-40 w-full">
-            <Button variant="secondary" size="small" class="mt-1"> 
-                SHOP NOW 
-            </Button>
-        </NuxtLink>
+        <slot name="action" />
     </div>
 </template>

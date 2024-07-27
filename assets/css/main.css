@@ -10,23 +10,18 @@
     }
 }
 
-/* Scroll bar stylings */
 ::-webkit-scrollbar {
     width: 5px;
-    height: 5px;
 }
 
-/* Track */
 ::-webkit-scrollbar-track {
     background: #171717;
 }
 
-/* Handle */
 ::-webkit-scrollbar-thumb {
     background: #666;
 }
 
-/* Handle on hover */
 ::-webkit-scrollbar-thumb:hover {
     background: #555;
 }
