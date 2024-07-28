@@ -13,10 +13,10 @@ const bus = useEventBus('modal')
 
 <template>
     <div>
-        <div class="relative flex justify-between w-full p-3.5 md:p-4 rounded-2xl bg-gray-dark">
+        <div class="relative flex justify-between w-full p-1 md:p-1.5 rounded-2xl bg-gray-dark">
             <div class="flex flex-col w-full gap-3 overflow-hidden">
-                <div class="flex text-white justify-between gap-2">
-                    <div class="flex flex-col gap-2 truncate">
+                <div class="flex text-white justify-between gap-2 p-2">
+                    <div class="flex flex-col gap-3 truncate">
                         <div class="flex items-center gap-2 w-fit">
                             <NuxtImg 
                                 src="/img/avatar.webp" 
@@ -42,14 +42,14 @@ const bus = useEventBus('modal')
                     </div>
                 </div>
                 <div class="flex flex-col w-full overflow-hidden text-white">
-                    <div class="flex flex-wrap justify-between items-center gap-x-4 gap-y-2">
+                    <div class="flex flex-wrap justify-between items-center gap-x-4 gap-y-2 px-2">
                         <Rating :rating="review.rating" />
                         <div class="flex items-center gap-x-1">
                             <IconsCalendar />
                             <p class="text-xs md:text-sm font-light"> {{ review.createdAt }} </p>
                         </div>
                     </div>
-                    <p class="font-extralight mt-2 md:mr-10 lg:mr-32"> {{ review.content }} </p>
+                    <p class="text-sm md:text-base rounded-xl bg-gray-primary px-3 py-2 md:px-3.5 md:py-2.5 font-extralight mt-3.5 "> {{ review.content }} </p>
                 </div>
             </div>
         </div>

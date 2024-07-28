@@ -9,9 +9,11 @@ import {
 } from '@headlessui/vue'
 
 const items = [
-    { name: 'Default', sort: false },
-    { name: 'Date added', sort: true },
-    { name: 'Rating', sort: true },
+    { name: 'Default', orderBy: 'Default', sort: false       },
+    { name: 'Latest', orderBy: 'Date added', sort: 'desc'    },
+    { name: 'Oldest', orderBy: 'Date added', sort: 'asc'     },
+    { name: 'Highest rated', orderBy: 'Rating', sort: 'desc' },
+    { name: 'Lowest rated', orderBy: 'Rating', sort: 'asc'   },
 ]
 const selected = ref(items[0])
 
@@ -36,21 +38,13 @@ const selected = ref(items[0])
                 <ListboxOptions class="origin-top absolute flex flex-col gap-1 mt-2 max-h-60 overflow-auto w-full rounded-2xl bg-gray-lighter text-base shadow-lg focus:outline-none sm:text-sm p-1">
                     <ListboxOption v-slot="{ active, selected }" v-for="item in items" :key="item.name" :value="item" class="text-white text-sm">
                         <li
-                            @click="$emit('select', item.name, 'asc')"
+                            @click="$emit('select', item.orderBy, item.sort)"
                             :class="[
                                 { 'bg-gray-primary' : active || selected },
-                                'cursor-pointer flex justify-between w-full items-center rounded-xl py-2 px-2 transition duration-200',
+                                'cursor-pointer w-full items-center rounded-xl py-2 px-2 transition duration-200',
                             ]"
                         >
-                            <span> {{ item.name }} </span>
-                            <div v-if="item.sort" class="flex h-fit shrink-0 gap-1">
-                                <button> 
-                                    <IconsBottomToTop class="!w-4 !h-4" />
-                                </button>
-                                <button> 
-                                    <IconsTopToBottom class="!w-4 !h-4" />
-                                </button>
-                            </div>
+                            {{ item.name }}
                         </li>
                     </ListboxOption>
                 </ListboxOptions>

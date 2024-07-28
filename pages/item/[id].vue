@@ -94,7 +94,7 @@ async function deleteReview(id) {
                 {{ item.name }}
             </h1>
         </div>
-        <div class="mt-4 lg:mt-6">
+        <div class="flex flex-col w-full gap-2 md:gap-3 mt-4 lg:mt-6">
             <div class="grid grid-cols-4">
                 <div class="flex items-center col-span-3 p-2 bg-gray-dark rounded-2xl">
                     <NuxtImg 
@@ -115,9 +115,7 @@ async function deleteReview(id) {
                     </div>
                 </div>
             </div>
-        </div>
-        <Separator class="mt-4 lg:mt-6" />
-        <div v-if="!loggedIn || (loggedIn && !userLeftReview)" class="flex flex-col mt-4 lg:mt-6">
+            <Separator />
             <AddReviewCard v-if="loggedIn && !userLeftReview" />
             <AuthPrompt v-else-if="!loggedIn">
                 <p class="mx-8 sm:mx-0">
@@ -127,59 +125,58 @@ async function deleteReview(id) {
                     Your preferences will be stored for future visits. 
                 </p>
             </AuthPrompt>
-            <Separator class="mt-4 lg:mt-6" />
-        </div>
-        <div class="sm:ml-1 flex flex-col items-center sm:flex-row gap-2 justify-between mt-4 lg:mt-6">
-            <div class="flex flex-col items-center sm:items-start text-white">
-                <div class="flex items-center gap-1.5 lg:gap-2">
-                    <IconsReview class="size-6 lg:size-7" />
-                    <h1 class="text-2xl lg:text-3xl">
-                        Reviews
-                    </h1>
+            <Separator v-if="!loggedIn || (loggedIn && !userLeftReview)" />
+            <div class="sm:ml-1 flex flex-col items-center sm:flex-row gap-2 justify-between">
+                <div class="flex flex-col items-center sm:items-start text-white">
+                    <div class="flex items-center gap-1.5 lg:gap-2">
+                        <IconsReview class="size-6 lg:size-7" />
+                        <h1 class="text-2xl lg:text-3xl">
+                            Reviews
+                        </h1>
+                    </div>
+                    <p class="text-sm lg:text-base text-center">
+                        Read genuine customer experiences
+                    </p>
                 </div>
-                <p class="text-sm lg:text-base text-center">
-                    Read genuine customer experiences
-                </p>
+                <Select v-if="item.reviews?.length" @select="handleSort" />
             </div>
-            <Select v-if="item.reviews?.length" @select="handleSort" />
-        </div>
-        <div class="mt-4 lg:mt-6">
-            <EmptyState v-if="!item.reviews?.length">
-                <template #title>
-                    No reviews yet
-                </template>
-                <template #content>
-                    <p>
-                        This item doesn't have any reviews yet.
-                    </p>
-                    <p class="hidden md:block">
-                        Add it to your favorites list, and you'll be notified when new reviews are posted.
-                    </p>
-                </template>
-                <template #action>
-                    <Button @click="toggleFavorite" variant="secondary" size="small" class="mt-1 max-w-64"> 
-                        <!-- <IconsBookmark class="!w-5 !h-5 mr-0.5" /> -->
-                        <ClientOnly>
-                            <IconsBookmark
-                                variant="solid"
-                                :class="[
-                                    isFavorite ? 'stroke-red-primary' : 'text-transparent stroke-white',
-                                    '!w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200'
-                                ]"
-                            />
-                            <template #fallback>
+            <div>
+                <EmptyState v-if="!item.reviews?.length">
+                    <template #title>
+                        No reviews yet
+                    </template>
+                    <template #content>
+                        <p>
+                            This item doesn't have any reviews yet.
+                        </p>
+                        <p>
+                            Add it to your favorites list, and you'll be notified when new reviews are posted.
+                        </p>
+                    </template>
+                    <template #action>
+                        <Button @click="toggleFavorite" variant="secondary" size="small" class="mt-1 max-w-52 sm:max-w-60"> 
+                            <ClientOnly>
                                 <IconsBookmark
                                     variant="solid"
-                                    class="text-transparent stroke-white !w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200"
+                                    :class="[
+                                        isFavorite ? 'stroke-red-primary' : 'text-transparent stroke-white',
+                                        '!w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200'
+                                    ]"
                                 />
-                            </template>
-                        </ClientOnly>
-                        {{ isFavorite ? 'REMOVE FROM FAVORITES' : 'ADD TO FAVORITES' }}
-                    </Button>
-                </template>
-            </EmptyState>
-            <div class="flex flex-col gap-2 md:gap-3 mt-4 lg:mt-6">
-                <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" />
+                                <template #fallback>
+                                    <IconsBookmark
+                                        variant="solid"
+                                        class="text-transparent stroke-white !w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200"
+                                    />
+                                </template>
+                            </ClientOnly>
+                            {{ isFavorite ? 'ADDED TO FAVORITES' : 'ADD TO FAVORITES' }}
+                        </Button>
+                    </template>
+                </EmptyState>
+                <div class="flex flex-col gap-2 md:gap-3 mt-2 lg:mt-4">
+                    <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" />
+                </div>
             </div>
         </div>
     </div>
