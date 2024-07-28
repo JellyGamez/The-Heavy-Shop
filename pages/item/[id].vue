@@ -8,7 +8,6 @@ const route = useRoute()
 
 
 const favorites = useFavorites()
-const cart = useCart()
 
 const userFavorites = ref(await favorites.getIds())
 
@@ -21,7 +20,6 @@ async function toggleFavorite() {
     else
         await favorites.addItem(id)
     userFavorites.value = await favorites.getIds()
-    console.log(userFavorites.value)
 }
 
 const orderBy = computed(() => route.query?.orderBy)
@@ -134,8 +132,8 @@ async function deleteReview(id) {
                             Reviews
                         </h1>
                     </div>
-                    <p class="text-sm lg:text-base text-center">
-                        Read genuine customer experiences
+                    <p class="text-sm lg:text-base text-center"> 
+                        Read genuine customer experiences 
                     </p>
                 </div>
                 <div v-if="item.reviews?.length" class="flex items-center">
@@ -149,9 +147,7 @@ async function deleteReview(id) {
                         No reviews yet
                     </template>
                     <template #content>
-                        <p>
-                            Add this item to your favorites list, and you'll be notified when new reviews are posted.
-                        </p>
+                        <p> Add this item to your favorites list, and you'll be notified when new reviews are posted. </p>
                     </template>
                     <template #action>
                         <Button @click="toggleFavorite" variant="secondary" size="small" class="mt-1 max-w-52 sm:max-w-60"> 
@@ -166,7 +162,7 @@ async function deleteReview(id) {
                                 <template #fallback>
                                     <IconsBookmark
                                         variant="solid"
-                                        class="text-transparent stroke-white !w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200"
+                                        class="text-transparent stroke-white !w-4 !h-4 sm:!w-5 sm:!h-5 transition duration-200"
                                     />
                                 </template>
                             </ClientOnly>

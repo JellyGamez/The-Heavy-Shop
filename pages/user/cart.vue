@@ -45,7 +45,6 @@ async function removeItem(id) {
                     </AuthPrompt>
                     <Separator />
                 </div>
-                
                 <div v-if="cartItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
                     <ListItemCard v-for="item in cartItems" :item="item">
                         <template #actions>
@@ -62,14 +61,13 @@ async function removeItem(id) {
                                 </Button>
                             </div>
                             <div class="md:hidden absolute bottom-1 right-1">
-                                <Button size="small" class="!p-2.5" @click="removeItem(item.id)"> 
-                                    <IconsTrashBin class="!w-4 !h-4" />
+                                <Button class="!p-2" @click="removeItem(item.id)"> 
+                                    <IconsTrashBin class="!w-[18px] !h-[18px]" />
                                 </Button>
                             </div>
                         </template>
                     </ListItemCard>
                 </div>
-
                 <EmptyState v-else-if="cartItems">
                     <template #title>
                         Your cart is empty

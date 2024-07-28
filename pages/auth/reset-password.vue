@@ -34,7 +34,7 @@ async function resetPassword() {
     const { error } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
         body: {
-            signedToken: route.params.token,
+            signedToken: route.query.token,
             password: password.value,
             passwordConfirmation: passwordConfirmation.value
         }

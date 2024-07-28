@@ -27,6 +27,7 @@ const userOptions = (!loggedIn) ? [
     { name: 'Log In',   url: '/auth/login'    },
     { name: 'Register', url: '/auth/register' }
 ] : [
+    { name: 'Account',  url: '/user/account'  },
     { name: 'Log Out',  action: 'signOut'     }
 ]
 

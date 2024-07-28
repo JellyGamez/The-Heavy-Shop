@@ -81,7 +81,7 @@ async function credentialsSignIn() {
             </div>
         </form>
         <div class="mt-6 flex flex-col items-center">
-            <Label class="!ml-0"> Or log in using </Label>
+            <p class="text-white text-sm font-extralight my-1"> Or log in using </p>
             <div class="flex gap-3">
                 <button 
                     @click="githubSignIn" 
@@ -100,7 +100,7 @@ async function credentialsSignIn() {
             </div>
         </div>
         <Label class="mt-6 !ml-0 flex flex-wrap items-center justify-center gap-1">
-            Don't have an account yet?
+            <span> Don't have an account yet? </span>
             <NuxtLink to="/auth/register" class="font-normal text-red-primary hover:underline">
                 Register
             </NuxtLink>

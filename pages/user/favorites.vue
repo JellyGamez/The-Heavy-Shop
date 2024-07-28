@@ -9,17 +9,12 @@ useHead({
 
 const loggedIn = useStatus()
 
-const cart = useCart()
 const favorites = useFavorites()
 const favoriteItems = ref(await favorites.getItems())
 
 async function removeItem(id) {
     await favorites.removeItem(id)
     favoriteItems.value = await favorites.getItems()
-}
-
-async function addItemToCart(id) {
-    await cart.addItem(id)
 }
 
 </script>
@@ -34,7 +29,7 @@ async function addItemToCart(id) {
                 </h1>
             </div>
             <p class="text-sm lg:text-base text-center">
-                Bookmark your favorite items here
+                Bookmark your favorite items for later
             </p>
         </div>
         <div class="mt-4 lg:mt-6">
@@ -50,7 +45,6 @@ async function addItemToCart(id) {
                     </AuthPrompt>
                     <Separator />
                 </div>
-
                 <div v-if="favoriteItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
                     <ListItemCard v-for="item in favoriteItems" :key="item.id" :item="item">
                         <template #actions>
@@ -67,14 +61,13 @@ async function addItemToCart(id) {
                                 </Button>
                             </div>
                             <div class="md:hidden absolute bottom-1 right-1">
-                                <Button size="small" class="!p-2.5" @click="removeItem(item.id)"> 
-                                    <IconsTrashBin class="!w-4 !h-4" />
+                                <Button class="!p-2" @click="removeItem(item.id)"> 
+                                    <IconsTrashBin class="!w-[18px] !h-[18px]" />
                                 </Button>
                             </div>
                         </template>
                     </ListItemCard>
                 </div>
-
                 <EmptyState v-else-if="favoriteItems">
                     <template #title>
                         No favorite items yet
@@ -96,7 +89,6 @@ async function addItemToCart(id) {
                         </NuxtLink>
                     </template>
                 </EmptyState>
-
                 <template #fallback>
                     <div class="flex w-full items-center justify-center gap-1">
                         <IconsSpinner class="w-5 h-5 text-white animate-spin mr-1" />

@@ -14,9 +14,9 @@ const selected = ref(items[0])
 <template>
     <HeadlessListbox v-model="selected">
         <div class="relative z-10 text-white">
-            <HeadlessListboxButton class="flex items-center justify-center gap-1 cursor-pointer rounded-2xl bg-gray-dark py-2.5 px-4 pr-5 min-w-40 md:min-w-44 focus:outline-none">
+            <HeadlessListboxButton class="group flex items-center justify-center gap-1 hover:cursor-pointer rounded-2xl bg-gray-dark py-2.5 px-4 pr-5 min-w-40 md:min-w-44 focus:outline-none">
                 <IconsSort class="!w-5 !h-5 md:!w-6 md:!h-6 text-red-light" />
-                <span class="text-sm md:text-base"> {{ selected.name }} </span>
+                <span class="text-sm md:text-base group-hover:text-red-light transition duration-200"> {{ selected.name }} </span>
             </HeadlessListboxButton>
 
             <transition
@@ -33,7 +33,7 @@ const selected = ref(items[0])
                             @click="$emit('select', item.orderBy, item.sort)"
                             :class="[
                                 { 'bg-gray-primary' : active || selected },
-                                'cursor-pointer w-full items-center rounded-xl py-2 px-2 transition duration-200',
+                                'hover:cursor-pointer w-full items-center rounded-xl py-2 px-2 transition duration-200',
                             ]"
                         >
                             {{ item.name }}

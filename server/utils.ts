@@ -4,16 +4,19 @@ export default prisma
 
 async function getUserByEmail(email: string | null | undefined) {
     try {
-        return await prisma.user.findUniqueOrThrow({
+        const { createdAt, ...user } = await prisma.user.findUniqueOrThrow({
             where: {
                 email: email as string
             },
             select: {
                 id: true,
                 name: true,
-                email: true
+                email: true,
+                photoUrl: true,
+                createdAt: true
             }
         })
+        return { ...user, registered: dateFormatter(createdAt) }
     }
     catch(e) { 
         if (email)

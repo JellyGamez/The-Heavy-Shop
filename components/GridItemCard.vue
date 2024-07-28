@@ -19,27 +19,27 @@ const isFavorite = ref(props.item.favorite)
                     preload
                 />
             </NuxtLink>
-            <button 
+            <Button 
                 @click="() => { $emit('toggleFavorite'); isFavorite = !isFavorite }"
                 aria-label="favorite"
-                class="absolute top-0.5 right-0.5 md:top-1 md:right-1 p-1.5 bg-gray-primary rounded-xl shrink-0 h-fit w-fit focus:outline-none"
+                class="absolute top-0.5 right-0.5 md:top-1 md:right-1 !p-1.5 h-fit !w-fit !ring-0"
             > 
                 <ClientOnly>
                     <IconsBookmark
                         variant="solid"
                         :class="[
-                            isFavorite ? 'stroke-gray-primary' : 'text-gray-primary stroke-white',
-                            '!w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200'
+                            isFavorite ? 'stroke-gray-primary' : 'text-transparent stroke-white',
+                            '!w-[20px] !h-[20px] transition duration-200'
                         ]"
                     />
                     <template #fallback>
                         <IconsBookmark
                             variant="solid"
-                            class="text-gray-primary stroke-white !w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200"
+                            class="text-transparent stroke-white !w-[20px] !h-[20px] transition duration-200"
                         />
                     </template>
                 </ClientOnly>
-            </button>
+            </Button>
         </div>
         
         <div class="flex flex-col mx-2">
@@ -56,10 +56,6 @@ const isFavorite = ref(props.item.favorite)
         </div>
 
         <div class="flex items-end h-full">
-            <!-- <Button size="small" @click="$emit('addToCart')"> 
-                <IconsShoppingCart class="!w-4 !h-4 sm:mb-0.5" />
-                <span> Add to cart </span>
-            </Button> -->
             <NuxtLink :to='`/item/${item.id}`' class="w-full">
                 <Button size="small"> 
                     <span> View item </span>

@@ -27,7 +27,7 @@ async function main() {
         },
     })
 
-    for (let i = 1; i <= 10; i++) {
+    for (let i = 1; i <= 9; i++) {
         await prisma.user.create({
             data: {
                 email: faker.internet.email(),
