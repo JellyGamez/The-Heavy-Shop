@@ -24,7 +24,6 @@ bus.on(function (event, attribute) {
 			<p class="text-center text-sm font-light"> 
 				This action is irreversible.
 			</p>
-
 			<div class="mt-8 flex gap-4">
 				<Button variant="secondary" @click="() => isOpen = false">
 					CANCEL

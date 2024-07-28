@@ -50,6 +50,7 @@ useHead({
                     <NuxtLink to="/shop" class="w-fit mx-auto xl:mx-0">
                         <Button variant="secondary" size="large" class="font-kanit">
                             SHOP NOW
+                            <IconsDoubleChevronRight />
                         </Button>
                     </NuxtLink>
                 </div>

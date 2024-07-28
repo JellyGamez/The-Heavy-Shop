@@ -44,12 +44,12 @@ const bus = useEventBus('modal')
                 <div class="flex flex-col w-full overflow-hidden text-white">
                     <div class="flex flex-wrap justify-between items-center gap-x-4 gap-y-2 px-2">
                         <Rating :rating="review.rating" />
-                        <div class="flex items-center gap-x-1">
-                            <IconsCalendar />
+                        <div class="flex items-center gap-x-1.5">
+                            <IconsClock class="md:mb-0.5"/>
                             <p class="text-xs md:text-sm font-light"> {{ review.createdAt }} </p>
                         </div>
                     </div>
-                    <p class="text-sm md:text-base rounded-xl bg-gray-primary px-3 py-2 md:px-3.5 md:py-2.5 font-extralight mt-3.5 "> {{ review.content }} </p>
+                    <p class="text-sm md:text-base rounded-xl bg-gray-primary px-3 py-2 md:px-3.5 md:py-2.5 font-extralight mt-3.5"> {{ review.content }} </p>
                 </div>
             </div>
         </div>

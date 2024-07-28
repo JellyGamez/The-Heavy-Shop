@@ -70,7 +70,7 @@ async function main() {
             data: {
                 name: faker.commerce.productName(),
                 description: faker.commerce.productDescription(),
-                price: faker.number.float({ min: 10, max: 500, multipleOf: 0.01 }),
+                price: faker.number.float({ min: 10, max: 99, multipleOf: 0.01 }),
                 photoUrl: faker.image.url(),
                 reviews: {
                     create: reviews

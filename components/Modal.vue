@@ -6,7 +6,7 @@ const isOpen = defineModel()
 
 <template>
 	<HeadlessTransitionRoot appear :show="isOpen" as="template">
-		<HeadlessDialog as="div" @close="() => isOpen = false" class="relative z-10">
+		<HeadlessDialog as="div" @close="() => isOpen = false" class="relative z-50">
 			<HeadlessTransitionChild 
 				as="template" 
 				enter="duration-200 ease-out" 

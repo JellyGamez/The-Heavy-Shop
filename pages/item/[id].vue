@@ -138,7 +138,10 @@ async function deleteReview(id) {
                         Read genuine customer experiences
                     </p>
                 </div>
-                <Select v-if="item.reviews?.length" @select="handleSort" />
+                <div v-if="item.reviews?.length" class="flex items-center">
+                    <p class="hidden sm:block text-sm text-white mr-2"> Sort by </p>
+                    <Sort @select="handleSort" />
+                </div>
             </div>
             <div>
                 <EmptyState v-if="!item.reviews?.length">
@@ -147,10 +150,7 @@ async function deleteReview(id) {
                     </template>
                     <template #content>
                         <p>
-                            This item doesn't have any reviews yet.
-                        </p>
-                        <p>
-                            Add it to your favorites list, and you'll be notified when new reviews are posted.
+                            Add this item to your favorites list, and you'll be notified when new reviews are posted.
                         </p>
                     </template>
                     <template #action>
@@ -160,7 +160,7 @@ async function deleteReview(id) {
                                     variant="solid"
                                     :class="[
                                         isFavorite ? 'stroke-red-primary' : 'text-transparent stroke-white',
-                                        '!w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200'
+                                        '!w-4 !h-4 sm:!w-5 sm:!h-5 transition duration-200'
                                     ]"
                                 />
                                 <template #fallback>

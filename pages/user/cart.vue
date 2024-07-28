@@ -50,10 +50,12 @@ async function removeItem(id) {
                     <ListItemCard v-for="item in cartItems" :item="item">
                         <template #actions>
                             <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
-                                <!-- <Button variant="secondary" size="small" class="flex items-center justify-center space-x-1"> 
-                                    <IconsShoppingCart class="!w-5 !h-5" />
-                                    <span> Add to cart </span>
-                                </Button> -->
+                                <NuxtLink :to='`/item/${item.id}`'>
+                                    <Button variant="secondary" size="small"> 
+                                        <span> View item </span>
+                                        <IconsDoubleChevronRight class="!w-3.5 !h-3.5" />
+                                    </Button>
+                                </NuxtLink>
                                 <Button size="small" @click="removeItem(item.id)"> 
                                     <IconsTrashBin class="!w-5 !h-5" />
                                     <span> Remove </span>
@@ -83,8 +85,8 @@ async function removeItem(id) {
                     <template #action>
                         <NuxtLink to="/shop" class="max-w-32 sm:max-w-40 w-full">
                             <Button variant="secondary" size="small" class="mt-1"> 
-                                <IconsShoppingCart class="!w-5 !h-5" />
-                                SHOP NOW 
+                                SHOP NOW
+                                <IconsDoubleChevronRight class="!w-4 !h-4"/>
                             </Button>
                         </NuxtLink>
                     </template>

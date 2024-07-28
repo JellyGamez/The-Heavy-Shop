@@ -13,33 +13,33 @@ const isFavorite = ref(props.item.favorite)
         <div class="relative">
             <NuxtLink :to='`/item/${item.id}`'>
                 <NuxtImg 
-                    :src="item.photoUrl" 
-                    :alt="item.name" 
-                    class="h-48 xl:h-56 w-full object-cover rounded-xl" 
-                    preload 
+                    :src="item.photoUrl"
+                    :alt="item.name"
+                    class="h-48 xl:h-56 w-full object-cover rounded-xl"
+                    preload
                 />
             </NuxtLink>
-                <button 
-                    @click="() => { $emit('toggleFavorite'); isFavorite = !isFavorite }"
-                    aria-label="favorite"
-                    class="absolute top-0.5 right-0.5 md:top-1 md:right-1 p-1.5 bg-gray-primary rounded-xl shrink-0 h-fit w-fit focus:outline-none" 
-                > 
-                    <ClientOnly>
+            <button 
+                @click="() => { $emit('toggleFavorite'); isFavorite = !isFavorite }"
+                aria-label="favorite"
+                class="absolute top-0.5 right-0.5 md:top-1 md:right-1 p-1.5 bg-gray-primary rounded-xl shrink-0 h-fit w-fit focus:outline-none"
+            > 
+                <ClientOnly>
+                    <IconsBookmark
+                        variant="solid"
+                        :class="[
+                            isFavorite ? 'stroke-gray-primary' : 'text-gray-primary stroke-white',
+                            '!w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200'
+                        ]"
+                    />
+                    <template #fallback>
                         <IconsBookmark
                             variant="solid"
-                            :class="[
-                                isFavorite ? 'stroke-gray-primary' : 'text-gray-primary stroke-white',
-                                '!w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200'
-                            ]"
+                            class="text-gray-primary stroke-white !w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200"
                         />
-                        <template #fallback>
-                            <IconsBookmark
-                                variant="solid"
-                                class="text-gray-primary stroke-white !w-[18px] !h-[18px] sm:!w-[22px] sm:!h-[22px] transition duration-200"
-                            />
-                        </template>
-                    </ClientOnly>
-                </button>
+                    </template>
+                </ClientOnly>
+            </button>
         </div>
         
         <div class="flex flex-col mx-2">
@@ -56,10 +56,16 @@ const isFavorite = ref(props.item.favorite)
         </div>
 
         <div class="flex items-end h-full">
-            <Button size="small" @click="$emit('addToCart')"> 
+            <!-- <Button size="small" @click="$emit('addToCart')"> 
                 <IconsShoppingCart class="!w-4 !h-4 sm:mb-0.5" />
                 <span> Add to cart </span>
-            </Button>
+            </Button> -->
+            <NuxtLink :to='`/item/${item.id}`' class="w-full">
+                <Button size="small"> 
+                    <span> View item </span>
+                    <IconsDoubleChevronRight class="!w-3.5 !h-3.5" />
+                </Button>
+            </NuxtLink>
         </div>
     </div>
 </template>
