@@ -13,7 +13,7 @@ const props = defineProps({
                 <NuxtImg 
                     :src="item.photoUrl" 
                     :alt="item.name" 
-                    class="w-32 h-32 md:w-44 md:h-44 object-cover rounded-xl" 
+                    class="size-32 md:size-44 object-cover rounded-xl" 
                     preload 
                 />
             </NuxtLink>

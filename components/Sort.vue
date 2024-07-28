@@ -15,7 +15,7 @@ const selected = ref(items[0])
     <HeadlessListbox v-model="selected">
         <div class="relative z-10 text-white">
             <HeadlessListboxButton class="group flex items-center justify-center gap-1 hover:cursor-pointer rounded-2xl bg-gray-dark py-2.5 px-4 pr-5 min-w-40 md:min-w-44 focus:outline-none">
-                <IconsSort class="!w-5 !h-5 md:!w-6 md:!h-6 text-red-light" />
+                <IconsSort class="!size-5 md:!size-6 text-red-light" />
                 <span class="text-sm md:text-base group-hover:text-red-light transition duration-200"> {{ selected.name }} </span>
             </HeadlessListboxButton>
 

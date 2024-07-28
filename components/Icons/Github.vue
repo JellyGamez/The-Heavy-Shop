@@ -1,6 +1,6 @@
 <template>
 
-    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="w-10 h-10">
+    <svg viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="size-10">
         <g stroke="none" stroke-width="1" fill-rule="evenodd">
             <g transform="translate(-140.000000, -7559.000000)">
                 <g transform="translate(56.000000, 160.000000)">

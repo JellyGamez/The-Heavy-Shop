@@ -21,7 +21,7 @@ const bus = useEventBus('modal')
                             <NuxtImg 
                                 src="/img/avatar.webp" 
                                 alt="User avatar" 
-                                class="w-11 h-11 object-cover rounded-full" 
+                                class="size-11 object-cover rounded-full" 
                                 preload 
                             />
                             <p class="truncate"> {{ review.author.name }} </p>
@@ -34,10 +34,10 @@ const bus = useEventBus('modal')
 
                     <div v-if="isOwner" class="flex h-fit shrink-0 gap-2">
                         <Button @click="() => bus.emit('editReview', { id: review.id, rating: review.rating, review: review.content })" size="small" class="!p-2.5"> 
-                            <IconsPencil class="!w-4 !h-4" />
+                            <IconsPencil class="!size-4" />
                         </Button>
                         <Button @click="() => bus.emit('confirmation', review.id)" size="small" class="!p-2.5"> 
-                            <IconsTrashBin class="!w-4 !h-4" />
+                            <IconsTrashBin class="!size-4" />
                         </Button>
                     </div>
                 </div>
@@ -45,7 +45,7 @@ const bus = useEventBus('modal')
                     <div class="flex flex-wrap justify-between items-center gap-x-4 gap-y-2 px-2">
                         <Rating :rating="review.rating" />
                         <div class="flex items-center gap-x-1.5">
-                            <IconsClock class="md:mb-0.5"/>
+                            <IconsClock class="md:mb-0.5" />
                             <p class="text-xs md:text-sm font-light"> {{ review.createdAt }} </p>
                         </div>
                     </div>

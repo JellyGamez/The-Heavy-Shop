@@ -24,21 +24,21 @@ const hoverRating = ref(0)
             >
                 <template v-for="n in parseInt(hoverRating)">
                     <IconsStar 
-                        class="text-yellow-primary !w-7 !h-7" 
+                        class="text-yellow-primary !size-7" 
                         @mouseover="() => hoverRating = n" 
                         @click="() => rating = hoverRating" 
                     />
                 </template>
                 <template v-for="n in 5 - parseInt(hoverRating)">
                     <IconsStar 
-                        class="text-gray-light !w-7 !h-7" 
+                        class="text-gray-light !size-7" 
                         @mouseover="() => hoverRating = hoverRating + n" 
                         @click="() => rating = hoverRating" 
                     />
                 </template>
             </div>
             <Button @click="() => bus.emit('addReview', { rating: rating })" variant="secondary" size="small" class="mt-1 max-w-32 sm:max-w-40"> 
-                <IconsReview class="!w-4 !h-4 sm:!w-5 sm:!h-5"/>
+                <IconsReview class="!size-4 sm:!size-5" />
                 <span> ADD A REVIEW </span>
             </Button>
         </div>

@@ -52,17 +52,17 @@ async function removeItem(id) {
                                 <NuxtLink :to='`/item/${item.id}`'>
                                     <Button variant="secondary" size="small"> 
                                         <span> View item </span>
-                                        <IconsDoubleChevronRight class="!w-3.5 !h-3.5" />
+                                        <IconsDoubleChevronRight class="!size-3.5" />
                                     </Button>
                                 </NuxtLink>
                                 <Button size="small" @click="removeItem(item.id)"> 
-                                    <IconsTrashBin class="!w-5 !h-5" />
+                                    <IconsTrashBin class="!size-5" />
                                     <span> Remove </span>
                                 </Button>
                             </div>
                             <div class="md:hidden absolute bottom-1 right-1">
                                 <Button class="!p-2" @click="removeItem(item.id)"> 
-                                    <IconsTrashBin class="!w-[18px] !h-[18px]" />
+                                    <IconsTrashBin class="!size-[18px]" />
                                 </Button>
                             </div>
                         </template>
@@ -84,14 +84,14 @@ async function removeItem(id) {
                         <NuxtLink to="/shop" class="max-w-32 sm:max-w-40 w-full">
                             <Button variant="secondary" size="small" class="mt-1"> 
                                 SHOP NOW
-                                <IconsDoubleChevronRight class="!w-4 !h-4"/>
+                                <IconsDoubleChevronRight class="!size-4" />
                             </Button>
                         </NuxtLink>
                     </template>
                 </EmptyState>
                 <template #fallback>
                     <div class="flex w-full items-center justify-center gap-1">
-                        <IconsSpinner class="w-5 h-5 text-white animate-spin mr-1" />
+                        <IconsSpinner class="size-5 text-white animate-spin mr-1" />
                         <h1 class="text-xl text-center text-white py-10">
                             Loading items...
                         </h1>

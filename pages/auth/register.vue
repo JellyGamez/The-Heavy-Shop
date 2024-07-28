@@ -70,7 +70,7 @@ async function register() {
                 <div>
                     <Label for="name"> Name </Label>
                     <TextInput v-model="name" name="name" id="name" type="text" autocomplete="name">
-                        <IconsUser class="!w-5 !h-5 text-white" />
+                        <IconsUser class="!size-5 text-white" />
                     </TextInput>
                 </div>
                 <div>
@@ -100,7 +100,7 @@ async function register() {
             </div>
         </form>
         <div class="text-white text-sm font-extralight my-1"></div>
-        <Label class="mt-8 !ml-0 flex flex-wrap items-center justify-center gap-1 ">
+        <Label class="mt-8 !ml-0 flex flex-wrap items-center justify-center gap-1">
             <span> Already have an account? </span>
             <NuxtLink to="/auth/login" class="font-normal text-red-primary hover:underline">
                 Log in

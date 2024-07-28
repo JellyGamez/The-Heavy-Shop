@@ -29,13 +29,13 @@ const isFavorite = ref(props.item.favorite)
                         variant="solid"
                         :class="[
                             isFavorite ? 'stroke-gray-primary' : 'text-transparent stroke-white',
-                            '!w-[20px] !h-[20px] transition duration-200'
+                            '!size-5 transition duration-200'
                         ]"
                     />
                     <template #fallback>
                         <IconsBookmark
                             variant="solid"
-                            class="text-transparent stroke-white !w-[20px] !h-[20px] transition duration-200"
+                            class="text-transparent stroke-white !size-5 transition duration-200"
                         />
                     </template>
                 </ClientOnly>
@@ -59,7 +59,7 @@ const isFavorite = ref(props.item.favorite)
             <NuxtLink :to='`/item/${item.id}`' class="w-full">
                 <Button size="small"> 
                     <span> View item </span>
-                    <IconsDoubleChevronRight class="!w-3.5 !h-3.5" />
+                    <IconsDoubleChevronRight class="!size-3.5" />
                 </Button>
             </NuxtLink>
         </div>

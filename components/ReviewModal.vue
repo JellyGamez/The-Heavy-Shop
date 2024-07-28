@@ -89,14 +89,14 @@ async function editReview() {
 					<div class="flex hover:cursor-pointer w-fit mx-auto" @mouseleave="() => hoverRating = rating">
 						<template v-for="n in parseInt(hoverRating)">
 							<IconsStar 
-								class="text-yellow-primary !w-7 !h-7" 
+								class="text-yellow-primary !size-7" 
 								@mouseover="() => hoverRating = n" 
 								@click="() => rating = hoverRating" 
 							/>
 						</template>
 						<template v-for="n in 5 - parseInt(hoverRating)">
 							<IconsStar 
-								class="text-gray-light !w-7 !h-7" 
+								class="text-gray-light !size-7" 
 								@mouseover="() => hoverRating = hoverRating + n" 
 								@click="() => rating = hoverRating" 
 							/>
@@ -110,11 +110,11 @@ async function editReview() {
 						{{ errorMessage }}
 					</Error>
 					<Button v-if="action === 'addReview'" type="submit">
-						<IconsReview class="!w-4 !h-4" />
+						<IconsReview class="!size-4" />
 						<span> ADD REVIEW </span>
 					</Button>
 					<Button v-else type="submit">
-						<IconsPencil class="!w-4 !h-4" />
+						<IconsPencil class="!size-4" />
 						<span> EDIT REVIEW </span>
 					</Button>
 				</div>

@@ -98,7 +98,7 @@ async function deleteReview(id) {
                     <NuxtImg 
                         :src="item.photoUrl" 
                         :alt="item.name" 
-                        class="w-[450px] h-[450px] object-cover rounded-xl" 
+                        class="size-[450px] object-cover rounded-xl" 
                         preload 
                     />
                     <div class="flex flex-col w-full justify-between overflow-hidden text-white my-1 md:my-2 mr-2 ml-4 md:ml-6">
@@ -141,7 +141,7 @@ async function deleteReview(id) {
                     <Sort @select="handleSort" />
                 </div>
             </div>
-            <div>
+            <div class="mt-2 lg:mt-4">
                 <EmptyState v-if="!item.reviews?.length">
                     <template #title>
                         No reviews yet
@@ -150,19 +150,19 @@ async function deleteReview(id) {
                         <p> Add this item to your favorites list, and you'll be notified when new reviews are posted. </p>
                     </template>
                     <template #action>
-                        <Button @click="toggleFavorite" variant="secondary" size="small" class="mt-1 max-w-52 sm:max-w-60"> 
+                        <Button @click="toggleFavorite" variant="secondary" size="small" class="mt-1 max-w-48 sm:max-w-56 w-full"> 
                             <ClientOnly>
                                 <IconsBookmark
                                     variant="solid"
                                     :class="[
                                         isFavorite ? 'stroke-red-primary' : 'text-transparent stroke-white',
-                                        '!w-4 !h-4 sm:!w-5 sm:!h-5 transition duration-200'
+                                        '!size-4 sm:!size-5 transition duration-200'
                                     ]"
                                 />
                                 <template #fallback>
                                     <IconsBookmark
                                         variant="solid"
-                                        class="text-transparent stroke-white !w-4 !h-4 sm:!w-5 sm:!h-5 transition duration-200"
+                                        class="text-transparent stroke-white !size-4 sm:!size-5 transition duration-200"
                                     />
                                 </template>
                             </ClientOnly>
@@ -170,7 +170,7 @@ async function deleteReview(id) {
                         </Button>
                     </template>
                 </EmptyState>
-                <div class="flex flex-col gap-2 md:gap-3 mt-2 lg:mt-4">
+                <div class="flex flex-col gap-2 md:gap-3">
                     <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" />
                 </div>
             </div>

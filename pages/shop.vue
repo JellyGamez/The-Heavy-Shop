@@ -31,20 +31,6 @@ async function toggleFavorite(id) {
 }
 
 const display = computed(() => route.query?.display ?? 'grid')
-if (display.value !== 'grid' && display.value !== 'list')
-    throw createError({
-        statusCode: 500,
-        statusMessage: 'Something went wrong.'
-    })
-
-async function handleDisplay(display) {
-    await navigateTo({
-        path: route.path,
-        query: {
-            display: display
-        }
-    })
-}
 
 </script>
 
@@ -64,14 +50,7 @@ async function handleDisplay(display) {
             </div>
             <div class="flex items-center text-white">
                 <p class="hidden sm:block text-sm text-white mr-2"> Display </p>
-                <div class="flex items-center gap-1 justify-center rounded-2xl bg-gray-dark py-1.5 px-2">
-                    <button @click="handleDisplay('grid')" class="p-1 rounded-xl outline-none">
-                        <IconsGrid :class="[display === 'grid' ? 'text-red-light' : 'text-white hover:text-red-light', 'transition duration-200']" />
-                    </button>
-                    <button @click="handleDisplay('list')" class="p-1 rounded-xl outline-none transition duration-200">
-                        <IconsList :class="[display === 'list' ? 'text-red-light' : 'text-white hover:text-red-light', 'transition duration-200']" />
-                    </button>
-                </div>
+                <Display />
                 <p class="hidden sm:block text-sm text-white mr-2 ml-4"> Sort by </p>
                 <Sort @select="handleSort" />
             </div>
@@ -96,7 +75,7 @@ async function handleDisplay(display) {
                         <NuxtLink :to='`/item/${item.id}`'>
                             <Button variant="secondary" size="small"> 
                                 <span> View item </span>
-                                <IconsDoubleChevronRight class="!w-3.5 !h-3.5" />
+                                <IconsDoubleChevronRight class="!size-3.5" />
                             </Button>
                         </NuxtLink>
                         <Button size="small" @click="toggleFavorite(item.id)"> 
@@ -105,13 +84,13 @@ async function handleDisplay(display) {
                                     variant="solid"
                                     :class="[
                                         isFavorite(item.id) ? 'stroke-gray-lighter' : 'text-transparent stroke-white',
-                                        '!w-5 !h-5 transition duration-200'
+                                        '!size-5 transition duration-200'
                                     ]"
                                 />
                                 <template #fallback>
                                     <IconsBookmark
                                         variant="solid"
-                                        class="text-transparent stroke-white !w-5 !h-5 transition duration-200"
+                                        class="text-transparent stroke-white !size-5 transition duration-200"
                                     />
                                 </template>
                             </ClientOnly>
@@ -129,13 +108,13 @@ async function handleDisplay(display) {
                                     variant="solid"
                                     :class="[
                                         isFavorite(item.id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
-                                        '!w-[18px] !h-[18px] transition duration-200'
+                                        '!size-[18px] transition duration-200'
                                     ]"
                                 />
                                 <template #fallback>
                                     <IconsBookmark
                                         variant="solid"
-                                        class="text-transparent stroke-white !w-[18px] !h-[18px]  transition duration-200"
+                                        class="text-transparent stroke-white !size-[18px] transition duration-200"
                                     />
                                 </template>
                             </ClientOnly>

@@ -1,6 +1,6 @@
 <template>
     <div class="flex flex-col sm:flex-row items-center gap-y-2 gap-x-3 p-3 w-full rounded-2xl bg-gray-dark text-white">
-        <IconsUser class="hidden sm:block !w-8 !h-8 shrink-0" />
+        <IconsUser class="hidden sm:block !size-8 shrink-0" />
         <div class="text-sm text-center sm:text-left w-full flex flex-col"> 
             <slot />
         </div>
