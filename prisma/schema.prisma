@@ -18,6 +18,7 @@ model User {
   email              String     @unique
   password           String
   passwordResetToken String?
+  photoUrl           String?
   cart               Cart?
   favorites          Favorites?
   reviews            Review[]
