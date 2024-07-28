@@ -15,7 +15,7 @@ const bus = useEventBus('modal')
     <div>
         <div class="relative flex justify-between w-full p-1 md:p-1.5 rounded-2xl bg-gray-dark">
             <div class="flex flex-col w-full gap-3 overflow-hidden">
-                <div class="flex text-white justify-between gap-2 p-2">
+                <div class="flex text-white justify-between gap-2 p-2 pb-0">
                     <div class="flex flex-col gap-3 truncate">
                         <div class="flex items-center gap-2 w-fit">
                             <NuxtImg 
