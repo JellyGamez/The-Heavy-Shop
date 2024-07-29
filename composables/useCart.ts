@@ -62,7 +62,7 @@ export default function useCart() {
             const ids = await getIds()
             const index = ids.indexOf(id)
             if (index !== -1) {
-                ids.splice(index, 1);
+                ids.splice(index, 1)
                 localStorage.setItem('cart', JSON.stringify(Array.from(ids)))
             }
         }

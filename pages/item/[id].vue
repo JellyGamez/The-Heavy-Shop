@@ -3,14 +3,10 @@
 import { useToast } from 'vue-toastification'
 
 const toast = useToast()
-
 const route = useRoute()
 
-
 const favorites = useFavorites()
-
 const userFavorites = ref(await favorites.getIds())
-
 const isFavorite = computed(() => userFavorites?.value?.some(item => item === route.params.id))
 
 async function toggleFavorite() {
@@ -40,7 +36,6 @@ const handleSort = async (orderBy, sort) => {
     refreshNuxtData('item')
 }
 const headers = useRequestHeaders(['cookie'])
-
 const { data: user } = await useFetch('/api/user')
 const { error, data: item } = await useAsyncData('item', () => $fetch(`/api${route.path}`, {
     query: {
@@ -49,9 +44,8 @@ const { error, data: item } = await useAsyncData('item', () => $fetch(`/api${rou
     }, 
     headers
 }))
-if (error.value) {
+if (error.value)
     throw createError(error.value)
-}
 
 useHead({
     title: item?.value?.name,
@@ -72,7 +66,6 @@ async function deleteReview(id) {
     const { error } = await useFetch(`/api/review/${id}`, {
         method: 'DELETE'
     })
-
     if (!error.value) {
         refreshNuxtData('item')
         toast.success('Review deleted successfully!')
@@ -86,7 +79,11 @@ async function deleteReview(id) {
 <template>
     <div>
         <ReviewModal />
-        <ConfirmationModal @confirm="deleteReview" />
+        <ConfirmationModal 
+            title="Are you sure you want to delete this review?"
+            description="This action is irreversible."
+            @confirm="deleteReview"
+        />
         <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
             <h1 class="text-2xl lg:text-3xl text-white">
                 {{ item.name }}
@@ -102,14 +99,18 @@ async function deleteReview(id) {
                         preload 
                     />
                     <div class="flex flex-col w-full justify-between overflow-hidden text-white my-1 md:my-2 mr-2 ml-4 md:ml-6">
-                        <div>
-                            <div class="flex items-center gap-2 my-1 md:my-2">
-                                <p class="text-lg"> {{ parseFloat(item.rating).toFixed(2) }}</p>
-                                <Rating :rating="item.rating" class="mb-0.5" />
-                                <p class="text-lg text-gray-lightest"> ({{ item.reviews.length }}) </p>
-                            </div>
-                            <p class="text-lg md:text-xl font-light text-gray-lightest w-full"> {{ item.description }} </p>
+                        <div class="flex items-center gap-2 my-1 md:my-2">
+                            <p class="text-lg"> 
+                                {{ parseFloat(item.rating).toFixed(2) }}
+                            </p>
+                            <Rating :rating="item.rating" class="mb-0.5" />
+                            <p class="text-lg text-gray-lightest"> 
+                                ({{ item.reviews.length }}) 
+                            </p>
                         </div>
+                        <p class="text-lg md:text-xl font-light text-gray-lightest w-full"> 
+                            {{ item.description }} 
+                        </p>
                     </div>
                 </div>
             </div>
@@ -137,7 +138,9 @@ async function deleteReview(id) {
                     </p>
                 </div>
                 <div v-if="item.reviews?.length" class="flex items-center">
-                    <p class="hidden sm:block text-sm text-white mr-2"> Sort by </p>
+                    <p class="hidden sm:block text-sm text-white mr-2"> 
+                        Sort by 
+                    </p>
                     <Sort @select="handleSort" />
                 </div>
             </div>
@@ -147,10 +150,18 @@ async function deleteReview(id) {
                         No reviews yet
                     </template>
                     <template #content>
-                        <p> Add this item to your favorites list, and you'll be notified when new reviews are posted. </p>
+                        <p> 
+                            Add this item to your favorites list, and you'll be notified when new reviews are posted. 
+                        </p>
                     </template>
                     <template #action>
-                        <Button @click="toggleFavorite" variant="secondary" size="small" class="mt-1 max-w-48 sm:max-w-56 w-full"> 
+                        <Button 
+                            @click="toggleFavorite" 
+                            variant="secondary" 
+                            size="small" 
+                            aria-label="favorite"
+                            class="mt-1 max-w-48 sm:max-w-56 w-full"
+                        > 
                             <ClientOnly>
                                 <IconsBookmark
                                     variant="solid"
@@ -171,7 +182,11 @@ async function deleteReview(id) {
                     </template>
                 </EmptyState>
                 <div class="flex flex-col gap-2 md:gap-3">
-                    <ReviewCard v-for="review in item.reviews" :review="review" :isOwner="isOwner(review)" />
+                    <ReviewCard 
+                        v-for="review in item.reviews" 
+                        :review="review" 
+                        :isOwner="isOwner(review)" 
+                    />
                 </div>
             </div>
         </div>

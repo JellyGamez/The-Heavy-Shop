@@ -22,16 +22,17 @@ const { syncItems: syncFavorites } = useFavorites()
 
 const email = ref('')
 const password = ref('')
-
 const errorMessage = ref()
 const loading = ref(false)
 
 async function githubSignIn() {
     await signIn('github')
 }
+
 async function discordSignIn() {
     await signIn('discord')
 }
+
 async function credentialsSignIn() {
     loading.value = true
     errorMessage.value = null
@@ -57,13 +58,24 @@ async function credentialsSignIn() {
             <div class="flex flex-col gap-4">
                 <div>
                     <Label for="email"> Email </Label>
-                    <TextInput v-model="email" name="email" id="email" type="email" autocomplete="email">
+                    <TextInput 
+                        v-model="email" 
+                        name="email" 
+                        id="email" 
+                        type="email" 
+                        autocomplete="email"
+                    >
                         <IconsMail />
                     </TextInput>
                 </div>
                 <div>
                     <Label for="password"> Password </Label>
-                    <TextInput v-model="password" name="password" id="password" type="password">
+                    <TextInput 
+                        v-model="password" 
+                        name="password" 
+                        id="password" 
+                        type="password"
+                    >
                         <IconsKey />
                     </TextInput>
                     <Label>
@@ -72,16 +84,19 @@ async function credentialsSignIn() {
                         </NuxtLink>
                     </Label>
                 </div>
-                <Error class="text-center">
-                    {{ errorMessage }}
-                </Error>
-                <Button type="submit" :variant="loading ? 'loading' : 'primary'">
+                <Error class="text-center"> {{ errorMessage }} </Error>
+                <Button 
+                    type="submit" 
+                    :variant="loading ? 'loading' : 'primary'"
+                >
                     LOG IN
                 </Button>
             </div>
         </form>
         <div class="mt-6 flex flex-col items-center">
-            <p class="text-white text-sm font-extralight my-1"> Or log in using </p>
+            <p class="text-white text-sm font-extralight my-1"> 
+                Or log in using 
+            </p>
             <div class="flex gap-3">
                 <button 
                     @click="githubSignIn" 

@@ -7,6 +7,10 @@ useHead({
     ],
 })
 
+definePageMeta({
+    middleware: 'query-validation'
+})
+
 const route = useRoute()
 
 const page = computed(() => route.params.page ?? 1)
@@ -15,7 +19,6 @@ const { data: items } = await useFetch('/api/item', {
 })
 
 const favorites = useFavorites()
-
 const userFavorites = ref(await favorites.getIds())
 
 function isFavorite(id) {
@@ -49,79 +52,91 @@ const display = computed(() => route.query?.display ?? 'grid')
                 </p>
             </div>
             <div class="flex items-center text-white">
-                <p class="hidden sm:block text-sm text-white mr-2"> Display </p>
+                <p class="hidden sm:block text-sm text-white mr-2"> 
+                    Display 
+                </p>
                 <Display />
-                <p class="hidden sm:block text-sm text-white mr-2 ml-4"> Sort by </p>
+                <p class="hidden sm:block text-sm text-white mr-2 ml-4"> 
+                    Sort by 
+                </p>
                 <Sort @select="handleSort" />
             </div>
         </div>
-        <div class="mt-4 lg:mt-6 mx-auto"> </div>
-        <div v-if="display === 'grid'" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 max-w-fit mx-auto">
-            <GridItemCard 
-                v-for="item in items" 
-                :key="item.id" 
-                :item="{ ...item, favorite: isFavorite(item.id) }" 
-                @toggleFavorite="toggleFavorite(item.id)"
-            />
-        </div>
-        <div v-else-if="display === 'list'" class="flex flex-col gap-2 md:gap-3">
-            <ListItemCard 
-                v-for="item in items" 
-                :key="item.id" 
-                :item="item"
-            >
-                <template #actions>
-                    <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
-                        <NuxtLink :to='`/item/${item.id}`'>
-                            <Button variant="secondary" size="small"> 
-                                <span> View item </span>
-                                <IconsDoubleChevronRight class="!size-3.5" />
+        <div class="mt-4 lg:mt-6">
+            <div v-if="display === 'grid'" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 max-w-fit mx-auto">
+                <GridItemCard 
+                    v-for="item in items" 
+                    :key="item.id" 
+                    :item="{ ...item, favorite: isFavorite(item.id) }" 
+                    @toggleFavorite="toggleFavorite(item.id)"
+                />
+            </div>
+            <div v-else-if="display === 'list'" class="flex flex-col gap-2 md:gap-3">
+                <ListItemCard 
+                    v-for="item in items" 
+                    :key="item.id" 
+                    :item="item"
+                >
+                    <template #actions>
+                        <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
+                            <NuxtLink :to='`/item/${item.id}`'>
+                                <Button 
+                                    variant="secondary" 
+                                    size="small"
+                                > 
+                                    <span> View item </span>
+                                    <IconsDoubleChevronRight class="!size-3.5" />
+                                </Button>
+                            </NuxtLink>
+                            <Button 
+                                @click="toggleFavorite(item.id)"
+                                aria-label="favorite"
+                                size="small" 
+                            > 
+                                <ClientOnly>
+                                    <IconsBookmark
+                                        variant="solid"
+                                        :class="[
+                                            isFavorite(item.id) ? 'stroke-gray-lighter' : 'text-transparent stroke-white',
+                                            '!size-5 transition duration-200'
+                                        ]"
+                                    />
+                                    <template #fallback>
+                                        <IconsBookmark
+                                            variant="solid"
+                                            class="text-transparent stroke-white !size-5 transition duration-200"
+                                        />
+                                    </template>
+                                </ClientOnly>
+                                {{ isFavorite(item.id) ? 'Remove' : 'Add' }}
                             </Button>
-                        </NuxtLink>
-                        <Button size="small" @click="toggleFavorite(item.id)"> 
-                            <ClientOnly>
-                                <IconsBookmark
-                                    variant="solid"
-                                    :class="[
-                                        isFavorite(item.id) ? 'stroke-gray-lighter' : 'text-transparent stroke-white',
-                                        '!size-5 transition duration-200'
-                                    ]"
-                                />
-                                <template #fallback>
+                        </div>
+                        <div class="md:hidden absolute bottom-1 right-1">
+                            <Button 
+                                @click="toggleFavorite(item.id)" 
+                                aria-label="favorite"
+                                class="!p-2"
+                            > 
+                                <ClientOnly>
                                     <IconsBookmark
                                         variant="solid"
-                                        class="text-transparent stroke-white !size-5 transition duration-200"
+                                        :class="[
+                                            isFavorite(item.id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
+                                            '!size-[18px] transition duration-200'
+                                        ]"
                                     />
-                                </template>
-                            </ClientOnly>
-                            {{ isFavorite(item.id) ? 'Remove' : 'Add' }}
-                        </Button>
-                    </div>
-                    <div class="md:hidden absolute bottom-1 right-1">
-                        <Button 
-                            @click="toggleFavorite(item.id)" 
-                            aria-label="favorite"
-                            class="!p-2"
-                        > 
-                            <ClientOnly>
-                                <IconsBookmark
-                                    variant="solid"
-                                    :class="[
-                                        isFavorite(item.id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
-                                        '!size-[18px] transition duration-200'
-                                    ]"
-                                />
-                                <template #fallback>
-                                    <IconsBookmark
-                                        variant="solid"
-                                        class="text-transparent stroke-white !size-[18px] transition duration-200"
-                                    />
-                                </template>
-                            </ClientOnly>
-                        </Button>
-                    </div>
-                </template>
-            </ListItemCard>
+                                    <template #fallback>
+                                        <IconsBookmark
+                                            variant="solid"
+                                            class="text-transparent stroke-white !size-[18px] transition duration-200"
+                                        />
+                                    </template>
+                                </ClientOnly>
+                            </Button>
+                        </div>
+                    </template>
+                </ListItemCard>
+            </div>
         </div>
     </div>
 </template>

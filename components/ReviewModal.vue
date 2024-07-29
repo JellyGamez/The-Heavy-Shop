@@ -4,17 +4,15 @@ import { useEventBus } from '@vueuse/core'
 import { useToast } from 'vue-toastification'
 
 const route = useRoute()
-
 const toast = useToast()
 
-const id = ref()
+const reviewId = ref()
 const itemId = ref(route.params.id)
-const isOpen = ref(false)
 const rating = ref(0)
 const hoverRating = ref(0)
 const review = ref()
 const action = ref()
-
+const isOpen = ref(false)
 const errorMessage = ref()
 
 const bus = useEventBus('modal')
@@ -24,7 +22,7 @@ bus.on(function (event, data) {
 		isOpen.value = true
 		rating.value = hoverRating.value = data.rating
 		review.value = data.review
-		id.value = data.id
+		reviewId.value = data.id
 	}
 })
 
@@ -48,7 +46,7 @@ async function addReview() {
 }
 
 async function editReview() {
-    const { error } = await useFetch(`/api/review/${id.value}`, {
+    const { error } = await useFetch(`/api/review/${reviewId.value}`, {
         method: 'PUT',
 		body: {
 			rating: rating.value,
@@ -104,7 +102,13 @@ async function editReview() {
 					</div>
 					<div class="flex flex-col">
 						<Label for="review"> Review </Label>
-						<textarea v-model="review" name="review" id="review" type="text" class="scrollbar h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" />
+						<textarea 
+							v-model="review" 
+							name="review" 
+							id="review" 
+							type="text" 
+							class="scrollbar h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" 
+						/>
 					</div>
 					<Error class="text-center !mt-0">
 						{{ errorMessage }}
@@ -124,7 +128,9 @@ async function editReview() {
 </template>
 
 <style scoped>
+
 .scrollbar::-webkit-scrollbar {
     width: 11px;
 }
+
 </style>

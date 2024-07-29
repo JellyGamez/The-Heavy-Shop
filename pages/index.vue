@@ -5,13 +5,12 @@ definePageMeta({
 })
 
 useHead({
-    meta: [
-        { name: 'description', content: '\
-            Your premier destination for licensed heavy metal merchandise. \
-            We offer a curated selection of apparel, accessories, and collectibles, all designed to celebrate the style you love. \
-            Explore our extensive collection and discover the perfect items to express your passion for the genre!'
-        }
-    ],
+    meta: [{ 
+        name: 'description', content: '\
+        Your premier destination for licensed heavy metal merchandise. \
+        We offer a curated selection of apparel, accessories, and collectibles, all designed to celebrate the style you love. \
+        Explore our extensive collection and discover the perfect items to express your passion for the genre!'
+    }],
 })
 
 </script>
@@ -48,8 +47,12 @@ useHead({
                     </span>
 
                     <NuxtLink to="/shop" class="w-fit mx-auto xl:mx-0">
-                        <Button variant="secondary" size="large" class="font-kanit">
-                            SHOP NOW
+                        <Button 
+                            variant="secondary" 
+                            size="large" 
+                            class="font-kanit"
+                        >
+                            <span> SHOP NOW </span>
                             <IconsDoubleChevronRight />
                         </Button>
                     </NuxtLink>

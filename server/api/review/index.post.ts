@@ -10,14 +10,14 @@ export default defineEventHandler(async (event) => {
     const existingReview = await prisma.review.findFirst({
         where: {
             itemId: itemId,
-            authorId: user.id
+            authorId: user?.id
         }
     })
 
     if (!user)
         throw createError({
             statusCode: 400,
-            statusMessage: 'You have to be logged in to add a review.'
+            statusMessage: 'You must be logged in to add a review.'
         })
     else if (!rating)
         throw createError({
@@ -40,7 +40,7 @@ export default defineEventHandler(async (event) => {
             rating: rating,
             content: review,
             itemId: itemId,
-            authorId: user.id
+            authorId: user?.id
         }
     })
 

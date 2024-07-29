@@ -3,7 +3,6 @@
 import { useEventBus } from '@vueuse/core'
 
 const { signOut } = useAuth()
-
 const loggedIn = useStatus()
 
 async function handleAction(action) {
@@ -71,7 +70,7 @@ bus.on(async function (event) {
                     >
                         <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark space-y-2 p-5 w-full shadow-2xl">
                             <div class="flex flex-col space-y-2 pb-2">
-                                <HeadlessMenuItem v-for="item in navItems">
+                                <HeadlessMenuItem v-for="item in navItems" :key="item.id">
                                     <NavItem 
                                         :label="item.name"
                                         :icon="item.icon"
@@ -82,7 +81,7 @@ bus.on(async function (event) {
                             </div>
                             
                             <div class="flex flex-col space-y-2 py-2">
-                                <HeadlessMenuItem v-for="item in userNavItems">
+                                <HeadlessMenuItem v-for="item in userNavItems" :key="item.id">
                                     <NavItem 
                                         :label="item.name"
                                         :icon="item.icon"
@@ -94,7 +93,7 @@ bus.on(async function (event) {
                             </div>
 
                             <div class="flex flex-col space-y-2 pt-2">
-                                <HeadlessMenuItem v-for="option in userOptions">
+                                <HeadlessMenuItem v-for="option in userOptions" :key="option.id">
                                     <NavItem
                                         :label="option.name"
                                         :url="option.url"
@@ -118,6 +117,7 @@ bus.on(async function (event) {
             <div class="hidden md:flex space-x-3 items-center justify-center">
                 <NavItem
                     v-for="item in navItems"
+                    :key="item.id"
                     :label="item.name" 
                     :url="item.url"
                     :id="item.id"
@@ -127,6 +127,7 @@ bus.on(async function (event) {
                 <div class="flex space-x-4">
                     <NavItem
                         v-for="(item, index) in userNavItems"
+                        :key="item.id"
                         :aria-label="item.id"
                         :icon="item.icon"
                         :url="item.url"

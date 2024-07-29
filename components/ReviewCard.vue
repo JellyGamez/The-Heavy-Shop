@@ -24,19 +24,33 @@ const bus = useEventBus('modal')
                                 class="size-11 object-cover rounded-full" 
                                 preload 
                             />
-                            <p class="truncate"> {{ review.author.name }} </p>
+                            <p class="truncate"> 
+                                {{ review.author.name }} 
+                            </p>
                         </div>
                         <div v-if="review.verified" class="flex items-center gap-x-1">
                             <IconsCheck class="text-red-light shrink-0" />
-                            <p class="text-xs md:text-sm text-gray-lightest font-light shrink-0"> Verified purchase </p>
+                            <p class="text-xs md:text-sm text-gray-lightest font-light shrink-0"> 
+                                Verified purchase 
+                            </p>
                         </div>
                     </div>
 
                     <div v-if="isOwner" class="flex h-fit shrink-0 gap-2">
-                        <Button @click="() => bus.emit('editReview', { id: review.id, rating: review.rating, review: review.content })" size="small" class="!p-2.5"> 
+                        <Button
+                            @click="() => bus.emit('editReview', { id: review.id, rating: review.rating, review: review.content })" 
+                            size="small" 
+                            aria-label="edit"
+                            class="!p-2.5"
+                        > 
                             <IconsPencil class="!size-4" />
                         </Button>
-                        <Button @click="() => bus.emit('confirmation', review.id)" size="small" class="!p-2.5"> 
+                        <Button 
+                            @click="() => bus.emit('confirmation', review.id)" 
+                            size="small" 
+                            aria-label="delete"
+                            class="!p-2.5"
+                        > 
                             <IconsTrashBin class="!size-4" />
                         </Button>
                     </div>
@@ -46,10 +60,14 @@ const bus = useEventBus('modal')
                         <Rating :rating="review.rating" />
                         <div class="flex items-center gap-x-1.5">
                             <IconsClock class="md:mb-0.5" />
-                            <p class="text-xs md:text-sm font-light"> {{ review.createdAt }} </p>
+                            <p class="text-xs md:text-sm font-light"> 
+                                {{ review.createdAt }} 
+                            </p>
                         </div>
                     </div>
-                    <p class="text-sm md:text-base rounded-xl bg-gray-primary px-3 py-2 md:px-3.5 md:py-2.5 font-extralight mt-3.5"> {{ review.content }} </p>
+                    <p class="text-sm md:text-base rounded-xl bg-gray-primary px-3 py-2 md:px-3.5 md:py-2.5 font-extralight mt-3.5"> 
+                        {{ review.content }} 
+                    </p>
                 </div>
             </div>
         </div>

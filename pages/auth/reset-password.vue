@@ -2,8 +2,6 @@
 
 import { useToast } from 'vue-toastification'
 
-const toast = useToast()
-
 useHead({
     title: 'Reset password',
     meta: [
@@ -20,11 +18,11 @@ definePageMeta({
     },
 })
 
+const toast = useToast()
 const route = useRoute()
 
 const password = ref('')
 const passwordConfirmation = ref('')
-
 const errorMessage = ref()
 const loading = ref(false)
 
@@ -58,19 +56,27 @@ async function resetPassword() {
             <div class="flex flex-col gap-4">
                 <div>
                     <Label for="password"> Password </Label>
-                    <TextInput v-model="password" name="password" id="password" type="password">
+                    <TextInput 
+                        v-model="password" 
+                        name="password" 
+                        id="password" 
+                        type="password"
+                    >
                         <IconsKey />
                     </TextInput>
                 </div>
                 <div>
                     <Label for="password-confirmation"> Password confirmation </Label>
-                    <TextInput v-model="passwordConfirmation" name="password-confirmation" id="password-confirmation" type="password">
+                    <TextInput 
+                        v-model="passwordConfirmation" 
+                        name="password-confirmation" 
+                        id="password-confirmation" 
+                        type="password"
+                    >
                         <IconsKey />
                     </TextInput>
                 </div>
-                <Error class="text-center">
-                    {{ errorMessage }}
-                </Error>
+                <Error class="text-center"> {{ errorMessage }} </Error>
                 <Button type="submit" :variant="loading ? 'loading' : 'primary'">
                     RESET PASSWORD
                 </Button>

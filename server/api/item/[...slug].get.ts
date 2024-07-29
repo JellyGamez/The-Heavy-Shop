@@ -43,13 +43,13 @@ export default defineEventHandler(async (event) => {
         })
 
         item.reviews?.forEach((review: any, index) => {
-            item.reviews[index] = { ...review, createdAt: dateFormatter(review.createdAt) }
+            item.reviews[index] = { ...review, createdAt: dateFormatter(review?.createdAt) }
         })
 
         if (item.reviews?.length !== 0 && !options && user)
             item.reviews?.unshift(
                 item.reviews?.splice(
-                    item.reviews?.findIndex(review => review?.authorId === user.id), 1
+                    item.reviews?.findIndex(review => review?.authorId === user?.id), 1
                 )[0]
             )
 

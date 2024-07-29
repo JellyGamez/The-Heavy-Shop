@@ -37,7 +37,12 @@ const hoverRating = ref(0)
                     />
                 </template>
             </div>
-            <Button @click="() => bus.emit('addReview', { rating: rating })" variant="secondary" size="small" class="mt-1 max-w-32 sm:max-w-40"> 
+            <Button 
+                @click="() => bus.emit('addReview', { rating: rating })" 
+                variant="secondary" 
+                size="small" 
+                class="mt-1 max-w-32 sm:max-w-40"
+            > 
                 <IconsReview class="!size-4 sm:!size-5" />
                 <span> ADD A REVIEW </span>
             </Button>

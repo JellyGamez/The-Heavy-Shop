@@ -16,7 +16,7 @@ async function getUserByEmail(email: string | null | undefined) {
                 createdAt: true
             }
         })
-        return { ...user, registered: dateFormatter(createdAt) }
+        return { ...user, registeredAt: dateFormatter(createdAt) }
     }
     catch(e) { 
         if (email)
@@ -38,7 +38,7 @@ function dateFormatter(date: any) {
         day: "numeric",
         month: "long",
         year: "numeric",
-    });
+    })
 }
 
 export { getUserByEmail, getItemRating, dateFormatter }

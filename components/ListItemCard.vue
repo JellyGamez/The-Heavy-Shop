@@ -20,15 +20,23 @@ const props = defineProps({
             <div class="flex flex-col w-full justify-between overflow-hidden text-white my-1 md:my-2 mr-2 ml-4 md:ml-6">
                 <div>
                     <NuxtLink :to='`/item/${item.id}`'>
-                        <p class="text-base md:text-lg truncate w-full"> {{ item.name }} </p>
-                        <p class="text-sm md:text-base font-light text-gray-lightest line-clamp-2 w-full"> {{ item.description }} </p>
+                        <p class="text-base md:text-lg truncate w-full"> 
+                            {{ item.name }} 
+                        </p>
+                        <p class="text-sm md:text-base font-light text-gray-lightest line-clamp-2 w-full"> 
+                            {{ item.description }} 
+                        </p>
                     </NuxtLink>
                     <div class="flex items-center my-1 md:my-2 gap-1.5">
                         <Rating :rating="item.rating" />
-                        <p class="text-gray-lightest"> ({{ item.reviews.length }}) </p>
+                        <p class="text-gray-lightest"> 
+                            ({{ item.reviews.length }}) 
+                        </p>
                     </div>
                 </div>
-                <p class="text-base md:text-lg"> $ {{ item.price }} </p>
+                <p class="text-base md:text-lg"> 
+                    $ {{ item.price }} 
+                </p>
             </div>
         </div>
         <slot name="actions" />

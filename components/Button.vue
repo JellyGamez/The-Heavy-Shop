@@ -34,9 +34,19 @@ const sizeClasses = computed(() => {
 </script>
 
 <template>
-    <button :class="[variantClasses, sizeClasses, 'transition duration-200 rounded-xl text-white font-normal w-full outline-none']" :disabled="variant === 'loading'">
+    <button 
+        :class="[
+            variantClasses, 
+            sizeClasses, 
+            'transition duration-200 rounded-xl text-white font-normal w-full outline-none'
+        ]" 
+        :disabled="variant === 'loading'"
+    >
         <div class="flex w-full items-center justify-center gap-1">
-            <IconsSpinner v-if="variant === 'loading'" class="animate-spin mr-1" />
+            <IconsSpinner 
+                v-if="variant === 'loading'" 
+                class="animate-spin mr-1" 
+            />
             <slot />
         </div>
     </button>

@@ -9,7 +9,7 @@ export default defineEventHandler(async (event) => {
         await prisma.review.delete({
             where: {
                 id: parseInt(event.context.params?.slug as string),
-                authorId: user.id
+                authorId: user?.id
             }
         })
     }

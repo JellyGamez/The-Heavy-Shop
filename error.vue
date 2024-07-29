@@ -29,7 +29,10 @@ const router = useRouter()
                             {{ error.statusMessage.length === 0 ? 'Something went wrong.' : error.statusMessage }}
                         </p>
                     </div>
-                    <Button @click="() => { clearError(); router.back() }" class="w-full">
+                    <Button 
+                        @click="() => { clearError(); router.back() }"
+                        class="w-full"
+                    >
                         GO BACK
                     </Button>
                 </div>

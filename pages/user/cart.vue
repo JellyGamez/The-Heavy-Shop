@@ -34,7 +34,10 @@ async function removeItem(id) {
         </div>
         <div class="mt-4 lg:mt-6">
             <ClientOnly>
-                <div v-if="!loggedIn && cartItems?.length" class="flex flex-col gap-2 md:gap-3">
+                <div 
+                    v-if="!loggedIn && cartItems?.length" 
+                    class="flex flex-col gap-2 md:gap-3"
+                >
                     <AuthPrompt>
                         <p class="mx-8 sm:mx-0">
                             To save your cart, please log in or create an account. 
@@ -45,23 +48,40 @@ async function removeItem(id) {
                     </AuthPrompt>
                     <Separator />
                 </div>
-                <div v-if="cartItems?.length" class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3">
-                    <ListItemCard v-for="item in cartItems" :item="item">
+                <div 
+                    v-if="cartItems?.length" 
+                    class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3"
+                >
+                    <ListItemCard 
+                        v-for="item in cartItems" 
+                        :item="item"
+                        :key="item.name"
+                    >
                         <template #actions>
                             <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
                                 <NuxtLink :to='`/item/${item.id}`'>
-                                    <Button variant="secondary" size="small"> 
+                                    <Button 
+                                        variant="secondary" 
+                                        size="small"
+                                    > 
                                         <span> View item </span>
                                         <IconsDoubleChevronRight class="!size-3.5" />
                                     </Button>
                                 </NuxtLink>
-                                <Button size="small" @click="removeItem(item.id)"> 
+                                <Button 
+                                    @click="removeItem(item.id)"
+                                    size="small" 
+                                > 
                                     <IconsTrashBin class="!size-5" />
                                     <span> Remove </span>
                                 </Button>
                             </div>
                             <div class="md:hidden absolute bottom-1 right-1">
-                                <Button class="!p-2" @click="removeItem(item.id)"> 
+                                <Button
+                                    @click="removeItem(item.id)"
+                                    aria-label="delete"
+                                    class="!p-2" 
+                                > 
                                     <IconsTrashBin class="!size-[18px]" />
                                 </Button>
                             </div>
@@ -82,8 +102,12 @@ async function removeItem(id) {
                     </template>
                     <template #action>
                         <NuxtLink to="/shop" class="max-w-32 sm:max-w-40 w-full">
-                            <Button variant="secondary" size="small" class="mt-1"> 
-                                SHOP NOW
+                            <Button 
+                                variant="secondary"
+                                size="small"
+                                class="mt-1"
+                            > 
+                                <span> SHOP NOW </span>
                                 <IconsDoubleChevronRight class="!size-4" />
                             </Button>
                         </NuxtLink>

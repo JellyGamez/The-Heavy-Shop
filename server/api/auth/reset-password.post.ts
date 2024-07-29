@@ -75,9 +75,7 @@ export default defineEventHandler(async (event) => {
         })
 
     const decodedToken = verifySignedToken(signedToken) as any
-
     await updatePassword(decodedToken.email, decodedToken.token, password)
-
     await updatePasswordResetToken(decodedToken.email, null)
 
     return { 

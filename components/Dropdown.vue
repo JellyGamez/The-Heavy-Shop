@@ -32,7 +32,11 @@ function handleClick(option) {
                     leave-to-class="transform scale-y-0 opacity-0"
                 >
                 <HeadlessMenuItems class="origin-top absolute flex flex-col gap-1 w-32 mt-2 p-1 left-1/2 -translate-x-1/2 rounded-2xl bg-gray-lighter shadow-lg focus:outline-none">
-                    <div v-for="option in options" :key="option.name" class="text-white text-sm">
+                    <div 
+                        v-for="option in options" 
+                        :key="option.name" 
+                        class="text-white text-sm"
+                    >
                         <HeadlessMenuItem v-slot="{ active }">
                             <button
                                 @click="handleClick(option)"

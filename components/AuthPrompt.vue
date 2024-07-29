@@ -6,12 +6,20 @@
         </div>
         <div class="gap-1 sm:gap-2 shrink-0 grid grid-cols-2">
             <NuxtLink to="/auth/login">
-                <Button variant="secondary" size="small" class="w-full"> 
+                <Button 
+                    variant="secondary" 
+                    size="small" 
+                    class="w-full"
+                > 
                     LOG IN 
                 </Button>
             </NuxtLink>
             <NuxtLink to="/auth/register">
-                <Button variant="primary" size="small" class="w-full"> 
+                <Button 
+                    variant="primary" 
+                    size="small" 
+                    class="w-full"
+                > 
                     REGISTER 
                 </Button>
             </NuxtLink>

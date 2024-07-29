@@ -2,8 +2,6 @@
 
 import { useToast } from 'vue-toastification'
 
-const toast = useToast()
-
 useHead({
     title: 'Forgot password',
     meta: [
@@ -20,8 +18,9 @@ definePageMeta({
     },
 })
 
-const email = ref('')
+const toast = useToast()
 
+const email = ref('')
 const errorMessage = ref()
 const loading = ref(false)
 
@@ -51,14 +50,21 @@ async function sendEmail() {
             <div class="flex flex-col gap-4">
                 <div> 
                     <Label for="email"> Email </Label>
-                    <TextInput v-model="email" name="email" id="email" type="email" autocomplete="email">
+                    <TextInput 
+                        v-model="email" 
+                        name="email" 
+                        id="email" 
+                        type="email" 
+                        autocomplete="email"
+                    >
                         <IconsMail />
                     </TextInput>
                 </div>
-                <Error class="text-center">
-                    {{ errorMessage }}
-                </Error>
-                <Button type="submit" :variant="loading ? 'loading' : 'primary'">
+                <Error class="text-center"> {{ errorMessage }} </Error>
+                <Button 
+                    type="submit" 
+                    :variant="loading ? 'loading' : 'primary'"
+                >
                     SEND PASSWORD RESET EMAIL
                 </Button>
             </div>

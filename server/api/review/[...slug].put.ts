@@ -10,7 +10,7 @@ export default defineEventHandler(async (event) => {
     if (!user)
         throw createError({
             statusCode: 400,
-            statusMessage: 'You have to be logged in to add a review.'
+            statusMessage: 'You must be logged in to edit this review.'
         })
     else if (!rating)
         throw createError({
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
         await prisma.review.update({
             where: {
                 id: parseInt(event.context.params?.slug as string),
-                authorId: user.id
+                authorId: user?.id
             },
             data: {
                 rating: rating,
