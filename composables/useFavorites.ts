@@ -74,7 +74,6 @@ export default function useFavorites() {
                 localStorage.setItem('favorites', JSON.stringify(Array.from(ids)))
             }
         }
-        await refreshNuxtData('favorites')
         bus.emit('favorites')
         toast.success("Item removed from favorites!")
     }

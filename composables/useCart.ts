@@ -74,7 +74,6 @@ export default function useCart() {
                 localStorage.setItem('cart', JSON.stringify(Array.from(ids)))
             }
         }
-        await refreshNuxtData('cart')
         bus.emit('cart')
         toast.success("Item removed from cart!")
     }

@@ -18,6 +18,7 @@ const items = ref(await favorites.getItems())
 
 async function removeItem(id) {
     await favorites.removeItem(id)
+    items.value = await favorites.getItems()
 }
 
 </script>
