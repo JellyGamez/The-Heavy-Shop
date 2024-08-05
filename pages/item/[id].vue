@@ -120,7 +120,11 @@ async function deleteReview(id) {
                         Read genuine customer experiences 
                     </p>
                 </div>
-                <Sort v-if="item.reviews?.length" variant="reviews" />
+                <Sort 
+                    v-if="item.reviews?.length"
+                    @sort="async () => { await refreshNuxtData('item') }"
+                    variant="reviews" 
+                />
             </div>
             <div class="mt-2 lg:mt-4">
                 <EmptyState v-if="!item.reviews?.length">
