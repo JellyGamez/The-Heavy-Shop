@@ -77,7 +77,10 @@ async function resetPassword() {
                     </TextInput>
                 </div>
                 <Error class="text-center"> {{ errorMessage }} </Error>
-                <Button type="submit" :variant="loading ? 'loading' : 'primary'">
+                <Button 
+                    type="submit" 
+                    :variant="loading ? 'loading' : 'primary'"
+                >
                     RESET PASSWORD
                 </Button>
             </div>

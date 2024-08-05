@@ -7,35 +7,45 @@ useHead({
     ],
 })
 
-const loggedIn = useStatus()
+definePageMeta({
+    middleware: 'query-validation'
+})
 
+const loggedIn = useStatus()
 const favorites = useFavorites()
-const favoriteItems = ref(await favorites.getItems())
+
+const items = ref(await favorites.getItems())
 
 async function removeItem(id) {
     await favorites.removeItem(id)
-    favoriteItems.value = await favorites.getItems()
 }
 
 </script>
 
 <template>
     <div>
-        <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
-            <div class="flex items-center gap-1.5 lg:gap-2">
-                <IconsBookmark class="size-6 lg:size-7" />
-                <h1 class="text-2xl lg:text-3xl">
-                    Favorites
-                </h1>
+        <div class="sm:ml-1 flex flex-wrap flex-col items-center sm:flex-row gap-x-10 gap-y-2.5 justify-between">
+            <div class=" flex flex-col items-center sm:items-start text-white">
+                <div class="flex items-center gap-1.5 lg:gap-2">
+                    <IconsBookmark class="size-6 lg:size-7" />
+                    <h1 class="text-2xl lg:text-3xl">
+                        Favorites
+                    </h1>
+                </div>
+                <p class="text-sm lg:text-base text-center">
+                    Bookmark your favorite items for later
+                </p>
             </div>
-            <p class="text-sm lg:text-base text-center">
-                Bookmark your favorite items for later
-            </p>
+            <Sort 
+                v-if="items?.length" 
+                @sort="async () => { items = await favorites.getItems() }" 
+            />
         </div>
+
         <div class="mt-4 lg:mt-6">
             <ClientOnly>
                 <div 
-                    v-if="!loggedIn && favoriteItems?.length" 
+                    v-if="!loggedIn && items?.length" 
                     class="flex flex-col gap-2 md:gap-3"
                 >
                     <AuthPrompt>
@@ -49,11 +59,11 @@ async function removeItem(id) {
                     <Separator />
                 </div>
                 <div 
-                    v-if="favoriteItems?.length" 
+                    v-if="items?.length" 
                     class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3"
                 >
                     <ListItemCard 
-                        v-for="item in favoriteItems" 
+                        v-for="item in items" 
                         :key="item.id" 
                         :item="item"
                     >
@@ -88,7 +98,7 @@ async function removeItem(id) {
                         </template>
                     </ListItemCard>
                 </div>
-                <EmptyState v-else-if="favoriteItems">
+                <EmptyState v-else-if="items">
                     <template #title>
                         No favorite items yet
                     </template>

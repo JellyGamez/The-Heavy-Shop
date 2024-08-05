@@ -4,6 +4,7 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 export default function useCart() {
+    const sort = useSort()
     const loggedIn = useStatus()
     const bus = useEventBus('count')
     
@@ -23,14 +24,21 @@ export default function useCart() {
     
     async function getItems() {
         if (loggedIn) {
-            const { data } = await useFetch('/api/user/cart')
+            const headers = useRequestHeaders(['cookie'])
+            const { data } = await useAsyncData('cart', () => $fetch('/api/user/cart', {
+                query: sort.query(),
+                headers
+            }))
             return data.value
         }
         else if (process.client) {
             const ids = await getIds()
-            const { data } = await useFetch('/api/guest/cart', {
-                query: { ids: ids }
-            })
+            const { data } = await useAsyncData('cart', () => $fetch('/api/guest/cart', {
+                query: { 
+                    ids: ids,
+                    ...sort.query()
+                }
+            }))
             return data.value
         }
     }
@@ -66,6 +74,7 @@ export default function useCart() {
                 localStorage.setItem('cart', JSON.stringify(Array.from(ids)))
             }
         }
+        await refreshNuxtData('cart')
         bus.emit('cart')
         toast.success("Item removed from cart!")
     }

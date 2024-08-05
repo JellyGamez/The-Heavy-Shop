@@ -4,6 +4,7 @@ import { useToast } from 'vue-toastification'
 
 const toast = useToast()
 const route = useRoute()
+const sort = useSort()
 
 const favorites = useFavorites()
 const userFavorites = ref(await favorites.getIds())
@@ -18,31 +19,9 @@ async function toggleFavorite() {
     userFavorites.value = await favorites.getIds()
 }
 
-const orderBy = computed(() => route.query?.orderBy)
-const sort = computed(() => route.query?.sort)
-
-const handleSort = async (orderBy, sort) => {
-    let query = null
-    if (orderBy && orderBy !== 'Default') {
-        query = {
-            orderBy: orderBy,
-            sort: sort
-        }
-    }
-    await navigateTo({
-        path: route.path,
-        query: query
-    })
-    refreshNuxtData('item')
-}
-const headers = useRequestHeaders(['cookie'])
 const { data: user } = await useFetch('/api/user')
 const { error, data: item } = await useAsyncData('item', () => $fetch(`/api${route.path}`, {
-    query: {
-        orderBy: orderBy.value,
-        sort: sort.value
-    }, 
-    headers
+    query: sort.query()
 }))
 if (error.value)
     throw createError(error.value)
@@ -52,6 +31,10 @@ useHead({
     meta: [
         { name: 'description', content: item?.value?.name }
     ],
+})
+
+definePageMeta({
+    middleware: 'query-validation',
 })
 
 const loggedIn = useStatus()
@@ -67,7 +50,7 @@ async function deleteReview(id) {
         method: 'DELETE'
     })
     if (!error.value) {
-        refreshNuxtData('item')
+        await refreshNuxtData('item')
         toast.success('Review deleted successfully!')
     }
     else 
@@ -137,12 +120,7 @@ async function deleteReview(id) {
                         Read genuine customer experiences 
                     </p>
                 </div>
-                <div v-if="item.reviews?.length" class="flex items-center">
-                    <p class="hidden sm:block text-sm text-white mr-2"> 
-                        Sort by 
-                    </p>
-                    <Sort @select="handleSort" />
-                </div>
+                <Sort v-if="item.reviews?.length" variant="reviews" />
             </div>
             <div class="mt-2 lg:mt-4">
                 <EmptyState v-if="!item.reviews?.length">

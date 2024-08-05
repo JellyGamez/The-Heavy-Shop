@@ -4,9 +4,10 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 export default function useFavorites() {
+    const sort = useSort()
     const loggedIn = useStatus()
     const bus = useEventBus('count')
-    
+
     async function getIds() {
         if (loggedIn) {
             const { data } = await useFetch('/api/user/favorites')
@@ -23,14 +24,21 @@ export default function useFavorites() {
     
     async function getItems() {
         if (loggedIn) {
-            const { data } = await useFetch('/api/user/favorites')
+            const headers = useRequestHeaders(['cookie'])
+            const { data } = await useAsyncData('favorites', () => $fetch('/api/user/favorites', {
+                query: sort.query(),
+                headers,
+            }))
             return data.value
         }
         else if (process.client) {
             const ids = await getIds()
-            const { data } = await useFetch('/api/guest/favorites', {
-                query: { ids: ids }
-            })
+            const { data } = await useAsyncData('favorites', () => $fetch('/api/guest/favorites', {
+                query: { 
+                    ids: ids,
+                    ...sort.query()
+                }
+            }))
             return data.value
         }
     }
@@ -66,6 +74,7 @@ export default function useFavorites() {
                 localStorage.setItem('favorites', JSON.stringify(Array.from(ids)))
             }
         }
+        await refreshNuxtData('favorites')
         bus.emit('favorites')
         toast.success("Item removed from favorites!")
     }
@@ -84,5 +93,5 @@ export default function useFavorites() {
         }
     }
 
-    return { getIds, getCount, getItems, syncItems, addItem, removeItem }
+    return { getItems, getIds, getCount, syncItems, addItem, removeItem }
 }

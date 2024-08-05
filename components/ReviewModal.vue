@@ -38,7 +38,7 @@ async function addReview() {
     })
 	errorMessage.value = error.value?.data.statusMessage
 	if (!error.value) {
-		refreshNuxtData('item')
+		await refreshNuxtData('item')
 		toast.success('Review added successfully!')
 		errorMessage.value = null
 		isOpen.value = false
@@ -61,7 +61,7 @@ async function editReview() {
 	else {
 		errorMessage.value = error.value?.data.statusMessage
 		if (!error.value) {
-			refreshNuxtData('item')
+			await refreshNuxtData('item')
 			toast.success('Review edited successfully!')
 			isOpen.value = false
 		}

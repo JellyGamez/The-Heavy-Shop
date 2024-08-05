@@ -12,11 +12,11 @@ definePageMeta({
 })
 
 const route = useRoute()
+const sort = useSort()
 
-const page = computed(() => route.params.page ?? 1)
-const { data: items } = await useFetch('/api/item', {
-    query: { page: page.value ?? 1 }
-})
+const { data: items } = await useAsyncData('items', () => $fetch('/api/item', {
+    query: sort.query()
+}))
 
 const favorites = useFavorites()
 const userFavorites = ref(await favorites.getIds())
@@ -39,7 +39,7 @@ const display = computed(() => route.query?.display ?? 'grid')
 
 <template>
     <div>
-        <div class="sm:ml-1 flex flex-col items-center sm:flex-row gap-2 justify-between">
+        <div class="sm:ml-1 flex flex-wrap flex-col items-center sm:flex-row gap-x-10 gap-y-2.5 justify-between">
             <div class="flex flex-col items-center sm:items-start text-white">
                 <div class="flex items-center gap-1.5 lg:gap-2">
                     <IconsShoppingBag class="size-6 lg:size-7" />
@@ -51,15 +51,9 @@ const display = computed(() => route.query?.display ?? 'grid')
                     Explore and curate your metal haven
                 </p>
             </div>
-            <div class="flex items-center text-white">
-                <p class="hidden sm:block text-sm text-white mr-2"> 
-                    Display 
-                </p>
+            <div class="flex flex-wrap-reverse gap-2 md:gap-4 justify-center items-center text-white">
+                <Sort />
                 <Display />
-                <p class="hidden sm:block text-sm text-white mr-2 ml-4"> 
-                    Sort by 
-                </p>
-                <Sort @select="handleSort" />
             </div>
         </div>
         <div class="mt-4 lg:mt-6">

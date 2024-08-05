@@ -5,22 +5,16 @@ export default defineEventHandler(async (event) => {
     const session = await getServerSession(event)
     const user = await getUserByEmail(session?.user?.email)
 
-    const { orderBy, sort } = getQuery(event)
+    const { sortBy, direction } = getQuery(event)
 
     const options = {
-        'Date added': {
-            createdAt: sort
+        'rating': {
+            rating: direction
         },
-        'Rating': {
-            rating: sort
+        'date-added': {
+            createdAt: direction
         }
-    }[orderBy as string]
-
-    if ((orderBy && !['Date added', 'Rating'].includes(orderBy as string)) || (sort && !['asc', 'desc'].includes(sort as string)))
-        throw createError({
-            statusCode: 500,
-            statusMessage: 'Something went wrong.'
-        })
+    }[sortBy as string]
 
     try {
         const item = await prisma.item.findUniqueOrThrow({

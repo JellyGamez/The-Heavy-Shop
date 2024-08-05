@@ -68,8 +68,8 @@ bus.on(async function (event) {
                         leave-from-class="transform scale-y-100"
                         leave-to-class="transform scale-y-0 opacity-0"
                     >
-                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark space-y-2 p-5 w-full shadow-2xl">
-                            <div class="flex flex-col space-y-2 pb-2">
+                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark gap-y-2 p-5 w-full shadow-2xl">
+                            <div class="flex flex-col gap-y-2 pb-2">
                                 <HeadlessMenuItem v-for="item in navItems" :key="item.id">
                                     <NavItem 
                                         :label="item.name"
@@ -80,7 +80,7 @@ bus.on(async function (event) {
                                 </HeadlessMenuItem>
                             </div>
                             
-                            <div class="flex flex-col space-y-2 py-2">
+                            <div class="flex flex-col gap-y-2 py-2">
                                 <HeadlessMenuItem v-for="item in userNavItems" :key="item.id">
                                     <NavItem 
                                         :label="item.name"
@@ -92,7 +92,7 @@ bus.on(async function (event) {
                                 </HeadlessMenuItem>
                             </div>
 
-                            <div class="flex flex-col space-y-2 pt-2">
+                            <div class="flex flex-col gap-y-2 pt-2">
                                 <HeadlessMenuItem v-for="option in userOptions" :key="option.id">
                                     <NavItem
                                         :label="option.name"
@@ -114,7 +114,7 @@ bus.on(async function (event) {
                     </span>
                 </NuxtLink>
             </div>
-            <div class="hidden md:flex space-x-3 items-center justify-center">
+            <div class="hidden md:flex gap-x-3 items-center justify-center">
                 <NavItem
                     v-for="item in navItems"
                     :key="item.id"
@@ -124,7 +124,7 @@ bus.on(async function (event) {
                 />
             </div>
             <div class="hidden md:flex items-center justify-end mr-10">
-                <div class="flex space-x-4">
+                <div class="flex gap-x-4">
                     <NavItem
                         v-for="(item, index) in userNavItems"
                         :key="item.id"

@@ -7,6 +7,10 @@ useHead({
     ],
 })
 
+definePageMeta({
+    middleware: 'query-validation'
+})
+
 const loggedIn = useStatus()
 
 const cart = useCart()
