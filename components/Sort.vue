@@ -31,8 +31,6 @@ const direction = ref(route.query?.direction)
 const sortBy = ref(route.query?.sortBy)
 
 async function handleSort(option) {
-    emit('sort')
-
     if (sortBy.value !== option) {
         sortBy.value = option
         direction.value = 'desc'
@@ -54,8 +52,8 @@ async function handleSort(option) {
             direction: direction.value
         }
     })
-
-    await refreshNuxtData()
+    
+    emit('sort')
 }
 
 </script>

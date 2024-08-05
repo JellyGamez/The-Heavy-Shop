@@ -52,7 +52,7 @@ const display = computed(() => route.query?.display ?? 'grid')
                 </p>
             </div>
             <div class="flex flex-wrap-reverse gap-2 md:gap-4 justify-center items-center text-white">
-                <Sort />
+                <Sort @sort="async () => { await refreshNuxtData('items') }"/>
                 <Display />
             </div>
         </div>
