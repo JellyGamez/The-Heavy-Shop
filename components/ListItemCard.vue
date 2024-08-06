@@ -21,22 +21,38 @@ const props = defineProps({
                 <div>
                     <NuxtLink :to='`/item/${item.id}`'>
                         <p class="text-base md:text-lg truncate w-full"> 
-                            {{ item.name }} 
+                            {{ item.name }}
                         </p>
-                        <p class="text-sm md:text-base font-light text-gray-lightest line-clamp-2 w-full"> 
-                            {{ item.description }} 
+                        <p 
+                            :class="[
+                                item.size ? 'line-clamp-1' : 'line-clamp-2',
+                                'text-sm md:text-base font-light text-gray-lightest w-full'
+                            ]"
+                        > 
+                            {{ item.description }}
+                        </p>
+                        <p v-if="item.size" class=" md:mt-0.5 text-sm md:text-base"> 
+                            <span> Size: </span>
+                            <span class="text-red-light"> {{ item.size }} </span>
                         </p>
                     </NuxtLink>
-                    <div class="flex items-center my-1 md:my-2 gap-1.5">
+                    <div class="flex items-center my-1 md:my-1.5 gap-1.5">
                         <Rating :rating="item.rating" />
                         <p class="text-gray-lightest"> 
                             ({{ item.reviews.length }}) 
                         </p>
                     </div>
                 </div>
-                <p class="text-base md:text-lg"> 
-                    $ {{ item.price }} 
-                </p>
+                <div class="text-base md:text-lg whitespace-nowrap">
+                    <div v-if="item.quantity && item.quantity !== 1">
+                        <span class="font-extralight ">$</span>
+                        <span> {{ (item.price * item.quantity).toFixed(2) }} </span>
+                    </div>
+                    <div v-else>
+                        <span class="font-extralight ">$</span>
+                        <span> {{ item.price }} </span>
+                    </div>
+                </div>
             </div>
         </div>
         <slot name="actions" />

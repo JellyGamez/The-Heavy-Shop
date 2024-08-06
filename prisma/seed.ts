@@ -5,8 +5,14 @@ import bcrypt from 'bcrypt'
 const prisma = new PrismaClient()
 
 async function main() {
-    await prisma.user.create({
-        data: {
+    await prisma.user.upsert({
+        where: {
+            email: 'admin@theheavyshop.com',
+        },
+        update: {
+
+        },
+        create: {
             email: 'admin@theheavyshop.com',
             name: 'Admin',
             password: bcrypt.hashSync('password', 10),
@@ -19,7 +25,7 @@ async function main() {
             },
             cart: {
                 create: {
-                    items: {
+                    entries: {
                         create: []
                     }
                 },
@@ -42,7 +48,7 @@ async function main() {
                 },
                 cart: {
                     create: {
-                        items: {
+                        entries: {
                             create: []
                         }
                     },
@@ -70,11 +76,12 @@ async function main() {
             data: {
                 name: faker.commerce.productName(),
                 description: faker.commerce.productDescription(),
-                price: faker.number.float({ min: 10, max: 99, multipleOf: 0.01 }),
+                price: parseFloat(faker.number.float({ min: 10, max: 99, multipleOf: 0.01 }).toFixed(2)),
                 photoUrl: faker.image.url(),
                 reviews: {
                     create: reviews
-                }
+                },
+                sizes: ['S', 'M', 'L', 'XL', '2XL']
             }
         })
     }

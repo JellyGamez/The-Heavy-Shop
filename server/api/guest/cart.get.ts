@@ -3,26 +3,18 @@ import prisma, { getItemRating } from "~/server/utils"
 export default defineEventHandler(async (event) => {
     const { sortBy, direction, ...query } = getQuery(event)
     
-    let ids = query.ids ?? [] as any
-    if (!Array.isArray(ids))
-        ids = Array.of(ids)
+    let entries = query.ids ?? [] as any
+    if (!Array.isArray(entries))
+        entries = Array.of(entries)
 
-    const options = {
-        'price': {
-            price: direction
-        },
-        'review-count': {
-            reviews: {
-                _count: direction
-            }
-        }
-    }[sortBy as string]
+    entries?.forEach((entry: any, index: any) => {
+        entries[index] = JSON.parse(entry)
+    })
 
     const items = await prisma.item.findMany({
-        orderBy: options as any,
         where: {
             id: {
-                in: ids
+                in: entries.map((entry: any) => entry.id)
             }
         },
         include: {
@@ -34,12 +26,17 @@ export default defineEventHandler(async (event) => {
         }
     })
 
-    items?.forEach((item: any, index) => {
-        items[index] = { ...item, rating: getItemRating(item) }
+    entries?.forEach((entry: any, index: any) => {
+        const item = items.find((item: any) => item.id === entry.id)
+        entries[index] = { ...entry, item: { ...item, rating: getItemRating(item)} }
     })
 
     if (sortBy === 'rating')
-        items.sort((a: any, b: any) => direction === 'asc' ? a.rating - b.rating : b.rating - a.rating)
+        entries.sort((a: any, b: any) => direction === 'asc' ? a.item.rating - b.item.rating : b.item.rating - a.item.rating)
+    else if (sortBy === 'price')
+        entries?.sort((a: any, b: any) => direction === 'asc' ? a.item.price * a.quantity - b.item.price * b.quantity : b.item.price * b.quantity - a.item.price * a.quantity)
+    else if (sortBy === 'review-count')
+        entries?.sort((a: any, b: any) => direction === 'asc' ? a.item.reviews?.length - b.item.reviews?.length : b.item.reviews?.length - a.item.reviews?.length)
 
-    return items
+    return entries
 })

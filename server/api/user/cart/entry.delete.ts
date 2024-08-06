@@ -5,20 +5,22 @@ export default defineEventHandler(async (event) => {
     const session = await getServerSession(event)
     const user = await getUserByEmail(session?.user?.email)
 
+    const { id, size } = getQuery(event)
+
     await prisma.cart.update({
         where: {
             userId: user?.id
         },
         data: {
-            items: { 
-                connect: { 
-                    id: event.context.params?.slug
-                } 
+            entries: {
+                delete: {
+                    itemId_size: { itemId: id, size: size }
+                }
             }
         }
     })
 
     return { 
-        message: 'Item added to cart successfully!' 
+        message: 'Entry removed from cart successfully!' 
     }
 })

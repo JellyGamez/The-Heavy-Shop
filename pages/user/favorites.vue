@@ -42,7 +42,6 @@ async function removeItem(id) {
                 @sort="async () => { items = await favorites.getItems() }" 
             />
         </div>
-
         <div class="mt-4 lg:mt-6">
             <ClientOnly>
                 <div 
@@ -90,8 +89,8 @@ async function removeItem(id) {
                             <div class="md:hidden absolute bottom-1 right-1">
                                 <Button 
                                     @click="removeItem(item.id)" 
-                                    aria-label="delete"
-                                    class="!p-2" 
+                                    aria-label="remove"
+                                    class="!p-[7px]" 
                                 > 
                                     <IconsTrashBin class="!size-[18px]" />
                                 </Button>
@@ -99,30 +98,28 @@ async function removeItem(id) {
                         </template>
                     </ListItemCard>
                 </div>
-                <EmptyState v-else-if="items">
-                    <template #title>
-                        No favorite items yet
-                    </template>
-                    <template #content>
+                <EmptyState 
+                    v-else-if="items"
+                    title="No favorite items yet"
+                    description="
                         <p>
                             Your favorites collection is currently awaiting your personal touch.
                         </p>
-                        <p class="hidden md:block">
+                        <p class='hidden md:block'>
                             Explore our store, discover standout items, and build your distinguished favorites selection.
                         </p>
-                    </template>
-                    <template #action>
-                        <NuxtLink to="/shop" class="max-w-32 sm:max-w-40 w-full">
-                            <Button 
-                                variant="secondary" 
-                                size="small" 
-                                class="mt-1"
-                            > 
-                                <span> SHOP NOW </span>
-                                <IconsDoubleChevronRight class="!size-4" />
-                            </Button>
-                        </NuxtLink>
-                    </template>
+                    "
+                >
+                    <NuxtLink to="/shop" class="max-w-32 sm:max-w-40 w-full">
+                        <Button 
+                            variant="secondary" 
+                            size="small" 
+                            class="mt-1"
+                        > 
+                            <span> SHOP NOW </span>
+                            <IconsDoubleChevronRight class="!size-4" />
+                        </Button>
+                    </NuxtLink>
                 </EmptyState>
                 <template #fallback>
                     <div class="flex w-full items-center justify-center gap-1">

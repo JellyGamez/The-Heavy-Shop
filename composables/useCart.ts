@@ -11,7 +11,13 @@ export default function useCart() {
     async function getIds() {
         if (loggedIn) {
             const { data } = await useFetch('/api/user/cart')
-            return (data.value as any).map((item: any) => item.id)
+            return (data.value as any).map((entry: any) => { 
+                return { 
+                    id: entry.item.id, 
+                    size: entry.size,
+                    quantity: entry.quantity
+                }
+            })
         }
         else if (process.client) {
             return JSON.parse(localStorage.getItem('cart') ?? '[]')
@@ -19,7 +25,8 @@ export default function useCart() {
     }
 
     async function getCount() {
-        return (await getIds())?.length
+        const ids = await getIds()
+        return ids?.map((id: any) => id.quantity).reduce((x: any, y: any) => x + y, 0)
     }
     
     async function getItems() {
@@ -29,7 +36,13 @@ export default function useCart() {
                 query: sort.query(),
                 headers
             }))
-            return data.value
+            return data.value?.map((entry: any) => {
+                return {
+                    ...entry.item,
+                    size: entry.size,
+                    quantity: entry.quantity
+                }
+            })
         }
         else if (process.client) {
             const ids = await getIds()
@@ -39,36 +52,57 @@ export default function useCart() {
                     ...sort.query()
                 }
             }))
-            return data.value
+            return data.value?.map((entry: any) => {
+                return {
+                    ...entry.item,
+                    size: entry.size,
+                    quantity: entry.quantity
+                }
+            })
         }
     }
 
-    async function addItem(id: String) {
+    async function addItem(id: string, size: string) {
         if (loggedIn) {
-            await useFetch(`/api/user/cart/${id}`, {
-                method: 'POST'
+            await useFetch('/api/user/cart/entry', {
+                method: 'POST',
+                query: {
+                    id: id,
+                    size: size
+                }
             })
         }
         else if (process.client) {
             const ids = await getIds()
-            if (!ids.includes(id)) {
-                ids.push(id)
-                localStorage.setItem('cart', JSON.stringify(Array.from(ids)))
+            const index = ids.findIndex((item: any) => item.id === id && item.size === size)
+            if (index !== -1) 
+                ids[index].quantity += 1
+            else {
+                ids.push({
+                    id: id,
+                    size: size,
+                    quantity: 1
+                })
             }
+            localStorage.setItem('cart', JSON.stringify(Array.from(ids)))
         }
         bus.emit('cart')
         toast.success("Item added to cart!")
     }
 
-    async function removeItem(id: String) {
+    async function removeItem(id: string, size: string) {
         if (loggedIn) {
-            await useFetch(`/api/user/cart/${id}`, {
-                method: 'DELETE'
+            await useFetch('/api/user/cart/entry', {
+                method: 'DELETE',
+                query: {
+                    id: id,
+                    size: size
+                }
             })
         }
         else if (process.client) {
             const ids = await getIds()
-            const index = ids.indexOf(id)
+            const index = ids.findIndex((item: any) => item.id === id && item.size === size)
             if (index !== -1) {
                 ids.splice(index, 1)
                 localStorage.setItem('cart', JSON.stringify(Array.from(ids)))
@@ -77,20 +111,52 @@ export default function useCart() {
         bus.emit('cart')
         toast.success("Item removed from cart!")
     }
-
-    async function syncItems() {
-        const ids = await getIds()
-        if (ids.length) {
-            for (const id of ids) {
-                await useFetch(`/api/user/cart/${id}`, {
-                    method: 'POST'
+    
+    async function updateItem(id: string, size: string, quantity: number, type: string) {
+        if (quantity === 1 && type === 'decrement')
+            await removeItem(id, size)
+        else {
+            if (loggedIn) {
+                await useFetch('/api/user/cart/entry', {
+                    method: 'PUT',
+                    query: {
+                        id: id,
+                        size: size,
+                        type: type
+                    }
                 })
             }
+            else if (process.client) {
+                const ids = await getIds()
+                const index = ids.findIndex((item: any) => item.id === id && item.size === size)
+                if (type === 'increment')
+                    ids[index].quantity += 1
+                else if (type === 'decrement')
+                    ids[index].quantity -= 1
+                localStorage.setItem('cart', JSON.stringify(Array.from(ids)))
+            }
+            bus.emit('cart')
+        }
+    }
+
+    async function syncItems() {
+        let entries = await getIds()
+        if (entries.length) {
+            entries?.forEach(async (entry: any) => {
+                await useFetch('/api/user/cart/entry', {
+                    method: 'POST',
+                    query: {
+                        id: entry.id,
+                        size: entry.size,
+                        quantity: entry.quantity
+                    }
+                })
+            })
             localStorage.removeItem('cart')
             bus.emit('cart')
             toast.success("Your cart has been synced!")
         }
     }
 
-    return { getIds, getCount, getItems, syncItems, addItem, removeItem }
+    return { getIds, getCount, getItems, syncItems, addItem, removeItem, updateItem }
 }

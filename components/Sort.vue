@@ -61,7 +61,7 @@ async function handleSort(option) {
 <template>
     <div class="flex gap-1.5 md:gap-2 items-center text-white">
         <p class="hidden sm:block text-sm"> 
-            Sort by 
+            Sort by
         </p>
         <div class="flex flex-wrap gap-1 md:gap-1.5 rounded-2xl bg-gray-dark p-1 md:p-1.5 focus:outline-none">
             <button

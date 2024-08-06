@@ -61,7 +61,7 @@ useHead({
 
             <div class="overflow-hidden xl:-mr-20 mt-auto xl:mt-0">
                 <NuxtImg 
-                    src="/img/2.webp" 
+                    src="/img/index.webp" 
                     alt="Muscular man wearing our merch"
                     class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full mx-auto text-white"
                     preload

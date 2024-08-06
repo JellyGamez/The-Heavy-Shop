@@ -40,7 +40,7 @@ async function handleDisplay(option) {
                 <component
                     :is="icons[option]"
                     :class="[
-                        display === option ? 'text-red-light' : 'text-white group-hover:text-red-light', 
+                        display === option ? 'text-red-light' : 'text-white group-hover:text-gray-lightest', 
                         'md:size-6 transition duration-200'
                     ]"
                 />

@@ -81,11 +81,11 @@ export default function useFavorites() {
     async function syncItems() {
         const ids = await getIds()
         if (ids.length) {
-            for (const id of ids) {
+            ids?.forEach(async (id: any) => {
                 await useFetch(`/api/user/favorites/${id}`, {
                     method: 'POST'
                 })
-            }
+            })
             localStorage.removeItem('favorites')
             bus.emit('favorites')
             toast.success("Your favorites have been synced!")

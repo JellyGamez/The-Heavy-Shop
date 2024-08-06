@@ -32,7 +32,7 @@ export default defineEventHandler(async (event) => {
     else if (existingReview)
         throw createError({
             statusCode: 400,
-            statusMessage: 'You already left a review for this item.'
+            statusMessage: 'You already added a review for this item.'
         })
 
     await prisma.review.create({

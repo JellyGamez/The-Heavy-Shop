@@ -36,7 +36,7 @@ export default defineEventHandler(async (event) => {
             }
         })
 
-        item.reviews?.forEach((review: any, index) => {
+        item.reviews?.forEach((review: any, index: any) => {
             item.reviews[index] = { ...review, createdAt: dateFormatter(review?.createdAt) }
         })
 

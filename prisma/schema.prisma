@@ -25,16 +25,17 @@ model User {
 }
 
 model Item {
-  id          String      @id @default(uuid())
-  createdAt   DateTime    @default(now())
-  updatedAt   DateTime    @updatedAt
+  id          String       @id @default(uuid())
+  createdAt   DateTime     @default(now())
+  updatedAt   DateTime     @updatedAt
   name        String
   description String
   photoUrl    String
   price       Float
+  sizes       String[]
   reviews     Review[]
-  carts       Cart[]      @relation("CartToItem")
-  favorites   Favorites[] @relation("FavoritesToItem")
+  favorites   Favorites[]  @relation("FavoritesToItem")
+  carts       CartToItem[]
 }
 
 model Favorites {
@@ -47,12 +48,26 @@ model Favorites {
 }
 
 model Cart {
+  id        Int          @id @default(autoincrement())
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  userId    Int          @unique
+  user      User         @relation(fields: [userId], references: [id], onDelete: Cascade)
+  entries   CartToItem[]
+}
+
+model CartToItem {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
-  userId    Int      @unique
-  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-  items     Item[]   @relation("CartToItem")
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
+  item      Item     @relation(fields: [itemId], references: [id])
+  itemId    String
+  cart      Cart     @relation(fields: [cartId], references: [id])
+  cartId    Int
+  quantity  Int
+  size      String?
+
+  @@unique([itemId, size])
 }
 
 model Review {

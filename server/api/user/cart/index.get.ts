@@ -8,40 +8,45 @@ export default defineEventHandler(async (event) => {
     const { sortBy, direction } = getQuery(event)
 
     const options = {
-        'price': {
-            price: direction
-        },
         'review-count': {
-            reviews: {
-                _count: direction
+            item: {
+                reviews: {
+                    _count: direction
+                }
             }
         }
-    }[sortBy as string]
+    }[sortBy as string] ?? { createdAt: 'asc' }
 
-    const items = (await prisma.cart.findUnique({
+    const entries = (await prisma.cart.findUnique({
         where: {
             userId: user?.id
         },
         select: {
-            items: {
+            entries: {
                 orderBy: options as any,
                 include: {
-                    reviews: {
-                        select: {
-                            rating: true
+                    item: {
+                        include: {
+                            reviews: {
+                                select: {
+                                    rating: true
+                                }
+                            }
                         }
                     }
                 }
             }
         }
-    }))?.items
+    }))?.entries
     
-    items?.forEach((item: any, index) => {
-        items[index] = { ...item, rating: getItemRating(item) }
+    entries?.forEach((entry: any, index: any) => {
+        entries[index].item = { ...entry.item, rating: getItemRating(entry.item) }
     })
 
     if (sortBy === 'rating')
-        items?.sort((a: any, b: any) => direction === 'asc' ? a.rating - b.rating : b.rating - a.rating)
+        entries?.sort((a: any, b: any) => direction === 'asc' ? a.item.rating - b.item.rating : b.item.rating - a.item.rating)
+    else if (sortBy === 'price')
+        entries?.sort((a: any, b: any) => direction === 'asc' ? a.item.price * a.quantity - b.item.price * b.quantity : b.item.price * b.quantity - a.item.price * a.quantity)
 
-    return items
+    return entries
 })

@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
         }
     })
 
-    items?.forEach((item: any, index) => {
+    items?.forEach((item: any, index: any) => {
         items[index] = { ...item, rating: getItemRating(item) }
     })
 

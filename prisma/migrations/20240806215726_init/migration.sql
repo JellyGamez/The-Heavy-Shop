@@ -7,6 +7,7 @@ CREATE TABLE "User" (
     "email" TEXT NOT NULL,
     "password" TEXT NOT NULL,
     "passwordResetToken" TEXT,
+    "photoUrl" TEXT,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -20,6 +21,7 @@ CREATE TABLE "Item" (
     "description" TEXT NOT NULL,
     "photoUrl" TEXT NOT NULL,
     "price" DOUBLE PRECISION NOT NULL,
+    "sizes" TEXT[],
 
     CONSTRAINT "Item_pkey" PRIMARY KEY ("id")
 );
@@ -45,12 +47,26 @@ CREATE TABLE "Cart" (
 );
 
 -- CreateTable
+CREATE TABLE "CartToItem" (
+    "id" SERIAL NOT NULL,
+    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "updatedAt" TIMESTAMP(3) NOT NULL,
+    "itemId" TEXT NOT NULL,
+    "cartId" INTEGER NOT NULL,
+    "quantity" INTEGER NOT NULL,
+    "size" TEXT,
+
+    CONSTRAINT "CartToItem_pkey" PRIMARY KEY ("id")
+);
+
+-- CreateTable
 CREATE TABLE "Review" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
     "rating" INTEGER NOT NULL,
     "content" TEXT NOT NULL,
+    "verified" BOOLEAN NOT NULL DEFAULT false,
     "itemId" TEXT NOT NULL,
     "authorId" INTEGER NOT NULL,
 
@@ -59,12 +75,6 @@ CREATE TABLE "Review" (
 
 -- CreateTable
 CREATE TABLE "_FavoritesToItem" (
-    "A" INTEGER NOT NULL,
-    "B" TEXT NOT NULL
-);
-
--- CreateTable
-CREATE TABLE "_CartToItem" (
     "A" INTEGER NOT NULL,
     "B" TEXT NOT NULL
 );
@@ -79,22 +89,25 @@ CREATE UNIQUE INDEX "Favorites_userId_key" ON "Favorites"("userId");
 CREATE UNIQUE INDEX "Cart_userId_key" ON "Cart"("userId");
 
 -- CreateIndex
+CREATE UNIQUE INDEX "CartToItem_itemId_size_key" ON "CartToItem"("itemId", "size");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "_FavoritesToItem_AB_unique" ON "_FavoritesToItem"("A", "B");
 
 -- CreateIndex
 CREATE INDEX "_FavoritesToItem_B_index" ON "_FavoritesToItem"("B");
-
--- CreateIndex
-CREATE UNIQUE INDEX "_CartToItem_AB_unique" ON "_CartToItem"("A", "B");
-
--- CreateIndex
-CREATE INDEX "_CartToItem_B_index" ON "_CartToItem"("B");
 
 -- AddForeignKey
 ALTER TABLE "Favorites" ADD CONSTRAINT "Favorites_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Cart" ADD CONSTRAINT "Cart_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CartToItem" ADD CONSTRAINT "CartToItem_itemId_fkey" FOREIGN KEY ("itemId") REFERENCES "Item"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+
+-- AddForeignKey
+ALTER TABLE "CartToItem" ADD CONSTRAINT "CartToItem_cartId_fkey" FOREIGN KEY ("cartId") REFERENCES "Cart"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
 ALTER TABLE "Review" ADD CONSTRAINT "Review_itemId_fkey" FOREIGN KEY ("itemId") REFERENCES "Item"("id") ON DELETE CASCADE ON UPDATE CASCADE;
@@ -107,9 +120,3 @@ ALTER TABLE "_FavoritesToItem" ADD CONSTRAINT "_FavoritesToItem_A_fkey" FOREIGN 
 
 -- AddForeignKey
 ALTER TABLE "_FavoritesToItem" ADD CONSTRAINT "_FavoritesToItem_B_fkey" FOREIGN KEY ("B") REFERENCES "Item"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_CartToItem" ADD CONSTRAINT "_CartToItem_A_fkey" FOREIGN KEY ("A") REFERENCES "Cart"("id") ON DELETE CASCADE ON UPDATE CASCADE;
-
--- AddForeignKey
-ALTER TABLE "_CartToItem" ADD CONSTRAINT "_CartToItem_B_fkey" FOREIGN KEY ("B") REFERENCES "Item"("id") ON DELETE CASCADE ON UPDATE CASCADE;

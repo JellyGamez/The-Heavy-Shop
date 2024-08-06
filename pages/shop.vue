@@ -12,6 +12,7 @@ definePageMeta({
 })
 
 const route = useRoute()
+const router = useRouter()
 const sort = useSort()
 
 const { data: items } = await useAsyncData('items', () => $fetch('/api/item', {
@@ -51,12 +52,27 @@ const display = computed(() => route.query?.display ?? 'grid')
                     Explore and curate your metal haven
                 </p>
             </div>
-            <div class="flex flex-wrap-reverse gap-2 md:gap-4 justify-center items-center text-white">
+            <div v-if="items.length" class="flex flex-wrap-reverse gap-2 md:gap-4 justify-center items-center text-white">
                 <Sort @sort="async () => { await refreshNuxtData('items') }"/>
                 <Display />
             </div>
         </div>
         <div class="mt-4 lg:mt-6">
+            <EmptyState 
+                v-if="!items.length"
+                title="No items found"
+                description="There are no items that match your search and filter options."
+            >
+                <Button
+                    @click="router.back"
+                    variant="secondary" 
+                    size="small" 
+                    class="mt-1 max-w-32 sm:max-w-40 w-full"
+                > 
+                    <span> GO BACK </span>
+                    <IconsDoubleChevronRight class="!size-4" />
+                </Button>
+            </EmptyState>
             <div v-if="display === 'grid'" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 max-w-fit mx-auto">
                 <GridItemCard 
                     v-for="item in items" 
@@ -85,7 +101,7 @@ const display = computed(() => route.query?.display ?? 'grid')
                             <Button 
                                 @click="toggleFavorite(item.id)"
                                 aria-label="favorite"
-                                size="small" 
+                                size="small"
                             > 
                                 <ClientOnly>
                                     <IconsBookmark
@@ -109,7 +125,7 @@ const display = computed(() => route.query?.display ?? 'grid')
                             <Button 
                                 @click="toggleFavorite(item.id)" 
                                 aria-label="favorite"
-                                class="!p-2"
+                                class="!p-[7px]"
                             > 
                                 <ClientOnly>
                                     <IconsBookmark

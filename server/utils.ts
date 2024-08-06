@@ -30,7 +30,7 @@ async function getUserByEmail(email: string | null | undefined) {
 function getItemRating(item: any) {
     if (item.reviews?.length === 0)
         return 0
-    return item.reviews?.map((review: any) => review?.rating).reduce((x: any, y: any) => x + y) / item.reviews?.length
+    return item.reviews?.map((review: any) => review?.rating).reduce((x: any, y: any) => x + y, 0) / item.reviews?.length
 }
 
 function dateFormatter(date: any) {
