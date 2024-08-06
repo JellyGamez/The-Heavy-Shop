@@ -20,11 +20,11 @@ export default defineEventHandler(async (event) => {
                     create: {
                         itemId: id,
                         size: size,
-                        quantity: parseInt(quantity as string) ?? 1
+                        quantity: quantity ? parseInt(quantity as string) : 1
                     },
                     update: {
                         quantity: {
-                            increment: parseInt(quantity as string) ?? 1
+                            increment: quantity ? parseInt(quantity as string) : 1
                         }
                     }
                 }
