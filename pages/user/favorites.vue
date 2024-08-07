@@ -38,8 +38,8 @@ async function removeItem(id) {
                 </p>
             </div>
             <Sort 
-                v-if="items?.length" 
-                @sort="async () => { items = await favorites.getItems() }" 
+                v-if="items?.length !== 0"
+                @sort="async () => { items = await favorites.getItems() }"
             />
         </div>
         <div class="mt-4 lg:mt-6">
@@ -99,7 +99,7 @@ async function removeItem(id) {
                     </ListItemCard>
                 </div>
                 <EmptyState 
-                    v-else-if="items"
+                    v-else-if="items?.length === 0"
                     title="No favorite items yet"
                     description="
                         <p>

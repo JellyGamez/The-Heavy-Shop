@@ -43,8 +43,8 @@ async function updateItem(item, type) {
                 </p>
             </div>
             <Sort 
-                v-if="items?.length" 
-                @sort="async () => { items = await cart.getItems() }" 
+                v-if="items?.length !== 0"
+                @sort="async () => { items = await cart.getItems() }"
             />
         </div>
         <div class="mt-4 lg:mt-6">
@@ -122,7 +122,7 @@ async function updateItem(item, type) {
                     </ListItemCard>
                 </div>
                 <EmptyState 
-                    v-else-if="items"
+                    v-else-if="items?.length === 0"
                     title="Your cart is empty"
                     description="
                         <p>
