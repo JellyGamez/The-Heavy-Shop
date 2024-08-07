@@ -1,5 +1,7 @@
 <script setup>
 
+import { useDebounceFn } from '@vueuse/core';
+
 useHead({
     title: 'Cart',
     meta: [
@@ -16,15 +18,15 @@ const loggedIn = useStatus()
 const cart = useCart()
 const items = ref(await cart.getItems())
 
-async function removeItem(id, size) {
+const removeItem = useDebounceFn(async (id, size) => {
     await cart.removeItem(id, size)
     items.value = await cart.getItems()
-}
+})
 
-async function updateItem(item, type) {
+const updateItem = useDebounceFn(async (item, type) => {
     await cart.updateItem(item.id, item.size, item.quantity, type)
     items.value = await cart.getItems()
-}
+})
 
 </script>
 

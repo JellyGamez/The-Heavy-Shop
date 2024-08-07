@@ -1,5 +1,6 @@
 <script setup>
 
+import { useDebounceFn } from '@vueuse/core';
 import { useToast } from 'vue-toastification'
 
 const toast = useToast()
@@ -11,14 +12,14 @@ const cart = useCart()
 const userFavorites = ref(await favorites.getIds())
 const isFavorite = computed(() => userFavorites?.value?.some(item => item === route.params.id))
 
-async function toggleFavorite() {
+const toggleFavorite = useDebounceFn(async () => {
     const id = route.params.id
     if (isFavorite.value)
         await favorites.removeItem(id)
     else
         await favorites.addItem(id)
     userFavorites.value = await favorites.getIds()
-}
+})
 
 const { data: user } = await useFetch('/api/user')
 const { error, data: item } = await useAsyncData('item', () => $fetch(`/api${route.path}`, {
@@ -60,13 +61,13 @@ async function deleteReview(id) {
 
 const size = ref()
 
-async function addToCart() {
+const addToCart = useDebounceFn(async () => {
     if (item?.value?.sizes?.length && !size.value)
         toast.error('You must select a size first.')
     else {
         await cart.addItem(route.params.id, size.value)
     }
-}
+})
 
 </script>
 

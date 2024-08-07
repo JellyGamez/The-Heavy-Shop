@@ -1,10 +1,19 @@
 <script setup>
 
+import { useDebounceFn } from '@vueuse/core';
+
 const props = defineProps({
     item: Object
 })
 
+const emit = defineEmits(['toggleFavorite'])
+
 const isFavorite = ref(props.item.favorite)
+
+const toggleFavorite = useDebounceFn(() => {
+    emit('toggleFavorite')
+    isFavorite.value = !isFavorite.value
+})
 
 </script>
 
@@ -20,7 +29,7 @@ const isFavorite = ref(props.item.favorite)
                 />
             </NuxtLink>
             <Button 
-                @click="() => { $emit('toggleFavorite'); isFavorite = !isFavorite }"
+                @click="toggleFavorite"
                 aria-label="favorite"
                 class="absolute top-0.5 right-0.5 md:top-1 md:right-1 !p-1.5 h-fit !w-fit !ring-0"
             > 

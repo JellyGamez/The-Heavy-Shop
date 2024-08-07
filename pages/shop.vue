@@ -1,5 +1,7 @@
 <script setup>
 
+import { useDebounceFn } from '@vueuse/core';
+
 useHead({
     title: 'Shop',
     meta: [
@@ -26,13 +28,13 @@ function isFavorite(id) {
     return userFavorites?.value?.some(item => item === id)
 }
 
-async function toggleFavorite(id) {
+const toggleFavorite = useDebounceFn(async (id) => {
     if (isFavorite(id))
         await favorites.removeItem(id)
     else
         await favorites.addItem(id)
     userFavorites.value = await favorites.getIds()
-}
+})
 
 const display = computed(() => route.query?.display ?? 'grid')
 
