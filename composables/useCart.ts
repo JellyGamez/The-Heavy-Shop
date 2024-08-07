@@ -141,21 +141,19 @@ export default function useCart() {
 
     async function syncItems() {
         let entries = await getIds()
-        if (entries.length) {
-            entries?.forEach(async (entry: any) => {
-                await useFetch('/api/user/cart/entry', {
-                    method: 'POST',
-                    query: {
-                        id: entry.id,
-                        size: entry.size,
-                        quantity: entry.quantity
-                    }
-                })
+        entries?.forEach(async (entry: any) => {
+            await useFetch('/api/user/cart/entry', {
+                method: 'POST',
+                query: {
+                    id: entry.id,
+                    size: entry.size,
+                    quantity: entry.quantity
+                }
             })
-            localStorage.removeItem('cart')
-            bus.emit('cart')
-            toast.success("Your cart has been synced!")
-        }
+        })
+        localStorage.removeItem('cart')
+        bus.emit('cart')
+        toast.success("Your cart has been synced!")
     }
 
     return { getIds, getCount, getItems, syncItems, addItem, removeItem, updateItem }

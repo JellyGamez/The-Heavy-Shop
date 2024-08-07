@@ -64,10 +64,10 @@ async function updateItem(item, type) {
                     <Separator />
                 </div>
                 <div 
-                    v-if="items?.length" 
+                    v-if="items?.length"
                     class="flex flex-col mt-2 gap-2 md:mt-3 md:gap-3"
                 >
-                    <ListItemCard 
+                    <ListItemCard
                         v-for="item in items" 
                         :key="`${item.id}${item.size}`"
                         :item="item"
