@@ -1,7 +1,5 @@
 <script setup>
 
-import { useEventBus } from '@vueuse/core'
-
 const bus = useEventBus('modal')
 
 const rating = ref(0)

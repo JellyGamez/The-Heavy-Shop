@@ -35,6 +35,7 @@ export default defineNuxtConfig({
     '@sidebase/nuxt-auth',
     'nuxt-headlessui',
     '@vue-email/nuxt',
+    '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/robots',
     '@nuxtjs/google-fonts'

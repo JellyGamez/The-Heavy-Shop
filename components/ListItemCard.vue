@@ -45,11 +45,11 @@ const props = defineProps({
                 </div>
                 <div class="text-base md:text-lg whitespace-nowrap">
                     <div v-if="item.quantity && item.quantity !== 1">
-                        <span class="font-extralight ">$</span>
+                        <span class="font-extralight">$</span>
                         <span> {{ (item.price * item.quantity).toFixed(2) }} </span>
                     </div>
                     <div v-else>
-                        <span class="font-extralight ">$</span>
+                        <span class="font-extralight">$</span>
                         <span> {{ item.price }} </span>
                     </div>
                 </div>

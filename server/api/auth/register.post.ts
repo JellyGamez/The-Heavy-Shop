@@ -17,7 +17,7 @@ async function create(data: any) {
                 },
                 cart: {
                     create: {
-                        items: {
+                        entries: {
                             create: []
                         }
                     }

@@ -1,6 +1,5 @@
 <script setup>
 
-import { useDebounceFn } from '@vueuse/core';
 import { useToast } from 'vue-toastification'
 
 const toast = useToast()
@@ -8,7 +7,6 @@ const route = useRoute()
 const sort = useSort()
 
 const favorites = useFavorites()
-const cart = useCart()
 const userFavorites = ref(await favorites.getIds())
 const isFavorite = computed(() => userFavorites?.value?.some(item => item === route.params.id))
 
@@ -59,16 +57,6 @@ async function deleteReview(id) {
         toast.error(error.value?.data.statusMessage)
 }
 
-const size = ref()
-
-const addToCart = useDebounceFn(async () => {
-    if (item?.value?.sizes?.length && !size.value)
-        toast.error('You must select a size first.')
-    else {
-        await cart.addItem(route.params.id, size.value)
-    }
-})
-
 </script>
 
 <template>
@@ -79,75 +67,12 @@ const addToCart = useDebounceFn(async () => {
             description="This action is irreversible."
             @confirm="deleteReview"
         />
-        <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
-            <h1 class="text-2xl lg:text-3xl text-white">
-                {{ item.name }}
-            </h1>
-        </div>
-        <div class="flex flex-col w-full gap-2 md:gap-3 mt-4 lg:mt-6">
-            <div class="grid grid-cols-4 gap-2 md:gap-3">
-                <div class="flex items-center col-span-3 p-2 bg-gray-dark rounded-2xl">
-                    <NuxtImg 
-                        :src="item.photoUrl" 
-                        :alt="item.name" 
-                        class="size-[450px] object-cover rounded-xl" 
-                        preload 
-                    />
-                    <div class="flex flex-col text-white mr-2 ml-4 md:ml-6">
-                        <div class="flex items-center gap-2">
-                            <p class="text-lg"> 
-                                {{ parseFloat(item.rating).toFixed(2) }}
-                            </p>
-                            <Rating :rating="item.rating" class="mb-0.5" />
-                            <p class="text-lg text-gray-lightest"> 
-                                ({{ item.reviews.length }}) 
-                            </p>
-                        </div>
-                        <p class="text-lg md:text-xl font-light text-gray-lightest w-full"> 
-                            {{ item.description }} 
-                        </p>
-                        <Select 
-                            v-model="size"
-                            :options="item.sizes" 
-                        />
-                    </div>
-                </div>
-                <div class="flex flex-col bg-gray-dark rounded-2xl p-5 text-white">
-                    <p class="text-2xl"> 
-                        $ {{ item.price }} 
-                    </p>
-                    <Button
-                        @click="addToCart"
-                        size="small"
-                        variant="secondary"
-                    >
-                        <IconsShoppingCart class="!size-4 sm:!size-5" />
-                        <span> ADD TO CART </span>
-                     </Button>
-                    <Button
-                        @click="toggleFavorite" 
-                        size="small"
-                        aria-label="favorite"
-                    > 
-                        <ClientOnly>
-                            <IconsBookmark
-                                variant="solid"
-                                :class="[
-                                    isFavorite ? 'stroke-gray-primary' : 'text-transparent stroke-white',
-                                    '!size-4 sm:!size-5 transition duration-200'
-                                ]"
-                            />
-                            <template #fallback>
-                                <IconsBookmark
-                                    variant="solid"
-                                    class="text-transparent stroke-white !size-4 sm:!size-5 transition duration-200"
-                                />
-                            </template>
-                        </ClientOnly>
-                        <span> {{ isFavorite ? 'ADDED TO FAVORITES' : 'ADD TO FAVORITES' }} </span>
-                    </Button>
-                </div>
-            </div>
+        <div class="flex flex-col w-full gap-2 md:gap-3 mt-2">
+            <ItemContainer 
+                :item="item"
+                :isFavorite="isFavorite"
+                @toggleFavorite="toggleFavorite"
+            />
             <Separator />
             <AddReviewCard v-if="loggedIn && !userLeftReview" />
             <AuthPrompt v-else-if="!loggedIn">

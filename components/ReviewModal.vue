@@ -1,6 +1,5 @@
 <script setup>
 
-import { useEventBus } from '@vueuse/core'
 import { useToast } from 'vue-toastification'
 
 const route = useRoute()

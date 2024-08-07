@@ -1,7 +1,5 @@
 <script setup>
 
-import { useDebounceFn } from '@vueuse/core';
-
 useHead({
     title: 'Shop',
     meta: [
@@ -54,9 +52,12 @@ const display = computed(() => route.query?.display ?? 'grid')
                     Explore and curate your metal haven
                 </p>
             </div>
-            <div v-if="items.length" class="flex flex-wrap-reverse gap-2 md:gap-4 justify-center items-center text-white">
-                <Sort @sort="async () => { await refreshNuxtData('items') }"/>
-                <Display />
+            <div v-if="items.length" class="-ml-1 flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
+                <input class="text-sm md:text-base px-3.5 py-2 md:py-2.5 pr-11 text-white outline-none hover:outline-none border-0 focus:ring-inset focus:ring-2 focus:ring-red-primary transition duration-200 bg-gray-dark rounded-2xl placeholder-gray-lightest" placeholder="Search...">
+                <div class="flex flex-wrap-reverse justify-center gap-2 md:gap-4">
+                    <Sort @sort="async () => { await refreshNuxtData('items') }"/>
+                    <Display />
+                </div>
             </div>
         </div>
         <div class="mt-4 lg:mt-6">

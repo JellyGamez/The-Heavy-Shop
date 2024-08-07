@@ -1,7 +1,5 @@
 <script setup>
 
-import { useEventBus } from '@vueuse/core'
-
 const { signOut } = useAuth()
 const loggedIn = useStatus()
 

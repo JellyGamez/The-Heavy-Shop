@@ -1,7 +1,5 @@
 <script setup>
 
-import { useDebounceFn } from '@vueuse/core';
-
 useHead({
     title: 'Cart',
     meta: [
@@ -63,7 +61,7 @@ const updateItem = useDebounceFn(async (item, type) => {
                             Your preferences will be stored for future visits. 
                         </p>
                     </AuthPrompt>
-                    <Separator />
+                    <Separator class="!py-2" />
                 </div>
                 <div 
                     v-if="items?.length"

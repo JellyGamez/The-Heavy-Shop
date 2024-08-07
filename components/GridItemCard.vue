@@ -1,7 +1,5 @@
 <script setup>
 
-import { useDebounceFn } from '@vueuse/core';
-
 const props = defineProps({
     item: Object
 })
@@ -58,9 +56,10 @@ const toggleFavorite = useDebounceFn(() => {
                 </p>
             </NuxtLink>
             <div class="justify-self-end flex flex-wrap-reverse justify-between items-center w-full gap-2 mt-2">
-                <p class="text-sm md:text-base">
-                    $ {{ item.price }} 
-                </p>
+                <div class="text-sm md:text-base">
+                    <span class="font-extralight">$</span>
+                    <span> {{ item.price }} </span>
+                </div>
                 <div class="flex items-center mb-0.5 gap-1.5">
                     <Rating :rating="item.rating" />
                     <p class="text-gray-lightest"> 

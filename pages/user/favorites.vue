@@ -1,7 +1,5 @@
 <script setup>
 
-import { useDebounceFn } from '@vueuse/core';
-
 useHead({
     title: 'Favorites',
     meta: [
@@ -58,7 +56,7 @@ const removeItem = useDebounceFn(async (id) => {
                             Your preferences will be stored for future visits. 
                         </p>
                     </AuthPrompt>
-                    <Separator />
+                    <Separator class="!py-2" />
                 </div>
                 <div 
                     v-if="items?.length" 

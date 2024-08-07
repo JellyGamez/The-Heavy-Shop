@@ -1,7 +1,5 @@
 <script setup>
 
-import { useEventBus } from '@vueuse/core'
-
 const props = defineProps({
 	title: String,
 	description: String
