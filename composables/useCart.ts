@@ -62,6 +62,12 @@ export default function useCart() {
     }
 
     async function addItem(id: string, size: string) {
+        if (!size) {
+            throw createError({
+                statusCode: 400,
+                statusMessage: 'You must select a size first.'
+            })
+        }
         if (loggedIn) {
             await useFetch('/api/user/cart/entry', {
                 method: 'POST',
