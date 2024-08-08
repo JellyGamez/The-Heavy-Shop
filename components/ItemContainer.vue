@@ -38,10 +38,10 @@ const addToCart = useDebounceFn(async () => {
             <NuxtImg 
                 :src="item.photoUrl" 
                 :alt="item.name" 
-                class="sm:size-[320px] md:size-[360px] lg:size-[420px] object-cover rounded-xl" 
-                preload 
+                class="w-full sm:size-[320px] md:size-[360px] lg:size-[420px] object-cover rounded-xl" 
+                preload
             />
-            <div class="flex flex-col justify-center gap-1 md:gap-2 lg:gap-6 text-white py-5 md:py-4 px-5 md:pl-6">
+            <div class="flex flex-col justify-center gap-1 md:gap-2 lg:gap-6 text-white py-5 sm:py-4 px-5 md:pl-6">
                 <div class="flex flex-col gap-1 sm:gap-2">
                     <h1 class="text-xl lg:text-2xl text-white">
                         {{ item.name }}
@@ -85,22 +85,14 @@ const addToCart = useDebounceFn(async () => {
                 </div>
             </div>
         </div>
-        <div class="col-span-4 xl:col-span-1 p-6 flex flex-col justify-between gap-4 xl:gap-0 bg-gray-dark rounded-2xl text-white">
+        <div class="col-span-4 xl:col-span-1 p-6 flex flex-col gap-4 bg-gray-dark rounded-2xl text-white">
             <div class="flex items-center w-full gap-6 justify-between">
                 <div class="text-2xl lg:text-3xl"> 
                     <span class="font-extralight">$</span>
                     <span> {{ item.price }} </span>
                 </div>
-                <div class="flex xl:hidden items-center gap-2">
-                    <IconsDelivery class="!size-8 text-gray-lightest" />
-                    <span class="text-sm lg:text-[15px] whitespace-nowrap text-gray-lightest"> 
-                        Standard delivery:
-                        <br/> 
-                        <span> {{ date }} </span> 
-                    </span>
-                </div>
             </div>
-            <div class="flex flex-col sm:flex-row xl:flex-col gap-4">
+            <div class="flex flex-col sm:flex-row xl:flex-col h-full gap-4 justify-between">
                 <div class="flex flex-col gap-4 sm:justify-between xl:justify-normal w-full">
                     <Button
                         @click="addToCart"
@@ -132,14 +124,6 @@ const addToCart = useDebounceFn(async () => {
                         </ClientOnly>
                         <span> {{ isFavorite ? 'ADDED TO FAVORITES' : 'ADD TO FAVORITES' }} </span>
                     </Button>
-                </div>
-                <div class="hidden xl:flex self-center items-center gap-2">
-                    <IconsDelivery class="!size-8" />
-                    <span class="text-sm lg:text-[15px] whitespace-nowrap"> 
-                        Standard delivery:
-                        <br/> 
-                        <span> {{ date }} </span> 
-                    </span>
                 </div>
                 <div class="bg-gray-primary py-3 lg:py-4 rounded-xl font-light flex flex-col items-center gap-3 w-full">
                     <div class="flex items-center gap-1.5">
