@@ -86,12 +86,11 @@ const addToCart = useDebounceFn(async () => {
             </div>
         </div>
         <div class="col-span-4 xl:col-span-1 p-6 flex flex-col gap-4 bg-gray-dark rounded-2xl text-white">
-            <div class="flex items-center w-full gap-6 justify-between">
-                <div class="text-2xl lg:text-3xl"> 
+                <div class="text-xl lg:text-2xl flex items-center justify-center"> 
                     <span class="font-extralight">$</span>
                     <span> {{ item.price }} </span>
+                    <span class="text-base xl:text-lg ml-1 xl:ml-1.5 text-gray-lightest font-light"> (includes taxes) </span>
                 </div>
-            </div>
             <div class="flex flex-col sm:flex-row xl:flex-col h-full gap-4 justify-between">
                 <div class="flex flex-col gap-4 sm:justify-between xl:justify-normal w-full">
                     <Button
