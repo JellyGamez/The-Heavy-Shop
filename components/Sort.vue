@@ -69,7 +69,7 @@ async function handleSort(option) {
                 :key="option.id"
                 @click="handleSort(option.id)"
                 :aria-label="option.name"
-                class="text-sm md:text-base relative group flex items-center gap-0.5 rounded-xl py-1 px-3 pl-8 bg-gray-primary outline-none"
+                class="text-sm md:text-base relative group flex items-center gap-0.5 rounded-xl py-1 px-3 pl-7 md:pl-8 bg-gray-primary outline-none"
             >
                 <transition
                     enter-active-class="transition duration-200"
@@ -83,7 +83,7 @@ async function handleSort(option) {
                         :is="option.id === sortBy ? icons[direction] : icons['desc']"
                         :class="[
                             { 'text-red-light' : option.id === sortBy },
-                            'absolute left-2.5 transition duration-200'
+                            'md:size-5 absolute left-2 md:left-2.5 transition duration-200'
                         ]"
                     />
                 </transition>
