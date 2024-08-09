@@ -18,12 +18,12 @@ useHead({
 <template>
     <div class="bg-[url('/img/texture.webp')] bg-cover min-h-full xl:h-full flex">
         <div class="flex-1 bg-gray-dark bg-opacity-90 pt-8 px-4 md:px-10 lg:px-20 grid grid-cols-1 xl:grid-cols-2 gap-8 overflow-x-hidden">
-            <div class="flex items-center justify-center text-white text-3xl sm:text-5xl font-bold">
+            <div class="flex items-center justify-center text-white text-3xl sm:text-4xl xl:text-5xl font-bold">
                 <div class="flex flex-col gap-8 mb-8 text-center xl:text-left font-ubuntu">
                     <span>
                         We bring the 
                         <br>
-                        <span class="text-4xl sm:text-6xl text-red-primary underline-effect"> 
+                        <span class="text-4xl sm:text-5xl xl:text-6xl text-red-primary underline-effect"> 
                             HEAVY STUFF. 
                         </span> 
                         <br>
@@ -32,7 +32,7 @@ useHead({
                     <span>
                         You rock the 
                         <br>
-                        <span class="text-4xl sm:text-6xl text-red-primary underline-effect"> 
+                        <span class="text-4xl sm:text-5xl xl:text-6xl text-red-primary underline-effect"> 
                             ATTITUDE.
                         </span>
                         <br>
