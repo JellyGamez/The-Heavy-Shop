@@ -87,8 +87,9 @@ export default function useFavorites() {
             })
             localStorage.removeItem('favorites')
             bus.emit('favorites')
-            toast.success("Your favorites have been synced!")
+            return true
         }
+        return false
     }
 
     return { getItems, getIds, getCount, syncItems, addItem, removeItem }

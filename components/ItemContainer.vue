@@ -25,7 +25,6 @@ const addToCart = useDebounceFn(async () => {
         await cart.addItem(route.params.id, size.value)
     } 
     catch(e) {
-        console.log(e)
         toast.error(e.statusMessage)
     }
 })

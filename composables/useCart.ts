@@ -159,9 +159,10 @@ export default function useCart() {
             })
             localStorage.removeItem('cart')
             bus.emit('cart')
-            toast.success("Your cart has been synced!")
+            return true
         }
+        return false
     }
 
-    return { getIds, getCount, getItems, syncItems, addItem, removeItem, updateItem }
+    return { getItems, getIds, getCount, syncItems, addItem, removeItem, updateItem }
 }

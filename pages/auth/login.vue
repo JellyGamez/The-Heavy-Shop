@@ -1,5 +1,7 @@
 <script setup>
 
+import { useToast } from 'vue-toastification'
+
 useHead({
     title: 'Login',
     meta: [
@@ -15,6 +17,8 @@ definePageMeta({
         navigateAuthenticatedTo: '/',
     },
 })
+
+const toast = useToast()
 
 const { signIn } = useAuth()
 const { syncItems: syncCart } = useCart()
@@ -44,8 +48,10 @@ async function credentialsSignIn() {
     errorMessage.value = error
     if (!error) {
         await navigateTo('/')
-        await syncCart()
-        await syncFavorites()
+        const cart = await syncCart()
+        const favorites = await syncFavorites()
+        if (cart || favorites)
+            toast.success('Your items have been synced!')
     }
     loading.value = false
 }

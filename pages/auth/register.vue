@@ -52,9 +52,11 @@ async function register() {
 
         await navigateTo('/')
         toast.success("Account created successfully!")
-        
-        await syncCart()
-        await syncFavorites()
+
+        const cart = await syncCart()
+        const favorites = await syncFavorites()
+        if (cart || favorites)
+            toast.success('Your items have been synced!')
     }
     loading.value = false
 }
