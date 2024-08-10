@@ -1,3 +1,4 @@
+import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import prisma from '~/server/utils'
 import { NuxtAuthHandler } from '#auth'
@@ -6,7 +7,7 @@ import GithubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
-async function getUserByEmail(email: string) {
+async function getUserByEmail(email: string | null | undefined) {
     try {
         return await prisma.user.findUniqueOrThrow({
             where: {
@@ -22,8 +23,46 @@ async function getUserByEmail(email: string) {
     }
 }
 
+async function createUser(data: any) {
+    await prisma.user.create({
+        data: {
+            name: data.name,
+            photoUrl: data.image,
+            email: data.email,
+            password: bcrypt.hashSync(crypto.randomBytes(30).toString('hex'), 10),
+            favorites: {
+                create: {
+                    items: {
+                        create: []
+                    }
+                }
+            },
+            cart: {
+                create: {
+                    entries: {
+                        create: []
+                    }
+                }
+            }
+        }
+    })
+}
+
 export default NuxtAuthHandler({
     secret: process.env.AUTH_SECRET,
+    callbacks: {
+        async signIn({ user, account }) {
+            try {
+                await getUserByEmail(user.email)
+            }
+            catch(e) {
+                if (account?.provider !== 'credentials')
+                    await createUser(user)
+            }
+
+            return true
+        }
+    },
     providers: [
         // @ts-expect-error
         GithubProvider.default({
