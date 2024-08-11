@@ -28,12 +28,12 @@ function handleClick() {
 
 const icon = computed(() => {
     return {
-        'Home'         : IconsHome,        
-        'Gallery'      : IconsGallery,   
-        'Document'     : IconsDocument,
-        'Bookmark'     : IconsBookmark,    
-        'ShoppingBag'  : IconsShoppingBag, 
-        'ShoppingCart' : IconsShoppingCart
+        'home'          : IconsHome,        
+        'gallery'       : IconsGallery,   
+        'document'      : IconsDocument,
+        'bookmark'      : IconsBookmark,    
+        'shopping-bag'  : IconsShoppingBag, 
+        'shopping-cart' : IconsShoppingCart
     }[props.icon]
 })
 

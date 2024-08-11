@@ -122,8 +122,29 @@ async function register() {
                 </Button>
             </div>
         </form>
+        <div class="mt-6 flex flex-col items-center">
+            <p class="text-white text-sm font-extralight my-1"> 
+                Or register using 
+            </p>
+            <div class="flex gap-3">
+                <button 
+                    @click="async () => await signIn('github')" 
+                    aria-label="github"
+                    class="text-white hover:text-gray-lighter transition duration-200"
+                >
+                    <IconsGithub />
+                </button>
+                <button 
+                    @click="async () => await signIn('discord')" 
+                    aria-label="discord"
+                    class="text-white hover:text-gray-lighter transition duration-200"
+                >
+                    <IconsDiscord />
+                </button>
+            </div>
+        </div>
         <div class="text-white text-sm font-extralight my-1"></div>
-        <Label class="mt-8 !ml-0 flex flex-wrap items-center justify-center gap-1">
+        <Label class="mt-6 !ml-0 flex flex-wrap items-center justify-center gap-1">
             <span> Already have an account? </span>
             <NuxtLink to="/auth/login" class="font-normal text-red-primary hover:underline">
                 Log in

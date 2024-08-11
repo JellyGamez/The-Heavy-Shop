@@ -79,6 +79,7 @@ export default defineEventHandler(async (event) => {
     await updatePasswordResetToken(decodedToken.email, null)
 
     return { 
-        message: 'Password reset successfully!' 
+        message: 'Password reset successfully!',
+        email: decodedToken.email
     }
 })

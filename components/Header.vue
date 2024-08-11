@@ -9,15 +9,15 @@ async function handleAction(action) {
 }
 
 const navItems = [
-    { id: 'home',    name: 'Home',    icon: 'Home',        url: '/'        },
-    { id: 'shop',    name: 'Shop',    icon: 'ShoppingBag', url: '/shop'    },
-    { id: 'about',   name: 'About',   icon: 'Document',    url: '/about'   },
-    { id: 'gallery', name: 'Gallery', icon: 'Gallery',     url: '/gallery' }
+    { id: 'home',    name: 'Home',    icon: 'home',        url: '/'        },
+    { id: 'shop',    name: 'Shop',    icon: 'shopping-bag', url: '/shop'    },
+    { id: 'about',   name: 'About',   icon: 'document',    url: '/about'   },
+    { id: 'gallery', name: 'Gallery', icon: 'gallery',     url: '/gallery' }
 ]
 
 const userNavItems = [
-    { id: 'favorites', name: 'Favorites', icon: 'Bookmark',     url: '/user/favorites' },
-    { id: 'cart',      name: 'Cart',      icon: 'ShoppingCart', url: '/user/cart'      }
+    { id: 'favorites', name: 'Favorites', icon: 'bookmark',     url: '/user/favorites' },
+    { id: 'cart',      name: 'Cart',      icon: 'shopping-cart', url: '/user/cart'      }
 ]
 
 const userOptions = (!loggedIn) ? [

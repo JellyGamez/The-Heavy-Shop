@@ -29,7 +29,7 @@ const loading = ref(false)
 async function resetPassword() {
     loading.value = true
     errorMessage.value = null
-    const { error } = await useFetch('/api/auth/reset-password', {
+    const { data, error } = await useFetch('/api/auth/reset-password', {
         method: 'POST',
         body: {
             signedToken: route.query.token,
@@ -39,7 +39,12 @@ async function resetPassword() {
     })
     errorMessage.value = error.value?.data.statusMessage
     if (!error.value) {
-        await navigateTo('/auth/login')
+        await signIn('credentials', {
+            email: data.value.email,
+            password: password.value,
+            redirect: false
+        })
+        await navigateTo('/')
         toast.success("Password reset successfully!")
     }
     loading.value = false

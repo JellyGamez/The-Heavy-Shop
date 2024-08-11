@@ -29,7 +29,7 @@ async function createUser(data: any) {
             name: data.name,
             photoUrl: data.image,
             email: data.email,
-            password: bcrypt.hashSync(crypto.randomBytes(30).toString('hex'), 10),
+            password: null,
             favorites: {
                 create: {
                     items: {
@@ -51,13 +51,16 @@ async function createUser(data: any) {
 export default NuxtAuthHandler({
     secret: process.env.AUTH_SECRET,
     callbacks: {
-        async signIn({ user, account }) {
+        async signIn({ user, account, profile }) {
             try {
                 await getUserByEmail(user.email)
             }
             catch(e) {
-                if (account?.provider !== 'credentials')
+                if (account?.provider !== 'credentials') {
+                    if (account?.provider === 'discord')
+                        user.name = (profile as any).global_name
                     await createUser(user)
+                }
             }
 
             return true
@@ -91,7 +94,7 @@ export default NuxtAuthHandler({
                 else {
                     try {
                         const user = await getUserByEmail(credentials?.email)
-                        if (bcrypt.compareSync(credentials?.password, user.password))
+                        if (bcrypt.compareSync(credentials?.password, user.password as string))
                             return user
                         else 
                             throw createError({

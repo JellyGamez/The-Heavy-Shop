@@ -28,7 +28,8 @@ export default defineEventHandler(async (event) => {
                         author: {
                             select: {
                                 id: true,
-                                name: true
+                                name: true,
+                                photoUrl: true
                             }
                         }
                     }

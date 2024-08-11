@@ -29,14 +29,6 @@ const password = ref('')
 const errorMessage = ref()
 const loading = ref(false)
 
-async function githubSignIn() {
-    await signIn('github')
-}
-
-async function discordSignIn() {
-    await signIn('discord')
-}
-
 async function credentialsSignIn() {
     loading.value = true
     errorMessage.value = null
@@ -105,14 +97,14 @@ async function credentialsSignIn() {
             </p>
             <div class="flex gap-3">
                 <button 
-                    @click="githubSignIn" 
+                    @click="async () => await signIn('github')" 
                     aria-label="github"
                     class="text-white hover:text-gray-lighter transition duration-200"
                 >
                     <IconsGithub />
                 </button>
                 <button 
-                    @click="discordSignIn" 
+                    @click="async () => await signIn('discord')" 
                     aria-label="discord"
                     class="text-white hover:text-gray-lighter transition duration-200"
                 >

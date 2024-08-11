@@ -1,6 +1,6 @@
 <script setup>
 
-import { IconsBottomToTop, IconsTopToBottom } from '#components';
+import { IconsBottomToTop, IconsTopToBottom } from '#components'
 
 const props = defineProps({
     variant: {

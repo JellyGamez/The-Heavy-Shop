@@ -138,6 +138,7 @@ async function deleteReview(id) {
                 <div class="flex flex-col gap-2 md:gap-3">
                     <ReviewCard 
                         v-for="review in item.reviews" 
+                        :key="review.id"
                         :review="review" 
                         :isOwner="isOwner(review)" 
                     />
