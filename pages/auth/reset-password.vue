@@ -20,6 +20,7 @@ definePageMeta({
 
 const toast = useToast()
 const route = useRoute()
+const { signIn } = useAuth()
 
 const password = ref('')
 const passwordConfirmation = ref('')
@@ -67,7 +68,7 @@ async function resetPassword() {
                         id="password" 
                         type="password"
                     >
-                        <IconsKey />
+                        <IconsKey class="text-white" />
                     </TextInput>
                 </div>
                 <div>
@@ -78,7 +79,7 @@ async function resetPassword() {
                         id="password-confirmation" 
                         type="password"
                     >
-                        <IconsKey />
+                        <IconsKey class="text-white" />
                     </TextInput>
                 </div>
                 <Error class="text-center"> {{ errorMessage }} </Error>

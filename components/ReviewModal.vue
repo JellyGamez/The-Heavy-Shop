@@ -117,7 +117,7 @@ async function editReview() {
 						<span> ADD REVIEW </span>
 					</Button>
 					<Button v-else type="submit">
-						<IconsPencil class="!size-4" />
+						<IconsPencil />
 						<span> EDIT REVIEW </span>
 					</Button>
 				</div>

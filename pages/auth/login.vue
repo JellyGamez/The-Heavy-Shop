@@ -63,7 +63,7 @@ async function credentialsSignIn() {
                         type="email" 
                         autocomplete="email"
                     >
-                        <IconsMail />
+                        <IconsMail class="text-white" />
                     </TextInput>
                 </div>
                 <div>
@@ -74,7 +74,7 @@ async function credentialsSignIn() {
                         id="password" 
                         type="password"
                     >
-                        <IconsKey />
+                        <IconsKey class="text-white" />
                     </TextInput>
                     <Label>
                         <NuxtLink to="/auth/forgot-password" class="hover:underline">

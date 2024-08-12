@@ -2,6 +2,8 @@ import crypto from 'crypto'
 import bcrypt from 'bcrypt'
 import prisma from '~/server/utils'
 import { NuxtAuthHandler } from '#auth'
+import { useToast } from 'vue-toastification'
+const toast = useToast()
 
 import GithubProvider from 'next-auth/providers/github'
 import DiscordProvider from 'next-auth/providers/discord'

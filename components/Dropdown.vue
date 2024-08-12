@@ -34,7 +34,7 @@ function handleClick(option) {
                 <HeadlessMenuItems class="origin-top absolute flex flex-col gap-1 w-32 mt-2 p-1 left-1/2 -translate-x-1/2 rounded-2xl bg-gray-lighter shadow-lg focus:outline-none">
                     <div 
                         v-for="option in options" 
-                        :key="option.name" 
+                        :key="option.id" 
                         class="text-white text-sm"
                     >
                         <HeadlessMenuItem v-slot="{ active }">
@@ -42,7 +42,7 @@ function handleClick(option) {
                                 @click="handleClick(option)"
                                 :class="[
                                     { 'bg-gray-primary' : active },
-                                    'flex w-full items-center rounded-xl px-2 py-2 transition duration-200',
+                                    'flex w-full items-center rounded-xl px-2 py-2 transition duration-200'
                                 ]"
                             >
                                 {{ option.name }}

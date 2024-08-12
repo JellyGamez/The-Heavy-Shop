@@ -1,6 +1,6 @@
 <script setup>
 
-import { IconsBookmark, IconsHome, IconsShoppingBag, IconsShoppingCart, IconsDocument, IconsGallery } from '#components'
+import { IconsBookmark, IconsHome, IconsShoppingBag, IconsShoppingCart, IconsDocument, IconsGallery, IconsLogout, IconsLogin, IconsUser, IconsReview } from '#components'
 
 const props = defineProps({
     action: String,
@@ -33,7 +33,11 @@ const icon = computed(() => {
         'document'      : IconsDocument,
         'bookmark'      : IconsBookmark,    
         'shopping-bag'  : IconsShoppingBag, 
-        'shopping-cart' : IconsShoppingCart
+        'shopping-cart' : IconsShoppingCart,
+        'logout'        : IconsLogout,
+        'login'         : IconsLogin,
+        'user'          : IconsUser,
+        'review'        : IconsReview
     }[props.icon]
 })
 

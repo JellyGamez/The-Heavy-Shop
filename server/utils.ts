@@ -16,7 +16,7 @@ async function getUserByEmail(email: string | null | undefined) {
                 createdAt: true
             }
         })
-        return { ...user, registeredAt: dateFormatter(createdAt) }
+        return { ...user, registeredOn: dateFormatter(createdAt) }
     }
     catch(e) { 
         if (email)

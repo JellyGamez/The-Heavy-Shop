@@ -41,7 +41,7 @@ const bus = useEventBus('modal')
                             aria-label="edit"
                             class="!p-2.5"
                         > 
-                            <IconsPencil class="!size-4" />
+                            <IconsPencil />
                         </Button>
                         <Button 
                             @click="() => bus.emit('confirmation', review.id)" 

@@ -78,7 +78,7 @@ async function deleteReview(id) {
             <Separator />
             <AddReviewCard v-if="loggedIn && !userLeftReview" />
             <AuthPrompt v-else-if="!loggedIn">
-                <p class="mx-8 sm:mx-0">
+            <p class="mx-8 sm:mx-0">
                     To leave a review for this item, please log in or create an account. 
                 </p>
                 <p class="hidden md:block">

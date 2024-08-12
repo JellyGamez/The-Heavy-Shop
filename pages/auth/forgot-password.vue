@@ -57,7 +57,7 @@ async function sendEmail() {
                         type="email" 
                         autocomplete="email"
                     >
-                        <IconsMail />
+                        <IconsMail class="text-white" />
                     </TextInput>
                 </div>
                 <Error class="text-center"> {{ errorMessage }} </Error>

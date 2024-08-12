@@ -30,42 +30,47 @@ const passwordConfirmation = ref('')
 const errorMessage = ref()
 const loading = ref(false)
 
-async function register() {
-    loading.value = true
-    errorMessage.value = null
-    const { error } = await useFetch('/api/auth/register', {
-        method: 'POST',
-        body: {
-            name: name.value,
-            email: email.value,
-            password: password.value,
-            passwordConfirmation: passwordConfirmation.value
-        }
-    })
-    errorMessage.value = error.value?.data.statusMessage
-    if (!error.value) {
-        await signIn('credentials', {
-            email: email.value,
-            password: password.value,
-            redirect: false
+async function register(provider) {
+    if (provider === 'credentials') {
+        loading.value = true
+        errorMessage.value = null
+        const { error } = await useFetch('/api/auth/register', {
+            method: 'POST',
+            body: {
+                name: name.value,
+                email: email.value,
+                password: password.value,
+                passwordConfirmation: passwordConfirmation.value
+            }
         })
+        errorMessage.value = error.value?.data.statusMessage
+        if (!error.value) {
+            await signIn('credentials', {
+                email: email.value,
+                password: password.value,
+                redirect: false
+            })
+            await navigateTo('/')
+            toast.success("Account created successfully!")
 
-        await navigateTo('/')
-        toast.success("Account created successfully!")
-
-        const cart = await syncCart()
-        const favorites = await syncFavorites()
-        if (cart || favorites)
-            toast.success('Your items have been synced!')
+            const cart = await syncCart()
+            const favorites = await syncFavorites()
+            if (cart || favorites)
+                toast.success('Your items have been synced!')
+        }
+        loading.value = false
     }
-    loading.value = false
+    else {
+        await signIn(provider)
+        setTimeout(() => toast.success('Account created successfully!'), 5000)
+    }
 }
 
 </script>
 
 <template>
     <AuthCard title="Create a new account">
-        <form @submit.prevent="register">
+        <form @submit.prevent="register('credentials')">
             <div class="flex flex-col gap-4">
                 <div>
                     <Label for="name"> Name </Label>
@@ -88,7 +93,7 @@ async function register() {
                         type="email" 
                         autocomplete="email"
                     >
-                        <IconsMail />
+                        <IconsMail class="text-white" />
                     </TextInput>
                 </div>
                 <div>
@@ -99,7 +104,7 @@ async function register() {
                         id="password"
                         type="password"
                     >
-                        <IconsKey />
+                        <IconsKey class="text-white" />
                     </TextInput>
                 </div>
                 <div>
@@ -110,7 +115,7 @@ async function register() {
                         id="password-confirmation" 
                         type="password"
                     >
-                        <IconsKey />
+                        <IconsKey class="text-white" />
                     </TextInput>
                 </div>
                 <Error class="text-center"> {{ errorMessage }} </Error>
@@ -128,14 +133,14 @@ async function register() {
             </p>
             <div class="flex gap-3">
                 <button 
-                    @click="async () => await signIn('github')" 
+                    @click="register('github')" 
                     aria-label="github"
                     class="text-white hover:text-gray-lighter transition duration-200"
                 >
                     <IconsGithub />
                 </button>
                 <button 
-                    @click="async () => await signIn('discord')" 
+                    @click="register('discord')" 
                     aria-label="discord"
                     class="text-white hover:text-gray-lighter transition duration-200"
                 >

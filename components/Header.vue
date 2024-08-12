@@ -3,29 +3,29 @@
 const { signOut } = useAuth()
 const loggedIn = useStatus()
 
-async function handleAction(action) {
+function handleAction(action) {
     if (action === 'signOut')
-        await signOut()
+        signOut()
 }
 
 const navItems = [
-    { id: 'home',    name: 'Home',    icon: 'home',        url: '/'        },
-    { id: 'shop',    name: 'Shop',    icon: 'shopping-bag', url: '/shop'    },
-    { id: 'about',   name: 'About',   icon: 'document',    url: '/about'   },
-    { id: 'gallery', name: 'Gallery', icon: 'gallery',     url: '/gallery' }
+    { id: 'home',      name: 'Home',      icon: 'home',          url: '/'               },
+    { id: 'shop',      name: 'Shop',      icon: 'shopping-bag',  url: '/shop'           },
+    { id: 'about',     name: 'About',     icon: 'document',      url: '/about'          },
+    { id: 'gallery',   name: 'Gallery',   icon: 'gallery',       url: '/gallery'        }
 ]
 
 const userNavItems = [
-    { id: 'favorites', name: 'Favorites', icon: 'bookmark',     url: '/user/favorites' },
+    { id: 'favorites', name: 'Favorites', icon: 'bookmark',      url: '/user/favorites' },
     { id: 'cart',      name: 'Cart',      icon: 'shopping-cart', url: '/user/cart'      }
 ]
 
 const userOptions = (!loggedIn) ? [
-    { name: 'Log In',   url: '/auth/login'    },
-    { name: 'Register', url: '/auth/register' }
+    { id: 'login',     name: 'Log In',    icon: 'login',         url: '/auth/login'     },
+    { id: 'register',  name: 'Register',  icon: 'review',        url: '/auth/register'  }
 ] : [
-    { name: 'Account',  url: '/user/account'  },
-    { name: 'Log Out',  action: 'signOut'     }
+    { id: 'account',   name: 'Account',   icon: 'user',          url: '/user/account'   },
+    { id: 'logout',    name: 'Log Out',   icon: 'logout',        action: 'signOut'      }
 ]
 
 const favorites = useFavorites()
@@ -66,7 +66,8 @@ bus.on(async function (event) {
                         leave-from-class="transform scale-y-100"
                         leave-to-class="transform scale-y-0 opacity-0"
                     >
-                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark gap-y-2 p-5 w-full shadow-2xl">
+                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark gap-y-2 p-5 pt-0 w-full shadow-2xl">
+                            <Separator class="!p-0 !pb-2" />
                             <div class="flex flex-col gap-y-2 pb-2">
                                 <HeadlessMenuItem v-for="item in navItems" :key="item.id">
                                     <NavItem 
@@ -77,6 +78,8 @@ bus.on(async function (event) {
                                     />
                                 </HeadlessMenuItem>
                             </div>
+
+                            <Separator class="!p-0" />
                             
                             <div class="flex flex-col gap-y-2 py-2">
                                 <HeadlessMenuItem v-for="item in userNavItems" :key="item.id">
@@ -90,11 +93,14 @@ bus.on(async function (event) {
                                 </HeadlessMenuItem>
                             </div>
 
+                            <Separator class="!p-0" />
+
                             <div class="flex flex-col gap-y-2 pt-2">
                                 <HeadlessMenuItem v-for="option in userOptions" :key="option.id">
                                     <NavItem
                                         :label="option.name"
                                         :url="option.url"
+                                        :icon="option.icon"
                                         :id="option.id"
                                         :action="option.action"
                                         @action="handleAction"
