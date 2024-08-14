@@ -51,7 +51,6 @@ async function register(provider) {
                 redirect: false
             })
             await navigateTo('/')
-            toast.success("Account created successfully!")
 
             const cart = await syncCart()
             const favorites = await syncFavorites()
@@ -60,10 +59,8 @@ async function register(provider) {
         }
         loading.value = false
     }
-    else {
+    else
         await signIn(provider)
-        setTimeout(() => toast.success('Account created successfully!'), 5000)
-    }
 }
 
 </script>

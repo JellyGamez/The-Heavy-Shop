@@ -31,8 +31,12 @@ export default defineNuxtConfig({
       name: 'page', mode: 'out-in'
     }
   },
+  fileStorage: {
+    mount: process.env.MOUNT
+  },
   modules: [
     '@sidebase/nuxt-auth',
+    'nuxt-file-storage',
     'nuxt-headlessui',
     '@vue-email/nuxt',
     '@vueuse/nuxt',

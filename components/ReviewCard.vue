@@ -39,7 +39,7 @@ const bus = useEventBus('modal')
                             @click="() => bus.emit('editReview', { id: review.id, rating: review.rating, review: review.content })" 
                             size="small" 
                             aria-label="edit"
-                            class="!p-2.5"
+                            class="!p-2 md:!p-2.5"
                         > 
                             <IconsPencil />
                         </Button>
@@ -47,7 +47,7 @@ const bus = useEventBus('modal')
                             @click="() => bus.emit('confirmation', review.id)" 
                             size="small" 
                             aria-label="delete"
-                            class="!p-2.5"
+                            class="!p-2 md:!p-2.5"
                         > 
                             <IconsTrashBin class="!size-4" />
                         </Button>

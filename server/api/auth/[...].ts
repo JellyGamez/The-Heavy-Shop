@@ -31,7 +31,7 @@ async function createUser(data: any) {
             name: data.name,
             photoUrl: data.image,
             email: data.email,
-            password: bcrypt.hashSync(crypto.randomBytes(30).toString('hex'), 10),
+            password: bcrypt.hashSync(crypto.randomBytes(32).toString('hex'), 10),
             favorites: {
                 create: {
                     items: {

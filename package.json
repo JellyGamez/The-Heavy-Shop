@@ -25,6 +25,7 @@
     "bcrypt": "^5.1.1",
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.12.4",
+    "nuxt-file-storage": "^0.2.7",
     "nuxt-headlessui": "^1.2.0",
     "postcss": "^8.4.41",
     "prisma": "^5.18.0",

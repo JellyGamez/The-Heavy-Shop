@@ -3,19 +3,15 @@
 import { useToast } from 'vue-toastification'
 
 useHead({
-    title: 'Reset password',
+    title: 'Update password',
     meta: [
-        { name: 'description', content: 'Reset password' }
+        { name: 'description', content: 'Update password' }
     ],
 })
 
 definePageMeta({
     layout: 'auth',
-    middleware: 'auth',
-    auth: {
-        unauthenticatedOnly: true,
-        navigateAuthenticatedTo: '/',
-    },
+    middleware: 'auth'
 })
 
 const toast = useToast()
@@ -27,26 +23,20 @@ const passwordConfirmation = ref('')
 const errorMessage = ref()
 const loading = ref(false)
 
-async function resetPassword() {
+async function updatePassword() {
     loading.value = true
     errorMessage.value = null
-    const { data, error } = await useFetch('/api/auth/reset-password', {
+    const { data, error } = await useFetch('/api/user/update-password', {
         method: 'PUT',
         body: {
-            signedToken: route.query.token,
             password: password.value,
             passwordConfirmation: passwordConfirmation.value
         }
     })
     errorMessage.value = error.value?.data.statusMessage
     if (!error.value) {
-        await signIn('credentials', {
-            email: data.value.email,
-            password: password.value,
-            redirect: false
-        })
-        await navigateTo('/')
-        toast.success("Password reset successfully!")
+        await navigateTo('/user/account')
+        toast.success("Password updated successfully!")
     }
     loading.value = false
 }
@@ -55,10 +45,10 @@ async function resetPassword() {
 
 <template>
     <AuthCard 
-        title="Reset password" 
+        title="Update password" 
         description="Enter a new secure password for your account"
     >
-        <form @submit.prevent="resetPassword">
+        <form @submit.prevent="updatePassword">
             <div class="flex flex-col gap-4">
                 <div>
                     <Label for="password"> Password </Label>
@@ -87,7 +77,7 @@ async function resetPassword() {
                     type="submit" 
                     :variant="loading ? 'loading' : 'primary'"
                 >
-                    RESET PASSWORD
+                    UPDATE PASSWORD
                 </Button>
             </div>
         </form>

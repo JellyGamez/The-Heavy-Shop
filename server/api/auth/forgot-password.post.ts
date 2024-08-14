@@ -15,10 +15,6 @@ async function updatePasswordResetToken(email: string, passwordResetToken: strin
     })
 }
 
-function generateToken() {
-    return crypto.randomBytes(30).toString('hex')
-}
-
 function signToken(email: string, token: string) {
     return jwt.sign(
         {
@@ -41,7 +37,7 @@ export default defineEventHandler(async (event) => {
 
     await getUserByEmail(email)
 
-    const token = generateToken()
+    const token = crypto.randomBytes(32).toString('hex')
     const signedToken = signToken(email, token)
 
     await updatePasswordResetToken(email, token)
