@@ -57,6 +57,9 @@ const uploadFile = useDebounceFn(async () => {
     }
 })
 
+
+const homeDir = require('os');
+console.log(homeDir)
 </script>
 
 <template>
