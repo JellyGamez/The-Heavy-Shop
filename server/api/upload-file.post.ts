@@ -1,15 +1,12 @@
 import crypto from 'crypto'
 
-function generateToken() {
-    return crypto.randomBytes(32).toString('hex')
-}
-
 export default defineEventHandler(async (event) => {
     const { files } = await readBody(event)
 
     const file = files[0]
+    if (!file)
+        return
     
-    console.log(file.type)
     if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type))
         throw createError({
             statusCode: 400,

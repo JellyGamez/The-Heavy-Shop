@@ -20,6 +20,7 @@ const user = ref((await useFetch('/api/user')).data.value)
 const { handleFileInput, files } = useFileStorage()
 const toast = useToast()
 const bus = useEventBus('modal')
+const updateAvatar = ref()
 
 async function deleteAccount() {
     await useFetch('/api/user', {
@@ -29,7 +30,6 @@ async function deleteAccount() {
 }
 
 async function updateAccount(body) {
-    console.log(body)
     await useFetch('/api/user', {
         method: 'PUT',
         body: body
@@ -38,7 +38,7 @@ async function updateAccount(body) {
 }
 
 
-async function uploadFile() {
+const uploadFile = useDebounceFn(async () => {
     const { data, error } = await useFetch('/api/upload-file', {
         method: 'POST',
         body: {
@@ -48,11 +48,15 @@ async function uploadFile() {
     
     if (error.value)
         toast.error(error.value.statusMessage)
-    else
+    else {
         await updateAccount({
             photoUrl: data.value.path
         })
-}
+        toast.success('Avatar updated successfully!')
+        updateAvatar.value = null
+    }
+})
+
 </script>
 
 <template>
@@ -75,27 +79,41 @@ async function uploadFile() {
         </div>
         <div class="mt-4 lg:mt-6 flex p-4 rounded-2xl bg-gray-dark">
             <div class="flex flex-col items-center w-full">
-                <div class="shrink-0 relative">
-                    <NuxtImg 
+                <div class="group shrink-0 relative flex rounded-full">
+                    <NuxtImg
                         :src="user.photoUrl ?? '/img/avatar.webp'" 
                         alt="avatar"
                         class="size-36 md:size-52 object-cover rounded-full" 
                         preload 
                     />
-                    <Button class="absolute -bottom-4 -left-4 !w-fit !p-2 md:!p-2.5">
-                        <label for="avatar"> 
-                            <IconsPencil class="cursor-pointer" />
-                            <input
-                                id="avatar"
-                                type="file" 
-                                accept="image/*"
-                                @input="handleFileInput"
-                                @change="uploadFile"
-                                aria-label="avatar"
-                                class="hidden"
-                            >
-                        </label>
-                    </Button>
+                        <Button :class="[
+                                user.photoUrl ? 'bottom-1 left-2.5 md:bottom-2 md:left-3' : '-bottom-4 left-1/2 -translate-x-1/2',
+                                'absolute !rounded-full !w-fit !p-0 cursor-pointer transition-all duration-300'
+                            ]"
+                        >
+                            <label for="update-avatar" class="!p-2 md:!p-2.5 cursor-pointer"> 
+                                <IconsPencil />
+                                <input
+                                    id="update-avatar"
+                                    ref="updateAvatar"
+                                    type="file" 
+                                    accept="image/*"
+                                    @input="handleFileInput"
+                                    @change="uploadFile"
+                                    aria-label="update-avatar"
+                                    class="hidden"
+                                >
+                            </label>
+                        </Button>
+                        <Button 
+                            v-if="user.photoUrl"
+                            @click="updateAccount({
+                                photoUrl: null
+                            }).then(() => toast.success('Avatar deleted successfully!'))"
+                            class="bottom-1 right-2.5 md:bottom-2 md:right-3 absolute !rounded-full !w-fit !p-2 md:!p-2.5"
+                        >
+                            <IconsTrashBin class="!size-4" />
+                        </Button>
                 </div>
                 <div class="mt-4 flex flex-col gap-2 items-center w-full text-white">
                     <p class="text-2xl md:text-3xl"> 
@@ -122,7 +140,7 @@ async function uploadFile() {
                         </p>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mt-4">
+                <div class="grid grid-cols-1 w-full max-w-72 md:w-auto md:max-w-none md:grid-cols-3 gap-3 mt-4">
                     <Button 
                         size="medium"
                         @click="signOut"
