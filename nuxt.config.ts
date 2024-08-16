@@ -31,15 +31,11 @@ export default defineNuxtConfig({
       name: 'page', mode: 'out-in'
     }
   },
-  fileStorage: {
-    mount: process.cwd()
-  },
   runtimeConfig: {
     authOrigin: process.env.AUTH_ORIGIN
   },
   modules: [
     '@sidebase/nuxt-auth',
-    'nuxt-file-storage',
     'nuxt-headlessui',
     '@vue-email/nuxt',
     '@vueuse/nuxt',

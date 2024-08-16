@@ -18,8 +18,8 @@ const bus = useEventBus('modal')
                         <div class="flex items-center gap-2 w-fit">
                             <NuxtImg 
                                 :src="review.author.photoUrl ?? '/img/avatar.webp'" 
-                                alt="User avatar" 
-                                class="size-9 md:size-11 object-cover rounded-full" 
+                                alt="avatar" 
+                                class="size-9 md:size-11 object-cover rounded-full text-xs" 
                                 preload 
                             />
                             <p class="text-[15px] md:text-base truncate"> 

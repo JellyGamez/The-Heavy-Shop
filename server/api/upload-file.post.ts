@@ -1,22 +1,27 @@
-import crypto from 'crypto'
+import { getUserByEmail } from '~/server/utils'
+import { getServerSession } from '#auth'
+import { put } from '@vercel/blob';
 
 export default defineEventHandler(async (event) => {
-    const { files } = await readBody(event)
+    const session = await getServerSession(event)
+    const user = await getUserByEmail(session?.user?.email)
 
-    const file = files[0]
-    if (!file)
-        return
-    
-    if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type))
-        throw createError({
-            statusCode: 400,
-            statusMessage: 'The file type is not supported.'
-        })
+    const files = await readMultipartFormData(event)
 
-    const path = await storeFileLocally(file, crypto.randomBytes(32).toString('hex'), '/public/storage')
+    if (files?.length) {
+        const file = files[0]
 
-    return {
-        message: 'File uploaded succesfully!',
-        path: `/storage/${path}`
+        if (!['image/jpeg', 'image/png', 'image/webp'].includes(file.type as string))
+            throw createError({
+                statusCode: 400,
+                statusMessage: 'The file type is not supported.'
+            })
+
+        const { url } = await put(`avatars/${user?.id}.png`, file.data, { access: 'public' });
+
+        return {
+            message: 'File uploaded succesfully!',
+            path: url
+        }
     }
 })

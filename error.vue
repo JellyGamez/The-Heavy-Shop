@@ -23,10 +23,10 @@ const router = useRouter()
                 <div class="w-full max-w-sm bg-gray-dark p-4 sm:p-5 rounded-2xl">
                     <div class="mb-6">
                         <h1 class="text-center text-red-primary text-2xl sm:text-[26px] font-medium mb-3"> 
-                            {{ `Error ${error.statusCode}` }} 
+                            {{ `Error ${error?.statusCode}` }} 
                         </h1>
                         <p class="text-center text-white font-extralight text-sm">
-                            {{ error?.statusMessage?.length === 0 ? 'Something went wrong.' : error.statusMessage }}
+                            {{ error?.statusMessage?.length === 0 ? 'Something went wrong.' : error?.statusMessage }}
                         </p>
                     </div>
                     <Button 

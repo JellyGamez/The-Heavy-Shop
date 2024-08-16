@@ -17,10 +17,10 @@ const { signOut } = useAuth()
 
 const user = ref((await useFetch('/api/user')).data.value)
 
-const { handleFileInput, files } = useFileStorage()
 const toast = useToast()
 const bus = useEventBus('modal')
 const updateAvatar = ref()
+const loading = ref(false)
 
 async function deleteAccount() {
     await useFetch('/api/user', {
@@ -37,23 +37,30 @@ async function updateAccount(body) {
     user.value = (await useFetch('/api/user')).data.value
 }
 
-
 const uploadFile = useDebounceFn(async () => {
-    const { data, error } = await useFetch('/api/upload-file', {
-        method: 'POST',
-        body: {
-            files: files.value
-        }
-    })
-    
-    if (error.value)
-        toast.error(error.value.statusMessage)
-    else {
-        await updateAccount({
-            photoUrl: data.value.path
+    if (updateAvatar.value.files.length) {
+        const formData = new FormData()
+        Array.from(updateAvatar.value.files).forEach((file, index) => {
+            formData.append(index, file)
         })
-        toast.success('Avatar updated successfully!')
-        updateAvatar.value = null
+
+        loading.value = true
+    
+        const { data, error } = await useFetch('/api/upload-file', {
+            method: 'POST',
+            body: formData
+        })
+        
+        if (error.value) {
+            toast.error(error.value.statusMessage)
+            loading.value = false
+        }
+        else {
+            await updateAccount({
+                photoUrl: data.value.path
+            })
+            updateAvatar.value.files = null
+        }
     }
 })
 
@@ -83,37 +90,53 @@ const uploadFile = useDebounceFn(async () => {
                     <NuxtImg
                         :src="user.photoUrl ?? '/img/avatar.webp'" 
                         alt="avatar"
-                        class="size-36 md:size-52 object-cover rounded-full" 
+                        :class="[
+                            loading ? 'opacity-25' : 'opacity-100',
+                            'size-36 md:size-52 object-cover rounded-full transition duration-200'
+                        ]" 
+                        @load="() => { 
+                            if (loading) {
+                                loading = false 
+                                if (user.photoUrl)
+                                    toast.success('Avatar updated successfully!')
+                            }
+                        }"
                         preload 
                     />
-                        <Button :class="[
-                                user.photoUrl ? 'bottom-1 left-2.5 md:bottom-2 md:left-3' : '-bottom-4 left-1/2 -translate-x-1/2',
-                                'absolute !rounded-full !w-fit !p-0 cursor-pointer transition-all duration-300'
-                            ]"
-                        >
-                            <label for="update-avatar" class="!p-2 md:!p-2.5 cursor-pointer"> 
-                                <IconsPencil />
-                                <input
-                                    id="update-avatar"
-                                    ref="updateAvatar"
-                                    type="file" 
-                                    accept="image/*"
-                                    @input="handleFileInput"
-                                    @change="uploadFile"
-                                    aria-label="update-avatar"
-                                    class="hidden"
-                                >
-                            </label>
-                        </Button>
-                        <Button 
-                            v-if="user.photoUrl"
-                            @click="updateAccount({
-                                photoUrl: null
-                            }).then(() => toast.success('Avatar deleted successfully!'))"
-                            class="bottom-1 right-2.5 md:bottom-2 md:right-3 absolute !rounded-full !w-fit !p-2 md:!p-2.5"
-                        >
-                            <IconsTrashBin class="!size-4" />
-                        </Button>
+                    <Button 
+                        :class="[
+                            user.photoUrl ? 'bottom-1 left-2.5 md:bottom-2 md:left-3' : '-bottom-4 left-1/2 -translate-x-1/2',
+                            'absolute !rounded-full !w-fit !p-0 cursor-pointer transition-all duration-300'
+                        ]"
+                    >
+                        <label for="update-avatar" class="!p-2 md:!p-2.5 cursor-pointer"> 
+                            <IconsPencil />
+                            <input
+                                id="update-avatar"
+                                ref="updateAvatar"
+                                type="file" 
+                                accept="image/*"
+                                @change="uploadFile"
+                                aria-label="update-avatar"
+                                class="hidden"
+                            >
+                        </label>
+                    </Button>
+                    <Button 
+                        v-if="user.photoUrl"
+                        @click="updateAccount({
+                            photoUrl: null
+                        }).then(() => toast.success('Avatar deleted successfully!'))"
+                        class="bottom-1 right-2.5 md:bottom-2 md:right-3 absolute !rounded-full !w-fit !p-2 md:!p-2.5"
+                    >
+                        <IconsTrashBin class="!size-4" />
+                    </Button>
+                    <div 
+                        v-if="loading"
+                        class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2"
+                    >
+                        <IconsSpinner class="animate-spin text-white !size-8 md:!size-11" />
+                    </div>
                 </div>
                 <div class="mt-4 flex flex-col gap-2 items-center w-full text-white">
                     <p class="text-2xl md:text-3xl"> 
