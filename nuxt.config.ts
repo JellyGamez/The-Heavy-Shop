@@ -32,7 +32,10 @@ export default defineNuxtConfig({
     }
   },
   fileStorage: {
-    mount: process.env.MOUNT
+    mount: process.cwd()
+  },
+  runtimeConfig: {
+    authOrigin: process.env.AUTH_ORIGIN
   },
   modules: [
     '@sidebase/nuxt-auth',

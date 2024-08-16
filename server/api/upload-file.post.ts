@@ -13,10 +13,10 @@ export default defineEventHandler(async (event) => {
             statusMessage: 'The file type is not supported.'
         })
 
-    const path = await storeFileLocally(file, crypto.randomBytes(32).toString('hex'), '/public/avatars')
+    const path = await storeFileLocally(file, crypto.randomBytes(32).toString('hex'), '/public/storage')
 
     return {
         message: 'File uploaded succesfully!',
-        path: `/avatars/${path}`
+        path: `/storage/${path}`
     }
 })
