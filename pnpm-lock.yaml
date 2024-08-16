@@ -78,9 +78,6 @@ importers:
       nuxt:
         specifier: ^3.12.4
         version: 3.12.4(@parcel/watcher@2.4.1)(@types/node@22.2.0)(ioredis@5.4.1)(magicast@0.3.4)(rollup@4.20.0)(terser@5.31.5)(typescript@5.5.4)(vite@5.4.0(@types/node@22.2.0)(terser@5.31.5))
-      nuxt-file-storage:
-        specifier: ^0.2.7
-        version: 0.2.7(magicast@0.3.4)(rollup@4.20.0)
       nuxt-headlessui:
         specifier: ^1.2.0
         version: 1.2.0(magicast@0.3.4)(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4))
@@ -2892,9 +2889,6 @@ packages:
     resolution: {integrity: sha512-6vRdiXTw9SajEQOUi6Ze/XaIXzy1q/sD5UqHQSv3yqTu7Pot5S7fEihNXV8LpcgLz+9HzjVt70r7jYe7R99c2w==}
     engines: {node: ^16.10.0 || >=18.0.0}
     hasBin: true
-
-  nuxt-file-storage@0.2.7:
-    resolution: {integrity: sha512-z/8uK+l9UxmzBTpQEDi8Gb/YDGkIwLBUi0yUOoTjMNcVUxwPnGsVTL/5Yxjwq0wOb7SZehneDWmTiyBd1faSPg==}
 
   nuxt-headlessui@1.2.0:
     resolution: {integrity: sha512-eidWwA4SFLWFk2KcGMHlrPTJb+ODEt5Bsj6cXjmhDtRYydqvgYXHU1U7563E6/qMuayThumbGUopF1IRqlYHwA==}
@@ -7318,15 +7312,6 @@ snapshots:
   nuxi@3.12.0:
     optionalDependencies:
       fsevents: 2.3.3
-
-  nuxt-file-storage@0.2.7(magicast@0.3.4)(rollup@4.20.0):
-    dependencies:
-      '@nuxt/kit': 3.12.4(magicast@0.3.4)(rollup@4.20.0)
-      defu: 6.1.4
-    transitivePeerDependencies:
-      - magicast
-      - rollup
-      - supports-color
 
   nuxt-headlessui@1.2.0(magicast@0.3.4)(rollup@4.20.0)(vue@3.4.37(typescript@5.5.4)):
     dependencies:
