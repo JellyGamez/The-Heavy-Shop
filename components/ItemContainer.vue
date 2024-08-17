@@ -13,12 +13,6 @@ const toast = useToast()
 const cart = useCart()
 
 const size = ref()
-let date = new Date(new Date().getTime() + 3 * 24 * 60 * 60 * 1000).toLocaleDateString("en-GB", {
-    weekday: "long",
-    day: "numeric",
-    month: "long",
-}).split(' ')
-date = date[0] + ', ' + date[1] + ' ' + date[2]
 
 const addToCart = useDebounceFn(async () => {
     try {

@@ -104,6 +104,7 @@ const uploadFile = useDebounceFn(async () => {
                         preload 
                     />
                     <Button 
+                        aria-label="update-avatar"
                         :class="[
                             user.photoUrl ? 'bottom-1 left-2.5 md:bottom-2 md:left-3' : '-bottom-4 left-1/2 -translate-x-1/2',
                             'absolute !rounded-full !w-fit !p-0 cursor-pointer transition-all duration-300'
@@ -112,12 +113,12 @@ const uploadFile = useDebounceFn(async () => {
                         <label for="update-avatar" class="!p-2 md:!p-2.5 cursor-pointer"> 
                             <IconsPencil />
                             <input
+                                name="update-avatar"
                                 id="update-avatar"
                                 ref="updateAvatar"
                                 type="file" 
                                 accept="image/*"
                                 @change="uploadFile"
-                                aria-label="update-avatar"
                                 class="hidden"
                             >
                         </label>
