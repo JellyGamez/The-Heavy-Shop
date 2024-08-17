@@ -2,7 +2,6 @@
 
 const route = useRoute()
 const runtimeConfig = useRuntimeConfig()
-console.log(route.fullPath)
 
 </script>
 
