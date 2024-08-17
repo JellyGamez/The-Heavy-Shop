@@ -106,7 +106,7 @@ async function editReview() {
 							name="review" 
 							id="review" 
 							type="text" 
-							class="scrollbar h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-2 focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" 
+							class="scrollbar h-24 px-3.5 py-2.5 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-[1.5px] focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl resize-none" 
 						/>
 					</div>
 					<Error class="text-center !mt-0">

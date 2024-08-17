@@ -30,6 +30,12 @@ const password = ref('')
 const passwordConfirmation = ref('')
 const errorMessage = ref()
 const loading = ref(false)
+const callbackUrl = computed(() => {
+    if (route.query.callbackUrl)
+        return `/${route?.query?.callbackUrl.split('/').splice(3).join('/')}`
+    else
+        return '/'
+})
 
 async function register(provider) {
     if (provider === 'credentials') {
@@ -51,19 +57,23 @@ async function register(provider) {
                 password: password.value,
                 redirect: false
             })
-            await navigateTo(route.query.callbackUrl, { 
-                external: true 
-            })
-
-            const cart = await syncCart()
-            const favorites = await syncFavorites()
-            if (cart || favorites)
-                toast.success('Your items have been synced!')
+            await navigateTo(callbackUrl.value)
+            await syncItems()
         }
         loading.value = false
     }
     else
-        await signIn(provider)
+        await signIn(provider, {
+            callbackUrl: callbackUrl.value
+        })
+        await syncItems()
+}
+
+async function syncItems() {
+    const cart = await syncCart()
+    const favorites = await syncFavorites()
+    if (cart || favorites)
+        toast.success('Your items have been synced!')
 }
 
 </script>

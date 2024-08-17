@@ -12,7 +12,6 @@ const navItems = [
     { id: 'home',      name: 'Home',      icon: 'home',          url: '/'               },
     { id: 'shop',      name: 'Shop',      icon: 'shopping-bag',  url: '/shop'           },
     { id: 'about',     name: 'About',     icon: 'document',      url: '/about'          },
-    { id: 'gallery',   name: 'Gallery',   icon: 'gallery',       url: '/gallery'        }
 ]
 
 const userNavItems = [
@@ -126,6 +125,7 @@ bus.on(async function (event) {
                     :url="item.url"
                     :id="item.id"
                 />
+                <SearchInput />
             </div>
             <div class="hidden md:flex items-center justify-end mr-10">
                 <div class="flex gap-x-4">

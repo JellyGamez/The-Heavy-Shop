@@ -15,9 +15,9 @@ const variantClasses = computed(() => {
     return {
         'neutral'   : '',
 
-        'primary'   : 'bg-gray-primary hover:bg-gray-dark ring-2 ring-inset ring-gray-primary hover:ring-red-primary',
+        'primary'   : 'bg-gray-primary hover:bg-gray-dark ring-[1.5px] ring-inset ring-gray-primary hover:ring-red-primary',
         'secondary' : 'bg-red-primary hover:bg-red-dark',
-        'loading'   : 'bg-gray-dark !text-gray-lighter cursor-not-allowed ring-2 ring-inset ring-gray-primary'
+        'loading'   : 'bg-gray-dark !text-gray-lighter cursor-not-allowed ring-[1.5px] ring-inset ring-gray-primary'
     }[props.variant]
 })
 

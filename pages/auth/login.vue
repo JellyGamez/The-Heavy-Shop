@@ -28,23 +28,35 @@ const email = ref('')
 const password = ref('')
 const errorMessage = ref()
 const loading = ref(false)
+const callbackUrl = computed(() => {
+    if (route.query.callbackUrl)
+        return `/${route?.query?.callbackUrl.split('/').splice(3).join('/')}`
+    else
+        return '/'
+})
 
-async function credentialsSignIn() {
-    loading.value = true
-    errorMessage.value = null
-    const { error } = await signIn('credentials', {
-        email: email.value,
-        password: password.value,
-        redirect: false
-    })
-    errorMessage.value = error
-    if (!error) {
-        await navigateTo(route.query.callbackUrl, { 
-            external: true 
+async function login(provider) {
+    if (provider === 'credentials') {
+        loading.value = true
+        errorMessage.value = null
+        const { error } = await signIn('credentials', {
+            email: email.value,
+            password: password.value,
+            redirect: false
         })
-        await syncItems()
+        errorMessage.value = error
+        if (!error) {
+            await navigateTo(callbackUrl.value)
+            await syncItems()
+        }
+        loading.value = false
     }
-    loading.value = false
+    else {
+        await signIn(provider, { 
+            callbackUrl: callbackUrl.value
+        }) 
+        await syncItems() 
+    }
 }
 
 async function syncItems() {
@@ -58,7 +70,7 @@ async function syncItems() {
 
 <template>
     <AuthCard title="Welcome back!">
-        <form @submit.prevent="credentialsSignIn">
+        <form @submit.prevent="login('credentials')">
             <div class="flex flex-col gap-4">
                 <div>
                     <Label for="email"> Email </Label>
@@ -103,14 +115,14 @@ async function syncItems() {
             </p>
             <div class="flex gap-3">
                 <button 
-                    @click="async () => { await signIn('github'); await syncItems() }" 
+                    @click="login('github')" 
                     aria-label="github"
                     class="text-white hover:text-gray-lighter transition duration-200"
                 >
                     <IconsGithub />
                 </button>
                 <button 
-                    @click="async () => { await signIn('discord'); await syncItems() }"
+                    @click="login('discord')"
                     aria-label="discord"
                     class="text-white hover:text-gray-lighter transition duration-200"
                 >

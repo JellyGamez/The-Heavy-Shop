@@ -13,10 +13,11 @@ defineOptions({
         <input
             v-bind="$attrs"
             v-model="input"
-            class="px-3.5 py-2.5 pr-10 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-[1.5px] focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl"
+            placeholder="Search..."
+            class="px-3 py-2 pl-9 w-28 text-white outline-none hover:outline-none border-0 focus:ring-[1.5px] focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl placeholder-white"
         >
-        <div class="absolute right-3">
-            <slot />
+        <div class="absolute left-2.5">
+            <IconsSearch class="text-white"/>
         </div>
     </div>
 </template>
