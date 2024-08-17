@@ -7,8 +7,8 @@ const props = defineProps({
     isFavorite: Boolean
 })
 
-const toast = useToast()
 const route = useRoute()
+const toast = useToast()
 
 const cart = useCart()
 

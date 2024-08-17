@@ -18,8 +18,8 @@ definePageMeta({
     },
 })
 
+const route = useRoute()
 const toast = useToast()
-
 const { signIn } = useAuth()
 const { syncItems: syncCart } = useCart()
 const { syncItems: syncFavorites } = useFavorites()
@@ -39,13 +39,19 @@ async function credentialsSignIn() {
     })
     errorMessage.value = error
     if (!error) {
-        await navigateTo('/')
-        const cart = await syncCart()
-        const favorites = await syncFavorites()
-        if (cart || favorites)
-            toast.success('Your items have been synced!')
+        await navigateTo(route.query.callbackUrl, { 
+            external: true 
+        })
+        await syncItems()
     }
     loading.value = false
+}
+
+async function syncItems() {
+    const cart = await syncCart()
+    const favorites = await syncFavorites()
+    if (cart || favorites)
+        toast.success('Your items have been synced!')
 }
 
 </script>
@@ -97,14 +103,14 @@ async function credentialsSignIn() {
             </p>
             <div class="flex gap-3">
                 <button 
-                    @click="async () => await signIn('github')" 
+                    @click="async () => { await signIn('github'); await syncItems() }" 
                     aria-label="github"
                     class="text-white hover:text-gray-lighter transition duration-200"
                 >
                     <IconsGithub />
                 </button>
                 <button 
-                    @click="async () => await signIn('discord')" 
+                    @click="async () => { await signIn('discord'); await syncItems() }"
                     aria-label="discord"
                     class="text-white hover:text-gray-lighter transition duration-200"
                 >

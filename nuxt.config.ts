@@ -32,7 +32,9 @@ export default defineNuxtConfig({
     }
   },
   runtimeConfig: {
-    authOrigin: process.env.AUTH_ORIGIN
+    public: {
+      authOrigin: process.env.AUTH_ORIGIN
+    }
   },
   modules: [
     '@sidebase/nuxt-auth',

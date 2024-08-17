@@ -39,6 +39,7 @@ async function main() {
                 email: faker.internet.email(),
                 name: faker.person.fullName(),
                 password: bcrypt.hashSync('password', 10),
+                photoUrl: faker.image.avatar(),
                 favorites: {
                     create: {
                         items: {

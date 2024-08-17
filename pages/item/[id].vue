@@ -2,8 +2,8 @@
 
 import { useToast } from 'vue-toastification'
 
-const toast = useToast()
 const route = useRoute()
+const toast = useToast()
 const sort = useSort()
 
 const favorites = useFavorites()

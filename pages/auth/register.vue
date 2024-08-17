@@ -18,6 +18,7 @@ definePageMeta({
     },
 })
 
+const route = useRoute()
 const toast = useToast()
 const { signIn } = useAuth()
 const { syncItems: syncCart } = useCart()
@@ -50,7 +51,9 @@ async function register(provider) {
                 password: password.value,
                 redirect: false
             })
-            await navigateTo('/')
+            await navigateTo(route.query.callbackUrl, { 
+                external: true 
+            })
 
             const cart = await syncCart()
             const favorites = await syncFavorites()

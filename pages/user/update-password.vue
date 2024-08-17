@@ -15,8 +15,6 @@ definePageMeta({
 })
 
 const toast = useToast()
-const route = useRoute()
-const { signIn } = useAuth()
 
 const password = ref('')
 const passwordConfirmation = ref('')
@@ -26,7 +24,7 @@ const loading = ref(false)
 async function updatePassword() {
     loading.value = true
     errorMessage.value = null
-    const { data, error } = await useFetch('/api/user/update-password', {
+    const { error } = await useFetch('/api/user/update-password', {
         method: 'PUT',
         body: {
             password: password.value,

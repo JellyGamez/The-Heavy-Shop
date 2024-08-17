@@ -1,3 +1,11 @@
+<script setup>
+
+const route = useRoute()
+const runtimeConfig = useRuntimeConfig()
+console.log(route.fullPath)
+
+</script>
+
 <template>
     <div class="flex flex-col sm:flex-row items-center gap-y-2 gap-x-3 p-3 w-full rounded-2xl bg-gray-dark text-white">
         <IconsUser class="hidden sm:block !size-8 shrink-0" />
@@ -5,7 +13,7 @@
             <slot />
         </div>
         <div class="gap-1 sm:gap-2 shrink-0 grid grid-cols-2">
-            <NuxtLink to="/auth/login">
+            <NuxtLink :to="{ name: 'auth-login', query: { callbackUrl: `${runtimeConfig.public.authOrigin}${route.fullPath}` }}">
                 <Button 
                     variant="secondary" 
                     size="small" 
@@ -14,7 +22,7 @@
                     LOG IN 
                 </Button>
             </NuxtLink>
-            <NuxtLink to="/auth/register">
+            <NuxtLink :to="{ name: 'auth-register', query: { callbackUrl: `${runtimeConfig.public.authOrigin}${route.fullPath}` }}">
                 <Button 
                     variant="primary" 
                     size="small" 
