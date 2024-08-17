@@ -52,7 +52,7 @@ const uploadFile = useDebounceFn(async () => {
         })
         
         if (error.value) {
-            toast.error(error.value.statusMessage)
+            toast.error(error.value?.data.statusMessage)
             loading.value = false
         }
         else {
