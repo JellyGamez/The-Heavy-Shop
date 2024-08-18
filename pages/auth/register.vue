@@ -62,11 +62,12 @@ async function register(provider) {
         }
         loading.value = false
     }
-    else
+    else {
         await signIn(provider, {
             callbackUrl: callbackUrl.value
         })
         await syncItems()
+    }
 }
 
 async function syncItems() {
