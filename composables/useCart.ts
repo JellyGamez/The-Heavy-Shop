@@ -147,7 +147,7 @@ export default function useCart() {
     async function syncItems() {
         let entries = await getIds()
         if (entries.length) {
-            entries?.forEach(async (entry: any) => {
+            for (const entry of entries) {
                 await useFetch('/api/user/cart/entry', {
                     method: 'POST',
                     query: {
@@ -156,7 +156,7 @@ export default function useCart() {
                         quantity: entry.quantity
                     }
                 })
-            })
+            }
             localStorage.removeItem('cart')
             bus.emit('cart')
             return true

@@ -39,7 +39,7 @@ const bus = useEventBus('count')
 bus.on(async function (event) {
     if (event === 'favorites')
         count.favorites = await favorites.getCount()
-    else if (event === 'cart')
+    if (event === 'cart')
         count.cart = await cart.getCount()
 })
 
