@@ -79,9 +79,30 @@ const display = computed(() => route.query?.display ?? 'grid')
                 <GridItemCard 
                     v-for="item in items" 
                     :key="item.id" 
-                    :item="{ ...item, favorite: isFavorite(item.id) }" 
-                    @toggleFavorite="toggleFavorite(item.id)"
-                />
+                    :item="item" 
+                >
+                    <Button 
+                        @click="toggleFavorite(item.id)"
+                        aria-label="favorite"
+                        class="absolute top-0.5 right-0.5 md:top-1 md:right-1 !p-1.5 h-fit !w-fit !ring-0"
+                    > 
+                        <ClientOnly>
+                            <IconsBookmark
+                                variant="solid"
+                                :class="[
+                                    isFavorite(item.id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
+                                    '!size-5 transition duration-200'
+                                ]"
+                            />
+                            <template #fallback>
+                                <IconsBookmark
+                                    variant="solid"
+                                    class="text-transparent stroke-white !size-5 transition duration-200"
+                                />
+                            </template>
+                        </ClientOnly>
+                    </Button>
+                </GridItemCard>
             </div>
             <div v-else-if="display === 'list'" class="flex flex-col gap-2 md:gap-3">
                 <ListItemCard 
@@ -89,64 +110,62 @@ const display = computed(() => route.query?.display ?? 'grid')
                     :key="item.id" 
                     :item="item"
                 >
-                    <template #actions>
-                        <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
-                            <NuxtLink :to='`/item/${item.id}`'>
-                                <Button 
-                                    variant="secondary" 
-                                    size="small"
-                                > 
-                                    <span> View item </span>
-                                    <IconsDoubleChevronRight class="!size-3.5" />
-                                </Button>
-                            </NuxtLink>
+                    <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
+                        <NuxtLink :to='`/item/${item.id}`'>
                             <Button 
-                                @click="toggleFavorite(item.id)"
-                                aria-label="favorite"
+                                variant="secondary" 
                                 size="small"
                             > 
-                                <ClientOnly>
+                                <span> View item </span>
+                                <IconsDoubleChevronRight class="!size-3.5" />
+                            </Button>
+                        </NuxtLink>
+                        <Button 
+                            @click="toggleFavorite(item.id)"
+                            aria-label="favorite"
+                            size="small"
+                        > 
+                            <ClientOnly>
+                                <IconsBookmark
+                                    variant="solid"
+                                    :class="[
+                                        isFavorite(item.id) ? 'stroke-gray-lighter' : 'text-transparent stroke-white',
+                                        '!size-5 transition duration-200'
+                                    ]"
+                                />
+                                <template #fallback>
                                     <IconsBookmark
                                         variant="solid"
-                                        :class="[
-                                            isFavorite(item.id) ? 'stroke-gray-lighter' : 'text-transparent stroke-white',
-                                            '!size-5 transition duration-200'
-                                        ]"
+                                        class="text-transparent stroke-white !size-5 transition duration-200"
                                     />
-                                    <template #fallback>
-                                        <IconsBookmark
-                                            variant="solid"
-                                            class="text-transparent stroke-white !size-5 transition duration-200"
-                                        />
-                                    </template>
-                                </ClientOnly>
-                                {{ isFavorite(item.id) ? 'Remove' : 'Add' }}
-                            </Button>
-                        </div>
-                        <div class="md:hidden absolute bottom-1 right-1">
-                            <Button 
-                                @click="toggleFavorite(item.id)" 
-                                aria-label="favorite"
-                                class="!p-[7px]"
-                            > 
-                                <ClientOnly>
+                                </template>
+                            </ClientOnly>
+                            {{ isFavorite(item.id) ? 'Remove' : 'Add' }}
+                        </Button>
+                    </div>
+                    <div class="md:hidden absolute bottom-1 right-1">
+                        <Button 
+                            @click="toggleFavorite(item.id)" 
+                            aria-label="favorite"
+                            class="!p-[7px]"
+                        > 
+                            <ClientOnly>
+                                <IconsBookmark
+                                    variant="solid"
+                                    :class="[
+                                        isFavorite(item.id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
+                                        '!size-[18px] transition duration-200'
+                                    ]"
+                                />
+                                <template #fallback>
                                     <IconsBookmark
                                         variant="solid"
-                                        :class="[
-                                            isFavorite(item.id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
-                                            '!size-[18px] transition duration-200'
-                                        ]"
+                                        class="text-transparent stroke-white !size-[18px] transition duration-200"
                                     />
-                                    <template #fallback>
-                                        <IconsBookmark
-                                            variant="solid"
-                                            class="text-transparent stroke-white !size-[18px] transition duration-200"
-                                        />
-                                    </template>
-                                </ClientOnly>
-                            </Button>
-                        </div>
-                    </template>
+                                </template>
+                            </ClientOnly>
+                        </Button>
+                    </div>
                 </ListItemCard>
             </div>
         </div>

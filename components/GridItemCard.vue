@@ -4,15 +4,6 @@ const props = defineProps({
     item: Object
 })
 
-const emit = defineEmits(['toggleFavorite'])
-
-const isFavorite = ref(props.item.favorite)
-
-const toggleFavorite = useDebounceFn(() => {
-    emit('toggleFavorite')
-    isFavorite.value = !isFavorite.value
-})
-
 </script>
 
 <template>
@@ -26,27 +17,7 @@ const toggleFavorite = useDebounceFn(() => {
                     preload
                 />
             </NuxtLink>
-            <Button 
-                @click="toggleFavorite"
-                aria-label="favorite"
-                class="absolute top-0.5 right-0.5 md:top-1 md:right-1 !p-1.5 h-fit !w-fit !ring-0"
-            > 
-                <ClientOnly>
-                    <IconsBookmark
-                        variant="solid"
-                        :class="[
-                            isFavorite ? 'stroke-gray-primary' : 'text-transparent stroke-white',
-                            '!size-5 transition duration-200'
-                        ]"
-                    />
-                    <template #fallback>
-                        <IconsBookmark
-                            variant="solid"
-                            class="text-transparent stroke-white !size-5 transition duration-200"
-                        />
-                    </template>
-                </ClientOnly>
-            </Button>
+            <slot />
         </div>
         
         <div class="flex flex-col mx-2">

@@ -55,6 +55,6 @@ const props = defineProps({
                 </div>
             </div>
         </div>
-        <slot name="actions" />
+        <slot />
     </div>
 </template>

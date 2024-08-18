@@ -67,35 +67,33 @@ const removeItem = useDebounceFn(async (id) => {
                         :key="item.id" 
                         :item="item"
                     >
-                        <template #actions>
-                            <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
-                                <NuxtLink :to='`/item/${item.id}`'>
-                                    <Button 
-                                        variant="secondary" 
-                                        size="small"
-                                    > 
-                                        <span> View item </span>
-                                        <IconsDoubleChevronRight class="!size-3.5" />
-                                    </Button>
-                                </NuxtLink>
+                        <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40">
+                            <NuxtLink :to='`/item/${item.id}`'>
                                 <Button 
-                                    @click="removeItem(item.id)"
-                                    size="small" 
+                                    variant="secondary" 
+                                    size="small"
                                 > 
-                                    <IconsTrashBin class="!size-5" />
-                                    <span> Remove </span>
+                                    <span> View item </span>
+                                    <IconsDoubleChevronRight class="!size-3.5" />
                                 </Button>
-                            </div>
-                            <div class="md:hidden absolute bottom-1 right-1">
-                                <Button 
-                                    @click="removeItem(item.id)" 
-                                    aria-label="remove"
-                                    class="!p-[7px]" 
-                                > 
-                                    <IconsTrashBin class="!size-[18px]" />
-                                </Button>
-                            </div>
-                        </template>
+                            </NuxtLink>
+                            <Button 
+                                @click="removeItem(item.id)"
+                                size="small" 
+                            > 
+                                <IconsTrashBin class="!size-5" />
+                                <span> Remove </span>
+                            </Button>
+                        </div>
+                        <div class="md:hidden absolute bottom-1 right-1">
+                            <Button 
+                                @click="removeItem(item.id)" 
+                                aria-label="remove"
+                                class="!p-[7px]" 
+                            > 
+                                <IconsTrashBin class="!size-[18px]" />
+                            </Button>
+                        </div>
                     </ListItemCard>
                 </div>
                 <EmptyState 

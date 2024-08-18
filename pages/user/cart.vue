@@ -72,53 +72,51 @@ const updateItem = useDebounceFn(async (item, type) => {
                         :key="`${item.id}${item.size}`"
                         :item="item"
                     >
-                        <template #actions>
-                            <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40 text-white">
-                                <div class="flex items-center gap-5">
-                                    <Button 
-                                        @click="updateItem(item, 'decrement')"
-                                        aria-label="decrement"
-                                        class="h-10"
-                                    >
-                                        <IconsMinus />
-                                    </Button>
-                                    <span class="flex justify-center text-xl w-3.5 shrink-0"> {{ item.quantity }} </span>
-                                    <Button 
-                                        @click="updateItem(item, 'increment')"
-                                        aria-label="increment"
-                                        class="h-10"
-                                    >
-                                        <IconsPlus />
-                                    </Button>
-                                </div>
-                                <Button
-                                    @click="removeItem(item.id, item.size)"
-                                    size="small" 
-                                > 
-                                    <IconsTrashBin class="!size-5" />
-                                    <span> Remove </span>
+                        <div class="hidden md:flex flex-col justify-center shrink-0 gap-2 mr-5 w-40 text-white">
+                            <div class="flex items-center gap-5">
+                                <Button 
+                                    @click="updateItem(item, 'decrement')"
+                                    aria-label="decrement"
+                                    class="h-10"
+                                >
+                                    <IconsMinus />
+                                </Button>
+                                <span class="flex justify-center text-xl w-3.5 shrink-0"> {{ item.quantity }} </span>
+                                <Button 
+                                    @click="updateItem(item, 'increment')"
+                                    aria-label="increment"
+                                    class="h-10"
+                                >
+                                    <IconsPlus />
                                 </Button>
                             </div>
-                            <div class="text-white md:hidden absolute bottom-1 right-1">
-                                <div class="flex items-center gap-2">
-                                    <Button 
-                                        @click="updateItem(item, 'decrement')"
-                                        aria-label="decrement"
-                                        class="!p-2"
-                                    >
-                                        <IconsMinus />
-                                    </Button>
-                                    <span class="flex justify-center w-3.5 shrink-0"> {{ item.quantity }} </span>
-                                    <Button 
-                                        @click="updateItem(item, 'increment')"
-                                        aria-label="increment"
-                                        class="!p-2"
-                                    >
-                                        <IconsPlus />
-                                    </Button>
-                                </div>
+                            <Button
+                                @click="removeItem(item.id, item.size)"
+                                size="small" 
+                            > 
+                                <IconsTrashBin class="!size-5" />
+                                <span> Remove </span>
+                            </Button>
+                        </div>
+                        <div class="text-white md:hidden absolute bottom-1 right-1">
+                            <div class="flex items-center gap-2">
+                                <Button 
+                                    @click="updateItem(item, 'decrement')"
+                                    aria-label="decrement"
+                                    class="!p-2"
+                                >
+                                    <IconsMinus />
+                                </Button>
+                                <span class="flex justify-center w-3.5 shrink-0"> {{ item.quantity }} </span>
+                                <Button 
+                                    @click="updateItem(item, 'increment')"
+                                    aria-label="increment"
+                                    class="!p-2"
+                                >
+                                    <IconsPlus />
+                                </Button>
                             </div>
-                        </template>
+                        </div>
                     </ListItemCard>
                 </div>
                 <EmptyState 
