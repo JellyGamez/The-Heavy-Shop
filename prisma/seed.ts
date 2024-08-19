@@ -59,7 +59,7 @@ async function main() {
     }
 
     for (let i = 1; i <= 50; i++) {
-        const n = faker.number.int({ min: 0, max: 20 })
+        const n = faker.number.int({ min: 0, max: 10 })
         const template = () => {
             return {
                 rating: faker.number.int({ min: 1, max: 5 }),

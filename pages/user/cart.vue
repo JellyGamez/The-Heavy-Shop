@@ -1,5 +1,7 @@
 <script setup>
 
+import { useToast } from 'vue-toastification';
+
 useHead({
     title: 'Cart',
     meta: [
@@ -13,6 +15,7 @@ definePageMeta({
 
 const loggedIn = useStatus()
 
+const toast = useToast()
 const cart = useCart()
 const items = ref(await cart.getItems())
 
@@ -22,8 +25,13 @@ const removeItem = useDebounceFn(async (id, size) => {
 })
 
 const updateItem = useDebounceFn(async (item, type) => {
-    await cart.updateItem(item.id, item.size, item.quantity, type)
-    items.value = await cart.getItems()
+    try {
+        await cart.updateItem(item.id, item.size, item.quantity, type)
+        items.value = await cart.getItems()
+    }
+    catch(e) {
+        toast.error(e.statusMessage)
+    }
 })
 
 </script>

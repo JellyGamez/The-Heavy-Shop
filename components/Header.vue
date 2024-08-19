@@ -21,7 +21,7 @@ const userNavItems = [
 
 const userOptions = (!loggedIn) ? [
     { id: 'login',     name: 'Log In',    icon: 'login',         url: '/auth/login'     },
-    { id: 'register',  name: 'Register',  icon: 'review',        url: '/auth/register'  }
+    { id: 'register',  name: 'Register',  icon: 'register',      url: '/auth/register'  }
 ] : [
     { id: 'account',   name: 'Account',   icon: 'user',          url: '/user/account'   },
     { id: 'logout',    name: 'Log Out',   icon: 'logout',        action: 'signOut'      }
@@ -163,7 +163,7 @@ bus.on(async function (event) {
     left: 0;
     transform-origin: right;
     transform: scaleX(0);
-    transition: transform .40s;
+    transition: transform .4s;
 }
 .underline-effect:hover::before {
     transform-origin: left;

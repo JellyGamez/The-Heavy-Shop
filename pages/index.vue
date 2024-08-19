@@ -87,7 +87,7 @@ useHead({
     left: 0;
     transform-origin: right;
     transform: scaleX(0);
-    transition: transform .40s;
+    transition: transform .4s;
 }
 @media screen and (max-width: 640px) {
     .underline-effect::before {
@@ -101,7 +101,7 @@ useHead({
         left: 0;
         transform-origin: right;
         transform: scaleX(0);
-        transition: transform .40s;
+        transition: transform .4s;
     }
 }
 .underline-effect:hover::before {

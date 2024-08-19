@@ -62,6 +62,13 @@ export default function useCart() {
     }
 
     async function addItem(id: string, size: string) {
+        const ids = await getIds()
+        const item = ids.find((item: any) => item.id === id && item.size === size)
+        if (item && item?.quantity >= 10)
+            throw createError({
+                statusCode: 400,
+                statusMessage: 'This item is limited to 10 per order.'
+            })
         if (!size) {
             throw createError({
                 statusCode: 400,
@@ -118,8 +125,13 @@ export default function useCart() {
     }
     
     async function updateItem(id: string, size: string, quantity: number, type: string) {
-        if (quantity === 1 && type === 'decrement')
+        if (quantity <= 1 && type === 'decrement')
             await removeItem(id, size)
+        else if (quantity >= 10 && type === 'increment')
+            throw createError({
+                statusCode: 400,
+                statusMessage: 'This item is limited to 10 per order.'
+            })
         else {
             if (loggedIn) {
                 await useFetch('/api/user/cart/entry', {

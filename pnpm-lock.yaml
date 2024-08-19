@@ -81,6 +81,9 @@ importers:
       nuxt-headlessui:
         specifier: ^1.2.0
         version: 1.2.0(magicast@0.3.4)(rollup@4.21.0)(vue@3.4.38(typescript@5.5.4))
+      nuxt-stripe-module:
+        specifier: ^3.2.0
+        version: 3.2.0
       postcss:
         specifier: ^8.4.41
         version: 8.4.41
@@ -1179,6 +1182,9 @@ packages:
   '@sindresorhus/merge-streams@2.3.0':
     resolution: {integrity: sha512-LtoMMhxAlorcGhmFYI+LhPgbPZCkgP6ra1YL604EeF6U98pLlQ3iWIGMdWSC+vWmPBWBNgmDBAhnAobLROJmwg==}
     engines: {node: '>=18'}
+
+  '@stripe/stripe-js@1.54.2':
+    resolution: {integrity: sha512-R1PwtDvUfs99cAjfuQ/WpwJ3c92+DAMy9xGApjqlWQMj0FKQabUAys2swfTRNzuYAYJh7NqK2dzcYVNkKLEKUg==}
 
   '@swc/helpers@0.5.2':
     resolution: {integrity: sha512-E4KcWTpoLHqwPHLxidpOqQbcrZVgi0rsmmZXUle1jXmJfuIf/UWpczUJ7MZZ5tlxytgJXyp0w4PGkkeLiuIdZw==}
@@ -2890,6 +2896,9 @@ packages:
 
   nuxt-site-config@2.2.15:
     resolution: {integrity: sha512-V/gsWAeSWQi7FGoy6vicf6DXaaNJ/akail54dMWnrkcBre4PpBSwP7arZqmZZzj1mc0v7LoYqISr9qeXhcT1NA==}
+
+  nuxt-stripe-module@3.2.0:
+    resolution: {integrity: sha512-Ra9Ve0BfUP6OvJ3o/GUfzwMgSPzhYWp7WPK2WE+T4rgXOx1rbjDx8DH3WRMJNPIRNXziLcdez3EeDPQ7LffQDw==}
 
   nuxt@3.12.4:
     resolution: {integrity: sha512-/ddvyc2kgYYIN2UEjP8QIz48O/W3L0lZm7wChIDbOCj0vF/yLLeZHBaTb3aNvS9Hwp269nfjrm8j/mVxQK4RhA==}
@@ -5290,6 +5299,8 @@ snapshots:
 
   '@sindresorhus/merge-streams@2.3.0': {}
 
+  '@stripe/stripe-js@1.54.2': {}
+
   '@swc/helpers@0.5.2':
     dependencies:
       tslib: 2.6.3
@@ -7340,6 +7351,10 @@ snapshots:
       - supports-color
       - vite
       - vue
+
+  nuxt-stripe-module@3.2.0:
+    dependencies:
+      '@stripe/stripe-js': 1.54.2
 
   nuxt@3.12.4(@parcel/watcher@2.4.1)(@types/node@22.4.0)(ioredis@5.4.1)(magicast@0.3.4)(rollup@4.21.0)(terser@5.31.6)(typescript@5.5.4)(vite@5.4.1(@types/node@22.4.0)(terser@5.31.6)):
     dependencies:
