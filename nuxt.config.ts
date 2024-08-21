@@ -1,10 +1,11 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  devtools: {
-    enabled: true
-  },
-  build: {
-    transpile: ['vue-toastification'],
+  css: ['~/assets/css/main.css'],
+  postcss: {
+    plugins: {
+      tailwindcss: {},
+      autoprefixer: {}
+    }
   },
   googleFonts: {
     families: {
@@ -12,24 +13,38 @@ export default defineNuxtConfig({
       Ubuntu: [400, 700]
     }
   },
-  postcss: {
-    plugins: {
-      tailwindcss: {},
-      autoprefixer: {},
-    },
-  },
-  css: ['~/assets/css/main.css'],
   app: {
     head: {
       htmlAttrs: {
         lang: 'en'
       },
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1',
+      viewport: 'width=device-width, initial-scale=1'
     },
     pageTransition: {
       name: 'page', mode: 'out-in'
     }
+  },
+  stripe: {
+    client: {
+      key: process.env.STRIPE_PUBLISHABLE_KEY,
+      options: {
+        // your api options override for stripe client side https://stripe.com/docs/js/initializing#init_stripe_js-options
+      }
+    },
+    server: {
+      key: process.env.STRIPE_SECRET_KEY,
+      options: {
+        // your api options override for stripe server side
+        // https://github.com/stripe/stripe-node?tab=readme-ov-file#configuration
+      }
+    }
+  },
+  devtools: {
+    enabled: true
+  },
+  build: {
+    transpile: ['vue-toastification'],
   },
   runtimeConfig: {
     public: {
@@ -43,6 +58,7 @@ export default defineNuxtConfig({
     '@vueuse/nuxt',
     '@nuxt/image',
     '@nuxtjs/robots',
-    '@nuxtjs/google-fonts'
+    '@nuxtjs/google-fonts',
+    '@unlok-co/nuxt-stripe'
   ],
 })

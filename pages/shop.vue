@@ -13,10 +13,10 @@ definePageMeta({
 
 const route = useRoute()
 const router = useRouter()
-const sort = useSort()
+const query = useQuery()
 
 const { data: items } = await useAsyncData('items', () => $fetch('/api/item', {
-    query: sort.query()
+    query: query.get()
 }))
 
 const favorites = useFavorites()
@@ -34,6 +34,10 @@ const toggleFavorite = useDebounceFn(async (id) => {
     userFavorites.value = await favorites.getIds()
 })
 
+async function goBack() {
+    router.back()
+    setTimeout(async () => await refreshNuxtData('items'), 10)
+}
 const display = computed(() => route.query?.display ?? 'grid')
 
 </script>
@@ -49,12 +53,12 @@ const display = computed(() => route.query?.display ?? 'grid')
                     </h1>
                 </div>
                 <p class="text-sm lg:text-base text-center"> 
-                    Explore and curate your metal haven
+                    {{ route.query.search ? `${items.length} ${items.length === 1 ? 'result' : 'results'} found for "${route.query.search}"` : 'Explore and curate your metal haven' }}
                 </p>
             </div>
-            <div v-if="items.length" class="-ml-1 flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
+            <div class="-ml-1 flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
                 <div class="flex flex-wrap-reverse justify-center gap-2 md:gap-4">
-                    <Sort @sort="async () => { await refreshNuxtData('items') }"/>
+                    <Sort @sort="async () => { await refreshNuxtData('items') }" />
                     <Display />
                 </div>
             </div>
@@ -66,7 +70,7 @@ const display = computed(() => route.query?.display ?? 'grid')
                 description="There are no items that match your search and filter options."
             >
                 <Button
-                    @click="router.back"
+                    @click="goBack"
                     variant="secondary" 
                     size="small" 
                     class="mt-1 max-w-32 sm:max-w-40 w-full"
@@ -75,7 +79,7 @@ const display = computed(() => route.query?.display ?? 'grid')
                     <IconsDoubleChevronRight class="!size-4" />
                 </Button>
             </EmptyState>
-            <div v-if="display === 'grid'" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 max-w-fit mx-auto">
+            <div v-if="display === 'grid'" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 max-w-fit lg:max-w-none mx-auto">
                 <GridItemCard 
                     v-for="item in items" 
                     :key="item.id" 

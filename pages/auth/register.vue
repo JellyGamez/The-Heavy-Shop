@@ -146,14 +146,14 @@ async function syncItems() {
                 <button 
                     @click="register('github')" 
                     aria-label="github"
-                    class="text-white hover:text-gray-lighter transition duration-200"
+                    class="text-white hover:text-gray-lightest transition duration-200"
                 >
                     <IconsGithub />
                 </button>
                 <button 
                     @click="register('discord')" 
                     aria-label="discord"
-                    class="text-white hover:text-gray-lighter transition duration-200"
+                    class="text-white hover:text-gray-lightest transition duration-200"
                 >
                     <IconsDiscord />
                 </button>

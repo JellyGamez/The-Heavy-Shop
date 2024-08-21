@@ -3,7 +3,7 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 export default function useFavorites() {
-    const sort = useSort()
+    const query = useQuery()
     const loggedIn = useStatus()
     const bus = useEventBus('count')
 
@@ -25,7 +25,7 @@ export default function useFavorites() {
         if (loggedIn) {
             const headers = useRequestHeaders(['cookie'])
             const { data } = await useAsyncData('favorites', () => $fetch('/api/user/favorites', {
-                query: sort.query(),
+                query: query.get(),
                 headers,
             }))
             return data.value
@@ -35,7 +35,7 @@ export default function useFavorites() {
             const { data } = await useAsyncData('favorites', () => $fetch('/api/guest/favorites', {
                 query: { 
                     ids: ids,
-                    ...sort.query()
+                    ...query.get()
                 }
             }))
             return data.value

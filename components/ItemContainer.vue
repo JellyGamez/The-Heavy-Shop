@@ -45,7 +45,7 @@ const addToCart = useDebounceFn(async () => {
                             {{ parseFloat(item.rating).toFixed(2) }}
                         </p>
                         <Rating :rating="item.rating" class="mb-0.5" />
-                        <p class="lg:text-lg text-gray-lightest"> 
+                        <p class="lg:text-lg text-gray-lightest font-light"> 
                             ({{ item.reviews.length }} 
                             {{ item.reviews.length === 1 ? 'review' : 'reviews' }}) 
                         </p>

@@ -3,7 +3,7 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 export default function useCart() {
-    const sort = useSort()
+    const query = useQuery()
     const loggedIn = useStatus()
     const bus = useEventBus('count')
     
@@ -32,7 +32,7 @@ export default function useCart() {
         if (loggedIn) {
             const headers = useRequestHeaders(['cookie'])
             const { data } = await useAsyncData('cart', () => $fetch('/api/user/cart', {
-                query: sort.query(),
+                query: query.get(),
                 headers
             }))
             return data.value?.map((entry: any) => {
@@ -48,7 +48,7 @@ export default function useCart() {
             const { data } = await useAsyncData('cart', () => $fetch('/api/guest/cart', {
                 query: { 
                     ids: ids,
-                    ...sort.query()
+                    ...query.get()
                 }
             }))
             return data.value?.map((entry: any) => {

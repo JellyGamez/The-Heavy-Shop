@@ -27,15 +27,17 @@ const id = ref()
 			<p class="text-center text-sm font-light"> 
 				{{ description }}
 			</p>
-			<div class="mt-8 flex gap-4">
+			<div class="mt-5 sm:mt-7 flex gap-4">
 				<Button 
 					variant="secondary" 
+					size="small"
 					@click="() => isOpen = false"
 				>
 					CANCEL
 				</Button>
 				<Button 
 					variant="primary"
+					size="small"
 					@click="() => { isOpen = false; $emit('confirm', id) }"
 				>
 					CONFIRM

@@ -19,7 +19,7 @@ const user = ref((await useFetch('/api/user')).data.value)
 
 const toast = useToast()
 const bus = useEventBus('modal')
-const updateAvatar = ref()
+const target = ref()
 const loading = ref(false)
 
 async function deleteAccount() {
@@ -38,9 +38,9 @@ async function updateAccount(body) {
 }
 
 const uploadFile = useDebounceFn(async () => {
-    if (updateAvatar.value.files.length) {
+    if (target.value.files.length) {
         const formData = new FormData()
-        Array.from(updateAvatar.value.files).forEach((file, index) => {
+        Array.from(target.value.files).forEach((file, index) => {
             formData.append(index, file)
         })
 
@@ -59,7 +59,7 @@ const uploadFile = useDebounceFn(async () => {
             await updateAccount({
                 photoUrl: data.value.path
             })
-            updateAvatar.value.files = null
+            target.value.files = null
         }
     }
 })
@@ -115,7 +115,7 @@ const uploadFile = useDebounceFn(async () => {
                             <input
                                 name="update-avatar"
                                 id="update-avatar"
-                                ref="updateAvatar"
+                                ref="target"
                                 type="file" 
                                 accept="image/*"
                                 @change="uploadFile"

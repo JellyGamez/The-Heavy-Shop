@@ -1,7 +1,7 @@
 import prisma, { getItemRating } from '~/server/utils'
 
 export default defineEventHandler(async (event) => {
-    const { sortBy, direction } = getQuery(event)
+    const { sortBy, direction, search } = getQuery(event)
 
     const options = {
         'price': {
@@ -18,6 +18,12 @@ export default defineEventHandler(async (event) => {
         orderBy: options as any,
         include: {
             reviews: true
+        },
+        where: {
+            name: {
+                contains: search as any,
+                mode: 'insensitive'
+            }
         }
     })
 

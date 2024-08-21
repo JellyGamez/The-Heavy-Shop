@@ -33,9 +33,9 @@ const isOpen = defineModel()
 							<button 
 								@click="() => isOpen = false"
 								aria-label="close"
-								class="absolute top-4 right-4" 
+								class="absolute top-4 right-4 outline-none" 
 							>
-                                <IconsClose class="text-white hover:text-gray-lighter transition duration-200" />
+                                <IconsClose class="text-white hover:text-gray-lightest transition duration-200" />
                             </button>
 
                             <HeadlessDialogTitle as="h3" class="text-xl sm:text-2xl text-center max-w-xs sm:max-w-sm mx-auto mb-4">

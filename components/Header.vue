@@ -3,11 +3,6 @@
 const { signOut } = useAuth()
 const loggedIn = useStatus()
 
-function handleAction(action) {
-    if (action === 'signOut')
-        signOut()
-}
-
 const navItems = [
     { id: 'home',      name: 'Home',      icon: 'home',          url: '/'               },
     { id: 'shop',      name: 'Shop',      icon: 'shopping-bag',  url: '/shop'           },
@@ -43,6 +38,15 @@ bus.on(async function (event) {
         count.cart = await cart.getCount()
 })
 
+function handleAction(action) {
+    if (action === 'signOut')
+        signOut()
+    else if (action === 'search') {
+        const bus = useEventBus('modal')
+        bus.emit('search')
+    }
+}
+
 </script>
 
 <template>
@@ -74,6 +78,15 @@ bus.on(async function (event) {
                                         :icon="item.icon"
                                         :url="item.url"
                                         :id="item.id"
+                                    />
+                                </HeadlessMenuItem>
+                                <HeadlessMenuItem>
+                                    <NavItem
+                                        label="Search"
+                                        icon="search"
+                                        id="search"
+                                        action="search"
+                                        @action="handleAction"
                                     />
                                 </HeadlessMenuItem>
                             </div>
@@ -117,6 +130,12 @@ bus.on(async function (event) {
                     </span>
                 </NuxtLink>
             </div>
+            <button 
+                @click="handleAction('search')" 
+                class="flex md:hidden items-center justify-end mr-2"
+            >
+                <IconsSearch class="text-white !size-7" />
+            </button>
             <div class="hidden md:flex gap-x-3 items-center justify-center">
                 <NavItem
                     v-for="item in navItems"
@@ -125,7 +144,13 @@ bus.on(async function (event) {
                     :url="item.url"
                     :id="item.id"
                 />
-                <SearchInput />
+                <Button 
+                    @click="handleAction('search')"
+                    class="!w-fit !text-base !py-1.5 !pl-2.5"
+                >
+                    <IconsSearch class="text-white !size-[18px]" />
+                    <span> Search </span>
+                </Button>
             </div>
             <div class="hidden md:flex items-center justify-end mr-10">
                 <div class="flex gap-x-4">
@@ -138,8 +163,15 @@ bus.on(async function (event) {
                         :class="index ? 'order-3' : 'order-1'"
                         :count="count[item.id]"
                     />
-                    <Dropdown :options="userOptions" @action="handleAction" class="order-2">
-                        <IconsUser aria-label="user-menu" class="text-white hover:text-red-primary transition duration-200" />
+                    <Dropdown 
+                        :options="userOptions" 
+                        @action="handleAction" 
+                        class="order-2"
+                    >
+                        <IconsUser 
+                            aria-label="user-menu" 
+                            class="text-white hover:text-red-primary transition duration-200" 
+                        />
                     </Dropdown>
                 </div>
             </div>

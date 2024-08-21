@@ -8,7 +8,7 @@ const runtimeConfig = useRuntimeConfig()
 <template>
     <div class="flex flex-col sm:flex-row items-center gap-y-2 gap-x-3 p-3 w-full rounded-2xl bg-gray-dark text-white">
         <IconsUser class="hidden sm:block !size-8 shrink-0" />
-        <div class="text-sm text-center sm:text-left w-full flex flex-col"> 
+        <div class="text-sm text-center sm:text-left w-full flex flex-col font-light"> 
             <slot />
         </div>
         <div class="gap-1 sm:gap-2 shrink-0 grid grid-cols-2">
