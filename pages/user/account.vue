@@ -83,7 +83,6 @@ const uploadFile = useDebounceFn(async () => {
                 <div class="group shrink-0 relative flex rounded-full">
                     <NuxtImg
                         :src="user.photoUrl ?? '/img/avatar.webp'" 
-                        alt="avatar"
                         :class="[
                             loading ? 'opacity-25' : 'opacity-100',
                             'size-36 md:size-52 object-cover rounded-full transition duration-200'

@@ -1,7 +1,5 @@
 <script setup>
 
-import { useToast } from 'vue-toastification'
-
 useHead({
     title: 'Register',
     meta: [
@@ -19,10 +17,7 @@ definePageMeta({
 })
 
 const route = useRoute()
-const toast = useToast()
 const { signIn } = useAuth()
-const { syncItems: syncCart } = useCart()
-const { syncItems: syncFavorites } = useFavorites()
 
 const name = ref('')
 const email = ref('')
@@ -57,24 +52,20 @@ async function register(provider) {
                 password: password.value,
                 redirect: false
             })
-            await navigateTo(callbackUrl.value)
-            await syncItems()
+            localStorage.setItem('syncNeeded', 'true')
+            localStorage.setItem('newAccount', 'true')
+            await navigateTo({
+                path: callbackUrl.value 
+            })
         }
         loading.value = false
     }
     else {
+        localStorage.setItem('syncNeeded', 'true')
         await signIn(provider, {
             callbackUrl: callbackUrl.value
         })
-        await syncItems()
     }
-}
-
-async function syncItems() {
-    const cart = await syncCart()
-    const favorites = await syncFavorites()
-    if (cart || favorites)
-        toast.success('Your items have been synced!')
 }
 
 </script>

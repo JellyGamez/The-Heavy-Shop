@@ -78,7 +78,7 @@ export default function useFavorites() {
     }
 
     async function syncItems() {
-        const ids = await getIds()
+        const ids = JSON.parse(localStorage.getItem('favorites') ?? '[]')
         if (ids.length) {
             for (const id of ids) {
                 await useFetch(`/api/user/favorites/${id}`, {

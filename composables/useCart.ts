@@ -157,7 +157,7 @@ export default function useCart() {
     }
 
     async function syncItems() {
-        let entries = await getIds()
+        let entries = JSON.parse(localStorage.getItem('cart') ?? '[]')
         if (entries.length) {
             for (const entry of entries) {
                 await useFetch('/api/user/cart/entry', {
