@@ -67,7 +67,7 @@ export default function useCart() {
         if (item && item?.quantity >= 10)
             throw createError({
                 statusCode: 400,
-                statusMessage: 'This item is limited to 10 per order.'
+                statusMessage: 'Items are limited to 10 per order.'
             })
         if (!size) {
             throw createError({
@@ -130,7 +130,7 @@ export default function useCart() {
         else if (quantity >= 10 && type === 'increment')
             throw createError({
                 statusCode: 400,
-                statusMessage: 'This item is limited to 10 per order.'
+                statusMessage: 'Items are limited to 10 per order.'
             })
         else {
             if (loggedIn) {

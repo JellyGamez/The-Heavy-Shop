@@ -29,7 +29,7 @@ async function handleSubmit() {
 <template>
 	<Modal v-model="isOpen">
 		<template #content>
-			<p class="text-gray-lightest text-lg font-light -mt-12 mb-2"> Press enter to search </p>
+			<p class="text-gray-lightest sm:text-lg font-light -mt-[40px] sm:-mt-[46px] mb-3"> Press enter to search </p>
 			<SearchInput 
 				v-model="search" 
 				@submit="handleSubmit"

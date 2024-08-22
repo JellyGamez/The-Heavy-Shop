@@ -25,23 +25,16 @@ const removeItem = useDebounceFn(async (id) => {
 
 <template>
     <div>
-        <div class="sm:ml-1 flex flex-wrap flex-col items-center sm:flex-row gap-x-10 gap-y-2.5 justify-between">
-            <div class=" flex flex-col items-center sm:items-start text-white">
-                <div class="flex items-center gap-1.5 lg:gap-2">
-                    <IconsBookmark class="size-6 lg:size-7" />
-                    <h1 class="text-2xl lg:text-3xl">
-                        Favorites
-                    </h1>
-                </div>
-                <p class="text-sm lg:text-base text-center">
-                    Bookmark your favorite items for later
-                </p>
-            </div>
+        <Banner
+            icon="bookmark"
+            title="Favorites"
+            description="Bookmark your favorite items for later"
+        >
             <Sort 
                 v-if="items?.length !== 0"
                 @sort="async () => { items = await favorites.getItems() }"
             />
-        </div>
+        </Banner>
         <div class="mt-4 lg:mt-6">
             <ClientOnly>
                 <div 

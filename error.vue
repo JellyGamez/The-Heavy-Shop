@@ -30,7 +30,10 @@ const router = useRouter()
                         </p>
                     </div>
                     <Button 
-                        @click="() => { clearError(); router.back() }"
+                        @click="() => { 
+                            clearError() 
+                            router.back() 
+                        }"
                         class="w-full"
                     >
                         GO BACK

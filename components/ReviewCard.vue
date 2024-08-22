@@ -59,7 +59,7 @@ const bus = useEventBus('modal')
                         <div class="flex items-center gap-x-1.5">
                             <IconsClock class="md:mb-0.5" />
                             <p class="text-xs md:text-sm font-light"> 
-                                {{ review.createdAt }} 
+                                {{ review.updatedAt }} 
                             </p>
                         </div>
                     </div>

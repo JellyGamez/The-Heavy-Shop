@@ -10,7 +10,12 @@ useHead({
 </script>
 
 <template>
-    <div class="text-center text-white text-5xl">
-        WORK IN PROGRESS
+    <div>
+        <Banner 
+            icon="document"
+            title="About"
+            description="Learn about our insights and motivation"
+        />
+            
     </div>
 </template>

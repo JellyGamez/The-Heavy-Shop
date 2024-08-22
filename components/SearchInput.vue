@@ -21,7 +21,7 @@ useFocus(target, {
                 v-bind="$attrs"
                 v-model="input"
                 ref="target"
-                placeholder="Search..."
+                placeholder="Search items..."
                 class="px-3 py-2 pl-10 w-full text-white outline-none hover:outline-none border-0 focus:ring-[1.5px] focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl placeholder-white"
             >
             <button 

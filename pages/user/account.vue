@@ -1,6 +1,6 @@
 <script setup>
 
-import { useToast } from 'vue-toastification';
+import { useToast } from 'vue-toastification'
 
 useHead({
     title: 'Account',
@@ -73,17 +73,11 @@ const uploadFile = useDebounceFn(async () => {
             description="This action is irreversible."
             @confirm="deleteAccount"
         />
-        <div class="sm:ml-1 flex flex-col items-center sm:items-start text-white">
-            <div class="flex items-center gap-1.5 lg:gap-2">
-                <IconsUser class="size-6 lg:size-7" />
-                <h1 class="text-2xl lg:text-3xl">
-                    Account
-                </h1>
-            </div>
-            <p class="text-sm lg:text-base text-center">
-                Manage your user settings and data
-            </p>
-        </div>
+        <Banner 
+            icon="user"
+            title="Account"
+            description="Manage your user settings and data"
+        />
         <div class="mt-4 lg:mt-6 flex p-4 rounded-2xl bg-gray-dark">
             <div class="flex flex-col items-center w-full">
                 <div class="group shrink-0 relative flex rounded-full">
@@ -147,7 +141,7 @@ const uploadFile = useDebounceFn(async () => {
                     <div class="flex flex-col items-center">
                         <p class="flex items-center gap-1 text-gray-lightest">
                             <IconsMail class="!size-4 md:!size-5 text-gray-lightest" /> 
-                            <span class="text-sm md:text-base"> Email </span>
+                            <span class="text-sm md:text-base font-light"> Email </span>
                         </p>
                         <p class="text-base md:text-lg">
                             {{ user.email }}
@@ -157,7 +151,7 @@ const uploadFile = useDebounceFn(async () => {
                     <div>
                         <p class="flex items-center gap-1 text-gray-lightest">
                             <IconsClock class="!size-4 md:!size-5 text-gray-lightest" /> 
-                            <span class="text-sm md:text-base"> Registered on </span>
+                            <span class="text-sm md:text-base font-light"> Registered on </span>
                         </p>
                         <p class="text-base md:text-lg">
                             {{ user.registeredOn }}

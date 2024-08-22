@@ -38,7 +38,10 @@ const id = ref()
 				<Button 
 					variant="primary"
 					size="small"
-					@click="() => { isOpen = false; $emit('confirm', id) }"
+					@click="() => { 
+						isOpen = false
+						$emit('confirm', id) 
+					}"
 				>
 					CONFIRM
 				</Button>

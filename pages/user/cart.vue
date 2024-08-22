@@ -1,6 +1,6 @@
 <script setup>
 
-import { useToast } from 'vue-toastification';
+import { useToast } from 'vue-toastification'
 
 useHead({
     title: 'Cart',
@@ -18,6 +18,15 @@ const loggedIn = useStatus()
 const toast = useToast()
 const cart = useCart()
 const items = ref(await cart.getItems())
+
+const subtotal = computed(() => items.value?.map(item => item.price * item.quantity).reduce((x, y) => x + y, 0).toFixed(2))
+const count = ref(await cart.getCount())
+
+const bus = useEventBus('count')
+bus.on(async function (event) {
+    if (event === 'cart')
+        count.value = await cart.getCount()
+})
 
 const removeItem = useDebounceFn(async (id, size) => {
     await cart.removeItem(id, size)
@@ -38,23 +47,16 @@ const updateItem = useDebounceFn(async (item, type) => {
 
 <template>
     <div>
-        <div class="sm:ml-1 flex flex-wrap flex-col items-center sm:flex-row gap-x-10 gap-y-2.5 justify-between">
-            <div class=" flex flex-col items-center sm:items-start text-white">
-                <div class="flex items-center gap-1.5 lg:gap-2">
-                    <IconsShoppingCart class="size-6 lg:size-7" />
-                    <h1 class="text-2xl lg:text-3xl">
-                        Cart
-                    </h1>
-                </div>
-                <p class="text-sm lg:text-base text-center">
-                    Organize your selected items for checkout
-                </p>
-            </div>
+        <Banner
+            icon="shopping-cart"
+            title="Cart"
+            description="Organize your selected items for checkout"
+        >
             <Sort 
                 v-if="items?.length !== 0"
                 @sort="async () => { items = await cart.getItems() }"
             />
-        </div>
+        </Banner>
         <div class="mt-4 lg:mt-6">
             <ClientOnly>
                 <div 
@@ -69,6 +71,35 @@ const updateItem = useDebounceFn(async (item, type) => {
                             Your preferences will be stored for future visits. 
                         </p>
                     </AuthPrompt>
+                    <Separator class="!py-2" />
+                </div>
+                <div 
+                    v-if="loggedIn && items?.length" 
+                    class="flex flex-col gap-2 md:gap-3"
+                >
+                    <div class="flex flex-col sm:flex-row items-center gap-y-2 gap-x-3 p-3 pl-4 w-full rounded-2xl bg-gray-dark text-white">
+                        <IconsDocument class="hidden sm:block !size-9 shrink-0" />
+                        <div class="w-full flex flex-col sm:flex-row gap-x-6 gap-y-1 items-center">
+                            <div class="text-lg -mt-1 flex flex-col items-center sm:items-start font-light">
+                                <span> Subtotal ({{ count }} {{ count === 1 ? 'item' : 'items' }}) </span>
+                                <span class="text-sm -my-0.5 text-gray-lightest">
+                                    Includes taxes and free shipping
+                                </span>
+                            </div>
+                            <div class="text-2xl sm:text-3xl">
+                                <span class="font-extralight">$</span>
+                                <span class=""> {{ subtotal }} </span>
+                            </div>
+                        </div>
+                        <Button 
+                            variant="secondary" 
+                            size="small"
+                            class="!w-44 shrink-0"
+                        >
+                            CHECKOUT
+                            <IconsDoubleChevronRight class="!size-4" />
+                        </Button>
+                    </div>
                     <Separator class="!py-2" />
                 </div>
                 <div 

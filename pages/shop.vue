@@ -44,25 +44,18 @@ const display = computed(() => route.query?.display ?? 'grid')
 
 <template>
     <div>
-        <div class="sm:ml-1 flex flex-wrap flex-col items-center sm:flex-row gap-x-10 gap-y-2.5 justify-between">
-            <div class="flex flex-col items-center sm:items-start text-white">
-                <div class="flex items-center gap-1.5 lg:gap-2">
-                    <IconsShoppingBag class="size-6 lg:size-7" />
-                    <h1 class="text-2xl lg:text-3xl">
-                        Shop
-                    </h1>
-                </div>
-                <p class="text-sm lg:text-base text-center"> 
-                    {{ route.query.search ? `${items.length} ${items.length === 1 ? 'result' : 'results'} found for "${route.query.search}"` : 'Explore and curate your metal haven' }}
-                </p>
-            </div>
+        <Banner
+            icon="shopping-bag"
+            title="Shop"
+            :description="route.query.search ? `${items.length} ${items.length === 1 ? 'result' : 'results'} found for '${route.query.search}'` : 'Explore and curate your metal haven'"
+        >
             <div class="-ml-1 flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
-                <div class="flex flex-wrap-reverse justify-center gap-2 md:gap-4">
+                <div v-if="items.length" class="flex flex-wrap-reverse justify-center gap-2 md:gap-4">
                     <Sort @sort="async () => { await refreshNuxtData('items') }" />
                     <Display />
                 </div>
             </div>
-        </div>
+        </Banner>
         <div class="mt-4 lg:mt-6">
             <EmptyState 
                 v-if="!items.length"

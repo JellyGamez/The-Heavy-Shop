@@ -92,7 +92,7 @@ async function deleteReview(id) {
                         <IconsReview class="size-6 lg:size-7" />
                         <h1 class="text-2xl lg:text-3xl">
                             Reviews
-                            <span class="text-gray-lightest"> ({{ item.reviews?.length }}) </span>
+                            <span class="font-light"> ({{ item.reviews?.length }}) </span>
                         </h1>
                     </div>
                     <p class="text-sm lg:text-base text-center"> 

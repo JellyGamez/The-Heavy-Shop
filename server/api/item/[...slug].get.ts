@@ -12,7 +12,7 @@ export default defineEventHandler(async (event) => {
             rating: direction
         },
         'date-added': {
-            createdAt: direction
+            updatedAt: direction
         }
     }[sortBy as string]
 
@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
         })
 
         item.reviews?.forEach((review: any, index: any) => {
-            item.reviews[index] = { ...review, createdAt: dateFormatter(review?.createdAt) }
+            item.reviews[index] = { ...review, updatedAt: dateFormatter(review?.updatedAt) }
         })
 
         if (item.reviews?.length !== 0 && !options && user)

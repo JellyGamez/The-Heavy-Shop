@@ -69,7 +69,7 @@ function handleAction(action) {
                         leave-from-class="transform scale-y-100"
                         leave-to-class="transform scale-y-0 opacity-0"
                     >
-                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark gap-y-2 p-5 pt-0 w-full shadow-2xl">
+                        <HeadlessMenuItems class="flex flex-col origin-top justify-center md:hidden absolute top-16 left-0 bg-gray-dark gap-y-2 p-5 pt-0 w-full shadow-2xl outline-none">
                             <Separator class="!p-0 !pb-2" />
                             <div class="flex flex-col gap-y-2 pb-2">
                                 <HeadlessMenuItem v-for="item in navItems" :key="item.id">
@@ -132,7 +132,7 @@ function handleAction(action) {
             </div>
             <button 
                 @click="handleAction('search')" 
-                class="flex md:hidden items-center justify-end mr-2"
+                class="flex md:hidden items-center justify-end mr-2 outline-none"
             >
                 <IconsSearch class="text-white !size-7" />
             </button>
