@@ -33,7 +33,7 @@ export default defineEventHandler(async (event) => {
                         },
                         update: {
                             quantity: {
-                                increment: entry.quantity ? parseInt(entry.quantity as string) : 1
+                                increment: entry.quantity ? 0 : 1
                             }
                         }
                     }
