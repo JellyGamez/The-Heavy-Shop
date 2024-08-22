@@ -76,11 +76,12 @@ export default function useCart() {
             })
         }
         if (loggedIn) {
-            await useFetch('/api/user/cart/entry', {
+            await useFetch('/api/user/cart', {
                 method: 'POST',
                 query: {
-                    id: id,
-                    size: size
+                    entries: [ 
+                        { id: id, size: size } 
+                    ] 
                 }
             })
         }
@@ -104,7 +105,7 @@ export default function useCart() {
 
     async function removeItem(id: string, size: string) {
         if (loggedIn) {
-            await useFetch('/api/user/cart/entry', {
+            await useFetch('/api/user/cart', {
                 method: 'DELETE',
                 query: {
                     id: id,
@@ -134,7 +135,7 @@ export default function useCart() {
             })
         else {
             if (loggedIn) {
-                await useFetch('/api/user/cart/entry', {
+                await useFetch('/api/user/cart', {
                     method: 'PUT',
                     query: {
                         id: id,
@@ -157,18 +158,14 @@ export default function useCart() {
     }
 
     async function syncItems() {
-        let entries = JSON.parse(localStorage.getItem('cart') ?? '[]')
-        if (entries.length) {
-            for (const entry of entries) {
-                await useFetch('/api/user/cart/entry', {
-                    method: 'POST',
-                    query: {
-                        id: entry.id,
-                        size: entry.size,
-                        quantity: entry.quantity
-                    }
-                })
-            }
+        let entries = localStorage.getItem('cart')
+        if (entries?.length) {
+            await useFetch('/api/user/cart', {
+                method: 'POST',
+                query: {
+                    entries: entries
+                }
+            })
             localStorage.removeItem('cart')
             bus.emit('cart')
             return true

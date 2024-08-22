@@ -44,8 +44,11 @@ export default function useFavorites() {
 
     async function addItem(id: String) {
         if (loggedIn) {
-            await useFetch(`/api/user/favorites/${id}`, {
-                method: 'POST'
+            await useFetch('/api/user/favorites', {
+                method: 'POST',
+                query: {
+                    ids: Array.of(id)
+                }
             })
         }
         else if (process.client) {
@@ -61,8 +64,11 @@ export default function useFavorites() {
 
     async function removeItem(id: String) {
         if (loggedIn) {
-            await useFetch(`/api/user/favorites/${id}`, {
-                method: 'DELETE'
+            await useFetch('/api/user/favorites', {
+                method: 'DELETE',
+                query: {
+                    id: id
+                }
             })
         }
         else if (process.client) {
@@ -80,11 +86,12 @@ export default function useFavorites() {
     async function syncItems() {
         const ids = JSON.parse(localStorage.getItem('favorites') ?? '[]')
         if (ids.length) {
-            for (const id of ids) {
-                await useFetch(`/api/user/favorites/${id}`, {
-                    method: 'POST'
-                })
-            }
+            await useFetch('/api/user/favorites', {
+                method: 'POST',
+                query: {
+                    ids: ids
+                }
+            })
             localStorage.removeItem('favorites')
             bus.emit('favorites')
             return true

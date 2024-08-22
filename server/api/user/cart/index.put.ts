@@ -24,7 +24,10 @@ export default defineEventHandler(async (event) => {
             entries: { 
                 update: {
                     where: {
-                        itemId_size: { itemId: id, size: size }
+                        itemId_size: { 
+                            itemId: id, 
+                            size: size 
+                        }
                     },
                     data: {
                         quantity: options

@@ -43,7 +43,8 @@ async function login(provider) {
         if (!error) {
             localStorage.setItem('syncNeeded', 'true')
             await navigateTo({ 
-                path: callbackUrl.value
+                path: callbackUrl.value,
+                external: true
             })
         }
         loading.value = false
