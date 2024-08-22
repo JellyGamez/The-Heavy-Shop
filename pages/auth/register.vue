@@ -54,8 +54,7 @@ async function register(provider) {
             })
             localStorage.setItem('syncNeeded', 'true')
             localStorage.setItem('newAccount', 'true')
-            await navigateTo({
-                path: callbackUrl.value ,
+            await navigateTo(callbackUrl.value, {
                 external: true
             })
         }

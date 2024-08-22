@@ -42,8 +42,7 @@ async function login(provider) {
         errorMessage.value = error
         if (!error) {
             localStorage.setItem('syncNeeded', 'true')
-            await navigateTo({ 
-                path: callbackUrl.value,
+            await navigateTo(callbackUrl.value, { 
                 external: true
             })
         }
