@@ -23,12 +23,6 @@ const email = ref('')
 const password = ref('')
 const errorMessage = ref()
 const loading = ref(false)
-const callbackUrl = computed(() => {
-    if (route.query.callbackUrl)
-        return `/${route?.query?.callbackUrl.split('/').splice(3).join('/')}`
-    else
-        return '/'
-})
 
 async function login(provider) {
     if (provider === 'credentials') {
@@ -42,7 +36,7 @@ async function login(provider) {
         errorMessage.value = error
         if (!error) {
             localStorage.setItem('syncNeeded', 'true')
-            await navigateTo(callbackUrl.value, { 
+            await navigateTo(route?.query?.callbackUrl, { 
                 external: true
             })
         }
@@ -51,7 +45,8 @@ async function login(provider) {
     else {
         localStorage.setItem('syncNeeded', 'true')
         await signIn(provider, { 
-            callbackUrl: callbackUrl.value
+            callbackUrl: route?.query?.callbackUrl,
+            external: true
         })
     }
 }

@@ -54,7 +54,7 @@ async function register(provider) {
             })
             localStorage.setItem('syncNeeded', 'true')
             localStorage.setItem('newAccount', 'true')
-            await navigateTo(callbackUrl.value, {
+            await navigateTo(route?.query?.callbackUrl, {
                 external: true
             })
         }
@@ -63,7 +63,8 @@ async function register(provider) {
     else {
         localStorage.setItem('syncNeeded', 'true')
         await signIn(provider, {
-            callbackUrl: callbackUrl.value
+            callbackUrl: route?.query?.callbackUrl,
+            external: true
         })
     }
 }
