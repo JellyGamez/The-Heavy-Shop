@@ -159,7 +159,7 @@ export default function useCart() {
 
     async function syncItems() {
         let entries = localStorage.getItem('cart')
-        if (entries?.length) {
+        if (JSON.parse(entries as string)?.length) {
             await useFetch('/api/user/cart', {
                 method: 'POST',
                 query: {

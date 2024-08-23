@@ -10,9 +10,7 @@ export default defineEventHandler(async (event) => {
     if (!Array.isArray(entries))
         entries = Array.of(entries)
 
-    console.log(entries)
     for (const entry of entries) {
-        console.log(entry)
         await prisma.cart.update({
             where: {
                 userId: user?.id
