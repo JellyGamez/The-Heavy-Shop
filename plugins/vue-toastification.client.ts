@@ -8,6 +8,7 @@ export default defineNuxtPlugin((nuxtApp) => {
         position: POSITION.BOTTOM_CENTER,
         timeout: 3000,
         maxToasts: 5,
+        newestOnTop: true,
         closeOnClick: true,
         pauseOnFocusLoss: true,
         pauseOnHover: true,

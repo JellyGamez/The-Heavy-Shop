@@ -19,7 +19,8 @@ export default defineEventHandler(async (event) => {
                 entries: { 
                     upsert: {
                         where: {
-                            itemId_size: { 
+                            cartId_itemId_size: { 
+                                cartId: user?.id as number,
                                 itemId: entry.id, 
                                 size: entry.size 
                             }

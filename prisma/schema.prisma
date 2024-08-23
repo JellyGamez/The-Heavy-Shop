@@ -58,8 +58,8 @@ model Cart {
 
 model CartToItem {
   id        Int      @id @default(autoincrement())
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
   item      Item     @relation(fields: [itemId], references: [id])
   itemId    String
   cart      Cart     @relation(fields: [cartId], references: [id])
@@ -67,7 +67,7 @@ model CartToItem {
   quantity  Int
   size      String?
 
-  @@unique([itemId, size])
+  @@unique([cartId, itemId, size])
 }
 
 model Review {

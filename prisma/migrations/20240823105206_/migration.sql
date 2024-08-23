@@ -89,7 +89,7 @@ CREATE UNIQUE INDEX "Favorites_userId_key" ON "Favorites"("userId");
 CREATE UNIQUE INDEX "Cart_userId_key" ON "Cart"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "CartToItem_itemId_size_key" ON "CartToItem"("itemId", "size");
+CREATE UNIQUE INDEX "CartToItem_cartId_itemId_size_key" ON "CartToItem"("cartId", "itemId", "size");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "_FavoritesToItem_AB_unique" ON "_FavoritesToItem"("A", "B");

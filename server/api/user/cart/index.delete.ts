@@ -14,9 +14,10 @@ export default defineEventHandler(async (event) => {
         data: {
             entries: {
                 delete: {
-                    itemId_size: { 
-                        itemId: id, 
-                        size: size 
+                    cartId_itemId_size: { 
+                        cartId: user?.id as number,
+                        itemId: id as string, 
+                        size: size as string
                     }
                 }
             }
