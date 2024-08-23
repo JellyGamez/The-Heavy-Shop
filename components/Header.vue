@@ -132,6 +132,7 @@ function handleAction(action) {
             </div>
             <button 
                 @click="handleAction('search')" 
+                aria-label="search"
                 class="flex md:hidden items-center justify-end mr-2 outline-none"
             >
                 <IconsSearch class="text-white !size-7" />

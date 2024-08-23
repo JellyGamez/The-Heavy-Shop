@@ -10,6 +10,7 @@
                     <NuxtLink 
                         to="https://github.com/JellyGamez" 
                         target="_blank" 
+                        aria-label="github"
                         class="text-white hover:text-gray-lightest transition duration-200"
                     >
                         <IconsGithub class="!size-6 md:!size-7" />
@@ -17,6 +18,7 @@
                     <NuxtLink 
                         to="https://discord.com/users/273850522157580288" 
                         target="_blank" 
+                        aria-label="discord"
                         class="text-white hover:text-gray-lightest transition duration-200"
                     >
                         <IconsDiscord class="!size-6 md:!size-7" />
@@ -24,6 +26,7 @@
                     <NuxtLink 
                         to="mailto:alexcroitoriu2005@gmail.com" 
                         target="_blank"
+                        aria-label="email"
                         class="text-white hover:text-gray-lightest transition duration-200"
                     >
                         <IconsMail variant="solid" class="!size-6 md:!size-7" />

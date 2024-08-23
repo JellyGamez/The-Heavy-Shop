@@ -83,6 +83,7 @@ const uploadFile = useDebounceFn(async () => {
                 <div class="group shrink-0 relative flex rounded-full">
                     <NuxtImg
                         :src="user.photoUrl ?? '/img/avatar.webp'" 
+                        alt="avatar"
                         :class="[
                             loading ? 'opacity-25' : 'opacity-100',
                             'size-36 md:size-52 object-cover rounded-full transition duration-200'
@@ -97,7 +98,7 @@ const uploadFile = useDebounceFn(async () => {
                         preload 
                     />
                     <Button 
-                        aria-label="update-avatar"
+                        aria-label="update"
                         :class="[
                             user.photoUrl ? 'bottom-1 left-2.5 md:bottom-2 md:left-3' : '-bottom-4 left-1/2 -translate-x-1/2',
                             'absolute !rounded-full !w-fit !p-0 cursor-pointer transition-all duration-300'
@@ -121,6 +122,7 @@ const uploadFile = useDebounceFn(async () => {
                         @click="updateAccount({
                             photoUrl: null
                         }).then(() => toast.success('Avatar deleted successfully!'))"
+                        aria-label="remove"
                         class="bottom-1 right-2.5 md:bottom-2 md:right-3 absolute !rounded-full !w-fit !p-2 md:!p-2.5"
                     >
                         <IconsTrashBin class="!size-4" />
