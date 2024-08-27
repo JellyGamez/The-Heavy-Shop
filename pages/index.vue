@@ -1,5 +1,7 @@
 <script setup>
 
+import { IconsEarth, IconsUndo, IconsKeyhole } from '#components'
+
 definePageMeta({
     layout: 'home'
 })
@@ -34,6 +36,25 @@ const toggleFavorite = useDebounceFn(async (id) => {
         await favorites.addItem(id)
     userFavorites.value = await favorites.getIds()
 })
+
+const features = [
+    { 
+        icon: IconsEarth,
+        title: 'Free international shipping',
+        description: 'Wherever you’re from, we’ve got you covered. \
+        No need to stress — we’ll take care of everything.'
+    },
+    {
+        icon: IconsUndo,
+        title: '30-day free refund policy',
+        description: 'We value our customers, so if you’re not satisfied, getting your money back is quick and easy.'
+    },
+    {
+        icon: IconsKeyhole,
+        title: 'Secure online payment',
+        description: 'You can shop with confidence, knowing that your information is protected every step of the way.'
+    }
+]
 
 </script>
 
@@ -92,7 +113,7 @@ const toggleFavorite = useDebounceFn(async (id) => {
                 </div>
             </div>
         </div>
-        <div class="bg-gray-light mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-4 md:py-6 lg:py-8 max-w-5xl xl:max-w-8xl">
+        <div class="mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-4 md:py-6 lg:py-8 max-w-5xl xl:max-w-8xl">
             <Banner
                 icon="graph-up"
                 title="Popular items"
@@ -100,12 +121,26 @@ const toggleFavorite = useDebounceFn(async (id) => {
             />
             <Swiper
                 :modules="[SwiperNavigation, SwiperPagination]"
-                :slides-per-view="5"
-                :space-between="12"
+                :slides-per-view="2"
+                :space-between="8"
+                :breakpoints="{
+                    '640': {
+                        slidesPerView: 3,
+                        spaceBetween: 12,
+                    },
+                    '1024': {
+                        slidesPerView: 4,
+                        spaceBetween: 12,
+                    },
+                    '1280': {
+                        slidesPerView: 5,
+                        spaceBetween: 12,
+                    }
+                }"
                 pagination
                 class="mt-4 lg:mt-6 mx-auto"
             >
-                <SwiperSlide v-for="n in 9" class="pb-10">
+                <SwiperSlide v-for="n in 9" class="pb-10 w-fit">
                     <GridItemCard :item="items[n - 1]">
                         <Button 
                             @click="toggleFavorite(items[n - 1].id)"
@@ -131,29 +166,18 @@ const toggleFavorite = useDebounceFn(async (id) => {
                     </GridItemCard>
                 </SwiperSlide>
             </Swiper>
-
-            <!-- <div class="rounded-2xl bg-red-light mt-10 lg:mt-14 h-40">
-                <NuxtLink to="/shop" class="w-fit mx-auto xl:mx-0">
-                    <Button 
-                        variant="primary" 
-                        size="large"
-                        class="!w-fit" 
-                    >
-                        <span> SHOP NOW </span>
-                        <IconsDoubleChevronRight />
-                    </Button>
-                </NuxtLink>
-            </div> -->
         </div>
 
         <div class="bg-red-light">
             <div class="mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-4 md:py-6 lg:py-8 max-w-5xl xl:max-w-8xl grid grid-cols-1 lg:grid-cols-2 items-center gap-10 text-white">
-                <div class="flex flex-col lg:items-center xl:items-baseline xl:mx-10 text-gray-dark">
-                    <p class="text-2xl whitespace-nowrap font-medium">
-                        Why choose THE HEAVY SHOP
+                <div class="mx-auto max-w-lg lg:max-w-none flex flex-col items-center xl:items-baseline xl:mx-10 text-gray-dark">
+                    <p class="flex flex-wrap justify-center text-2xl font-medium">
+                        <span> Why choose &nbsp </span>
+                        <span class="text-white"> THE HEAVY SHOP </span>
                     </p>
-                    <p class="mt-4 font-medium lg:text-center xl:text-start">
-                        Signing up is a breeze — create your account in just a few moments and dive into shopping almost instantly. Enjoy a hassle-free, efficient experience designed to make your shopping as smooth and enjoyable as possible.
+                    <p class="mx-1 mt-4 font-medium text-center xl:text-start">
+                        Signing up is a breeze — create your account in just a few moments and dive into shopping almost instantly. 
+                        Enjoy a hassle-free, efficient experience designed to make your shopping as smooth and enjoyable as possible.
                     </p>
                     <div class="flex items-center gap-2 sm:gap-3 shrink-0 mt-6">
                         <NuxtLink to="/auth/login">
@@ -177,39 +201,24 @@ const toggleFavorite = useDebounceFn(async (id) => {
                         </NuxtLink>
                     </div>
                 </div>
-                <div class="flex flex-col gap-4 xl:mr-10">
-                    <div class="flex flex-col items-center gap-2 bg-gray-dark p-3 lg:p-4 xl:w-3/5 rounded-2xl">
+                <div class="flex flex-col gap-3 md:gap-4 xl:mr-10">
+                    <div 
+                        v-for="feature in features"
+                        class="flex flex-col items-center gap-2 bg-gray-dark p-3 lg:p-4 xl:w-3/5 rounded-2xl even:xl:self-end max-w-lg lg:max-w-none self-center lg:self-auto"
+                    >
                         <div class="flex items-center gap-1.5">
-                            <IconsEarth class="size-5 lg:!size-6 text-red-light" />
-                            <span class="lg:text-lg font-normal"> Free international shipping </span>
+                            <component :is="feature.icon" class="size-5 lg:!size-6 text-red-light" />
+                            <span class="lg:text-lg font-normal"> {{ feature.title }} </span>
                         </div>
                         <p class="font-light text-center mx-6"> 
-                            Wherever you’re from, we’ve got you covered. No need to stress — we’ll take care of everything.
-                        </p>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 bg-gray-dark p-3 lg:p-4 xl:w-3/5 rounded-2xl xl:self-end">
-                        <div class="flex items-center gap-1.5">
-                            <IconsUndo class="size-5 lg:!size-6 text-red-light" />
-                            <span class="lg:text-lg font-normal"> 30-day free refund policy </span>
-                        </div>
-                        <p class="font-light text-center mx-6"> 
-                            We value our customers, so if you’re not satisfied, getting your money back is quick and easy.
-                        </p>
-                    </div>
-                    <div class="flex flex-col items-center gap-2 bg-gray-dark p-3 lg:p-4 xl:w-3/5 rounded-2xl">
-                        <div class="flex items-center gap-1.5">
-                            <IconsKeyhole class="size-5 lg:!size-6 text-red-light" />
-                            <span class="lg:text-lg font-normal"> Secure online payment </span>
-                        </div>
-                        <p class="font-light text-center mx-6"> 
-                            You can shop with confidence, knowing that your information is protected every step of the way.
+                            {{ feature.description }}
                         </p>
                     </div>
                 </div>
             </div>
         </div>
 
-        <div class="my-4 mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-4 md:py-6 lg:py-8 max-w-5xl xl:max-w-8xl text-white"> 
+        <!-- <div class="my-4 mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-4 md:py-6 lg:py-8 max-w-5xl xl:max-w-8xl text-white"> 
             <div class="bg-gray-dark rounded-2xl p-1.5 flex items-center justify-between">
                 <NuxtImg 
                     src="/img/5.png" 
@@ -222,7 +231,8 @@ const toggleFavorite = useDebounceFn(async (id) => {
                         Don’t miss out on our latest merch!
                     </p>
                     <p class="max-w-lg text-center font-light">
-                        Get your hands on the hottest heavy metal gear before it's gone! Our exclusive designs are flying off the shelves, so don't wait — grab your favorites now and stand out with the best in metal fashion.
+                        Get your hands on the hottest heavy metal gear before it's gone! 
+                        Our exclusive designs are flying off the shelves, so don't wait — grab your favorites now and stand out with the best in metal fashion.
                     </p>
                     <NuxtLink to="/shop" class="w-fit mx-auto xl:mx-0">
                         <Button 
@@ -241,7 +251,7 @@ const toggleFavorite = useDebounceFn(async (id) => {
                     preload
                 />
             </div>
-        </div>
+        </div> -->
             
     </div>
 </template>
