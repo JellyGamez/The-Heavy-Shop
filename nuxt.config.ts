@@ -57,6 +57,7 @@ export default defineNuxtConfig({
     '@vue-email/nuxt',
     '@vueuse/nuxt',
     '@nuxt/image',
+    'nuxt-swiper',
     '@nuxtjs/robots',
     '@nuxtjs/google-fonts',
     '@unlok-co/nuxt-stripe'

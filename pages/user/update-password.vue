@@ -70,7 +70,7 @@ async function updatePassword() {
                         <IconsKey class="text-white" />
                     </TextInput>
                 </div>
-                <Error class="text-center"> {{ errorMessage }} </Error>
+                <Error> {{ errorMessage }} </Error>
                 <Button 
                     type="submit" 
                     :variant="loading ? 'loading' : 'primary'"

@@ -15,7 +15,7 @@ defineOptions({
             v-model="input"
             class="px-3.5 py-2.5 pr-10 w-full text-sm text-white outline-none hover:outline-none border-0 focus:ring-[1.5px] focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl"
         >
-        <div class="absolute right-3">
+        <div class="absolute right-3 pointer-events-none">
             <slot />
         </div>
     </div>
@@ -32,7 +32,7 @@ input:-webkit-autofill:hover {
 }
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0px 2px #C70404 inset;
+    -webkit-box-shadow: 0 0 0px 1.5px #C70404 inset;
     -webkit-text-fill-color: white;
     transition: background-color 50000s;
     caret-color: white;

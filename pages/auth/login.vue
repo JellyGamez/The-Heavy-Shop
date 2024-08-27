@@ -85,7 +85,7 @@ async function login(provider) {
                         </NuxtLink>
                     </Label>
                 </div>
-                <Error class="text-center"> {{ errorMessage }} </Error>
+                <Error>  {{ errorMessage }} </Error>
                 <Button 
                     type="submit" 
                     :variant="loading ? 'loading' : 'primary'"

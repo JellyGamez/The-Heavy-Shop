@@ -91,14 +91,16 @@ const updateItem = useDebounceFn(async (item, type) => {
                                 <span class=""> {{ subtotal }} </span>
                             </div>
                         </div>
-                        <Button 
-                            variant="secondary" 
-                            size="small"
-                            class="!w-44 shrink-0"
-                        >
-                            CHECKOUT
-                            <IconsDoubleChevronRight class="!size-4" />
-                        </Button>
+                        <NuxtLink to="/user/checkout">
+                            <Button 
+                                variant="secondary" 
+                                size="small"
+                                class="!w-44 shrink-0"
+                            >
+                                CHECKOUT
+                                <IconsDoubleChevronRight class="!size-4" />
+                            </Button>
+                        </NuxtLink>
                     </div>
                     <Separator class="!py-2" />
                 </div>
