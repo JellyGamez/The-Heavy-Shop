@@ -29,7 +29,7 @@ async function handleDisplay(option) {
         <p class="hidden sm:block text-sm"> 
             Display 
         </p>
-        <div class="flex items-center gap-1 justify-center rounded-2xl bg-gray-dark py-1 md:py-1.5 px-1.5 md:px-2">
+        <div class="flex items-center gap-1 justify-center rounded-2xl bg-gray-dark py-1 lg:py-1.5 px-1.5 lg:px-2">
             <button 
                 v-for="option in options"
                 :key="option"
