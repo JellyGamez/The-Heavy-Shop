@@ -49,7 +49,7 @@ const display = computed(() => route.query?.display ?? 'grid')
             title="Shop"
             :description="route.query.search ? `${items.length} ${items.length === 1 ? 'result' : 'results'} found for '${route.query.search}'` : 'Explore and curate your metal haven'"
         >
-            <div class="-ml-1 flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
+            <div class="flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
                 <div v-if="items.length" class="flex flex-wrap-reverse justify-center gap-2 md:gap-4">
                     <Sort @sort="async () => { await refreshNuxtData('items') }" />
                     <Display />
@@ -72,7 +72,7 @@ const display = computed(() => route.query?.display ?? 'grid')
                     <IconsDoubleChevronRight class="!size-4" />
                 </Button>
             </EmptyState>
-            <div v-if="display === 'grid'" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 max-w-fit lg:max-w-none mx-auto">
+            <div v-if="display === 'grid'" class="grid grid-cols-1 xs:grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-2 md:gap-3 place-items-center">
                 <GridItemCard 
                     v-for="item in items" 
                     :key="item.id" 

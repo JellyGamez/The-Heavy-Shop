@@ -63,7 +63,7 @@ async function handleSort(option) {
         <p class="hidden sm:block text-sm"> 
             Sort by
         </p>
-        <div class="flex flex-wrap gap-1 md:gap-1.5 rounded-2xl bg-gray-dark p-1 md:p-1.5 focus:outline-none">
+        <div class="flex flex-wrap gap-1 md:gap-1.5 rounded-2xl bg-gray-dark p-1 lg:p-1.5 focus:outline-none">
             <button
                 v-for="option in options"
                 :key="option.id"

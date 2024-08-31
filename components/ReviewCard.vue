@@ -11,7 +11,7 @@ const bus = useEventBus('modal')
 
 <template>
     <div>
-        <div class="relative flex justify-between w-full p-1 md:p-1.5 rounded-2xl bg-gray-dark">
+        <div class="relative flex justify-between w-full p-1 lg:p-1.5 rounded-2xl bg-gray-dark">
             <div class="flex flex-col w-full gap-2.5 overflow-hidden">
                 <div class="flex text-white justify-between gap-2 p-2 pb-0">
                     <div class="flex flex-col gap-3 truncate">

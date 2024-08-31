@@ -120,28 +120,36 @@ const features = [
                 description="Discover our most sold and appreciated products"
             />
             <Swiper
-                :modules="[SwiperNavigation, SwiperPagination]"
-                :slides-per-view="2"
+                :modules="[SwiperNavigation, SwiperPagination, SwiperAutoplay]"
+                :slides-per-view="1"
                 :space-between="8"
                 :breakpoints="{
+                    '480': {
+                        slidesPerView: 2,
+                        spaceBetween: 12
+                    },
                     '640': {
                         slidesPerView: 3,
-                        spaceBetween: 12,
+                        spaceBetween: 12
                     },
-                    '1024': {
+                    '920': {
                         slidesPerView: 4,
-                        spaceBetween: 12,
+                        spaceBetween: 12
                     },
                     '1280': {
                         slidesPerView: 5,
-                        spaceBetween: 12,
+                        spaceBetween: 12
                     }
                 }"
+                :autoplay="{
+                    delay: 2500,
+                    disableOnInteraction: true
+                }"
                 pagination
-                class="mt-4 lg:mt-6 mx-auto"
+                class="mt-4 lg:mt-6"
             >
-                <SwiperSlide v-for="n in 9" class="pb-10 w-fit">
-                    <GridItemCard :item="items[n - 1]">
+                <SwiperSlide v-for="n in 9" class="pb-10 ">
+                    <GridItemCard :item="items[n - 1]" class="mx-auto">
                         <Button 
                             @click="toggleFavorite(items[n - 1].id)"
                             aria-label="favorite"
@@ -167,15 +175,14 @@ const features = [
                 </SwiperSlide>
             </Swiper>
         </div>
-
-        <div class="bg-red-light">
-            <div class="mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-4 md:py-6 lg:py-8 max-w-5xl xl:max-w-8xl grid grid-cols-1 lg:grid-cols-2 items-center gap-10 text-white">
+        <div class="bg-red-light mb-8 md:mb-10 lg:mb-12">
+            <div class="mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-8 max-w-5xl xl:max-w-8xl grid grid-cols-1 lg:grid-cols-2 items-center gap-10 text-white">
                 <div class="mx-auto max-w-lg lg:max-w-none flex flex-col items-center xl:items-baseline xl:mx-10 text-gray-dark">
-                    <p class="flex flex-wrap justify-center text-2xl font-medium">
+                    <p class="flex flex-wrap justify-center text-xl lg:text-2xl font-medium">
                         <span> Why choose &nbsp </span>
                         <span class="text-white"> THE HEAVY SHOP </span>
                     </p>
-                    <p class="mx-1 mt-4 font-medium text-center xl:text-start">
+                    <p class="text-sm lg:text-base mx-1 mt-4 font-medium text-center xl:text-start">
                         Signing up is a breeze — create your account in just a few moments and dive into shopping almost instantly. 
                         Enjoy a hassle-free, efficient experience designed to make your shopping as smooth and enjoyable as possible.
                     </p>
@@ -210,49 +217,13 @@ const features = [
                             <component :is="feature.icon" class="size-5 lg:!size-6 text-red-light" />
                             <span class="lg:text-lg font-normal"> {{ feature.title }} </span>
                         </div>
-                        <p class="font-light text-center mx-6"> 
+                        <p class="text-sm lg:text-base font-light text-center mx-6"> 
                             {{ feature.description }}
                         </p>
                     </div>
                 </div>
             </div>
-        </div>
-
-        <!-- <div class="my-4 mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-4 md:py-6 lg:py-8 max-w-5xl xl:max-w-8xl text-white"> 
-            <div class="bg-gray-dark rounded-2xl p-1.5 flex items-center justify-between">
-                <NuxtImg 
-                    src="/img/5.png" 
-                    alt="Gallery"
-                    class="w-80 h-80 rounded-xl text-white"
-                    preload
-                />
-                <div class="flex flex-col items-center gap-4">
-                    <p class="text-2xl">
-                        Don’t miss out on our latest merch!
-                    </p>
-                    <p class="max-w-lg text-center font-light">
-                        Get your hands on the hottest heavy metal gear before it's gone! 
-                        Our exclusive designs are flying off the shelves, so don't wait — grab your favorites now and stand out with the best in metal fashion.
-                    </p>
-                    <NuxtLink to="/shop" class="w-fit mx-auto xl:mx-0">
-                        <Button 
-                            variant="secondary" 
-                            size="medium" 
-                        >
-                            <span> SHOP NOW </span>
-                            <IconsDoubleChevronRight />
-                        </Button>
-                    </NuxtLink>
-                </div>
-                <NuxtImg 
-                    src="/img/7.png" 
-                    alt="Gallery"
-                    class="w-80 h-80 rounded-xl text-white"
-                    preload
-                />
-            </div>
-        </div> -->
-            
+        </div> 
     </div>
 </template>
 

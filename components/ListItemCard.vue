@@ -7,7 +7,7 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="relative flex justify-between w-full p-1 md:p-1.5 rounded-2xl bg-gray-dark">
+    <div class="relative flex justify-between w-full p-1 lg:p-1.5 rounded-2xl bg-gray-dark">
         <div class="flex w-full md:mr-10 lg:mr-20">
             <NuxtLink :to='`/item/${item?.id}`' class="shrink-0">
                 <NuxtImg 

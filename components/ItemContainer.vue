@@ -27,7 +27,7 @@ const addToCart = useDebounceFn(async () => {
 
 <template>
     <div class="grid grid-cols-4 gap-2 md:gap-3">
-        <div class="flex flex-col sm:flex-row col-span-4 xl:col-span-3 p-1 md:p-1.5 bg-gray-dark rounded-2xl">
+        <div class="flex flex-col sm:flex-row col-span-4 xl:col-span-3 p-1 lg:p-1.5 bg-gray-dark rounded-2xl">
             <NuxtImg 
                 :src="item.photoUrl" 
                 :alt="item.name" 

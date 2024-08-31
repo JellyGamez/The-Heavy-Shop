@@ -78,7 +78,10 @@ async function main() {
                 name: faker.commerce.productName(),
                 description: faker.commerce.productDescription(),
                 price: parseFloat(faker.number.float({ min: 10, max: 99, multipleOf: 0.01 }).toFixed(2)),
-                photoUrl: faker.image.url(),
+                photoUrl: faker.image.url({
+                    width: 480,
+                    height: 480
+                }),
                 reviews: {
                     create: reviews
                 },

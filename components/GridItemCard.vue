@@ -7,13 +7,13 @@ const props = defineProps({
 </script>
 
 <template>
-    <div class="flex flex-col max-w-56 sm:max-w-72 w-full h-full p-1 md:p-1.5 gap-2 rounded-2xl text-white bg-gray-dark">
+    <div class="flex flex-col w-full h-full p-1 lg:p-1.5 gap-2 rounded-2xl max-w-sm text-white bg-gray-dark">
         <div class="relative">
             <NuxtLink :to='`/item/${item?.id}`'>
                 <NuxtImg 
                     :src="item?.photoUrl"
                     :alt="item?.name"
-                    class="h-48 xl:h-56 w-full object-cover rounded-xl"
+                    class="w-full h-full object-cover rounded-xl"
                     preload
                 />
             </NuxtLink>
@@ -22,12 +22,12 @@ const props = defineProps({
         
         <div class="flex flex-col mx-2">
             <NuxtLink :to='`/item/${item?.id}`'>
-                <p class="text-base md:text-lg h-11 md:h-14 leading-snug line-clamp-2"> 
+                <p class="text-lg xs:text-base md:text-lg h-11 md:h-14 leading-snug line-clamp-2"> 
                     {{ item?.name }} 
                 </p>
             </NuxtLink>
             <div class="justify-self-end flex flex-wrap-reverse justify-between items-center w-full gap-2 mt-2">
-                <div class="text-sm md:text-base">
+                <div class="text-base xs:text-sm md:text-base">
                     <span class="font-extralight">$</span>
                     <span> {{ item?.price }} </span>
                 </div>
@@ -42,7 +42,10 @@ const props = defineProps({
 
         <div class="flex items-end h-full">
             <NuxtLink :to='`/item/${item.id}`' class="w-full">
-                <Button size="small"> 
+                <Button 
+                    size="small"
+                    class="!text-sm xs:!text-xs sm:!text-sm"
+                > 
                     <span> View item </span>
                     <IconsDoubleChevronRight class="!size-3.5" />
                 </Button>
