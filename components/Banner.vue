@@ -1,6 +1,6 @@
 <script setup>
 
-import { IconsBookmark, IconsDocument, IconsShoppingBag, IconsShoppingCart, IconsUser, IconsGraphUp } from '#components'
+import { IconsUser, IconsGraphUp, IconsDocument, IconsBookmark, IconsShoppingBag, IconsShoppingCart  } from '#components'
 
 const props = defineProps({
     icon: String,

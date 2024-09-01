@@ -1,7 +1,5 @@
 <script setup>
 
-import { IconsEarth, IconsUndo, IconsKeyhole } from '#components'
-
 definePageMeta({
     layout: 'home'
 })
@@ -14,6 +12,8 @@ useHead({
         Explore our extensive collection and discover the perfect items to express your passion for the genre!'
     }],
 })
+
+const status = useStatus()
 
 const { data: items } = await useAsyncData('items', () => $fetch('/api/item', {
     query: {
@@ -39,18 +39,17 @@ const toggleFavorite = useDebounceFn(async (id) => {
 
 const features = [
     { 
-        icon: IconsEarth,
+        icon: 'earth',
         title: 'Free international shipping',
-        description: 'Wherever you’re from, we’ve got you covered. \
-        No need to stress — we’ll take care of everything.'
+        description: 'Wherever you’re from, we’ve got you covered. No need to stress — we’ll take care of everything.'
     },
     {
-        icon: IconsUndo,
+        icon: 'undo',
         title: '30-day free refund policy',
         description: 'We value our customers, so if you’re not satisfied, getting your money back is quick and easy.'
     },
     {
-        icon: IconsKeyhole,
+        icon: 'keyhole',
         title: 'Secure online payment',
         description: 'You can shop with confidence, knowing that your information is protected every step of the way.'
     }
@@ -175,9 +174,9 @@ const features = [
                 </SwiperSlide>
             </Swiper>
         </div>
-        <div class="bg-red-light mb-8 md:mb-10 lg:mb-12">
-            <div class="mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-8 max-w-5xl xl:max-w-8xl grid grid-cols-1 lg:grid-cols-2 items-center gap-10 text-white">
-                <div class="mx-auto max-w-lg lg:max-w-none flex flex-col items-center xl:items-baseline xl:mx-10 text-gray-dark">
+        <div class="bg-red-light mb-8 md:mb-10 lg:mb-12 overflow-hidden">
+            <div class="mx-auto px-2 sm:px-4 md:px-7 lg:px-10 py-8 max-w-5xl xl:max-w-8xl grid grid-cols-1 lg:grid-cols-2 items-center gap-10 text-white relative">
+                <div class="mx-auto max-w-lg lg:max-w-none flex flex-col items-center xl:items-baseline xl:mx-10 text-gray-dark relative z-20">
                     <p class="flex flex-wrap justify-center text-xl lg:text-2xl font-medium">
                         <span> Why choose &nbsp </span>
                         <span class="text-white"> THE HEAVY SHOP </span>
@@ -186,7 +185,24 @@ const features = [
                         Signing up is a breeze — create your account in just a few moments and dive into shopping almost instantly. 
                         Enjoy a hassle-free, efficient experience designed to make your shopping as smooth and enjoyable as possible.
                     </p>
-                    <div class="flex items-center gap-2 sm:gap-3 shrink-0 mt-6">
+                    <div 
+                        v-if="status"
+                        class="flex items-center gap-2 sm:gap-3 shrink-0 mt-6"
+                    >
+                        <NuxtLink to="/user/account">
+                            <Button 
+                                variant="primary" 
+                                size="medium"
+                                class="!w-40 !ring-0 !bg-gray-dark hover:!text-red-light"
+                            > 
+                                GO TO ACCOUNT 
+                            </Button>
+                        </NuxtLink>
+                    </div>
+                    <div 
+                        v-else
+                        class="flex items-center gap-2 sm:gap-3 shrink-0 mt-6"
+                    >
                         <NuxtLink to="/auth/login">
                             <Button 
                                 variant="primary" 
@@ -197,7 +213,7 @@ const features = [
                             </Button>
                         </NuxtLink>
                         <span class="mb-1 font-medium"> or </span>
-                        <NuxtLink to="/auth/login">
+                        <NuxtLink to="/auth/register">
                             <Button 
                                 variant="primary" 
                                 size="medium"
@@ -208,19 +224,12 @@ const features = [
                         </NuxtLink>
                     </div>
                 </div>
-                <div class="flex flex-col gap-3 md:gap-4 xl:mr-10">
-                    <div 
+                <div class="flex flex-col gap-3 md:gap-4 xl:mr-10 z-20">
+                    <FeatureCard 
                         v-for="feature in features"
-                        class="flex flex-col items-center gap-2 bg-gray-dark p-3 lg:p-4 xl:w-3/5 rounded-2xl even:xl:self-end max-w-lg lg:max-w-none self-center lg:self-auto"
-                    >
-                        <div class="flex items-center gap-1.5">
-                            <component :is="feature.icon" class="size-5 lg:!size-6 text-red-light" />
-                            <span class="lg:text-lg font-normal"> {{ feature.title }} </span>
-                        </div>
-                        <p class="text-sm lg:text-base font-light text-center mx-6"> 
-                            {{ feature.description }}
-                        </p>
-                    </div>
+                        :feature="feature"
+                        class="xl:w-3/5 even:xl:self-end max-w-lg lg:max-w-none self-center lg:self-auto"
+                    />
                 </div>
             </div>
         </div> 

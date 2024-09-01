@@ -124,8 +124,8 @@ function handleAction(action) {
                 </HeadlessMenu>
             </div>
             <div class="col-start-2 justify-center flex flex-nowrap md:col-start-1 md:justify-start items-center">
-                <NuxtLink to="/" class="flex items-center">
-                    <span class="text-red-primary transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap underline-effect"> 
+                <NuxtLink to="/" class="flex items-center underline-effect">
+                    <span class="text-red-primary transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap"> 
                         THE HEAVY SHOP
                     </span>
                 </NuxtLink>

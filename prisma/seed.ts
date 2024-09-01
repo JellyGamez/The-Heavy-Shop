@@ -7,14 +7,14 @@ const prisma = new PrismaClient()
 async function main() {
     await prisma.user.upsert({
         where: {
-            email: 'admin@theheavyshop.com',
+            email: 'test@theheavyshop.com',
         },
         update: {
 
         },
         create: {
-            email: 'admin@theheavyshop.com',
-            name: 'Admin',
+            email: 'test@theheavyshop.com',
+            name: 'Test Account',
             password: bcrypt.hashSync('password', 10),
             favorites: {
                 create: {
@@ -39,7 +39,7 @@ async function main() {
                 email: faker.internet.email(),
                 name: faker.person.fullName(),
                 password: bcrypt.hashSync('password', 10),
-                photoUrl: faker.image.avatar(),
+                photoUrl: faker.image.avatarGitHub(),
                 favorites: {
                     create: {
                         items: {

@@ -1,7 +1,8 @@
 <script setup>
 
 definePageMeta({
-    layout: 'auth'
+    layout: 'auth',
+    middleware: 'auth'
 })
 
 const stripe = await useClientStripe()
@@ -15,7 +16,7 @@ const appearance = {
         colorText: '#FFFFFF',
         fontFamily: 'Kanit, system-ui',
         borderRadius: '16px',
-        colorTextPlaceholder: 'transparent',
+        // colorTextPlaceholder: 'transparent',
         iconColor: '#FFFFFF',
         fontSmooth: 'never',
         fontSizeSm: '14px',
@@ -58,35 +59,37 @@ const appearance = {
     }
 }
 
-onNuxtReady(() => {
-    elements.value = stripe.value.elements({
-        mode: 'payment',
-        amount: 100,
-        currency: 'usd',
-        appearance: appearance,
-        fonts: [
-            {
-                cssSrc: "https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap"
+onMounted(() => {
+    setTimeout(() => {
+        elements.value = stripe.value.elements({
+            mode: 'payment',
+            amount: 100,
+            currency: 'usd',
+            appearance: appearance,
+            fonts: [
+                {
+                    cssSrc: "https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap"
+                }
+            ]
+        })
+        const payment = elements.value?.create('payment', {
+            layout: 'tabs',
+            fields: {
+                billingDetails: 'never'
             }
-        ]
-    })
-    const payment = elements.value.create('payment', {
-        layout: 'tabs',
-        fields: {
-            billingDetails: 'never'
-        }
-    })
-    payment.mount('#payment')
-    const address = elements.value.create('address', {
-        mode: 'shipping',
-        allowedCountries: [
-            'RO',
-            'US'
-        ],
-    })
-    address.mount('#address')
+        })
+        payment.mount('#payment')
+        const address = elements.value.create('address', {
+            mode: 'shipping',
+            allowedCountries: [
+                'RO',
+                'US'
+            ],
+        })
+        address.mount('#address')
 
-    error.value = computed(() => elements.value.getElement('payment'))
+        error.value = computed(() => elements.value.getElement('payment'))
+    }, 10)
 })
 
 </script>

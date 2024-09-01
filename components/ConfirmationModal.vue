@@ -29,14 +29,14 @@ const id = ref()
 			</p>
 			<div class="mt-5 sm:mt-7 flex gap-4">
 				<Button 
-					variant="secondary" 
+					variant="primary" 
 					size="small"
 					@click="() => isOpen = false"
 				>
 					CANCEL
 				</Button>
 				<Button 
-					variant="primary"
+					variant="secondary"
 					size="small"
 					@click="() => { 
 						isOpen = false

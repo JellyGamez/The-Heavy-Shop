@@ -19,8 +19,8 @@ definePageMeta({
 const route = useRoute()
 const { signIn } = useAuth()
 
-const email = ref('')
-const password = ref('')
+const email = ref('test@theheavyshop.com')
+const password = ref('password')
 const errorMessage = ref()
 const loading = ref(false)
 
