@@ -17,7 +17,7 @@ const status = useStatus()
 
 const { data } = await useFetch('/api/item', {
     query: {
-        sortBy: 'review-count',
+        sortBy: 'rating',
         direction: 'desc'
     }
 })

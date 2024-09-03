@@ -92,7 +92,9 @@ watch(y, async (newValue) => {
         <Banner
             icon="shopping-bag"
             title="Shop"
-            :description="route.query.search ? `${count} ${count === 1 ? 'result' : 'results'} found for '${route.query.search}'` : 'Explore and curate your metal haven'"
+            :description="route.query.search ? `We found <span class='text-red-light'> ${count} ${count === 1 ? 'result' : 'results'} </span> for &quot${route.query.search}&quot` : 
+                `<p>Browse <span class='text-red-light'> over 300 items </span> from our collection</p>`
+            "
         >
             <div class="flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
                 <div v-if="items.length" class="flex flex-wrap-reverse justify-center gap-2 md:gap-4">
@@ -104,7 +106,7 @@ watch(y, async (newValue) => {
         <div class="mt-4 lg:mt-6">
             <EmptyState 
                 v-if="!items.length"
-                title="No items found"
+                title="No results found"
                 description="There are no items that match your search and filter options."
             >
                 <Button

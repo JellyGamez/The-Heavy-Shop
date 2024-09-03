@@ -26,13 +26,15 @@ const icon = computed(() => {
         <div class="flex flex-col items-center sm:items-start text-white">
             <div class="flex items-center gap-1.5 lg:gap-2">
                 <component :is="icon" class="size-6 lg:size-7" />
-                <h1 class="text-2xl lg:text-3xl">
-                    {{ title }}
-                </h1>
+                <h1 
+                    v-html="title"
+                    class="text-2xl lg:text-3xl" 
+                />
             </div>
-            <p class="text-sm lg:text-base text-center -mt-0.5 lg:-mt-1">
-                {{ description }}
-            </p>
+            <p 
+                v-html="description"
+                class="text-sm lg:text-base text-center -mt-0.5 lg:-mt-1"
+            />
         </div>
         <slot />
     </div>
