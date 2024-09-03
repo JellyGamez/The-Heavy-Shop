@@ -5,8 +5,9 @@ const route = useRoute()
 const search = ref(route.query?.search ?? null)
 const isOpen = ref(false)
 
-const bus = useEventBus('modal')
-bus.on(function (event) {
+const modalBus = useEventBus('modal')
+const searchBus = useEventBus('search')
+modalBus.on(function (event) {
     if (event === 'search')
 		isOpen.value = true
 })
@@ -21,7 +22,7 @@ async function handleSubmit() {
 		}
 	})
 
-	await refreshNuxtData('items')
+	searchBus.emit()
 }
 
 </script>

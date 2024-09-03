@@ -15,12 +15,14 @@ useHead({
 
 const status = useStatus()
 
-const { data: items } = await useAsyncData('items', () => $fetch('/api/item', {
+const { data } = await useFetch('/api/item', {
     query: {
         sortBy: 'review-count',
         direction: 'desc'
     }
-}))
+})
+
+const items = computed(() => data.value.items)
 
 const favorites = useFavorites()
 const userFavorites = ref(await favorites.getIds())

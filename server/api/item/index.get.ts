@@ -1,7 +1,9 @@
 import prisma, { getItemRating } from '~/server/utils'
 
 export default defineEventHandler(async (event) => {
-    const { sortBy, direction, search } = getQuery(event)
+    const { page, sortBy, direction, search } = getQuery(event)
+    
+    const runtimeConfig = useRuntimeConfig()
 
     const options = {
         'price': {
@@ -24,6 +26,17 @@ export default defineEventHandler(async (event) => {
                 contains: search as any,
                 mode: 'insensitive'
             }
+        },
+        take: runtimeConfig.public.perPage,
+        skip: runtimeConfig.public.perPage * ((page as number ?? 1) - 1)
+    })
+
+    const count = await prisma.item.count({
+        where: {
+            name: {
+                contains: search as any,
+                mode: 'insensitive'
+            }
         }
     })
 
@@ -34,5 +47,8 @@ export default defineEventHandler(async (event) => {
     if (sortBy === 'rating')
         items?.sort((a: any, b: any) => direction === 'asc' ? a.rating - b.rating : b.rating - a.rating)
 
-    return items
+    return {
+        items: items,
+        count: count
+    }
 })

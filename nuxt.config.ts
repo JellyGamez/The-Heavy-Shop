@@ -48,7 +48,8 @@ export default defineNuxtConfig({
   },
   runtimeConfig: {
     public: {
-      authOrigin: process.env.AUTH_ORIGIN
+      authOrigin: process.env.AUTH_ORIGIN,
+      perPage: 20
     }
   },
   modules: [

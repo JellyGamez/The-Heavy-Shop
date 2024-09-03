@@ -45,17 +45,11 @@ const features = [
                     THE HEAVY SHOP
                 </span>
             </NuxtLink>
-            <p>
-                Proin elementum auctor nisi et molestie. Nulla interdum porttitor enim. Sed eros sem, aliquam sit amet consequat ut, faucibus eu dui. Aliquam vehicula augue sed quam malesuada, vel malesuada turpis suscipit. Vivamus viverra lacus nec pretium volutpat. Integer dictum diam ac erat maximus, et eleifend orci iaculis. Suspendisse consectetur ut ante non venenatis. Nulla facilisi.
-            </p>
-
-            <p class="text-right">
-                Proin elementum auctor nisi et molestie. Nulla interdum porttitor enim. Sed eros sem, aliquam sit amet consequat ut, faucibus eu dui. Aliquam vehicula augue sed quam malesuada, vel malesuada turpis suscipit. Vivamus viverra lacus nec pretium volutpat. Integer dictum diam ac erat maximus, et eleifend orci iaculis. Suspendisse consectetur ut ante non venenatis. Nulla facilisi.
-            </p>
+            
         </div>
-        <div class="mt-2 lg:mt-3 p-4  rounded-2xl flex flex-col items-center">
+        <!-- <div class="mt-2 lg:mt-3 p-4  rounded-2xl flex flex-col items-center">
             <h1 class="text-3xl text-white"> What we offer </h1>
-        </div>
+        </div> -->
     </div>
 </template>
 

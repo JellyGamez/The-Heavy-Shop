@@ -90,7 +90,7 @@ const removeItem = useDebounceFn(async (id) => {
                     </ListItemCard>
                 </div>
                 <EmptyState 
-                    v-else-if="items?.length === 0"
+                    v-else-if="!items?.length"
                     title="No favorite items yet"
                     description="
                         <p>
