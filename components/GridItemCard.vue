@@ -15,6 +15,7 @@ const props = defineProps({
                     :alt="item?.name"
                     class="w-full h-full object-cover rounded-xl"
                     preload
+                    placeholder
                 />
             </NuxtLink>
             <slot />
@@ -22,18 +23,18 @@ const props = defineProps({
         
         <div class="flex flex-col mx-2">
             <NuxtLink :to='`/item/${item?.id}`'>
-                <p class="font-light text-lg xs:text-base md:text-lg h-11 md:h-14 leading-snug line-clamp-2"> 
+                <p class="font-light text-base md:text-lg h-10 md:h-14 leading-tight md:leading-6 line-clamp-2"> 
                     {{ item?.name }} 
                 </p>
             </NuxtLink>
             <div class="justify-self-end flex flex-wrap-reverse justify-between items-center w-full gap-2 mt-2">
-                <div class="text-base xs:text-sm md:text-base">
+                <div class="text-sm md:text-base mt-[1px] md:mt-0">
                     <span class="font-extralight">$</span>
                     <span> {{ item?.price }} </span>
                 </div>
-                <div class="flex items-center mb-0.5 gap-1.5">
+                <div class="flex items-center mb-0.5 gap-1 md:gap-1.5">
                     <Rating :rating="item?.rating" />
-                    <p class="text-gray-lightest"> 
+                    <p class="text-sm md:text-base text-gray-lightest mt-[1px] -mb-[1px] md:mt-0 md:mb-0"> 
                         ({{ item?.reviews?.length }}) 
                     </p>
                 </div>
@@ -44,7 +45,7 @@ const props = defineProps({
             <NuxtLink :to='`/item/${item.id}`' class="w-full">
                 <Button 
                     size="small"
-                    class="!text-sm xs:!text-xs sm:!text-sm"
+                    class="!text-xs sm:!text-sm"
                 > 
                     <span> View item </span>
                     <IconsDoubleChevronRight class="!size-3.5" />

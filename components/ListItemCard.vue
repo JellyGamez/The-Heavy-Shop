@@ -15,6 +15,7 @@ const props = defineProps({
                     :alt="item?.name" 
                     class="size-32 md:size-44 object-cover rounded-xl" 
                     preload 
+                    placeholder
                 />
             </NuxtLink>
             <div class="flex flex-col w-full justify-between overflow-hidden text-white my-1 md:my-2 mr-2 ml-4 md:ml-6">
@@ -26,7 +27,7 @@ const props = defineProps({
                         <p 
                             :class="[
                                 item?.size ? 'line-clamp-1' : 'line-clamp-2',
-                                'text-sm md:text-base font-light text-gray-lightest w-full'
+                                'text-sm md:text-base font-light text-gray-lightest w-full leading-snug'
                             ]"
                         > 
                             {{ item?.description }}

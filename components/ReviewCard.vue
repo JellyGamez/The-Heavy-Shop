@@ -21,6 +21,7 @@ const bus = useEventBus('modal')
                                 alt="avatar"
                                 class="size-9 md:size-11 object-cover rounded-full text-xs" 
                                 preload 
+                                placeholder
                             />
                             <p class="text-[15px] md:text-base truncate"> 
                                 {{ review.author.name }} 

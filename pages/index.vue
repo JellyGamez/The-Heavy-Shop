@@ -110,6 +110,7 @@ const features = [
                         alt="Muscular man wearing our merch"
                         class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full mx-auto text-white"
                         preload
+                        placeholder
                     />
                 </div>
             </div>
@@ -122,13 +123,9 @@ const features = [
             />
             <Swiper
                 :modules="[SwiperNavigation, SwiperPagination, SwiperAutoplay]"
-                :slides-per-view="1"
+                :slides-per-view="2"
                 :space-between="8"
                 :breakpoints="{
-                    '480': {
-                        slidesPerView: 2,
-                        spaceBetween: 12
-                    },
                     '640': {
                         slidesPerView: 3,
                         spaceBetween: 12
