@@ -22,10 +22,15 @@ const { data } = await useFetch('/api/item', {
     }
 })
 
-const items = computed(() => data.value.items)
-
 const favorites = useFavorites()
 const userFavorites = ref(await favorites.getIds())
+
+const items = ref(data.value.items.map(item => { 
+    return { 
+        ...item, 
+        favorite: isFavorite(item.id)
+    } 
+}))
 
 function isFavorite(id) {
     return userFavorites?.value?.some(item => item === id)
@@ -36,7 +41,8 @@ const toggleFavorite = useDebounceFn(async (id) => {
         await favorites.removeItem(id)
     else
         await favorites.addItem(id)
-    userFavorites.value = await favorites.getIds()
+    const item = items.value.find(item => item.id === id)
+    item.favorite = !item.favorite
 })
 
 const features = [
@@ -156,7 +162,7 @@ const features = [
                                 <IconsBookmark
                                     variant="solid"
                                     :class="[
-                                        isFavorite(items[n - 1].id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
+                                        items[n - 1].favorite ? 'stroke-gray-primary' : 'text-transparent stroke-white',
                                         '!size-5 transition duration-200'
                                     ]"
                                 />

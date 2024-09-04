@@ -18,6 +18,11 @@ const query = useQuery()
 const page = ref(1)
 const loading = ref(false)
 
+const display = computed(() => route.query?.display ?? 'grid')
+
+const favorites = useFavorites()
+const userFavorites = ref(await favorites.getIds())
+
 const { data } = await useFetch('/api/item', {
     query: {
         page: page.value,
@@ -27,25 +32,18 @@ const { data } = await useFetch('/api/item', {
 
 async function refresh() {
     page.value = 1
-    const { data: newData } = await useFetch('/api/item', {
+    const { data } = await useFetch('/api/item', {
         query: {
             page: page.value,
             ...query.get()
         }
     })
-    data.value = newData.value
+    items.value = data.value.items
+    count.value = data.value.count
 }
-
-const items = computed(() => data.value.items)
-const count = computed(() => data.value.count)
 
 const searchBus = useEventBus('search')
 searchBus.on(refresh)
-
-const display = computed(() => route.query?.display ?? 'grid')
-
-const favorites = useFavorites()
-const userFavorites = ref(await favorites.getIds())
 
 function isFavorite(id) {
     return userFavorites?.value?.some(item => item === id)
@@ -56,8 +54,17 @@ const toggleFavorite = useDebounceFn(async (id) => {
         await favorites.removeItem(id)
     else
         await favorites.addItem(id)
-    userFavorites.value = await favorites.getIds()
+    const item = items.value.find(item => item.id === id)
+    item.favorite = !item.favorite
 })
+
+const items = ref(data.value.items.map(item => { 
+    return { 
+        ...item, 
+        favorite: isFavorite(item.id)
+    } 
+}))
+const count = ref(data.value.count)
 
 async function goBack() {
     router.back()
@@ -67,10 +74,9 @@ async function goBack() {
 const { y } = useWindowScroll()
 
 watch(y, async (newValue) => {
-    console.info('here')
     if (
         Math.round(newValue) + window.innerHeight + 60 >= document.body.scrollHeight && 
-        data.value.items.length < data.value.count
+        items.value.length < count.value
     ) {
         page.value += 1
         loading.value = true
@@ -80,7 +86,7 @@ watch(y, async (newValue) => {
                 ...query.get()
             }
         })
-        data.value.items.push(...newData.value.items)
+        items.value.push(...newData.value.items)
         loading.value = false
     }
 })
@@ -135,7 +141,7 @@ watch(y, async (newValue) => {
                             <IconsBookmark
                                 variant="solid"
                                 :class="[
-                                    isFavorite(item.id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
+                                    item.favorite ? 'stroke-gray-primary' : 'text-transparent stroke-white',
                                     '!size-5 transition duration-200'
                                 ]"
                             />
