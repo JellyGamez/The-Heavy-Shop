@@ -96,7 +96,6 @@ const uploadFile = useDebounceFn(async () => {
                             }
                         }"
                         preload 
-                        placeholder
                     />
                     <Button 
                         aria-label="update"

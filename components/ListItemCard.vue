@@ -15,7 +15,6 @@ const props = defineProps({
                     :alt="item?.name" 
                     class="size-32 md:size-44 object-cover rounded-xl" 
                     preload 
-                    placeholder
                 />
             </NuxtLink>
             <div class="flex flex-col w-full justify-between overflow-hidden text-white my-1 md:my-2 mr-2 ml-4 md:ml-6">

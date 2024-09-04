@@ -15,7 +15,6 @@ const props = defineProps({
                     :alt="item?.name"
                     class="w-full h-full object-cover rounded-xl"
                     preload
-                    placeholder
                 />
             </NuxtLink>
             <slot />

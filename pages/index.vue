@@ -110,7 +110,6 @@ const features = [
                         alt="Muscular man wearing our merch"
                         class="max-w-sm w-full xl:max-w-none xl:w-auto xl:h-full mx-auto text-white"
                         preload
-                        placeholder
                     />
                 </div>
             </div>

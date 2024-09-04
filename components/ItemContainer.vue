@@ -33,7 +33,6 @@ const addToCart = useDebounceFn(async () => {
                 :alt="item.name" 
                 class="w-full sm:size-[320px] md:size-[360px] lg:size-[420px] object-cover rounded-xl" 
                 preload
-                placeholder
             />
             <div class="flex flex-col justify-center gap-1 md:gap-2 lg:gap-6 text-white py-5 sm:py-4 px-5 md:pl-6">
                 <div class="flex flex-col gap-1 sm:gap-2">
