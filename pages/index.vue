@@ -37,11 +37,11 @@ function isFavorite(id) {
 }
 
 const toggleFavorite = useDebounceFn(async (id) => {
-    if (isFavorite(id))
+    const item = items.value.find(item => item.id === id)
+    if (item.favorite)
         await favorites.removeItem(id)
     else
         await favorites.addItem(id)
-    const item = items.value.find(item => item.id === id)
     item.favorite = !item.favorite
 })
 
