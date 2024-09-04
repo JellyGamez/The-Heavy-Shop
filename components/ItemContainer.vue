@@ -14,14 +14,14 @@ const cart = useCart()
 
 const size = ref()
 
-async function addToCart() {
+const addToCart = useDebounceFn(async () => {
     try {
         await cart.addItem(route.params.id, size.value)
     } 
     catch(e) {
         toast.error(e.statusMessage)
     }
-}
+})
 
 </script>
 

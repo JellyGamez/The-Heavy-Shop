@@ -37,7 +37,7 @@ async function updateAccount(body) {
     user.value = (await useFetch('/api/user')).data.value
 }
 
-async function uploadFile() {
+const uploadFile = useDebounceFn(async () => {
     if (target.value.files.length) {
         const formData = new FormData()
         Array.from(target.value.files).forEach((file, index) => {
@@ -62,7 +62,7 @@ async function uploadFile() {
             target.value.files = null
         }
     }
-}
+})
 
 </script>
 

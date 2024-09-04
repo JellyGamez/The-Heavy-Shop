@@ -28,12 +28,12 @@ bus.on(async function (event) {
         count.value = await cart.getCount()
 })
 
-async function removeItem(id, size) {
+const removeItem = useDebounceFn(async (id, size) => {
     await cart.removeItem(id, size)
     items.value = await cart.getItems()
-}
+})
 
-async function updateItem(item, type) {
+const updateItem = useDebounceFn(async (item, type) => {
     try {
         await cart.updateItem(item.id, item.size, item.quantity, type)
         items.value = await cart.getItems()
@@ -41,7 +41,7 @@ async function updateItem(item, type) {
     catch(e) {
         toast.error(e.statusMessage)
     }
-}
+})
 
 </script>
 

@@ -10,14 +10,14 @@ const favorites = useFavorites()
 const userFavorites = ref(await favorites.getIds())
 const isFavorite = computed(() => userFavorites?.value?.some(item => item === route.params.id))
 
-async function toggleFavorite() {
+const toggleFavorite = useDebounceFn(async () => {
     const id = route.params.id
     if (isFavorite.value)
         await favorites.removeItem(id)
     else
         await favorites.addItem(id)
     userFavorites.value = await favorites.getIds()
-}
+})
 
 const headers = useRequestHeaders(['cookie'])
 const { data: user } = await useFetch('/api/user')

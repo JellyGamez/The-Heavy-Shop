@@ -16,10 +16,10 @@ const favorites = useFavorites()
 
 const items = ref(await favorites.getItems())
 
-async function removeItem(id) {
+const removeItem = useDebounceFn(async (id) => {
     await favorites.removeItem(id)
     items.value = await favorites.getItems()
-}
+})
 
 </script>
 
