@@ -183,7 +183,7 @@ watch(y, async (newValue) => {
                                 <IconsBookmark
                                     variant="solid"
                                     :class="[
-                                        isFavorite(item.id) ? 'stroke-gray-lighter' : 'text-transparent stroke-white',
+                                        item.favorite ? 'stroke-gray-lighter' : 'text-transparent stroke-white',
                                         '!size-5 transition duration-200'
                                     ]"
                                 />
@@ -194,7 +194,7 @@ watch(y, async (newValue) => {
                                     />
                                 </template>
                             </ClientOnly>
-                            {{ isFavorite(item.id) ? 'Remove' : 'Add' }}
+                            {{ item.favorite ? 'Remove' : 'Add' }}
                         </Button>
                     </div>
                     <div class="md:hidden absolute bottom-1 right-1">
@@ -207,7 +207,7 @@ watch(y, async (newValue) => {
                                 <IconsBookmark
                                     variant="solid"
                                     :class="[
-                                        isFavorite(item.id) ? 'stroke-gray-primary' : 'text-transparent stroke-white',
+                                        item.favorite ? 'stroke-gray-primary' : 'text-transparent stroke-white',
                                         '!size-[18px] transition duration-200'
                                     ]"
                                 />
