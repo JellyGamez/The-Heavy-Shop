@@ -40,6 +40,7 @@ async function refresh() {
     })
     items.value = data.value.items
     count.value = data.value.count
+    window.scrollTo(0, 0)
 }
 
 const searchBus = useEventBus('search')
@@ -68,12 +69,13 @@ const count = ref(data.value.count)
 
 async function goBack() {
     router.back()
-    setTimeout(async () => await refresh(), 10)
+    setTimeout(async () => await refresh(), 50)
+    window.scrollTo(0, 0)
 }
 
 const { y } = useWindowScroll()
 
-watch(y, async (newValue) => {
+watchDebounced(y, async (newValue) => {
     if (
         Math.round(newValue) + window.innerHeight + 60 >= document.body.scrollHeight && 
         items.value.length < count.value
@@ -89,7 +91,7 @@ watch(y, async (newValue) => {
         items.value.push(...newData.value.items)
         loading.value = false
     }
-})
+}, { debounce: 50, maxWait: 500 })
 
 </script>
 
@@ -224,10 +226,10 @@ watch(y, async (newValue) => {
             </div>
             <div 
                 v-if="loading"
-                class="flex w-full items-center justify-center gap-1"
+                class="flex w-full items-center justify-center gap-1 my-4 mt-8 md:mt-10 lg:mt-12"
             >
                 <IconsSpinner class="size-5 text-white animate-spin mr-1" />
-                <h1 class="text-xl text-center text-white py-10">
+                <h1 class="text-xl text-center text-white">
                     Loading more items...
                 </h1>
             </div>

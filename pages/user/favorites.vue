@@ -113,9 +113,9 @@ const removeItem = useDebounceFn(async (id) => {
                     </NuxtLink>
                 </EmptyState>
                 <template #fallback>
-                    <div class="flex w-full items-center justify-center gap-1">
+                    <div class="flex w-full items-center justify-center gap-1 py-4 md:py-10">
                         <IconsSpinner class="size-5 text-white animate-spin mr-1" />
-                        <h1 class="text-xl text-center text-white py-10">
+                        <h1 class="text-xl text-center text-white">
                             Loading items...
                         </h1>
                     </div>

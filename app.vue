@@ -6,10 +6,11 @@ useHead({
 	}
 })
 
-const nuxtApp = useNuxtApp()
-nuxtApp.hook("page:finish", () => {
-    window.scrollTo(0, 0)
-}) 
+useNuxtApp().hook("page:finish", () => {
+	console.log(history)
+    if (history.state.current !== '/user/account')
+      setTimeout(() => window.scrollTo(0, 0), 0)
+})
 
 </script>
 
