@@ -2,8 +2,8 @@
   "extends": "./.nuxt/tsconfig.json",
   "compilerOptions": {
     "allowJs": true,
-    "target": "ES2022",
-    "module": "CommonJS",
+    "target": "ESNext",
+    "module": "ESNext",
     "verbatimModuleSyntax": false,
   },
 }

@@ -8,15 +8,16 @@ const query = useQuery()
 
 const favorites = useFavorites()
 const userFavorites = ref(await favorites.getIds())
-const isFavorite = computed(() => userFavorites?.value?.some(item => item === route.params.id))
+
+const id = computed(() => route.params.id)
+const isFavorite = ref(userFavorites?.value?.some(item => item === id.value))
 
 const toggleFavorite = useDebounceFn(async () => {
-    const id = route.params.id
     if (isFavorite.value)
-        await favorites.removeItem(id)
+        await favorites.removeItem(id.value)
     else
-        await favorites.addItem(id)
-    userFavorites.value = await favorites.getIds()
+        await favorites.addItem(id.value)
+    isFavorite.value = !isFavorite.value
 })
 
 const headers = useRequestHeaders(['cookie'])

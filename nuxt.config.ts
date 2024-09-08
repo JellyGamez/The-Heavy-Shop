@@ -1,18 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   css: ['~/assets/css/main.css'],
+
   postcss: {
     plugins: {
       tailwindcss: {},
       autoprefixer: {}
     }
   },
+
   googleFonts: {
     families: {
       Kanit: [200, 300, 400, 500],
       Ubuntu: [400, 700]
     }
   },
+
   app: {
     head: {
       htmlAttrs: {
@@ -25,6 +28,7 @@ export default defineNuxtConfig({
       name: 'page', mode: 'out-in'
     }
   },
+
   stripe: {
     client: {
       key: process.env.STRIPE_PUBLISHABLE_KEY,
@@ -35,23 +39,26 @@ export default defineNuxtConfig({
     server: {
       key: process.env.STRIPE_SECRET_KEY,
       options: {
-        // your api options override for stripe server side
-        // https://github.com/stripe/stripe-node?tab=readme-ov-file#configuration
+        // your api options override for stripe server side https://github.com/stripe/stripe-node?tab=readme-ov-file#configuration
       }
     }
   },
+
   devtools: {
     enabled: true
   },
+
   build: {
     transpile: ['vue-toastification'],
   },
+
   runtimeConfig: {
     public: {
       authOrigin: process.env.AUTH_ORIGIN,
       perPage: 20
     }
   },
+
   modules: [
     '@sidebase/nuxt-auth',
     'nuxt-headlessui',
@@ -63,4 +70,6 @@ export default defineNuxtConfig({
     '@nuxtjs/google-fonts',
     '@unlok-co/nuxt-stripe'
   ],
+
+  compatibilityDate: '2024-09-08'
 })

@@ -78,7 +78,7 @@ const uploadFile = useDebounceFn(async () => {
             title="Account"
             description="Manage your user settings and data"
         />
-        <div class="mt-4 lg:mt-6 flex p-4 rounded-2xl bg-gray-dark">
+        <div class="mt-4 lg:mt-6 flex p-6 rounded-2xl bg-gray-dark">
             <div class="flex flex-col items-center w-full">
                 <div class="group shrink-0 relative flex rounded-full">
                     <NuxtImg
@@ -159,7 +159,7 @@ const uploadFile = useDebounceFn(async () => {
                         </p>
                     </div>
                 </div>
-                <div class="grid grid-cols-1 w-full max-w-72 md:w-auto md:max-w-none md:grid-cols-3 gap-3 mt-4">
+                <div class="grid grid-cols-1 w-full xs:max-w-96 md:w-auto md:max-w-none md:grid-cols-3 gap-4 mt-4">
                     <Button 
                         size="medium"
                         @click="signOut"

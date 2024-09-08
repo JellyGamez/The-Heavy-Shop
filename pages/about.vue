@@ -38,10 +38,15 @@ const features = [
             title="About"
             description="Learn about our insights and ambition"
         />
-        <div class="text-white font-light text-lg py-6 px-8 bg-gray-dark rounded-2xl mt-4 lg:mt-6 ">
+        <div class="text-white font-light text-lg py-6 px-8 bg-gray-dark rounded-2xl mt-4 lg:mt-6">
             <NuxtLink to="/" class="flex flex-col items-center underline-effect smooth-scroll w-fit h-fit mx-auto self-center">
-                <IconsLogo class="w-52 mx-auto text-red-primary" />
-                <span class="text-red-primary transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap"> 
+                <NuxtImg
+                    src="/img/avatar.webp" 
+                    alt="logo"
+                    class="size-36 md:size-52 object-cover rounded-full" 
+                    preload 
+                />
+                <span class="text-red-primary transition duration-200 font-bold text-xl md:text-2xl font-ubuntu whitespace-nowrap -mt-3"> 
                     THE HEAVY SHOP
                 </span>
             </NuxtLink>
