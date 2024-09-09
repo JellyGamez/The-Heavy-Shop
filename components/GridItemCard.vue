@@ -22,7 +22,7 @@ const props = defineProps({
         
         <div class="flex flex-col mx-2">
             <NuxtLink :to='`/item/${item?.id}`'>
-                <p class="font-light text-base md:text-lg h-10 md:h-14 leading-tight md:leading-6 line-clamp-2"> 
+                <p class="font-light text-base md:text-lg h-10 md:h-12 leading-tight md:leading-6 line-clamp-2"> 
                     {{ item?.name }} 
                 </p>
             </NuxtLink>

@@ -31,7 +31,7 @@ const props = defineProps({
                         > 
                             {{ item?.description }}
                         </p>
-                        <p v-if="item?.size" class=" md:mt-0.5 text-sm md:text-base"> 
+                        <p v-if="item?.sizes?.length && item?.size" class=" md:mt-0.5 text-sm md:text-base"> 
                             <span> Size: </span>
                             <span class="text-red-light"> {{ item?.size }} </span>
                         </p>

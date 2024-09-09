@@ -61,7 +61,9 @@ export default function useCart() {
         }
     }
 
-    async function addItem(id: string, size: string) {
+    async function addItem(id: string, size: string, shouldHaveSize: boolean) {
+        if (!size && !shouldHaveSize)
+            size = 'universal'
         const ids = await getIds()
         const item = ids.find((item: any) => item.id === id && item.size === size)
         if (item && item?.quantity >= 10)
@@ -69,7 +71,7 @@ export default function useCart() {
                 statusCode: 400,
                 statusMessage: 'Items are limited to 10 per order.'
             })
-        if (!size) {
+        if (!size && shouldHaveSize) {
             throw createError({
                 statusCode: 400,
                 statusMessage: 'You must select a size first.'

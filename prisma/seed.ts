@@ -4,6 +4,153 @@ import bcrypt from 'bcrypt'
 
 const prisma = new PrismaClient()
 
+const reviews = [
+    { rating: 5, content: "Absolutely love it! The fit is perfect and the material is super soft." },
+    { rating: 4, content: "Good quality, but I wish the color was a bit more vibrant." },
+    { rating: 5, content: "Exceeded my expectations! Will definitely be buying more in different colors." },
+    { rating: 3, content: "It’s comfortable, but the size runs a bit small." },
+    { rating: 1, content: "Terrible fit. It was too tight and uncomfortable. Would not recommend." },
+    { rating: 4, content: "Great product, but I think it shrank slightly after washing." },
+    { rating: 5, content: "Stylish and comfy, perfect for everyday wear." },
+    { rating: 4, content: "Really like it, but the stitching could be stronger." },
+    { rating: 5, content: "Feels great and fits perfectly, highly recommend!" },
+    { rating: 3, content: "It’s okay, not as soft as I expected." },
+    { rating: 4, content: "Good quality for the price. Would buy again." },
+    { rating: 1, content: "Very disappointed. The material feels cheap, and it tore after the first wash." },
+    { rating: 5, content: "This is my second one and I still love it!" },
+    { rating: 2, content: "Not a fan of the material, feels a bit rough." },
+    { rating: 5, content: "Super comfortable and looks amazing. I get compliments all the time!" },
+    { rating: 4, content: "Nice product, but I wish there were more color options." },
+    { rating: 1, content: "Horrible quality. It shrank after one wash and became unwearable." },
+    { rating: 5, content: "Perfect fit, great material, and looks awesome!" },
+    { rating: 4, content: "Pretty good, but it took a while to arrive." },
+    { rating: 5, content: "Absolutely perfect! The material is soft, and it feels very durable." },
+    { rating: 3, content: "It’s not bad, but the sizing is a little off." },
+    { rating: 4, content: "Really good, but I wish the fabric was a bit thicker." },
+    { rating: 5, content: "This is exactly what I was looking for, couldn't be happier!" },
+    { rating: 4, content: "Good fit and quality, but the color faded slightly after a few washes." },
+    { rating: 3, content: "Decent quality but runs smaller than expected." },
+    { rating: 5, content: "Fits perfectly and is super comfortable. Would definitely recommend!" },
+    { rating: 4, content: "Nice material, but I wish the fit was a bit looser." },
+    { rating: 1, content: "Very disappointed. The color bled after the first wash and stained my other clothes." },
+    { rating: 5, content: "Super soft and fits great, one of my favorites!" },
+    { rating: 4, content: "Overall good quality, but the color wasn’t exactly as shown." },
+    { rating: 5, content: "Feels great, looks great, and holds up well after washing." },
+    { rating: 3, content: "It’s just okay. Doesn’t feel as premium as I hoped." },
+    { rating: 4, content: "Great for the price. Would have given 5 stars if it was a bit softer." },
+    { rating: 5, content: "Amazing! Super comfortable and fits like a glove." },
+    { rating: 1, content: "Terrible experience. The stitching came undone after only a week of wear." },
+    { rating: 5, content: "I wear this all the time. Love the way it feels!" },
+    { rating: 4, content: "Very happy with it, but it could be a bit more durable." },
+    { rating: 2, content: "Not satisfied. It didn’t fit well, and the material isn’t great." },
+    { rating: 5, content: "One of the best purchases I’ve made! Super soft and comfy." },
+    { rating: 4, content: "Pretty good overall, but I wish the size was more consistent." },
+    { rating: 3, content: "Not bad, but it feels a bit cheap for the price." },
+    { rating: 5, content: "Absolutely love it! The quality is fantastic." },
+    { rating: 4, content: "Great product, but the sizing is a little tricky." },
+    { rating: 3, content: "It’s fine, but I’ve had better for less money." },
+    { rating: 5, content: "This is amazing! The fit is perfect, and the fabric is soft and durable." },
+    { rating: 4, content: "Overall, I’m happy with it, but the color did fade a bit." },
+    { rating: 1, content: "The worst! The fabric feels like plastic and is very uncomfortable." },
+    { rating: 3, content: "It’s decent, but I don’t think I would buy it again." },
+    { rating: 5, content: "Fits perfectly, feels amazing, and looks even better in person." },
+    { rating: 4, content: "Good quality, but the fit is a little snug." },
+    { rating: 5, content: "Best one I’ve ever owned! Great for everyday wear." },
+    { rating: 2, content: "Not what I expected. The material feels cheap." },
+    { rating: 5, content: "Super comfy and stylish! Would definitely buy again." },
+    { rating: 4, content: "Pretty good, but the color didn’t match the photos exactly." },
+    { rating: 5, content: "Perfect in every way! Can’t wait to buy another." },
+    { rating: 3, content: "It’s alright, but nothing special for the price." },
+    { rating: 4, content: "I like it, but I wish the fabric was a bit softer." },
+    { rating: 5, content: "Incredibly comfortable and stylish. Highly recommend!" },
+    { rating: 3, content: "It’s okay, but the size is a little off." },
+    { rating: 4, content: "Solid product, but it does run a little small." },
+    { rating: 5, content: "Couldn’t be happier! Fits perfectly and feels amazing." },
+    { rating: 1, content: "Awful! It started falling apart after the first wash." },
+    { rating: 5, content: "Fantastic quality and fit. Will be buying more!" },
+    { rating: 4, content: "Overall pretty good, but it’s a bit pricey." },
+    { rating: 3, content: "Not bad, but I expected better for the price." },
+    { rating: 5, content: "Love everything about it! The fit, the feel, everything." },
+    { rating: 4, content: "Very nice, but the fabric could be a little thicker." },
+    { rating: 3, content: "It’s okay. The quality isn’t as high as I thought." },
+    { rating: 5, content: "Fits like a dream, and the material is top-notch!" },
+    { rating: 4, content: "Pretty happy with it, but the size runs a bit large." },
+    { rating: 3, content: "It’s alright, but I’ve had better at this price point." },
+    { rating: 5, content: "Couldn’t ask for better! Super soft and comfortable." },
+    { rating: 4, content: "Good product, but I wish there were more color choices." },
+    { rating: 5, content: "Amazing fit and feel. I wear this all the time!" },
+    { rating: 2, content: "Not a fan of the material. Feels a bit rough." },
+    { rating: 5, content: "Super soft and fits perfectly. Couldn’t be happier!" },
+    { rating: 4, content: "Great product, but the color faded slightly." },
+    { rating: 5, content: "My new favorite! It’s so comfortable and stylish." },
+    { rating: 3, content: "It’s fine, but I expected more for the price." },
+    { rating: 4, content: "Nice quality, but I wish it was a bit cheaper." },
+    { rating: 5, content: "Best one I’ve ever bought! So comfortable and fits perfectly." },
+    { rating: 4, content: "Pretty good overall, but the fabric could be softer." },
+    { rating: 3, content: "It’s decent, but I wouldn’t buy it again." },
+    { rating: 5, content: "Love it! The quality is amazing and it fits perfectly." },
+    { rating: 4, content: "Really nice, but the color was a little off from the pictures." },
+    { rating: 3, content: "It’s okay. Nothing special, but it gets the job done." },
+    { rating: 5, content: "This is perfect! Fits great and feels so soft." },
+    { rating: 4, content: "Good product, but the sizing runs a bit small." },
+    { rating: 5, content: "Couldn’t be happier with this! Perfect fit and feel." },
+    { rating: 1, content: "Very poor quality. The fabric feels cheap and uncomfortable." },
+    { rating: 2, content: "It’s not the worst, but I wouldn’t buy it again. Feels flimsy." },
+    { rating: 4, content: "Good, but the size is a little tight around the shoulders." },
+    { rating: 5, content: "Love the feel and look. It’s so versatile!" },
+    { rating: 1, content: "The fabric started pilling after just a few wears. Very disappointed." },
+    { rating: 3, content: "It’s fine, but not as soft or well-made as I was hoping." },
+    { rating: 5, content: "Exceeded expectations! It’s perfect for lounging or going out." },
+    { rating: 4, content: "Really nice, but I wish the fit was a bit more relaxed." },
+    { rating: 1, content: "Extremely uncomfortable and scratchy. Returned it immediately." },
+    { rating: 5, content: "Perfect! Fits great and the material is soft and durable." },
+    { rating: 3, content: "It’s okay. The style is nice, but it doesn’t feel premium." }
+]
+  
+const products = [
+    { name: 'Kreator men\'s T-Shirt',                   photoUrl: 'img/items/kreator.webp',          price: 19.99 },
+    { name: 'Mayhem men\'s T-Shirt',                    photoUrl: 'img/items/mayhem.webp',           price: 19.99 },
+    { name: 'Guns N\' Roses Long-Sleeve T-shirt',       photoUrl: 'img/items/gunsnroses.webp',       price: 29.99 },
+    { name: 'Metallica men\'s T-Shirt',                 photoUrl: 'img/items/metallica_black.webp',  price: 19.99 },
+    { name: 'Metallica men\'s T-Shirt',                 photoUrl: 'img/items/metallica_gray.webp',   price: 19.99 },
+    { name: 'Trivium Hoodie',                           photoUrl: 'img/items/trivium_hoodie.webp',   price: 34.99 },
+    { name: 'Trivium men\'s T-Shirt',                   photoUrl: 'img/items/trivium_tshirt.webp',   price: 19.99 },
+    { name: 'Lamb of God men\'s T-Shirt',               photoUrl: 'img/items/lambofgod_tshirt.webp', price: 19.99 },
+    { name: 'Alice in Chains men\'s T-Shirt',           photoUrl: 'img/items/aliceinchains.webp',    price: 20.99 },
+    { name: 'Bad Omens men\'s T-Shirt',                 photoUrl: 'img/items/badomens.webp',         price: 20.99 },
+    { name: 'Slayer football T-Shirt',                  photoUrl: 'img/items/slayer.webp',           price: 20.99 },
+    { name: 'Bullet for My Valentine men\'s T-Shirt',   photoUrl: 'img/items/bfmv.webp',             price: 19.99 },
+    { name: 'Red Hot Chilli Peppers women\'s T-Shirt',  photoUrl: 'img/items/rhcp.webp',             price: 19.99 },
+    { name: 'Deftones women\'s T-Shirt',                photoUrl: 'img/items/deftones.webp',         price: 19.99 },
+    { name: 'Nirvana women\'s T-Shirt',                 photoUrl: 'img/items/nirvana.webp',          price: 19.99 },
+    { name: 'Avenged Sevenfold men\'s T-Shirt',         photoUrl: 'img/items/a7x.webp',              price: 19.99 },
+    { name: 'Pink Floyd men\'s T-Shirt',                photoUrl: 'img/items/pinkfloyd.webp',        price: 18.99 },
+    { name: 'Fleshgod Apocalypse men\'s T-Shirt',       photoUrl: 'img/items/fleshgod.webp',         price: 20.99 },
+    { name: 'AC/DC Hoodie',                             photoUrl: 'img/items/acdc_hoodie.webp',      price: 40.99 },
+    { name: 'AC/DC men\'s T-shirt',                     photoUrl: 'img/items/acdc_tshirt.webp',      price: 18.99 },
+    { name: 'Pendulum men\'s T-shirt',                  photoUrl: 'img/items/pendulum.webp',         price: 20.99 },
+    { name: 'Arch Enemy men\'s T-shirt',                photoUrl: 'img/items/archenemy.webp',        price: 20.99 },
+    { name: 'Burzum men\'s T-shirt',                    photoUrl: 'img/items/burzum.webp',           price: 19.99 },
+    { name: 'Cradle of Filth Long-Sleeve T-shirt',      photoUrl: 'img/items/cradleoffilth.webp',    price: 19.99 },
+    { name: 'Linkin Park men\'s T-shirt',               photoUrl: 'img/items/lp_tshirt.webp',        price: 18.99 },
+    { name: 'Linkin Park Hoodie',                       photoUrl: 'img/items/lp_hoodie.webp',        price: 35.99 },
+    { name: 'Megadeth men\'s T-Shirt',                  photoUrl: 'img/items/megadeth_tshirt.webp',  price: 19.99 },
+    { name: 'Fear Factory men\'s T-Shirt',              photoUrl: 'img/items/fearfactory.webp',      price: 19.99 },
+    { name: 'System of a Down men\'s T-Shirt',          photoUrl: 'img/items/soad_tshirt.webp',      price: 19.99 },
+    { name: 'System of a Down Hoodie',                  photoUrl: 'img/items/soad_hoodie.webp',      price: 40.99 },
+    { name: 'Motorhead Hoodie',                         photoUrl: 'img/items/motorhead_hoodie.webp', price: 40.99 },
+    { name: 'Motorhead men\'s T-Shirt',                 photoUrl: 'img/items/soad_tshirt.webp',      price: 19.99 },
+    { name: 'Dimmu Borgir men\'s T-Shirt',              photoUrl: 'img/items/dimmuborgir.webp',      price: 20.99 },
+    { name: 'Pantera women\'s T-Shirt',                 photoUrl: 'img/items/pantera.webp',          price: 19.99 },
+    { name: 'Epica women\'s T-Shirt',                   photoUrl: 'img/items/epica.webp',            price: 19.99 },
+
+    { name: 'AC/DC Beanie',                             photoUrl: 'img/items/acdc_hat.webp',         price: 14.99, sizes: [] },
+    { name: 'Slipknot Cap',                             photoUrl: 'img/items/slipknot_cap.webp',     price: 15.99, sizes: [] },
+    { name: 'Tool Cap',                                 photoUrl: 'img/items/tool_cap.webp',         price: 15.99, sizes: [] },
+    { name: 'Megadeth Cap',                             photoUrl: 'img/items/megadeth_cap.webp',     price: 14.99, sizes: [] },
+    { name: 'Lamb of God Beanie',                       photoUrl: 'img/items/lambofgod_hat.webp',    price: 14.99, sizes: [] }
+]
+
 async function main() {
     await prisma.user.upsert({
         where: {
@@ -33,13 +180,13 @@ async function main() {
         },
     })
 
-    for (let i = 1; i <= 9; i++) {
+    for (let i = 1; i <= 99; i++) {
         await prisma.user.create({
             data: {
                 email: faker.internet.email(),
                 name: faker.person.fullName(),
                 password: bcrypt.hashSync('password', 10),
-                photoUrl: faker.image.avatarGitHub(),
+                photoUrl: faker.image.urlLoremFlickr(),
                 favorites: {
                     create: {
                         items: {
@@ -58,34 +205,32 @@ async function main() {
         })
     }
 
-    for (let i = 1; i <= 300; i++) {
-        const n = faker.number.int({ min: 0, max: 100 })
+    for (const product of products) {
+        const n = faker.number.int({ min: 0, max: 50 })
         const template = () => {
+            const index = faker.number.int({ min: 0, max: 99 })
             return {
-                rating: faker.number.int({ min: 1, max: 5 }),
-                content: faker.lorem.paragraph(),
+                rating: reviews[index].rating,
+                content: reviews[index].content,
                 verified: faker.datatype.boolean(),
-                authorId: faker.number.int({ min: 1, max: 10 })
+                authorId: faker.number.int({ min: 2, max: 100 })
             }
         }
         
-        let reviews = []
+        let itemReviews = []
         for (let j = 1; j <= n; j++)
-            reviews.push(template() as any)
+            itemReviews.push(template() as any)
 
         await prisma.item.create({
             data: {
-                name: faker.commerce.productName(),
-                description: faker.commerce.productDescription(),
-                price: parseFloat(faker.number.float({ min: 10, max: 99, multipleOf: 0.01 }).toFixed(2)),
-                photoUrl: faker.image.url({
-                    width: 480,
-                    height: 480
-                }),
+                name: product.name,
+                description: `Officially licensed ${product.name} featuring an exclusive, high-quality design on both the front and back. Crafted with premium materials for superior comfort and durability`,
+                price: product.price,
+                photoUrl: product.photoUrl,
                 reviews: {
-                    create: reviews
+                    create: itemReviews
                 },
-                sizes: ['S', 'M', 'L', 'XL', '2XL']
+                sizes: (product as any).sizes ? (product as any).sizes : ['S', 'M', 'L', 'XL', '2XL']
             }
         })
     }

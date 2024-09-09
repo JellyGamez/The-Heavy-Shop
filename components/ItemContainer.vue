@@ -16,7 +16,7 @@ const size = ref()
 
 const addToCart = useDebounceFn(async () => {
     try {
-        await cart.addItem(route.params.id, size.value)
+        await cart.addItem(route.params.id, size.value, props.item.sizes.length)
     } 
     catch(e) {
         toast.error(e.statusMessage)
@@ -61,7 +61,7 @@ const addToCart = useDebounceFn(async () => {
                     </p>
                 </div>
 
-                <div class="flex flex-col">
+                <div v-if="item?.sizes?.length" class="flex flex-col">
                     <p class="text-lg lg:text-xl w-full"> 
                         Sizes
                     </p>
