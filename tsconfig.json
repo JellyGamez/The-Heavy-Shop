@@ -3,7 +3,7 @@
   "compilerOptions": {
     "allowJs": true,
     "target": "ESNext",
-    "module": "ESNext",
+    "module": "CommonJS",
     "verbatimModuleSyntax": false,
   },
 }
