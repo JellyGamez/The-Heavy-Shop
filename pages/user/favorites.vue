@@ -11,10 +11,6 @@ definePageMeta({
     middleware: 'query-validation'
 })
 
-onMounted(() => {
-    window.scrollTo(0, 0)
-})
-
 const loggedIn = useStatus()
 const favorites = useFavorites()
 

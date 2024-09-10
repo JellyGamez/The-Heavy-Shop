@@ -7,10 +7,6 @@ useHead({
     ],
 })
 
-onMounted(() => {
-    window.scrollTo(0, 0)
-})
-
 const features = [
     { 
         icon: 'earth',

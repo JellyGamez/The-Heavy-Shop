@@ -11,10 +11,6 @@ definePageMeta({
     middleware: 'query-validation'
 })
 
-onMounted(() => {
-    window.scrollTo(0, 0)
-})
-
 const route = useRoute()
 const router = useRouter()
 const query = useQuery()
