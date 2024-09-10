@@ -7,28 +7,45 @@ defineOptions({
 })
 
 const target = ref()
+const form = ref()
 
 useFocus(target, {
     initialValue: true
 })
 
+function clear() {
+    input.value = null
+    form.value.dispatchEvent(new Event('submit'))
+}
+
 </script>
 
 <template>
-    <form @submit.prevent="() => $emit('submit')">
+    <form 
+        ref="form"
+        @submit.prevent="() => $emit('submit')"
+    >
         <div class="relative flex items-center">
             <input
                 v-bind="$attrs"
                 v-model="input"
                 ref="target"
                 placeholder="Search items..."
-                class="px-3 py-2 pl-10 w-full text-white outline-none hover:outline-none border-0 focus:ring-[1.5px] focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl placeholder-white"
+                class="py-2 px-10 w-full text-white outline-none hover:outline-none border-0 focus:ring-[1.5px] focus:ring-inset focus:ring-red-primary transition duration-200 bg-gray-primary focus:bg-gray-dark rounded-xl placeholder-white"
             >
             <button 
                 type="submit"
                 class="absolute left-2.5"
             >
                 <IconsSearch class="text-white hover:text-gray-lightest transition duration-200" />
+            </button>
+            <button 
+                v-if="input"
+                type="submit"
+                class="absolute right-2.5"
+                @click="clear"
+            >
+                <IconsClose class="text-white hover:text-gray-lightest transition duration-200" />
             </button>
         </div>
     </form>

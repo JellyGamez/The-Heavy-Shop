@@ -7,8 +7,8 @@ useHead({
 })
 
 useNuxtApp().hook("page:finish", () => {
-    if (history.state.current !== '/user/account')
-      setTimeout(() => window.scrollTo(0, 0), 0)
+	if (history.state.back === '/' && history.state.current.startsWith('/item'))
+		window.scrollTo(0, 0)
 })
 
 </script>

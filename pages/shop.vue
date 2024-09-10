@@ -104,7 +104,7 @@ watch(() => query.get(), async () => {
         <Banner
             icon="shopping-bag"
             title="Shop"
-            :description="route.query.search ? `We found ${count} ${count === 1 ? 'result' : 'results'} for &quot${route.query.search}&quot` : 'Browse 200+ items from our collection'"
+            :description="route.query.search ? `We found ${count} ${count === 1 ? 'result' : 'results'} for &quot${route.query.search}&quot` : 'Browse 50+ items from our collection'"
         >
             <div class="flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
                 <div v-if="items.length" class="flex flex-wrap-reverse justify-center gap-2 md:gap-4">
@@ -117,7 +117,7 @@ watch(() => query.get(), async () => {
             <EmptyState 
                 v-if="!items.length"
                 title="No results found"
-                description="There are no items that match your search and filter options."
+                description="There are no items that match your search options."
             >
                 <Button
                     @click="goBack"
