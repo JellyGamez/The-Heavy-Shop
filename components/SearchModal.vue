@@ -25,6 +25,10 @@ async function handleSubmit() {
 	searchBus.emit()
 }
 
+watch(() => route.query?.search, async (newValue) => {
+    search.value = newValue
+})
+
 </script>
 
 <template>

@@ -158,7 +158,7 @@ const products = [
     { name: 'Sleep Token men\'s T-Shirt',               photoUrl: 'img/items/sleeptoken_black.webp', price: 20.99 },
     { name: 'Sleep Token men\'s T-Shirt',               photoUrl: 'img/items/sleeptoken_green.webp', price: 20.99 },
     { name: 'Deep Purple men\'s T-Shirt',               photoUrl: 'img/items/deeppurple.webp',       price: 18.99 },
-    { name: 'Disturbed men\'s T-Shirt',                 photoUrl: 'img/items/disturbed.webp',        price: 19.99 },
+    { name: 'Disturbed men\'s T-Shirt',                 photoUrl: 'img/items/disturbed_tshirt.webp', price: 19.99 },
     { name: 'Eluveitie men\'s T-Shirt',                 photoUrl: 'img/items/eluveitie.webp',        price: 19.99 },
     { name: 'Architects men\'s T-Shirt',                photoUrl: 'img/items/architects.webp',       price: 19.99 },
 
