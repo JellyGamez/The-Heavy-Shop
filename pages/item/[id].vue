@@ -2,6 +2,10 @@
 
 import { useToast } from 'vue-toastification'
 
+onMounted(() => {
+    window.scrollTo(0, 0)
+})
+
 const route = useRoute()
 const toast = useToast()
 const query = useQuery()

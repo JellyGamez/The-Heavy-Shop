@@ -13,6 +13,10 @@ useHead({
     }],
 })
 
+onMounted(() => {
+    window.scrollTo(0, 0)
+})
+
 const status = useStatus()
 
 const { data } = await useFetch('/api/item', {
