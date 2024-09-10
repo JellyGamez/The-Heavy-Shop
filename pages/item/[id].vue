@@ -2,13 +2,15 @@
 
 import { useToast } from 'vue-toastification'
 
-onMounted(() => {
-    window.scrollTo(0, 0)
-})
-
 const route = useRoute()
 const toast = useToast()
 const query = useQuery()
+
+onMounted(() => {
+    const router = useRouter()
+    if (router.options.history.state.back === '/')
+        window.scrollTo(0, 0)
+})
 
 const favorites = useFavorites()
 const userFavorites = ref(await favorites.getIds())
