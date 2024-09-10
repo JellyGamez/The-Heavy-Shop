@@ -6,10 +6,10 @@ useHead({
 	}
 })
 
-useNuxtApp().hook("page:finish", () => {
-	if (history.state.back === '/' && history.state.current.startsWith('/item'))
-		window.scrollTo(0, 0)
-})
+// useNuxtApp().hook("page:finish", () => {
+// 	if (history.state.back === '/' && history.state.current.startsWith('/item'))
+// 		window.scrollTo(0, 0)
+// })
 
 </script>
 
