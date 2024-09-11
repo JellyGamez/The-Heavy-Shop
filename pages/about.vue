@@ -39,7 +39,7 @@ const features = [
             description="Learn about our insights and ambition"
         />
         <div class="text-white font-light text-lg py-6 px-8 bg-gray-dark rounded-2xl mt-4 lg:mt-6">
-            <NuxtLink to="/" class="flex flex-col items-center underline-effect smooth-scroll w-fit h-fit mx-auto self-center">
+            <NuxtLink to="/" class="flex flex-col items-center underline-effect w-fit h-fit mx-auto self-center">
                 <NuxtImg
                     src="/img/avatar.webp" 
                     alt="logo"

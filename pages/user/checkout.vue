@@ -1,5 +1,12 @@
 <script setup>
 
+useHead({
+    title: 'Checkout',
+    meta: [
+        { name: 'checkout', content: 'Checkout' }
+    ],
+})
+
 definePageMeta({
     layout: 'auth',
     middleware: 'auth'
