@@ -11,7 +11,7 @@ const runtimeConfig = useRuntimeConfig()
         <div class="text-sm text-center sm:text-left w-full flex flex-col font-light"> 
             <slot />
         </div>
-        <div class="gap-1 sm:gap-2 shrink-0 grid grid-cols-2 w-44">
+        <div class="gap-2 shrink-0 grid grid-cols-2 w-44">
             <NuxtLink :to="{ name: 'auth-login', query: { callbackUrl: `${runtimeConfig.public.authOrigin}${route.fullPath}` }}">
                 <Button 
                     variant="secondary" 

@@ -94,7 +94,8 @@ watchDebounced(y, async (newValue) => {
 }, { debounce: 50, maxWait: 500 })
 
 watch(() => query.get(), async () => {
-    setTimeout(async () => await refresh(), 50)
+    if (router.currentRoute.value.fullPath.startsWith('/shop'))
+        setTimeout(async () => await refresh(), 50)
 })
 
 </script>

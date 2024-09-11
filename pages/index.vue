@@ -197,9 +197,10 @@ const features = [
                             <Button 
                                 variant="primary" 
                                 size="medium"
-                                class="!w-40 !ring-0 !bg-gray-dark hover:!text-red-light"
+                                class="!w-32 !ring-0 !bg-gray-dark hover:!text-red-light"
                             > 
-                                GO TO ACCOUNT 
+                                <span> ACCOUNT </span>
+                                <IconsDoubleChevronRight class="!size-4" />
                             </Button>
                         </NuxtLink>
                     </div>
@@ -211,9 +212,10 @@ const features = [
                             <Button 
                                 variant="primary" 
                                 size="medium" 
-                                class="!w-28 !ring-0 !bg-gray-dark hover:!text-red-light"
+                                class="!w-32 !ring-0 !bg-gray-dark hover:!text-red-light"
                             > 
-                                LOG IN 
+                                <IconsLogin class="!size-[18px]" />
+                                <span> LOG IN </span>
                             </Button>
                         </NuxtLink>
                         <span class="mb-1 font-medium"> or </span>
@@ -221,9 +223,10 @@ const features = [
                             <Button 
                                 variant="primary" 
                                 size="medium"
-                                class="!w-28 !ring-0 !bg-gray-dark hover:!text-red-light"
+                                class="!w-32 !ring-0 !bg-gray-dark hover:!text-red-light"
                             > 
-                                REGISTER 
+                                <IconsRegister class="!size-[18px]" />
+                                <span> REGISTER </span>
                             </Button>
                         </NuxtLink>
                     </div>

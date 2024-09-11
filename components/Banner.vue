@@ -1,16 +1,18 @@
 <script setup>
 
-import { IconsUser, IconsGraphUp, IconsDocument, IconsBookmark, IconsShoppingBag, IconsShoppingCart  } from '#components'
+import { IconsUser, IconsReview, IconsGraphUp, IconsDocument, IconsBookmark, IconsShoppingBag, IconsShoppingCart  } from '#components'
 
 const props = defineProps({
     icon: String,
     title: String,
-    description: String
+    description: String,
+    reviewCount: Number
 })
 
 const icon = computed(() => {
     return {
         'user'          : IconsUser,
+        'review'        : IconsReview,
         'graph-up'      : IconsGraphUp,
         'document'      : IconsDocument,
         'bookmark'      : IconsBookmark,
@@ -30,10 +32,16 @@ const icon = computed(() => {
                     v-html="title"
                     class="text-2xl lg:text-3xl" 
                 />
+                <span
+                    v-if="reviewCount"
+                    class="text-2xl lg:text-3xl font-light"
+                >
+                    ({{ reviewCount }})
+                </span>
             </div>
             <p 
                 v-html="description"
-                class="text-sm lg:text-base text-center -mt-0.5 lg:-mt-1"
+                class="text-sm lg:text-base text-center -mt-0.5 lg:-mt-1 font-light"
             />
         </div>
         <slot />

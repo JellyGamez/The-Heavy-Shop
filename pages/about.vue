@@ -36,49 +36,23 @@ const features = [
         <Banner 
             icon="document"
             title="About"
-            description="Learn about our insights and ambition"
-        />
-        <div class="text-white font-light text-lg py-6 px-8 bg-gray-dark rounded-2xl mt-4 lg:mt-6">
-            <NuxtLink to="/" class="flex flex-col items-center underline-effect w-fit h-fit mx-auto self-center">
-                <NuxtImg
-                    src="/img/avatar.webp" 
-                    alt="logo"
-                    class="size-36 md:size-52 object-cover rounded-full" 
-                    preload 
-                />
-                <span class="text-red-primary transition duration-200 font-bold text-xl md:text-2xl font-ubuntu whitespace-nowrap -mt-3"> 
-                    THE HEAVY SHOP
-                </span>
+            description="Learn about the development of the project"
+        >
+            <NuxtLink 
+                to="https://github.com/JellyGamez/The-Heavy-Shop" 
+                target="_blank"
+            >
+                <div class="flex items-center gap-1 rounded-2xl bg-gray-dark font-light text-white hover:text-gray-lightest transition duration-200 py-1.5 lg:py-2 px-2 lg:px-2.5">
+                    <IconsGithub class="size-5 lg:size-6 mr-[3px] text-white" />
+                    <span class="lg:text-lg"> Check out the repository </span>
+                    <IconsDoubleChevronRight class="mt-0.5 mr-0.5 !size-3.5 lg:!size-4" />
+                </div>
             </NuxtLink>
-            
+        </Banner>
+        <div class="text-white font-light text-lg py-4 px-6 bg-gray-dark rounded-2xl mt-4 lg:mt-6">
+            <h1 class="text-xl font-ubuntu">
+                1. Motivation
+            </h1>
         </div>
-        <!-- <div class="mt-2 lg:mt-3 p-4  rounded-2xl flex flex-col items-center">
-            <h1 class="text-3xl text-white"> What we offer </h1>
-        </div> -->
     </div>
 </template>
-
-<style scoped>
-
-.underline-effect {
-    position: relative;
-}
-.underline-effect::before {
-    content: '';
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    border-radius: 100px;
-    background-color: #C70404;
-    bottom: 0;
-    left: 0;
-    transform-origin: right;
-    transform: scaleX(0);
-    transition: transform .4s;
-}
-.underline-effect:hover::before {
-    transform-origin: left;
-    transform: scaleX(1);
-}
-
-</style>

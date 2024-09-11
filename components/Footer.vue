@@ -2,7 +2,7 @@
     <div class="w-screen h-14">
         <div class="px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto text-white h-full">
             <Separator class="!py-2 !pt-0" />
-            <div class="justify-around gap-10 h-14 flex items-center -mt-2">
+            <div class="justify-between mx-6 gap-10 h-14 flex items-center -mt-2">
                 <p class="text-sm md:text-base font-light underline-effect">
                     © 2024 Alex Croitoriu
                 </p>
