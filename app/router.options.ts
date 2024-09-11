@@ -26,7 +26,7 @@ export default <RouterConfig>{
 			position = { left: 0, top: 0 }
 		}
 
-		if (to.fullPath === '/shop')
+		if (to.fullPath.startsWith('/shop'))
 			return { left: 0, top: 0 }
 
 		// Hash routes on the same page, no page hook is fired so resolve here

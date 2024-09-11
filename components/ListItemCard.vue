@@ -25,7 +25,7 @@ const props = defineProps({
                         </p>
                         <p 
                             :class="[
-                                item?.size ? 'line-clamp-1' : 'line-clamp-2',
+                                item?.sizes?.length && item?.size ? 'line-clamp-1' : 'line-clamp-2',
                                 'text-sm md:text-base font-light text-gray-lightest w-full leading-snug'
                             ]"
                         > 
