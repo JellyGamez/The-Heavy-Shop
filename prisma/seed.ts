@@ -226,10 +226,10 @@ async function main() {
     }
 
     for (const product of products) {
-        const n = faker.number.int({ min: 0, max: 50 })
+        const n = faker.number.int({ min: 0, max: 20 })
         const template = () => {
             const index = faker.number.int({ min: 0, max: 99 })
-            return {
+        return {
                 rating: reviews[index].rating,
                 content: reviews[index].content,
                 verified: faker.datatype.boolean(),

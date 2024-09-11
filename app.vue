@@ -34,6 +34,7 @@ useHead({
 		opacity: 0;
 	}
 }
+
 .toast-enter-active {
   	animation-name: slideIn;
  	animation-duration: 200ms;
