@@ -226,7 +226,7 @@ async function main() {
     }
 
     for (const product of products) {
-        const n = faker.number.int({ min: 0, max: 15 })
+        const n = faker.number.int({ min: 0, max: 50 })
         const template = () => {
             const index = faker.number.int({ min: 0, max: 99 })
             return {

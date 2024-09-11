@@ -6,11 +6,6 @@ useHead({
 	}
 })
 
-const nuxtApp = useNuxtApp()
-nuxtApp.hook("page:finish", async () => {
-    window.scrollTo({ top: 0 })
-})
-
 </script>
 
 <template>
@@ -39,7 +34,6 @@ nuxtApp.hook("page:finish", async () => {
 		opacity: 0;
 	}
 }
-
 .toast-enter-active {
   	animation-name: slideIn;
  	animation-duration: 200ms;
