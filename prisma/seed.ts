@@ -161,8 +161,35 @@ const products = [
     { name: 'Disturbed men\'s T-Shirt',                 photoUrl: 'img/items/disturbed_tshirt.webp', price: 19.99 },
     { name: 'Eluveitie men\'s T-Shirt',                 photoUrl: 'img/items/eluveitie.webp',        price: 19.99 },
     { name: 'Architects men\'s T-Shirt',                photoUrl: 'img/items/architects.webp',       price: 19.99 },
+    { name: 'Mushroomhead men\'s T-Shirt',              photoUrl: 'img/items/mushroom.webp',         price: 19.99 },
+    { name: 'Rage Against men\'s T-Shirt',              photoUrl: 'img/items/rageagainst.webp',      price: 19.99 },
+    { name: 'Deicide Long-Sleeve T-shirt',              photoUrl: 'img/items/deicide.webp',          price: 30.99 },
+    { name: 'Black Label Society men\'s T-Shirt',       photoUrl: 'img/items/bls.webp',              price: 19.99 },
+    { name: 'Judas Priest men\'s T-Shirt',              photoUrl: 'img/items/judas_tshirt.webp',     price: 19.99 },
+    { name: 'Death Angel women\'s T-Shirt',             photoUrl: 'img/items/deathangel.webp',       price: 19.99 },
+    { name: 'Accept men\'s T-Shirt',                    photoUrl: 'img/items/accept.webp',           price: 19.99 },
+    { name: 'Pink Floyd men\'s T-Shirt',                photoUrl: 'img/items/pinkfloyd2.webp',       price: 18.99 },
+    { name: 'Amaranthe men\'s T-Shirt',                 photoUrl: 'img/items/amaranthe.webp',        price: 19.99 },
+    { name: 'Dimmu Borgir men\'s T-Shirt',              photoUrl: 'img/items/dimmuborgir2.webp',     price: 20.99 },
+    { name: 'Behemoth men\'s T-Shirt',                  photoUrl: 'img/items/behemoth.webp',         price: 20.99 },
+    { name: 'Behemoth men\'s T-Shirt',                  photoUrl: 'img/items/behemoth2.webp',        price: 20.99 },
+    { name: 'Alestorm men\'s T-Shirt',                  photoUrl: 'img/items/alestorm.webp',         price: 19.99 },
+    { name: 'Type O Negative men\'s T-Shirt',           photoUrl: 'img/items/type.webp',             price: 19.99 },
+    { name: 'Thy Art Is Murder men\'s T-Shirt',         photoUrl: 'img/items/thyart.webp',           price: 19.99 },
+    { name: 'Sum41 men\'s T-Shirt',                     photoUrl: 'img/items/sum41.webp',            price: 19.99 },
+    { name: 'Skindred men\'s T-Shirt',                  photoUrl: 'img/items/skindred.webp',         price: 19.99 },
+    { name: 'Sabaton men\'s T-Shirt',                   photoUrl: 'img/items/sabaton_men.webp',      price: 19.99 },
+    { name: 'Sabaton women\'s T-Shirt',                 photoUrl: 'img/items/sabaton_women.webp',    price: 19.99 },
+
+
+
+
+
+
+
 
     { name: 'AC/DC Beanie',                             photoUrl: 'img/items/acdc_hat.webp',         price: 14.99, sizes: [] },
+    { name: 'Judas Priest Beanie',                      photoUrl: 'img/items/judas_hat.webp',        price: 15.99, sizes: [] },
     { name: 'Slipknot Cap',                             photoUrl: 'img/items/slipknot_cap.webp',     price: 15.99, sizes: [] },
     { name: 'Tool Cap',                                 photoUrl: 'img/items/tool_cap.webp',         price: 15.99, sizes: [] },
     { name: 'Mastodon Cap',                             photoUrl: 'img/items/mastodon_cap.webp',     price: 14.99, sizes: [] },
@@ -206,7 +233,7 @@ async function main() {
                 email: faker.internet.email(),
                 name: faker.person.fullName(),
                 password: bcrypt.hashSync('password', 10),
-                photoUrl: faker.image.urlLoremFlickr(),
+                photoUrl: faker.image.avatarGitHub(),
                 favorites: {
                     create: {
                         items: {

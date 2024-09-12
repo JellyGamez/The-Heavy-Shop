@@ -105,7 +105,7 @@ watch(() => query.get(), async () => {
         <Banner
             icon="shopping-bag"
             title="Shop"
-            :description="route.query.search ? `We found ${count} ${count === 1 ? 'result' : 'results'} for &quot${route.query.search}&quot` : 'Browse 50+ items from our collection'"
+            :description="route.query.search ? `We found ${count} ${count === 1 ? 'result' : 'results'} for &quot${route.query.search}&quot` : 'Browse 100+ items from our collection'"
         >
             <div class="flex flex-wrap gap-2 md:gap-4 justify-center items-center text-white">
                 <div v-if="items.length" class="flex flex-wrap-reverse justify-center gap-2 md:gap-4">
