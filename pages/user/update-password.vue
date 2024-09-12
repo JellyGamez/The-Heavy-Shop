@@ -3,10 +3,7 @@
 import { useToast } from 'vue-toastification'
 
 useHead({
-    title: 'Update password',
-    meta: [
-        { name: 'description', content: 'Update password' }
-    ],
+    title: 'Update password'
 })
 
 definePageMeta({

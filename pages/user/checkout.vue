@@ -1,10 +1,7 @@
 <script setup>
 
 useHead({
-    title: 'Checkout',
-    meta: [
-        { name: 'checkout', content: 'Checkout' }
-    ],
+    title: 'Checkout'
 })
 
 definePageMeta({

@@ -3,10 +3,7 @@
 import { useToast } from 'vue-toastification'
 
 useHead({
-    title: 'Account',
-    meta: [
-        { name: 'description', content: 'Manage your user settings and data' }
-    ],
+    title: 'Account'
 })
 
 definePageMeta({

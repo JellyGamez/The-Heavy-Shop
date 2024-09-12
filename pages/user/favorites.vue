@@ -1,10 +1,7 @@
 <script setup>
 
 useHead({
-    title: 'Favorites',
-    meta: [
-        { name: 'description', content: 'Bookmark your favorite items for later' }
-    ],
+    title: 'Favorites'
 })
 
 definePageMeta({

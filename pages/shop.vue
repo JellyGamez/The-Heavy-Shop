@@ -1,10 +1,7 @@
 <script setup>
 
 useHead({
-    title: 'Shop',
-    meta: [
-        { name: 'description', content: 'Browse 100+ items from our collection' }
-    ],
+    title: 'Shop'
 })
 
 definePageMeta({

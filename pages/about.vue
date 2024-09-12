@@ -3,10 +3,7 @@
 import { IconsNuxt, IconsPostgreSQL, IconsPrisma, IconsStripe, IconsTailwindCSS, IconsVercel } from '#components'
 
 useHead({
-    title: 'About',
-    meta: [
-        { name: 'description', content: 'Learn about the development of the project' }
-    ],
+    title: 'About'
 })
 
 const features = [
@@ -140,7 +137,7 @@ const techStack = [
                     </p>
                     <p>
                         I also wanted to work on a project that was fun and connected to my personal interests, which led to the creation of 
-                        <span class="font-medium"> THE HEAVY SHOP </span> — an online store concept specialized in heavy metal merchandise and apparel.
+                        <span class="font-medium text-red-primary whitespace-nowrap"> THE HEAVY SHOP </span> — an online concept store specialized in heavy metal merchandise and apparel.
                         Being a huge metal music fan, this felt like the perfect blend of my technical skills and my love for the genre.
                     </p>
                     <p>
@@ -170,7 +167,7 @@ const techStack = [
                         </div>
                     </div>
 
-                    <NuxtLink to="/" class="hidden xl:flex flex-col items-center underline-effect w-fit h-fit mx-auto self-center">
+                    <NuxtLink to="/" class="hidden xl:flex flex-col items-center underline-effect w-fit h-fit mx-auto self-center mb-6">
                         <NuxtImg
                             src="/img/avatar.webp" 
                             alt="logo"

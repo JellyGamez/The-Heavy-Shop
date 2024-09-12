@@ -1,10 +1,7 @@
 <script setup>
 
 useHead({
-    title: 'Login',
-    meta: [
-        { name: 'description', content: 'Login' }
-    ],
+    title: 'Login'
 })
 
 definePageMeta({

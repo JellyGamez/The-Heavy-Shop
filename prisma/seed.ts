@@ -181,13 +181,6 @@ const products = [
     { name: 'Sabaton men\'s T-Shirt',                   photoUrl: 'img/items/sabaton_men.webp',      price: 19.99 },
     { name: 'Sabaton women\'s T-Shirt',                 photoUrl: 'img/items/sabaton_women.webp',    price: 19.99 },
 
-
-
-
-
-
-
-
     { name: 'AC/DC Beanie',                             photoUrl: 'img/items/acdc_hat.webp',         price: 14.99, sizes: [] },
     { name: 'Judas Priest Beanie',                      photoUrl: 'img/items/judas_hat.webp',        price: 15.99, sizes: [] },
     { name: 'Slipknot Cap',                             photoUrl: 'img/items/slipknot_cap.webp',     price: 15.99, sizes: [] },
@@ -271,7 +264,7 @@ async function main() {
         await prisma.item.create({
             data: {
                 name: product.name,
-                description: `Officially licensed ${product.name} featuring an exclusive, high-quality design. Crafted with premium materials for superior comfort and durability`,
+                description: `Officially licensed ${product.name} featuring an exclusive, high-quality design. Crafted with premium materials for superior comfort and durability.`,
                 price: product.price,
                 photoUrl: product.photoUrl,
                 reviews: {

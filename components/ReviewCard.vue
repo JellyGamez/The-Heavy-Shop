@@ -63,7 +63,8 @@ const bus = useEventBus('modal')
                             </p>
                         </div>
                     </div>
-                    <p class="text-sm md:text-base rounded-xl bg-gray-primary px-3 py-2 md:px-3.5 md:py-2.5 font-light mt-3.5"> 
+                    <Separator class="!pb-0.5 !pt-3 !px-2"/>
+                    <p class="text-sm md:text-base rounded-xl px-3 py-1.5 md:px-3.5 md:py-2 font-light "> 
                         {{ review.content }} 
                     </p>
                 </div>

@@ -30,10 +30,7 @@ if (error.value)
     throw createError(error.value)
 
 useHead({
-    title: item?.value?.name,
-    meta: [
-        { name: 'description', content: item?.value?.description }
-    ],
+    title: item?.value?.name
 })
 
 definePageMeta({
