@@ -22,7 +22,11 @@ export default defineNuxtConfig({
         lang: 'en'
       },
       charset: 'utf-8',
-      viewport: 'width=device-width, initial-scale=1'
+      viewport: 'width=device-width, initial-scale=1',
+      script: [{
+        defer: true,
+        src: "https://plausible.io/js/script.js"
+      }]
     }
   },
 
@@ -64,6 +68,7 @@ export default defineNuxtConfig({
     '@nuxt/image',
     'nuxt-swiper',
     '@nuxtjs/robots',
+    '@nuxtjs/plausible',
     '@nuxtjs/google-fonts',
     '@unlok-co/nuxt-stripe'
   ],

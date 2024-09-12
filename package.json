@@ -15,6 +15,7 @@
     "@faker-js/faker": "^8.4.1",
     "@nuxt/devtools": "latest",
     "@nuxt/image": "^1.7.0",
+    "@nuxtjs/plausible": "^1.0.2",
     "@sidebase/nuxt-auth": "0.8.2",
     "@types/bcrypt": "^5.0.2",
     "@types/jsonwebtoken": "^9.0.6",
