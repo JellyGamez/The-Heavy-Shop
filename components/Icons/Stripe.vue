@@ -1,6 +1,6 @@
 <template>
 
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.87 28.87" class="!size-12 lg:!size-14">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28.87 28.87" class="!size-10 lg:!size-12">
         <g>
             <g>
                 <rect width="28.87" height="28.87" rx="6.48" ry="6.48" fill="#6772e5" />

@@ -208,8 +208,8 @@ const techStack = [
                             <Button class="h-full">
                                 <div class="flex flex-col items-center w-full">
                                     <component :is="tech.icon" />
-                                    <p class="text-[17px] lg:text-xl mt-1 lg:-mb-0.5"> {{ tech.title }} </p>
-                                    <p class="text-sm lg:text-base text-gray-lightest font-light leading-tight"> {{ tech.description }}</p>
+                                    <p class="lg:text-[17px] mt-1"> {{ tech.title }} </p>
+                                    <p class="text-xs lg:text-sm text-gray-lightest font-light leading-tight"> {{ tech.description }}</p>
                                 </div>
                             </Button>
                         </NuxtLink>
