@@ -23,14 +23,14 @@ function handleClick(option) {
             <HeadlessMenuButton class="align-top">
                 <slot />
             </HeadlessMenuButton>
-                <transition
-                    enter-active-class="transition duration-200 ease-in-out"
-                    enter-from-class="transform scale-y-0 opacity-0"
-                    enter-to-class="transform scale-100"
-                    leave-active-class="transition duration-200 ease-in-out"
-                    leave-from-class="transform scale-100"
-                    leave-to-class="transform scale-y-0 opacity-0"
-                >
+            <Transition
+                enter-active-class="transition duration-200 ease-in-out"
+                enter-from-class="transform scale-y-0 opacity-0"
+                enter-to-class="transform scale-100"
+                leave-active-class="transition duration-200 ease-in-out"
+                leave-from-class="transform scale-100"
+                leave-to-class="transform scale-y-0 opacity-0"
+            >
                 <HeadlessMenuItems class="origin-top absolute flex flex-col gap-1 w-32 mt-2 p-1 left-1/2 -translate-x-1/2 rounded-2xl bg-gray-lighter shadow-lg focus:outline-none">
                     <div 
                         v-for="option in options" 
@@ -50,7 +50,7 @@ function handleClick(option) {
                         </HeadlessMenuItem>
                     </div>
                 </HeadlessMenuItems>
-            </transition>
+            </Transition>
         </HeadlessMenu>
     </div>
 </template>

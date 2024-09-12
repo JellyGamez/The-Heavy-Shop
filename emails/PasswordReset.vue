@@ -4,24 +4,19 @@ const props = defineProps({
     url: String
 })
 
+import { Text, Html, Link } from '@vue-email/components'
+
 </script>
 
 <template>
-    <EHtml lang="en">
-        <EText>
-            Hello,
-            <br>
-            <br>
+    <Html lang="en">
+        <Text>
             You are receiving this email in response to your request to reset your password.
             <br>
             Please follow this link:
-            <ELink :href="url">
+            <Link :href="url">
                 Reset Password
-            </ELink>
-        </EText>
-
-        <EText>
-            If you did not request a password change, you can ignore this email.
-        </EText>
-    </EHtml>
+            </Link>
+        </Text>
+    </Html>
 </template>

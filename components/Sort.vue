@@ -71,7 +71,7 @@ async function handleSort(option) {
                 :aria-label="option.name"
                 class="text-sm md:text-base relative group flex items-center gap-0.5 rounded-xl py-1 px-3 pl-7 md:pl-8 bg-gray-primary outline-none"
             >
-                <transition
+                <Transition
                     enter-active-class="transition duration-200"
                     enter-from-class="transform scale-y-0"
                     enter-to-class="transform scale-y-100"
@@ -86,7 +86,7 @@ async function handleSort(option) {
                             'md:size-5 absolute left-2 md:left-2.5 transition duration-200'
                         ]"
                     />
-                </transition>
+                </Transition>
                 <span class="transition duration-200 group-hover:text-gray-lightest"> 
                     {{ option.name }} 
                 </span>

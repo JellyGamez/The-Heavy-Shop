@@ -61,7 +61,7 @@ function handleAction(action) {
                             <span aria-hidden="true" class="block absolute h-0.5 w-5 bg-current transform transition duration-300 ease-in-out" :class="{ '-rotate-45': open, ' translate-y-1.5': !open }" />
                         </div>
                     </HeadlessMenuButton>
-                    <transition
+                    <Transition
                         enter-active-class="transition duration-300 ease-in-out"
                         enter-from-class="transform scale-y-0 opacity-0"
                         enter-to-class="transform scale-y-100"
@@ -120,7 +120,7 @@ function handleAction(action) {
                                 </HeadlessMenuItem>
                             </div>
                         </HeadlessMenuItems>
-                    </transition>
+                    </Transition>
                 </HeadlessMenu>
             </div>
             <div class="col-start-2 justify-center flex flex-nowrap md:col-start-1 md:justify-start items-center">
