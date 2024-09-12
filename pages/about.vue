@@ -129,7 +129,7 @@ const techStack = [
                     <span> Project goals and motivation </span>
                 </h1>
                 <Separator class="!py-2 !px-0" />
-                <div class="flex flex-col gap-4 font-light text-[15px] lg:text-base">
+                <div class="flex flex-col gap-4 font-light text-[15px] lg:text-base py-3 px-4 lg:-mb-1">
                     <p>
                         As a young programming enthusiast, primarily engaged in competitive programming, I wanted to expand my skill set beyong this domain. 
                         So I started diving into web development and experimented with a variety of popular frontend frameworks, including React, Svelte and Alpine.js. 
