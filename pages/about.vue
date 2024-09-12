@@ -21,7 +21,7 @@ const features = [
     {
         title: 'Items',
         subfeatures: [
-            'Two display modes on the Shop page',
+            '2 display modes on the Shop page',
             'Search from anywhere in the application',
             'Sorting on the Shop, Favorites and Cart pages'
         ]
