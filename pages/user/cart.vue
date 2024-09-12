@@ -5,7 +5,7 @@ import { useToast } from 'vue-toastification'
 useHead({
     title: 'Cart',
     meta: [
-        { name: 'description', content: 'Cart' }
+        { name: 'description', content: 'Organize your selected items for checkout' }
     ],
 })
 

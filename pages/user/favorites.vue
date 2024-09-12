@@ -3,7 +3,7 @@
 useHead({
     title: 'Favorites',
     meta: [
-        { name: 'description', content: 'Favorites' }
+        { name: 'description', content: 'Bookmark your favorite items for later' }
     ],
 })
 

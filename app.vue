@@ -3,7 +3,10 @@
 useHead({
 	titleTemplate: (titleChunk) => {
 		return titleChunk ? `${titleChunk} - The Heavy Shop` : 'The Heavy Shop'
-	}
+	},
+	meta: [
+		{ name: 'og:image', content: '/img/avatar.webp' }
+	]
 })
 
 </script>

@@ -5,7 +5,7 @@ import { IconsNuxt, IconsPostgreSQL, IconsPrisma, IconsStripe, IconsTailwindCSS,
 useHead({
     title: 'About',
     meta: [
-        { name: 'description', content: 'About' }
+        { name: 'description', content: 'Learn about the development of the project' }
     ],
 })
 

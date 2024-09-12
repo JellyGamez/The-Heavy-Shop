@@ -32,7 +32,7 @@ if (error.value)
 useHead({
     title: item?.value?.name,
     meta: [
-        { name: 'description', content: item?.value?.name }
+        { name: 'description', content: item?.value?.description }
     ],
 })
 
