@@ -2,18 +2,18 @@
     <div class="w-screen h-14">
         <div class="px-3 md:px-10 max-w-5xl xl:max-w-8xl mx-auto text-white h-full">
             <Separator class="!py-2 !pt-0" />
-            <div class="justify-between mx-6 gap-10 h-14 flex items-center -mt-2">
+            <div class="justify-between mx-4 md:mx-6 gap-2 h-14 flex items-center -mt-2">
                 <p class="text-sm md:text-base font-light underline-effect">
                     © 2024 Alex Croitoriu
                 </p>
-                <div class="flex items-center gap-3 md:gap-4">
+                <div class="flex items-center gap-2.5 md:gap-3.5">
                     <NuxtLink 
                         to="https://github.com/JellyGamez" 
                         target="_blank" 
                         aria-label="github"
                         class="text-white hover:text-gray-lightest transition duration-200"
                     >
-                        <IconsGithub class="!size-6 md:!size-7" />
+                        <IconsGitHub class="!size-6 md:!size-7" />
                     </NuxtLink>
                     <NuxtLink 
                         to="https://discord.com/users/273850522157580288" 
@@ -22,6 +22,14 @@
                         class="text-white hover:text-gray-lightest transition duration-200"
                     >
                         <IconsDiscord class="!size-6 md:!size-7" />
+                    </NuxtLink>
+                    <NuxtLink 
+                        to="https://www.linkedin.com/in/alex-croitoriu-939486328/" 
+                        target="_blank" 
+                        aria-label="linkedin"
+                        class="text-white hover:text-gray-lightest transition duration-200"
+                    >
+                        <IconsLinkedIn class="!size-5 md:!size-6" />
                     </NuxtLink>
                     <NuxtLink 
                         to="mailto:alexcroitoriu2005@gmail.com" 

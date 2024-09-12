@@ -104,7 +104,7 @@ async function login(provider) {
                     aria-label="github"
                     class="text-white hover:text-gray-lightest transition duration-200"
                 >
-                    <IconsGithub />
+                    <IconsGitHub />
                 </button>
                 <button 
                     @click="login('discord')"
