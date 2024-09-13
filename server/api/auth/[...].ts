@@ -17,7 +17,7 @@ async function getUserByEmail(email: string | null | undefined) {
     }
     catch(e) { 
         throw createError({
-            statusCode: 400,
+            statusCode: 500,
             statusMessage: 'We couldn\'t find that account.'
         })
     }
@@ -98,13 +98,13 @@ export default NuxtAuthHandler({
                             return user
                         else 
                             throw createError({
-                                statusCode: 400,
+                                statusCode: 500,
                                 statusMessage: 'These credentials don\'t match our records.'
                             })
                     }
                     catch (e) {
                         throw createError({
-                            statusCode: 400,
+                            statusCode: 500,
                             statusMessage: 'These credentials don\'t match our records.'
                         })
                     }

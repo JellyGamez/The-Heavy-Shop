@@ -1,9 +1,3 @@
-<script setup>
-
-useSync()
-
-</script>
-
 <template>
     <SearchModal />
     <Header />

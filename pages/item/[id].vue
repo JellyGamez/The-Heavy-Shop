@@ -4,7 +4,6 @@ import { useToast } from 'vue-toastification'
 
 const route = useRoute()
 const toast = useToast()
-const query = useQuery()
 
 const favorites = useFavorites()
 const userFavorites = ref(await favorites.getIds())
@@ -23,7 +22,7 @@ const toggleFavorite = useDebounceFn(async () => {
 const headers = useRequestHeaders(['cookie'])
 const { data: user } = await useFetch('/api/user')
 const { error, data: item } = await useAsyncData('item', () => $fetch(`/api${route.path}`, {
-    query: query.get(),
+    query: useQuery(),
     headers
 }))
 if (error.value)

@@ -12,6 +12,8 @@ useHead({
     }],
 })
 
+useSync()
+
 </script>
 
 <template>

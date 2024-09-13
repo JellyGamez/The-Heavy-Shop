@@ -32,7 +32,7 @@ export default function useCart() {
         if (loggedIn) {
             const headers = useRequestHeaders(['cookie'])
             const { data } = await useAsyncData('cart', () => $fetch('/api/user/cart', {
-                query: query.get(),
+                query: query,
                 headers
             }))
             return data.value?.map((entry: any) => {
@@ -48,7 +48,7 @@ export default function useCart() {
             const { data } = await useAsyncData('cart', () => $fetch('/api/guest/cart', {
                 query: { 
                     ids: ids,
-                    ...query.get()
+                    ...query
                 }
             }))
             return data.value?.map((entry: any) => {
@@ -81,7 +81,7 @@ export default function useCart() {
             await useFetch('/api/user/cart', {
                 method: 'POST',
                 query: {
-                    entries: [ 
+                    entries: [
                         { id: id, size: size } 
                     ] 
                 }

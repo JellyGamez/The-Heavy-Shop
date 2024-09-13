@@ -1,6 +1,6 @@
 import { getUserByEmail } from '~/server/utils'
 import { getServerSession } from '#auth'
-import { put } from '@vercel/blob';
+import { put } from '@vercel/blob'
 
 export default defineEventHandler(async (event) => {
     const session = await getServerSession(event)
@@ -17,7 +17,7 @@ export default defineEventHandler(async (event) => {
                 statusMessage: 'The file type is not supported.'
             })
 
-        const { url } = await put(`avatars/${user?.id}.png`, file.data, { access: 'public' });
+        const { url } = await put(`avatars/${user?.id}.png`, file.data, { access: 'public' })
 
         return {
             message: 'File uploaded succesfully!',

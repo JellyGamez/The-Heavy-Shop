@@ -19,7 +19,7 @@ async function updatePassword(email: string, passwordResetToken: string, passwor
         if (e instanceof Prisma.PrismaClientKnownRequestError)
             if (e.code === 'P2025')
                 throw createError({
-                    statusCode: 400,
+                    statusCode: 500,
                     statusMessage: 'The password reset token is invalid.'
                 })
     } 
@@ -40,13 +40,13 @@ function verifySignedToken(token: string) {
     return jwt.verify(token, process.env.AUTH_SECRET as Secret, function (error, decoded) {
         if (error?.name === 'TokenExpiredError') {
             throw createError({
-                statusCode: 400,
+                statusCode: 500,
                 statusMessage: 'The password reset token is expired.'
             })
         }
         else if (error?.name === 'JsonWebTokenError') {
             throw createError({
-                statusCode: 400,
+                statusCode: 500,
                 statusMessage: 'The password reset token is invalid.'
             })
         }
@@ -68,6 +68,12 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'The password confirmation field is required.'
         })
+    else if (password.length < 8) {
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'The password must be at least 8 characters.'
+        })
+    }
     else if (password !== passwordConfirmation)
         throw createError({
             statusCode: 400,

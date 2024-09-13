@@ -5,6 +5,8 @@ const props = defineProps({
 	description: String
 })
 
+const emit = defineEmits(['confirm'])
+
 const bus = useEventBus('modal')
 bus.on(function (event, attribute) {
     if (event === 'confirmation') {
@@ -40,7 +42,7 @@ const id = ref()
 					size="small"
 					@click="() => { 
 						isOpen = false
-						$emit('confirm', id) 
+						emit('confirm', id) 
 					}"
 				>
 					CONFIRM

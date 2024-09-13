@@ -21,7 +21,7 @@ async function getUserByEmail(email: string | null | undefined) {
     catch(e) { 
         if (email)
             throw createError({
-                statusCode: 400,
+                statusCode: 500,
                 statusMessage: 'We couldn\'t find that account.'
             })
     }

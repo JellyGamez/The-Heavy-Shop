@@ -10,7 +10,6 @@ definePageMeta({
 
 const route = useRoute()
 const router = useRouter()
-const query = useQuery()
 
 const page = ref(1)
 const loading = ref(false)
@@ -23,7 +22,7 @@ const userFavorites = ref(await favorites.getIds())
 const { data } = await useFetch('/api/item', {
     query: {
         page: page.value,
-        ...query.get()
+        ...useQuery()
     }
 })
 
@@ -32,7 +31,7 @@ async function refresh() {
     const { data } = await useFetch('/api/item', {
         query: {
             page: page.value,
-            ...query.get()
+            ...useQuery()
         }
     })
     items.value = data.value.items
@@ -82,7 +81,7 @@ watchDebounced(y, async (newValue) => {
         let { data: newData } = await useFetch('/api/item', {
             query: {
                 page: page.value,
-                ...query.get()
+                ...useQuery()
             }
         })
         items.value.push(...newData.value.items)
@@ -90,7 +89,7 @@ watchDebounced(y, async (newValue) => {
     }
 }, { debounce: 50, maxWait: 500 })
 
-watch(() => query.get(), async () => {
+watch(() => useQuery(), async () => {
     if (router.currentRoute.value.fullPath.startsWith('/shop'))
         setTimeout(async () => await refresh(), 50)
 })

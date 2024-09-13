@@ -7,6 +7,8 @@ const props = defineProps({
     isFavorite: Boolean
 })
 
+const emit = defineEmits(['toggleFavorite'])
+
 const route = useRoute()
 const toast = useToast()
 
@@ -95,7 +97,7 @@ const addToCart = useDebounceFn(async () => {
                         <span> ADD TO CART </span>
                     </Button>
                     <Button
-                        @click="$emit('toggleFavorite')" 
+                        @click="emit('toggleFavorite')" 
                         size="medium"
                         aria-label="favorite"
                     > 

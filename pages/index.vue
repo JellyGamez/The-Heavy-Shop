@@ -245,7 +245,7 @@ const features = [
     width: 100%;
     height: 4px;
     border-radius: 4px;
-    background-color: #C70404;
+    background-color: #D4171E;
     bottom: 0;
     left: 0;
     transform-origin: right;
@@ -259,7 +259,7 @@ const features = [
         width: 100%;
         height: 3px;
         border-radius: 4px;
-        background-color: #C70404;
+        background-color: #D4171E;
         bottom: 0;
         left: 0;
         transform-origin: right;

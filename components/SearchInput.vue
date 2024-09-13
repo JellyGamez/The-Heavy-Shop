@@ -1,10 +1,12 @@
 <script setup>
 
-const input = defineModel()
-
 defineOptions({
     inheritAttrs: false
 })
+
+const emit = defineEmits(['submit'])
+
+const input = defineModel()
 
 const target = ref()
 const form = ref()
@@ -23,7 +25,7 @@ function clear() {
 <template>
     <form 
         ref="form"
-        @submit.prevent="() => $emit('submit')"
+        @submit.prevent="() => emit('submit')"
     >
         <div class="relative flex items-center">
             <input
@@ -63,7 +65,7 @@ input:-webkit-autofill:hover {
 }
 input:-webkit-autofill:focus, 
 input:-webkit-autofill:active {
-    -webkit-box-shadow: 0 0 0px 2px #C70404 inset;
+    -webkit-box-shadow: 0 0 0px 2px #D4171E inset;
     -webkit-text-fill-color: white;
     transition: background-color 50000s;
     caret-color: white;
