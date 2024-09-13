@@ -48,7 +48,7 @@ const features = [
         ]
     },
     {
-        title: 'Misc',
+        title: 'Miscellaneous',
         subfeatures: [
             'Secure payment integration',
             'Item count indicator for Favorites and Cart',
