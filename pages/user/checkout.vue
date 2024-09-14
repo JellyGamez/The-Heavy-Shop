@@ -1,5 +1,7 @@
 <script setup>
 
+import { useToast } from 'vue-toastification'
+
 useHead({
     title: 'Checkout'
 })
@@ -9,14 +11,17 @@ definePageMeta({
     middleware: 'auth'
 })
 
-const { data: user } = await useFetch('/api/user') 
+const toast = useToast()
 
 const stripe = await useClientStripe()
+
 const elements = ref()
 const subtotal = ref()
 const initialized = ref(false)
 const loading = ref(false)
 const errorMessage = ref()
+
+const { data: user } = await useFetch('/api/user') 
 
 const appearance = {
     variables: {
@@ -72,7 +77,8 @@ onMounted(() => {
         const cart = useCart()
         const items = ref(await cart.getItems())
         subtotal.value = items.value?.map(item => item.price * item.quantity).reduce((x, y) => x + y, 0).toFixed(2)
-        const { error, data } = await useFetch('/api/stripe', {
+
+        const { data } = await useFetch('/api/stripe', {
             method: 'POST',
             body: {
                 amount: subtotal.value
@@ -91,10 +97,11 @@ onMounted(() => {
                 billingDetails: 'auto'
             }
         })
-        payment.mount('#payment')
         const address = elements.value.create('address', {
             mode: 'billing',
         })
+
+        payment.mount('#payment')
         address.mount('#address')
         initialized.value = true
     }, 10)
@@ -128,10 +135,9 @@ async function handlePayment() {
                 'incomplete_cvc'            : 'The security code is incomplete.',
                 'incomplete_expiry'         : 'The expiration date is incomplete.'
             }[error.code]
-            // errorMessage.value = error.message
         } 
         else {
-            console.log('Payment succeeded')
+            toast.success('Payment successful!')
         }
         loading.value = false
     } 

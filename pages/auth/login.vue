@@ -31,13 +31,14 @@ async function login(provider) {
             redirect: false
         })
         errorMessage.value = error
-        if (!error) {
+        if (error)
+            loading.value = false
+        else {
             localStorage.setItem('syncNeeded', 'true')
             await navigateTo(route?.query?.callbackUrl, { 
                 external: true
             })
         }
-        loading.value = false
     }
     else {
         localStorage.setItem('syncNeeded', 'true')

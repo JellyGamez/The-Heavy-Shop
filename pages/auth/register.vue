@@ -36,7 +36,9 @@ async function register() {
         }
     })
     errorMessage.value = error.value?.data.statusMessage
-    if (!error.value) {
+    if (error.value)
+        loading.value = false
+    else {
         await signIn('credentials', {
             email: email.value,
             password: password.value,
@@ -48,7 +50,6 @@ async function register() {
             external: true
         })
     }
-    loading.value = false
 }
 
 </script>

@@ -26,7 +26,6 @@ const router = useRouter()
                             {{ `Error ${error?.statusCode}` }} 
                         </h1>
                         <p class="text-center text-white font-extralight text-sm">
-                            {{ error }}
                             {{ error?.statusMessage?.length === 0 ? 'Something went wrong.' : error?.statusMessage }}
                         </p>
                     </div>

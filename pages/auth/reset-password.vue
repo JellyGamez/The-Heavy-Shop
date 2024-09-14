@@ -36,7 +36,9 @@ async function resetPassword() {
         }
     })
     errorMessage.value = error.value?.data.statusMessage
-    if (!error.value) {
+    if (error.value)
+        loading.value = false
+    else {
         await signIn('credentials', {
             email: data.value.email,
             password: password.value,
@@ -45,7 +47,6 @@ async function resetPassword() {
         await navigateTo('/')
         toast.success("Password reset successfully!")
     }
-    loading.value = false
 }
 
 </script>

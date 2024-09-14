@@ -29,11 +29,12 @@ async function updatePassword() {
         }
     })
     errorMessage.value = error.value?.data.statusMessage
-    if (!error.value) {
+    if (error.value) 
+        loading.value = false
+    else {
         await navigateTo('/user/account')
         toast.success("Password updated successfully!")
     }
-    loading.value = false
 }
 
 </script>
