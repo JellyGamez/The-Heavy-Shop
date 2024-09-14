@@ -71,9 +71,15 @@ const appearance = {
         },
         '.Tab': {
             fontWeight: '400',
+            border: '0px',
+            backgroundColor: '#262626',
+            boxShadow: '0 0 0px 1.5px #262626 inset',
         },
         '.Tab:focus': {
-            outline: 'none'
+            fontWeight: '400',
+            border: '0px',
+            backgroundColor: '#171717',
+            boxShadow: '0 0 0px 1.5px #D4171E inset',
         }
     }
 }
