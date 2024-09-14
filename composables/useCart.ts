@@ -156,7 +156,7 @@ export default function useCart() {
                 localStorage.setItem('cart', JSON.stringify(Array.from(ids)))
             }
             bus.emit('cart')
-            toast.success("Item quantity modified!")
+            toast.success("Item quantity updated!")
         }
     }
 

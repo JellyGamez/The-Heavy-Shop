@@ -27,9 +27,9 @@
     "jsonwebtoken": "^9.0.2",
     "nuxt": "^3.13.0",
     "nuxt-headlessui": "^1.2.0",
-    "postcss": "^8.4.41",
+    "postcss": "^8.4.47",
     "prisma": "^5.19.1",
-    "tailwindcss": "^3.4.10",
+    "tailwindcss": "^3.4.11",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2",
     "vue-toastification": "2.0.0-rc.5"
