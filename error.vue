@@ -15,7 +15,7 @@ const router = useRouter()
 <template>
     <div>
         <Header />
-        <div class="pt-16 min-h-screen bg-gray-light flex flex-col items-center justify-center">
+        <div class="pt-16 min-h-screen bg-gray-light flex flex-col items-center justify-center pb-[57px] -mb-[57px]">
             <div class="flex justify-center w-full px-2 py-4">
                 <div class="w-full max-w-sm bg-gray-dark p-4 sm:p-5 rounded-2xl">
                     <div class="mb-6">
@@ -33,10 +33,12 @@ const router = useRouter()
                         }"
                         class="w-full"
                     >
-                        GO BACK
+                        <span> GO BACK </span>
+                        <IconsDoubleChevronRight class="!size-4" />
                     </Button>
                 </div>
             </div>
         </div>
+        <Footer />
     </div>
 </template>

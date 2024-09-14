@@ -11,8 +11,6 @@ definePageMeta({
     middleware: ['auth', 'checkout']
 })
 
-const toast = useToast()
-
 const stripe = await useClientStripe()
 
 const elements = ref()
@@ -70,20 +68,21 @@ const appearance = {
             fontWeight: '200'
         },
         '.Tab': {
+            '-webkit-text-fill-color': '#FFFFFF',
             fontWeight: '400',
             border: '0px',
             backgroundColor: '#262626',
             boxShadow: '0 0 0px 1.5px #262626 inset',
             outline: 'none'
         },
-        '.Tab:focus': {
+        '.Tab--selected': {
             fontWeight: '400',
             border: '0px',
             backgroundColor: '#171717',
             boxShadow: '0 0 0px 1.5px #D4171E inset',
             outline: 'none'
         },
-        '.Tab--selected': {
+        '.Tab--selected:focus': {
             fontWeight: '400',
             border: '0px',
             backgroundColor: '#171717',
@@ -99,7 +98,7 @@ onMounted(() => {
         const items = ref(await cart.getItems())
         subtotal.value = items.value?.map(item => item.price * item.quantity).reduce((x, y) => x + y, 0).toFixed(2)
 
-        const { data } = await useFetch('/api/stripe', {
+        const { data } = await useFetch('/api/stripe/create-payment-intent', {
             method: 'POST',
             body: {
                 amount: subtotal.value
@@ -158,7 +157,10 @@ async function handlePayment() {
             }[error.code]
         } 
         else {
-            toast.success('Payment successful!')
+            await navigateTo('/user/checkout/success')
+            await useFetch('/api/stripe/confirm-payment-intent', {
+                method: 'POST'
+            })
         }
         loading.value = false
     } 

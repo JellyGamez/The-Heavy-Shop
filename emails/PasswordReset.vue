@@ -9,7 +9,7 @@ const props = defineProps({
 <template>
     <EHtml lang="en">
         <EText>
-            You are receiving this email in response to your request to reset your password.
+            You are receiving this email in response to your request to reset your password. If you did not initiate this request, please ignore this message.
             <br>
             Please follow this link:
             <ELink :href="url">
