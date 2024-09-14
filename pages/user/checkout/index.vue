@@ -75,6 +75,14 @@ const appearance = {
             boxShadow: '0 0 0px 1.5px #262626 inset',
             outline: 'none'
         },
+        '.Tab:hover': {
+            '-webkit-text-fill-color': '#FFFFFF',
+            fontWeight: '400',
+            border: '0px',
+            backgroundColor: '#262626',
+            boxShadow: '0 0 0px 1.5px #262626 inset',
+            outline: 'none'
+        },
         '.Tab--selected': {
             fontWeight: '400',
             border: '0px',

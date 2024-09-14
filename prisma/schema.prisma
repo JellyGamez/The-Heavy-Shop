@@ -60,9 +60,9 @@ model CartToItem {
   id        Int      @id @default(autoincrement())
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  item      Item     @relation(fields: [itemId], references: [id])
+  item      Item     @relation(fields: [itemId], references: [id], onDelete: Cascade)
   itemId    String
-  cart      Cart     @relation(fields: [cartId], references: [id])
+  cart      Cart     @relation(fields: [cartId], references: [id], onDelete: Cascade)
   cartId    Int
   quantity  Int
   size      String?
