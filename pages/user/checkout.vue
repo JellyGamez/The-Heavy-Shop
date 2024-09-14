@@ -74,12 +74,21 @@ const appearance = {
             border: '0px',
             backgroundColor: '#262626',
             boxShadow: '0 0 0px 1.5px #262626 inset',
+            outline: 'none'
         },
         '.Tab:focus': {
             fontWeight: '400',
             border: '0px',
             backgroundColor: '#171717',
             boxShadow: '0 0 0px 1.5px #D4171E inset',
+            outline: 'none'
+        },
+        '.Tab--selected': {
+            fontWeight: '400',
+            border: '0px',
+            backgroundColor: '#171717',
+            boxShadow: '0 0 0px 1.5px #D4171E inset',
+            outline: 'none'
         }
     }
 }
