@@ -37,7 +37,7 @@ async function updatePasswordResetToken(email: string, passwordResetToken: strin
 }
 
 function verifySignedToken(token: string) {
-    return jwt.verify(token, process.env.AUTH_SECRET as Secret, function (error, decoded) {
+    return jwt.verify(token, process.env.AUTH_SECRET as Secret, function(error, decoded) {
         if (error?.name === 'TokenExpiredError') {
             throw createError({
                 statusCode: 500,

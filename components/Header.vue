@@ -31,7 +31,7 @@ const count = reactive({
 })
 
 const bus = useEventBus('count')
-bus.on(async function (event) {
+bus.on(async function(event) {
     if (event === 'favorites')
         count.favorites = await favorites.getCount()
     if (event === 'cart')

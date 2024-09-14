@@ -19,10 +19,15 @@ const items = ref(await cart.getItems())
 const subtotal = computed(() => items.value?.map(item => item.price * item.quantity).reduce((x, y) => x + y, 0).toFixed(2))
 const count = ref(await cart.getCount())
 
-const bus = useEventBus('count')
-bus.on(async function (event) {
+const countBus = useEventBus('count')
+countBus.on(async function(event) {
     if (event === 'cart')
         count.value = await cart.getCount()
+})
+
+const syncBus = useEventBus('sync')
+syncBus.on(async function() {
+    items.value = await cart.getItems()
 })
 
 const removeItem = useDebounceFn(async (id, size) => {

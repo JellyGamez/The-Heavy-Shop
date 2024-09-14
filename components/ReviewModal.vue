@@ -15,7 +15,7 @@ const isOpen = ref(false)
 const errorMessage = ref()
 
 const bus = useEventBus('modal')
-bus.on(function (event, data) {
+bus.on(function(event, data) {
     if (event === 'addReview' || event === 'editReview') {
 		action.value = event
 		isOpen.value = true

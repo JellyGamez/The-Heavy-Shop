@@ -7,7 +7,7 @@ const isOpen = ref(false)
 
 const modalBus = useEventBus('modal')
 const searchBus = useEventBus('search')
-modalBus.on(function (event) {
+modalBus.on(function(event) {
     if (event === 'search')
 		isOpen.value = true
 })

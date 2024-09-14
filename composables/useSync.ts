@@ -2,6 +2,7 @@ import { useToast } from 'vue-toastification'
 
 export default function useSync() {
     const toast = useToast()
+    const bus = useEventBus('sync')
 
     onMounted(() => {
         setTimeout(async () => {
@@ -20,7 +21,9 @@ export default function useSync() {
     async function syncItems() {
         const favorites = await useFavorites().syncItems()
         const cart = await useCart().syncItems()
-        if (favorites || cart)
+        if (favorites || cart) {
+            bus.emit()
             toast.success('Your items have been synced!')
+        }
     }
 }

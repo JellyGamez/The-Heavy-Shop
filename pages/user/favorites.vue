@@ -13,6 +13,11 @@ const favorites = useFavorites()
 
 const items = ref(await favorites.getItems())
 
+const syncBus = useEventBus('sync')
+syncBus.on(async function() {
+    items.value = await favorites.getItems()
+})
+
 const removeItem = useDebounceFn(async (id) => {
     await favorites.removeItem(id)
     items.value = await favorites.getItems()

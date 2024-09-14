@@ -8,7 +8,7 @@ const props = defineProps({
 const emit = defineEmits(['confirm'])
 
 const bus = useEventBus('modal')
-bus.on(function (event, attribute) {
+bus.on(function(event, attribute) {
     if (event === 'confirmation') {
 		isOpen.value = true
 		id.value = attribute
