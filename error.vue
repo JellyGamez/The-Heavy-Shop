@@ -22,7 +22,7 @@ const router = useRouter()
                         <h1 class="text-center text-red-primary text-2xl sm:text-[26px] font-medium mb-3"> 
                             {{ `Error ${error?.statusCode}` }} 
                         </h1>
-                        <p class="text-center text-white font-extralight text-sm">
+                        <p class="text-center text-white font-extralight text-sm break-words">
                             {{ error?.statusMessage?.length === 0 ? 'Something went wrong.' : error?.statusMessage }}
                         </p>
                     </div>
@@ -42,3 +42,11 @@ const router = useRouter()
         <Footer />
     </div>
 </template>
+
+<style scoped>
+
+.break-words {
+    overflow-wrap: anywhere;
+}
+
+</style>

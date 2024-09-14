@@ -23,7 +23,7 @@ export default function useSync() {
         const cart = await useCart().syncItems()
         if (favorites || cart) {
             bus.emit()
-            toast.success('Your items have been synced!')
+            toast.success('Items synced successfully!')
         }
     }
 }
