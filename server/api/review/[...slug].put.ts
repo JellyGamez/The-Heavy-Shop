@@ -31,7 +31,7 @@ export default defineEventHandler(async (event) => {
             },
             data: {
                 rating: rating,
-                content: review
+                content: review?.trim()
             }
         })
     }

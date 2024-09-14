@@ -31,7 +31,7 @@ async function addReview() {
         method: 'POST',
         body: {
             rating: rating.value,
-			review: review.value,
+			review: review.value?.trim(),
 			itemId: itemId.value
         }
     })
@@ -49,7 +49,7 @@ async function editReview() {
         method: 'PUT',
 		body: {
 			rating: rating.value,
-			review: review.value
+			review: review.value?.trim()
 		}
     })
 	if (error.value?.data.statusCode === 500) {

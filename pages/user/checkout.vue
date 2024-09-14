@@ -68,6 +68,12 @@ const appearance = {
             marginLeft: '8px',
             marginBottom: '2px',
             fontWeight: '200'
+        },
+        '.Tab': {
+            fontWeight: '400',
+        },
+        '.Tab:focus': {
+            outline: 'none'
         }
     }
 }

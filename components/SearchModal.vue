@@ -18,7 +18,7 @@ async function handleSubmit() {
 	await navigateTo({
 		name: 'shop',
 		query: {
-			search: search.value
+			search: search.value?.trim()
 		}
 	})
 

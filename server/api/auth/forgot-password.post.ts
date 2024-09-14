@@ -34,6 +34,11 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'The email field is required.'
         })
+    else if (email === 'test@theheavyshop.com')
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'You are not allowed to request a password reset for this account.'
+        })
 
     await getUserByEmail(email)
 

@@ -199,7 +199,7 @@ const techStack = [
                     <span> Tech Stack </span>
                 </h1>
                 <Separator class="!py-2 !px-0" />
-                <div class="font-light grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-5 mb-1 mt-3"> 
+                <div class="font-light grid grid-cols-2 md:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-5 mb-1 mt-2 lg:mt-4"> 
                     <div v-for="tech in techStack">
                         <NuxtLink :to="tech.url" target="_blank">
                             <Button class="h-full">

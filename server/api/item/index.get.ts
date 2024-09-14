@@ -23,7 +23,7 @@ export default defineEventHandler(async (event) => {
         },
         where: {
             name: {
-                contains: search as any,
+                contains: (search as string)?.trim(),
                 mode: 'insensitive'
             }
         },
@@ -34,7 +34,7 @@ export default defineEventHandler(async (event) => {
     const count = await prisma.item.count({
         where: {
             name: {
-                contains: search as any,
+                contains: (search as string)?.trim(),
                 mode: 'insensitive'
             }
         }

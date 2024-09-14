@@ -38,7 +38,7 @@ export default defineEventHandler(async (event) => {
     await prisma.review.create({
         data: {
             rating: rating,
-            content: review,
+            content: review?.trim(),
             itemId: itemId,
             authorId: user?.id
         }

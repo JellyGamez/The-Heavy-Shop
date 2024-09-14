@@ -57,6 +57,7 @@ function verifySignedToken(token: string) {
 
 export default defineEventHandler(async (event) => {
     const { password, passwordConfirmation, signedToken } = await readBody(event)
+    const decodedToken = verifySignedToken(signedToken) as any
 
     if (!password)
         throw createError({
@@ -79,8 +80,12 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'The passwords do not match.'
         })
+    else if (decodedToken.email === 'test@theheavyshop.com')
+        throw createError({
+            statusCode: 400,
+            statusMessage: 'You are not authorized to reset the password for this account.'
+        })
 
-    const decodedToken = verifySignedToken(signedToken) as any
     await updatePassword(decodedToken.email, decodedToken.token, password)
     await updatePasswordResetToken(decodedToken.email, null)
 
