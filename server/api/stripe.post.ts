@@ -7,7 +7,10 @@ export default defineEventHandler(async (event) => {
     try {
         const paymentIntent = await stripe.paymentIntents.create({
             amount: Math.round(amount * 100),
-            currency: 'USD',
+            currency: 'usd',
+            automatic_payment_methods: {
+                enabled: false
+            },
             payment_method_types: ['card']
         })
 

@@ -2,9 +2,6 @@
 
 useHead({
     title: 'Error - The Heavy Shop',
-    meta: [
-        { name: 'description', content: 'Error' }
-    ],
 })
 
 const props = defineProps({

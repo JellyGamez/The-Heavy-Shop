@@ -15,7 +15,7 @@ async function updatePassword(email: string, passwordResetToken: string, passwor
             }
         })
     }
-    catch (e) {
+    catch(e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError)
             if (e.code === 'P2025')
                 throw createError({

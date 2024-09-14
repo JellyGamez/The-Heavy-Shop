@@ -102,7 +102,7 @@ export default NuxtAuthHandler({
                                 statusMessage: 'These credentials don\'t match our records.'
                             })
                     }
-                    catch (e) {
+                    catch(e) {
                         throw createError({
                             statusCode: 500,
                             statusMessage: 'These credentials don\'t match our records.'

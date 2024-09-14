@@ -25,7 +25,7 @@ async function create(data: any) {
             }
         })
     }
-    catch (e) {
+    catch(e) {
         if (e instanceof Prisma.PrismaClientKnownRequestError) {
             if (e.code === 'P2002')
                 throw createError({

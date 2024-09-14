@@ -8,7 +8,7 @@ useHead({
 
 definePageMeta({
     layout: 'auth',
-    middleware: 'auth'
+    middleware: ['auth', 'checkout']
 })
 
 const toast = useToast()
@@ -88,7 +88,7 @@ onMounted(() => {
         elements.value = stripe.value.elements({ 
             clientSecret: data.value.client_secret,        
             appearance: appearance,
-            fonts: [{ cssSrc: "https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap" }],
+            fonts: [{ cssSrc: 'https://fonts.googleapis.com/css2?family=Kanit:ital,wght@0,200;0,300;0,400;0,500;1,200;1,300;1,400;1,500&display=swap' }],
             locale: 'en'
          })
         const payment = elements.value.create('payment', {
@@ -141,8 +141,8 @@ async function handlePayment() {
         }
         loading.value = false
     } 
-    catch (e) {
-        errorMessage.value = "An error occured."
+    catch(e) {
+        errorMessage.value = 'An error occured.'
         loading.value = false
     }
 }
