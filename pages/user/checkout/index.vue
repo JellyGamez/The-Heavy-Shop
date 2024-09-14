@@ -75,7 +75,7 @@ const appearance = {
             boxShadow: '0 0 0px 1.5px #262626 inset',
             outline: 'none'
         },
-        '.Tab:hover': {
+        '.Tab:focus': {
             '-webkit-text-fill-color': '#FFFFFF',
             fontWeight: '400',
             border: '0px',
