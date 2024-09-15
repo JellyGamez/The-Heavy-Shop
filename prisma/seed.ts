@@ -146,7 +146,7 @@ const products = [
     { name: 'Powerwolf men\'s T-Shirt',                 photoUrl: 'img/items/powerwolf.webp',        price: 19.99 },
     { name: 'Cannibal Corpse Long-Sleeve T-shirt',      photoUrl: 'img/items/cannibal.webp',         price: 26.99 },
     { name: 'Mastodon men\'s T-Shirt',                  photoUrl: 'img/items/mastodon_tshirt.webp',  price: 19.99 },
-    { name: 'Gojira men\'s T-Shirt',                    photoUrl: 'img/items/gojira.webp',           price: 19.99 },
+    { name: 'Gojira men\'s T-Shirt',                    photoUrl: 'img/items/gojira_tshirt.webp',    price: 19.99 },
     { name: 'Korn Long-Sleeve T-shirt',                 photoUrl: 'img/items/korn_men.webp',         price: 27.99 },
     { name: 'Korn women\'s T-Shirt',                    photoUrl: 'img/items/korn_women.webp',       price: 18.99 },
     { name: 'Parkway Drive men\'s T-Shirt',             photoUrl: 'img/items/parkway.webp',          price: 19.99 },
@@ -162,7 +162,7 @@ const products = [
     { name: 'Eluveitie men\'s T-Shirt',                 photoUrl: 'img/items/eluveitie.webp',        price: 19.99 },
     { name: 'Architects men\'s T-Shirt',                photoUrl: 'img/items/architects.webp',       price: 19.99 },
     { name: 'Mushroomhead men\'s T-Shirt',              photoUrl: 'img/items/mushroom.webp',         price: 19.99 },
-    { name: 'Rage Against men\'s T-Shirt',              photoUrl: 'img/items/rageagainst.webp',      price: 19.99 },
+    { name: 'Rise Against men\'s T-Shirt',              photoUrl: 'img/items/riseagainst.webp',      price: 19.99 },
     { name: 'Deicide Long-Sleeve T-shirt',              photoUrl: 'img/items/deicide.webp',          price: 30.99 },
     { name: 'Black Label Society men\'s T-Shirt',       photoUrl: 'img/items/bls.webp',              price: 19.99 },
     { name: 'Judas Priest men\'s T-Shirt',              photoUrl: 'img/items/judas_tshirt.webp',     price: 19.99 },
@@ -180,6 +180,23 @@ const products = [
     { name: 'Skindred men\'s T-Shirt',                  photoUrl: 'img/items/skindred.webp',         price: 19.99 },
     { name: 'Sabaton men\'s T-Shirt',                   photoUrl: 'img/items/sabaton_men.webp',      price: 19.99 },
     { name: 'Sabaton women\'s T-Shirt',                 photoUrl: 'img/items/sabaton_women.webp',    price: 19.99 },
+    { name: 'Queen men\'s T-Shirt',                     photoUrl: 'img/items/queen_tshirt.webp',     price: 18.99 },
+    { name: 'Rage Against the machine Hoodie',          photoUrl: 'img/items/ratm_hoodie.webp',      price: 54.99 },
+    { name: 'Rage Against the machine men\'s T-Shirt',  photoUrl: 'img/items/ratm_tshirt.webp',      price: 19.99 },
+    { name: 'Overkill men\'s T-Shirt',                  photoUrl: 'img/items/overkill.webp',         price: 19.99 },
+    { name: 'My Chemical Romance men\'s T-Shirt',       photoUrl: 'img/items/mcr.webp',              price: 19.99 },
+    { name: 'Machine Head men\'s T-Shirt',              photoUrl: 'img/items/machinehead.webp',      price: 20.99 },
+    { name: 'Lacuna Coil women\'s T-Shirt',             photoUrl: 'img/items/lacuna_women.webp',     price: 18.99 },
+    { name: 'Lacuna Coil men\'s T-Shirt',               photoUrl: 'img/items/lacuna_men.webp',       price: 20.99 },
+    { name: 'I Prevail Hoodie',                         photoUrl: 'img/items/iprevail_hoodie.webp',  price: 54.99 },
+    { name: 'I Prevail T-Shirt',                        photoUrl: 'img/items/iprevail_tshirt.webp',  price: 20.99 },
+    { name: 'DevilDriver T-Shirt',                      photoUrl: 'img/items/dd_tshirt.webp',        price: 21.99 },
+    { name: 'Children Of Bodom T-Shirt',                photoUrl: 'img/items/children.webp',         price: 21.99 },
+    { name: 'Iron Maiden T-Shirt',                      photoUrl: 'img/items/ironmaiden.webp',       price: 19.99 },
+    { name: 'Iron Maiden T-Shirt',                      photoUrl: 'img/items/ironmaiden2.webp',      price: 19.99 },
+    { name: 'Satyricon T-Shirt',                        photoUrl: 'img/items/satyricon.webp',        price: 19.99 },
+    { name: 'Dark Tranquility T-Shirt',                 photoUrl: 'img/items/darktranquility.webp',  price: 21.99 },
+    { name: 'DragonForce T-Shirt',                      photoUrl: 'img/items/dragonforce.webp',      price: 18.99 },
 
     { name: 'AC/DC Beanie',                             photoUrl: 'img/items/acdc_hat.webp',         price: 14.99, sizes: [] },
     { name: 'Judas Priest Beanie',                      photoUrl: 'img/items/judas_hat.webp',        price: 15.99, sizes: [] },
@@ -188,7 +205,10 @@ const products = [
     { name: 'Mastodon Cap',                             photoUrl: 'img/items/mastodon_cap.webp',     price: 14.99, sizes: [] },
     { name: 'Megadeth Cap',                             photoUrl: 'img/items/megadeth_cap.webp',     price: 14.99, sizes: [] },
     { name: 'Lamb of God Beanie',                       photoUrl: 'img/items/lambofgod_hat.webp',    price: 14.99, sizes: [] },
-    { name: 'Disturbed Beanie',                         photoUrl: 'img/items/disturbed_hat.webp',    price: 14.99, sizes: [] }
+    { name: 'Disturbed Beanie',                         photoUrl: 'img/items/disturbed_hat.webp',    price: 14.99, sizes: [] },
+    { name: 'Queen Beanie',                             photoUrl: 'img/items/queen_beanie.webp',     price: 14.99, sizes: [] },
+    { name: 'DevilDriver Cap',                          photoUrl: 'img/items/dd_cap.webp',           price: 15.99, sizes: [] },
+    { name: 'Gojira Cap',                               photoUrl: 'img/items/gojira_cap.webp',       price: 14.99, sizes: [] }
 ]
 
 async function main() {
