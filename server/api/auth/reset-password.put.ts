@@ -82,8 +82,8 @@ export default defineEventHandler(async (event) => {
         })
     else if (decodedToken.email === 'test@theheavyshop.com')
         throw createError({
-            statusCode: 400,
-            statusMessage: 'You are not authorized to reset the password for this account.'
+            statusCode: 401,
+            statusMessage: 'You\'re not authorized to reset the password for this account.'
         })
 
     await updatePassword(decodedToken.email, decodedToken.token, password)

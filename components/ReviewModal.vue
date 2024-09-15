@@ -52,7 +52,7 @@ async function editReview() {
 			review: review.value?.trim()
 		}
     })
-	if (error.value?.data.statusCode === 500) {
+	if (error.value?.data.statusCode === 401) {
 		errorMessage.value = null
 		isOpen.value = false
 		toast.error(error.value?.data.statusMessage)

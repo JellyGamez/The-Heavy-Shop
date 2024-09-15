@@ -20,10 +20,13 @@ const target = ref()
 const loading = ref(false)
 
 async function deleteAccount() {
-    await useFetch('/api/user', {
+    const { error } = await useFetch('/api/user', {
         method: 'DELETE'
     })
-    signOut()
+    if (error.value)
+        toast.error(error.value?.data.statusMessage)
+    else
+        signOut()
 }
 
 async function updateAccount(body) {

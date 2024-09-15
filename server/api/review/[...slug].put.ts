@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
     }
     catch(e) {
         throw createError({
-            statusCode: 500,
+            statusCode: 401,
             statusMessage: 'Either the review doesn\'t exist or you\'re not authorized to edit it.'
         })
     }

@@ -41,8 +41,8 @@ export default defineEventHandler(async (event) => {
         })
     else if (session?.user?.email === 'test@theheavyshop.com')
         throw createError({
-            statusCode: 400,
-            statusMessage: 'You are not authorized to update the password for this account.'
+            statusCode: 401,
+            statusMessage: 'You\'re not authorized to update the password for this account.'
         })
 
     await updatePassword(session?.user?.email as string, password)

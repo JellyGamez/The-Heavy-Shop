@@ -22,10 +22,19 @@ export default defineEventHandler(async (event) => {
             reviews: true
         },
         where: {
-            name: {
-                contains: (search as string)?.trim(),
-                mode: 'insensitive'
-            }
+            OR: [
+                {
+                    name: {
+                        search: (search as string)?.trim().split(' ').join(' & '),
+                        mode: 'insensitive'
+                    }
+                },
+                {
+                    name: {
+                        contains: (search as string)?.trim()
+                    }
+                }
+            ]
         },
         take: runtimeConfig.public.perPage,
         skip: runtimeConfig.public.perPage * ((page as number ?? 1) - 1)
@@ -33,10 +42,19 @@ export default defineEventHandler(async (event) => {
 
     const count = await prisma.item.count({
         where: {
-            name: {
-                contains: (search as string)?.trim(),
-                mode: 'insensitive'
-            }
+            OR: [
+                {
+                    name: {
+                        search: (search as string)?.trim().split(' ').join(' & '),
+                        mode: 'insensitive'
+                    }
+                },
+                {
+                    name: {
+                        contains: (search as string)?.trim()
+                    }
+                }
+            ]
         }
     })
 
