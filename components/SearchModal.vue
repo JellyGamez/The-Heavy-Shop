@@ -26,7 +26,7 @@ async function handleSubmit() {
 }
 
 watch(() => route.query?.search, async (newValue) => {
-    search.value = newValue
+    search.value = newValue.trim()
 })
 
 </script>

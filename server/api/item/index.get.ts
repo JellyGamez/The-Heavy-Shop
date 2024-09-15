@@ -1,7 +1,9 @@
 import prisma, { getItemRating } from '~/server/utils'
 
 export default defineEventHandler(async (event) => {
-    const { page, sortBy, direction, search } = getQuery(event)
+    const { page, sortBy, direction, ...query } = getQuery(event)
+    
+    const search = (query?.search as string ?? '').trim().replace(/[^0-9a-z]/gi, '')
     
     const runtimeConfig = useRuntimeConfig()
 
@@ -25,13 +27,14 @@ export default defineEventHandler(async (event) => {
             OR: [
                 {
                     name: {
-                        search: (search as string)?.trim().split(' ').join(' & '),
+                        search: search.split(' ').join(' & '),
                         mode: 'insensitive'
                     }
                 },
                 {
                     name: {
-                        contains: (search as string)?.trim()
+                        contains: search,
+                        mode: 'insensitive'
                     }
                 }
             ]
@@ -45,13 +48,14 @@ export default defineEventHandler(async (event) => {
             OR: [
                 {
                     name: {
-                        search: (search as string)?.trim().split(' ').join(' & '),
+                        search: search.split(' ').join(' & '),
                         mode: 'insensitive'
                     }
                 },
                 {
                     name: {
-                        contains: (search as string)?.trim()
+                        contains: search,
+                        mode: 'insensitive'
                     }
                 }
             ]
