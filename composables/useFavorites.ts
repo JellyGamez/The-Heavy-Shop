@@ -23,21 +23,19 @@ export default function useFavorites() {
     
     async function getItems() {
         if (loggedIn) {
-            const headers = useRequestHeaders(['cookie'])
-            const { data } = await useAsyncData('favorites', () => $fetch('/api/user/favorites', {
-                query: query,
-                headers,
-            }))
+            const { data } = await useFetch('/api/user/favorites', {
+                query: query
+            })
             return data.value
         }
         else if (process.client) {
             const ids = await getIds()
-            const { data } = await useAsyncData('favorites', () => $fetch('/api/guest/favorites', {
+            const { data } = await useFetch('/api/guest/favorites', {
                 query: { 
                     ids: ids,
                     ...query
                 }
-            }))
+            })
             return data.value
         }
     }

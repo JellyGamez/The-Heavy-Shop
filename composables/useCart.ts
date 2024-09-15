@@ -30,11 +30,9 @@ export default function useCart() {
     
     async function getItems() {
         if (loggedIn) {
-            const headers = useRequestHeaders(['cookie'])
-            const { data } = await useAsyncData('cart', () => $fetch('/api/user/cart', {
-                query: query,
-                headers
-            }))
+            const { data } = await useFetch('/api/user/cart', {
+                query: query
+            })
             return data.value?.map((entry: any) => {
                 return {
                     ...entry.item,
@@ -45,12 +43,12 @@ export default function useCart() {
         }
         else if (process.client) {
             const ids = await getIds()
-            const { data } = await useAsyncData('cart', () => $fetch('/api/guest/cart', {
+            const { data } = await useFetch('/api/guest/cart', {
                 query: { 
                     ids: ids,
                     ...query
                 }
-            }))
+            })
             return data.value?.map((entry: any) => {
                 return {
                     ...entry.item,
