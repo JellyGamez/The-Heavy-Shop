@@ -20,8 +20,10 @@ const toggleFavorite = useDebounceFn(async () => {
 })
 
 const { data: user } = await useFetch('/api/user')
+const headers = useRequestHeaders(['cookie'])
 const { error, data: item } = await useAsyncData('item', () => $fetch(`/api${route.path}`, {
-    query: useQuery()
+    query: useQuery(),
+    headers
 }))
 if (error.value)
     throw createError(error.value)

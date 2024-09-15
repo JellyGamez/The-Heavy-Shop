@@ -243,6 +243,7 @@ async function main() {
     for (let i = 1; i <= 99; i++) {
         await prisma.user.create({
             data: {
+                createdAt: faker.date.recent({ days: 30 }),
                 email: faker.internet.email(),
                 name: faker.person.fullName(),
                 password: bcrypt.hashSync('password', 10),
@@ -269,7 +270,9 @@ async function main() {
         const n = faker.number.int({ min: 0, max: 20 })
         const template = () => {
             const index = faker.number.int({ min: 0, max: 99 })
-        return {
+            return {
+                createdAt: faker.date.recent({ days: 30 }),
+                updatedAt: faker.date.recent({ days: 30 }),
                 rating: reviews[index].rating,
                 content: reviews[index].content,
                 verified: faker.datatype.boolean(),

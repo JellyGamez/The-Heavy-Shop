@@ -3,7 +3,6 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 export default function useCart() {
-    const query = useQuery()
     const loggedIn = useStatus()
     const bus = useEventBus('count')
     
@@ -18,7 +17,7 @@ export default function useCart() {
                 }
             })
         }
-        else if (process.client) {
+        else if (import.meta.client) {
             return JSON.parse(localStorage.getItem('cart') ?? '[]')
         }
     }
@@ -30,8 +29,10 @@ export default function useCart() {
     
     async function getItems() {
         if (loggedIn) {
+            const headers = useRequestHeaders(['cookie'])
             const { data } = await useFetch('/api/user/cart', {
-                query: query
+                query: useQuery(),
+                headers
             })
             return data.value?.map((entry: any) => {
                 return {
@@ -41,12 +42,12 @@ export default function useCart() {
                 }
             })
         }
-        else if (process.client) {
+        else if (import.meta.client) {
             const ids = await getIds()
             const { data } = await useFetch('/api/guest/cart', {
                 query: { 
                     ids: ids,
-                    ...query
+                    ...useQuery()
                 }
             })
             return data.value?.map((entry: any) => {
@@ -85,7 +86,7 @@ export default function useCart() {
                 }
             })
         }
-        else if (process.client) {
+        else if (import.meta.client) {
             const ids = await getIds()
             const index = ids.findIndex((item: any) => item.id === id && item.size === size)
             if (index !== -1) 
@@ -113,7 +114,7 @@ export default function useCart() {
                 }
             })
         }
-        else if (process.client) {
+        else if (import.meta.client) {
             const ids = await getIds()
             const index = ids.findIndex((item: any) => item.id === id && item.size === size)
             if (index !== -1) {
@@ -144,7 +145,7 @@ export default function useCart() {
                     }
                 })
             }
-            else if (process.client) {
+            else if (import.meta.client) {
                 const ids = await getIds()
                 const index = ids.findIndex((item: any) => item.id === id && item.size === size)
                 if (type === 'increment')

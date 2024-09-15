@@ -3,7 +3,6 @@ import { useToast } from 'vue-toastification'
 const toast = useToast()
 
 export default function useFavorites() {
-    const query = useQuery()
     const loggedIn = useStatus()
     const bus = useEventBus('count')
 
@@ -12,7 +11,7 @@ export default function useFavorites() {
             const { data } = await useFetch('/api/user/favorites')
             return (data.value as any).map((item: any) => item.id)
         }
-        else if (process.client) {
+        else if (import.meta.client) {
             return JSON.parse(localStorage.getItem('favorites') ?? '[]')
         }
     }
@@ -23,17 +22,19 @@ export default function useFavorites() {
     
     async function getItems() {
         if (loggedIn) {
+            const headers = useRequestHeaders(['cookie'])
             const { data } = await useFetch('/api/user/favorites', {
-                query: query
+                query: useQuery(),
+                headers
             })
             return data.value
         }
-        else if (process.client) {
+        else if (import.meta.client) {
             const ids = await getIds()
             const { data } = await useFetch('/api/guest/favorites', {
                 query: { 
                     ids: ids,
-                    ...query
+                    ...useQuery()
                 }
             })
             return data.value
@@ -49,7 +50,7 @@ export default function useFavorites() {
                 }
             })
         }
-        else if (process.client) {
+        else if (import.meta.client) {
             const ids = await getIds()
             if (!ids.includes(id)) {
                 ids.push(id)
@@ -69,7 +70,7 @@ export default function useFavorites() {
                 }
             })
         }
-        else if (process.client) {
+        else if (import.meta.client) {
             const ids = await getIds()
             const index = ids.indexOf(id)
             if (index !== -1) {
