@@ -3,8 +3,8 @@ import prisma, { getItemRating } from '~/server/utils'
 export default defineEventHandler(async (event) => {
     const { page, sortBy, direction, ...query } = getQuery(event)
     
-    const search = (query?.search as string ?? '').trim().replace(/[^0-9a-z]/gi, '')
-    
+    const search = (query?.search as string ?? '').trim().replace(/[^0-9a-z\-\ ]/gi, '')
+
     const runtimeConfig = useRuntimeConfig()
 
     const options = {
