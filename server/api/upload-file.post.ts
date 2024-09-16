@@ -1,4 +1,3 @@
-import { getUserByEmail } from '~/server/utils'
 import { getServerSession } from '#auth'
 import { put } from '@vercel/blob'
 

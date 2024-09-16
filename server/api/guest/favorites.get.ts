@@ -1,5 +1,3 @@
-import prisma, { getItemRating } from "~/server/utils"
-
 export default defineEventHandler(async (event) => {
     const { sortBy, direction, ...query } = getQuery(event)
     

@@ -1,6 +1,5 @@
 import nodemailer from 'nodemailer'
 import { useCompiler } from '#vue-email'
-import prisma, { getUserByEmail } from '~/server/utils'
 import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {

@@ -1,4 +1,3 @@
-import prisma, { getUserByEmail, getItemRating, dateFormatter } from "~/server/utils"
 import { getServerSession } from '#auth'
 
 export default defineEventHandler(async (event) => {
@@ -44,7 +43,7 @@ export default defineEventHandler(async (event) => {
         if (item.reviews?.length !== 0 && !options && user)
             item.reviews?.unshift(
                 item.reviews?.splice(
-                    item.reviews?.findIndex(review => review?.authorId === user?.id), 1
+                    item.reviews?.findIndex((review: any) => review?.authorId === user?.id), 1
                 )[0]
             )
 

@@ -2,7 +2,6 @@ import crypto from 'crypto'
 import nodemailer from 'nodemailer'
 import { useCompiler } from '#vue-email'
 import jwt, { Secret } from 'jsonwebtoken'
-import prisma, { getUserByEmail } from '~/server/utils'
 
 async function updatePasswordResetToken(email: string, passwordResetToken: string) {
     return await prisma.user.update({

@@ -1,5 +1,4 @@
 import bcrypt from 'bcrypt'
-import prisma from '~/server/utils'
 import { Prisma } from '@prisma/client'
 
 async function create(data: any) {

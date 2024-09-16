@@ -33,7 +33,7 @@ pnpm install
 Create an **.env** file and provide the required environment variables (refer to the **.env.example** file).
 
 ```bash
-# You can generate a secret by running 
+# You can generate a secret by running
 # 'node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"'
 AUTH_SECRET=
 AUTH_ORIGIN="http://localhost:3000"
@@ -58,6 +58,21 @@ MAIL_PASSWORD=
 BLOB_READ_WRITE_TOKEN=
 
 DATABASE_URL=
+```
+
+After setting up your environment, update the **prisma/schema.prisma** for development use.
+
+```prisma
+datasource db {
+  // Used in development
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+
+  // Used in production (Vercel deployment)
+  // provider  = "postgresql"
+  // url       = env("POSTGRES_PRISMA_URL")
+  // directUrl = env("POSTGRES_URL_NON_POOLING")
+}
 ```
 
 ### 5. Start developing locally
