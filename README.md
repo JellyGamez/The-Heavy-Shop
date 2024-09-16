@@ -60,7 +60,7 @@ BLOB_READ_WRITE_TOKEN=
 DATABASE_URL=
 ```
 
-After setting up your environment, update the **prisma/schema.prisma** for development use.
+After setting up your environment, update the **prisma/schema.prisma** file for development use.
 
 ```prisma
 datasource db {
