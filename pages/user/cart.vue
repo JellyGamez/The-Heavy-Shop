@@ -28,6 +28,8 @@ countBus.on(async function(event) {
 const syncBus = useEventBus('sync')
 syncBus.on(async function() {
     items.value = await cart.getItems()
+    count.value = await cart.getCount()
+    subtotal.value = items.value?.map(item => item.price * item.quantity).reduce((x, y) => x + y, 0).toFixed(2)
 })
 
 const removeItem = useDebounceFn(async (id, size) => {

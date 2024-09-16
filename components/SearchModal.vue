@@ -34,9 +34,9 @@ watch(() => route.query?.search, async (newValue) => {
 <template>
 	<Modal v-model="isOpen">
 		<template #content>
-			<p class="text-gray-lightest sm:text-lg font-light -mt-[40px] sm:-mt-[46px] mb-3"> Press enter to search </p>
+			<p class="text-gray-lightest sm:text-lg font-light -mt-[40px] sm:-mt-[46px] mb-3 ml-2"> Press enter to search </p>
 			<SearchInput 
-				v-model="search" 
+				v-model="search"
 				@submit="handleSubmit"
 			/>
 		</template>
