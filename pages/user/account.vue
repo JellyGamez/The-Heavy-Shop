@@ -150,7 +150,7 @@ const uploadFile = useDebounceFn(async () => {
                         </p>
                     </div>
 
-                    <div>
+                    <div class="flex flex-col items-center">
                         <p class="flex items-center gap-1 text-gray-lightest">
                             <IconsClock class="!size-4 md:!size-5 text-gray-lightest" /> 
                             <span class="text-sm md:text-base font-light"> Registered on </span>
