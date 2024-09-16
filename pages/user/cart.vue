@@ -41,17 +41,15 @@ const removeItem = useDebounceFn(async (id, size) => {
 const updateItem = useDebounceFn(async (item, type) => {
     try {
         const index = items.value.findIndex(_item => _item.id === item.id && _item.size === item.size)
-
         await cart.updateItem(item.id, item.size, item.quantity, type)
 
         if (type === 'decrement') {
+            count.value = count.value - 1
+            subtotal.value = Number.parseFloat(subtotal.value - items.value[index].price).toFixed(2)
             if (item.quantity <= 1)
-                removeItem(item.id, item.size)
-            else {
-                count.value = count.value - 1
-                subtotal.value = Number.parseFloat(subtotal.value - items.value[index].price).toFixed(2)
+                items.value.splice(index, 1)
+            else
                 items.value[index].quantity -= 1
-            }
         }
         else if (type === 'increment') {
             if (item.quantity < 10) {
