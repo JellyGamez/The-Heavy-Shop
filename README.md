@@ -1,35 +1,68 @@
-# Nuxt 3 Minimal Starter
+<div align="center">
+<img src="https://github.com/user-attachments/assets/f1737d0d-1e0f-4f39-ad0f-66136e3c4d54">
+</div>
 
-Look at the [Nuxt 3 documentation](https://nuxt.com/docs/getting-started/introduction) to learn more.
+## Introduction
+The Heavy Shop is a full-stack Nuxt-based concept store specializing in heavy metal merchandise and apparel. I built this personal project as a way to extend my coding knowledge and familiarize myself with various modern technologies that are being used in the industry. The result was a well-polished web application with a minimalistic UI, an intuitive UX and a stable, further scalabe codebase. Learn more about my motivation and the development journey [here](https://theheavyshop.vercel.app/about).
 
-## Setup
+## Quick Start
 
-Make sure to install the dependencies:
+### 1. Clone the project
+
+```bash
+git clone https://github.com/JellyGamez/The-Heavy-Shop.git
+```
+
+### 2. Go to the project directory
+
+```bash
+cd The-Heavy-Shop
+```
+
+### 3. Install dependencies
 
 ```bash
 pnpm install
 ```
 
-## Development Server
-
-Start the development server on `http://localhost:3000`:
+### 4. Configure the project
+Create an **.env** file and provide the required environment variables (refer to the **.env.example** file).
 
 ```bash
+# You can generate a secret by running 
+# 'node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"'
+AUTH_SECRET=
+AUTH_ORIGIN="http://localhost:3000"
+
+# Stripe API Keys
+STRIPE_PUBLISHABLE_KEY=
+STRIPE_SECRET_KEY=
+
+# GitHub OAuth Keys
+GITHUB_CLIENT_ID=
+GITHUB_CLIENT_SECRET=
+
+# Discord OAuth Keys
+DISCORD_CLIENT_ID=
+DISCORD_CLIENT_SECRET=
+
+# Nodemailer SMTP credentials
+MAIL_USER=
+MAIL_PASSWORD=
+
+# Vercel Blob token
+BLOB_READ_WRITE_TOKEN=
+
+DATABASE_URL=
+```
+
+### 5. Start developing locally
+
+```bash
+# start development server on http://localhost:3000
 pnpm run dev
+
+# start prisma studio on http://localhost:5555
+pnpm prisma studio
 ```
 
-## Production
-
-Build the application for production:
-
-```bash
-pnpm run build
-```
-
-Locally preview production build:
-
-```bash
-pnpm run preview
-```
-
-Check out the [deployment documentation](https://nuxt.com/docs/getting-started/deployment) for more information.
