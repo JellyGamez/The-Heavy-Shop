@@ -19,7 +19,10 @@ const bus = useEventBus('modal')
                             <NuxtImg 
                                 :src="review.author.photoUrl ?? '/img/avatar.webp'" 
                                 alt="avatar"
-                                class="size-9 md:size-11 object-cover rounded-full text-xs" 
+                                :class="[
+                                    { 'rounded-full' : review.author.photoUrl },
+                                    'size-9 md:size-11 object-cover text-xs'
+                                ]" 
                                 preload 
                             />
                             <p class="text-[15px] md:text-base truncate"> 

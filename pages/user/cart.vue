@@ -16,7 +16,7 @@ const toast = useToast()
 const cart = useCart()
 const items = ref(await cart.getItems())
 
-const subtotal = computed(() => items.value?.map(item => item.price * item.quantity).reduce((x, y) => x + y, 0).toFixed(2))
+const subtotal = ref(items.value?.map(item => item.price * item.quantity).reduce((x, y) => x + y, 0).toFixed(2))
 const count = ref(await cart.getCount())
 
 const countBus = useEventBus('count')
@@ -31,14 +31,35 @@ syncBus.on(async function() {
 })
 
 const removeItem = useDebounceFn(async (id, size) => {
+    const index = items.value.findIndex(item => item.id === id && item.size === size)
+    count.value = count.value - items.value[index].quantity
+    subtotal.value = Number.parseFloat(subtotal.value - items.value[index].quantity * items.value[index].price).toFixed(2)
+    items.value.splice(index, 1)
     await cart.removeItem(id, size)
-    items.value = await cart.getItems()
 })
 
 const updateItem = useDebounceFn(async (item, type) => {
     try {
+        const index = items.value.findIndex(_item => _item.id === item.id && _item.size === item.size)
+
         await cart.updateItem(item.id, item.size, item.quantity, type)
-        items.value = await cart.getItems()
+
+        if (type === 'decrement') {
+            if (item.quantity <= 1)
+                removeItem(item.id, item.size)
+            else {
+                count.value = count.value - 1
+                subtotal.value = Number.parseFloat(subtotal.value - items.value[index].price).toFixed(2)
+                items.value[index].quantity -= 1
+            }
+        }
+        else if (type === 'increment') {
+            if (item.quantity < 10) {
+                count.value = count.value + 1
+                subtotal.value = (Number.parseFloat(subtotal.value) + items.value[index].price).toFixed(2)
+                items.value[index].quantity += 1
+            }
+        }
     }
     catch(e) {
         toast.error(e.statusMessage)

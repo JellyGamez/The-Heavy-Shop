@@ -19,8 +19,9 @@ syncBus.on(async function() {
 })
 
 const removeItem = useDebounceFn(async (id) => {
+    const index = items.value.findIndex(item => item.id === id)
+    items.value.splice(index, 1)
     await favorites.removeItem(id)
-    items.value = await favorites.getItems()
 })
 
 </script>

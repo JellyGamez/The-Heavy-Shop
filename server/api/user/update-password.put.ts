@@ -37,7 +37,7 @@ export default defineEventHandler(async (event) => {
     else if (password !== passwordConfirmation)
         throw createError({
             statusCode: 400,
-            statusMessage: 'The passwords do not match.'
+            statusMessage: 'The passwords don\'t match.'
         })
     else if (session?.user?.email === 'test@theheavyshop.com')
         throw createError({

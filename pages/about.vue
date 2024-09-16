@@ -171,7 +171,7 @@ const techStack = [
                         <NuxtImg
                             src="/img/avatar.webp" 
                             alt="logo"
-                            class="size-36 xl:size-52 object-cover rounded-full" 
+                            class="size-36 xl:size-52 object-cover" 
                             preload 
                         />
                         <span class="text-red-primary transition duration-200 font-bold text-xl xl:text-2xl font-ubuntu whitespace-nowrap -mt-3"> 
