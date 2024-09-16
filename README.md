@@ -1,9 +1,11 @@
 <div align="center">
-<img src="https://github.com/user-attachments/assets/f1737d0d-1e0f-4f39-ad0f-66136e3c4d54">
+  <a href="https://theheavyshop.vercel.app/">
+    <img src="https://github.com/user-attachments/assets/f1737d0d-1e0f-4f39-ad0f-66136e3c4d54">
+  </a>
 </div>
 
 ## Introduction
-The Heavy Shop is a full-stack Nuxt-based concept store specializing in heavy metal merchandise and apparel. I built this personal project as a way to extend my coding knowledge and familiarize myself with various modern technologies that are being used in the industry. The result was a well-polished web application with a minimalistic UI, an intuitive UX and a stable, further scalabe codebase. Learn more about the development journey [here](https://theheavyshop.vercel.app/about).
+The Heavy Shop is a full-stack Nuxt-based concept store specializing in heavy metal merchandise and apparel. I built this personal project as a way to extend my coding knowledge and familiarize myself with various modern technologies that are being used in the industry. The result was a well-polished web application with a minimalistic UI, an intuitive UX and a stable, further scalable codebase. Learn more about the development journey [here](https://theheavyshop.vercel.app/about).
 
 ## Quick Start
 
