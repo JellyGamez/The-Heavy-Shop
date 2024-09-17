@@ -78,10 +78,10 @@ datasource db {
 ### 5. Start developing locally
 
 ```bash
-# start development server on http://localhost:3000
+# Start a development server on http://localhost:3000
 pnpm run dev
 
-# start prisma studio on http://localhost:5555
+# Start a prisma studio server on http://localhost:5555
 pnpm prisma studio
 ```
 
