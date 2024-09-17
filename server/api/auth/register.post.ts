@@ -64,12 +64,11 @@ export default defineEventHandler(async (event) => {
             statusCode: 400,
             statusMessage: 'The password confirmation field is required.'
         })
-    else if (password.length < 8) {
+    else if (password.length < 8)
         throw createError({
             statusCode: 400,
             statusMessage: 'The password must be at least 8 characters.'
         })
-    }
     else if (password !== passwordConfirmation)
         throw createError({
             statusCode: 400,

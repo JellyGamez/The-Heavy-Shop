@@ -261,8 +261,8 @@ async function main() {
                             create: []
                         }
                     },
-                },
-            },
+                }
+            }
         })
     }
 

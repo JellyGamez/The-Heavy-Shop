@@ -18,6 +18,6 @@ export default defineNuxtPlugin((nuxtApp) => {
         hideProgressBar: true,
         closeButton: "button",
         icon: true,
-        rtl: false,
+        rtl: false
     })
 })

@@ -16,10 +16,7 @@ async function updatePasswordResetToken(email: string, passwordResetToken: strin
 
 function signToken(email: string, token: string) {
     return jwt.sign(
-        {
-            email,
-            token
-        },
+        { email, token },
         process.env.AUTH_SECRET as Secret,
         { expiresIn: '1800s' }
     )
