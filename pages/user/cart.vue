@@ -188,7 +188,7 @@ const updateItem = useDebounceFn(async (item, type) => {
                     title="Your cart is empty"
                     description="
                         <p>
-                            It looks like you haven't added any items to your cart yet.
+                            You haven't added any items to your cart yet.
                         </p>
                         <p class='hidden md:block'>
                             Start browsing our store and find the perfect items to add to your collection.  

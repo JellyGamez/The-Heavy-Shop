@@ -97,10 +97,10 @@ const removeItem = useDebounceFn(async (id) => {
                     title="No favorite items yet"
                     description="
                         <p>
-                            Your favorites collection is currently awaiting your personal touch.
+                            You haven't added any items to your favorites yet.
                         </p>
                         <p class='hidden md:block'>
-                            Explore our store, discover standout items, and build your distinguished favorites selection.
+                            Start browsing our store and find the perfect items to add to your collection.
                         </p>
                     "
                 >
