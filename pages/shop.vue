@@ -26,6 +26,14 @@ const { data } = await useFetch('/api/item', {
     }
 })
 
+const items = ref(data.value.items.map(item => { 
+    return { 
+        ...item, 
+        favorite: isFavorite(item.id)
+    } 
+}))
+const count = ref(data.value.count)
+
 async function refresh() {
     page.value = 1
     const { data } = await useFetch('/api/item', {
@@ -34,7 +42,13 @@ async function refresh() {
             ...useQuery()
         }
     })
-    items.value = data.value.items
+    userFavorites.value = await favorites.getIds()
+    items.value = data.value.items.map(item => { 
+        return { 
+            ...item, 
+            favorite: isFavorite(item.id)
+        } 
+    })
     count.value = data.value.count
     window.scrollTo(0, 0)
 }
@@ -54,14 +68,6 @@ const toggleFavorite = useDebounceFn(async (id) => {
         await favorites.addItem(id)
     item.favorite = !item.favorite
 })
-
-const items = ref(data.value.items.map(item => { 
-    return { 
-        ...item, 
-        favorite: isFavorite(item.id)
-    } 
-}))
-const count = ref(data.value.count)
 
 async function goBack() {
     router.back()
