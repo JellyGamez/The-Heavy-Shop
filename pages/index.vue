@@ -142,7 +142,7 @@ const features = [
                 pagination
                 class="mt-4 lg:mt-6"
             >
-                <SwiperSlide v-for="n in 9" class="pb-10 ">
+                <SwiperSlide v-for="n in 9" class="pb-10">
                     <GridItemCard :item="items[n - 1]" class="mx-auto">
                         <Button 
                             @click="toggleFavorite(items[n - 1].id)"

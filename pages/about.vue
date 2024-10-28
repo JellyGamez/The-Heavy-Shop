@@ -152,7 +152,7 @@ const techStack = [
                     <span> Features </span>
                 </h1>
                 <Separator class="!py-2 !px-0" />
-                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-10 mx-auto w-fit relative mt-2 lg:mt-4 mb-2 md:-mb-3.5 ">
+                <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 md:gap-10 mx-auto w-fit relative mt-2 lg:mt-4 mb-2 md:-mb-3.5">
                     <div class="hidden md:block xl:hidden absolute left-1/2 -translate-x-1/2  w-[1px] bg-gray-lighter bottom-3.5 -top-1" />
                     <div class="flex flex-col md:grid md:grid-rows-3 gap-6">
                         <div v-for="feature in features.slice(0, 3)" class="flex flex-col gap-1 text-center md:items-end md:justify-self-end md:text-right max-w-[350px]">
