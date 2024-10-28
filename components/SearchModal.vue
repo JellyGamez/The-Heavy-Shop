@@ -14,14 +14,12 @@ modalBus.on(function(event) {
 
 async function handleSubmit() {
 	isOpen.value = false
-
 	await navigateTo({
 		name: 'shop',
 		query: {
 			search: search.value?.trim()
 		}
 	})
-
 	searchBus.emit()
 }
 

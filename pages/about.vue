@@ -76,7 +76,6 @@ const techStack = [
         description: 'ORM',
         url: 'https://www.prisma.io/'
     },
-
     {
         icon: IconsPostgreSQL,
         title: 'PostgreSQL',

@@ -50,5 +50,4 @@ const id = ref()
 			</div>
 		</template>
 	</Modal>
-	
 </template>

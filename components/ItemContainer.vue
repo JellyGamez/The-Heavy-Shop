@@ -41,7 +41,6 @@ const addToCart = useDebounceFn(async () => {
                     <h1 class="text-xl lg:text-2xl text-white">
                         {{ item.name }}
                     </h1>
-
                     <div class="flex flex-wrap items-center gap-x-2 gap-y-1">
                         <p class="text-lg lg:text-xl"> 
                             {{ parseFloat(item.rating).toFixed(2) }}
@@ -53,7 +52,6 @@ const addToCart = useDebounceFn(async () => {
                         </p>
                     </div>
                 </div>
-
                 <div class="flex flex-col">
                     <p class="text-lg lg:text-xl w-full"> 
                         Description
@@ -62,7 +60,6 @@ const addToCart = useDebounceFn(async () => {
                         {{ item.description }} 
                     </p>
                 </div>
-
                 <div v-if="item?.sizes?.length" class="flex flex-col">
                     <p class="text-lg lg:text-xl w-full"> 
                         Sizes
@@ -73,7 +70,6 @@ const addToCart = useDebounceFn(async () => {
                         class="mt-2"
                     />
                 </div>
-
                 <div class="hidden md:flex items-center gap-1.5 mt-auto">
                     <IconsCheck class="!size-5 text-red-light" />
                     <span class="font-light"> Original and licensed product </span>
@@ -81,11 +77,11 @@ const addToCart = useDebounceFn(async () => {
             </div>
         </div>
         <div class="col-span-4 xl:col-span-1 p-6 flex flex-col gap-4 bg-gray-dark rounded-2xl text-white">
-                <div class="text-xl lg:text-2xl flex items-center justify-center"> 
-                    <span class="font-extralight">$</span>
-                    <span> {{ item.price }} </span>
-                    <span class="text-base xl:text-lg ml-1 xl:ml-1.5 text-gray-lightest font-light"> (includes taxes) </span>
-                </div>
+            <div class="text-xl lg:text-2xl flex items-center justify-center"> 
+                <span class="font-extralight">$</span>
+                <span> {{ item.price }} </span>
+                <span class="text-base xl:text-lg ml-1 xl:ml-1.5 text-gray-lightest font-light"> (includes taxes) </span>
+            </div>
             <div class="flex flex-col sm:flex-row xl:flex-col h-full gap-4 justify-between">
                 <div class="flex flex-col gap-4 sm:justify-between xl:justify-normal w-full">
                     <Button

@@ -15,7 +15,6 @@ export default function useSync() {
                 localStorage.removeItem('newAccount')
             }
         }, 10)
-
     })
 
     async function syncItems() {

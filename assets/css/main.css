@@ -3,26 +3,23 @@
 @tailwind utilities;
 
 @layer base {
-    html {
-        font-family: Kanit, system-ui;
-        width: 100vw;
-        overflow-x: hidden;
-        scroll-behavior: smooth;
-    }
+	html {
+		font-family: Kanit, system-ui;
+		width: 100vw;
+		overflow-x: hidden;
+		scroll-behavior: smooth;
+	}
 }
 
 ::-webkit-scrollbar {
-    width: 5px;
+	width: 5px;
 }
-
 ::-webkit-scrollbar-track {
-    background: #171717;
+	background: #171717;
 }
-
 ::-webkit-scrollbar-thumb {
-    background: #666;
+	background: #666;
 }
-
 ::-webkit-scrollbar-thumb:hover {
-    background: #555;
+	background: #555;
 }

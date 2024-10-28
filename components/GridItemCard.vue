@@ -19,7 +19,6 @@ const props = defineProps({
             </NuxtLink>
             <slot />
         </div>
-        
         <div class="flex flex-col mx-2">
             <NuxtLink :to='`/item/${item?.id}`'>
                 <p class="font-light text-base md:text-lg h-10 md:h-12 leading-tight md:leading-6 line-clamp-2"> 
@@ -39,7 +38,6 @@ const props = defineProps({
                 </div>
             </div>
         </div>
-
         <div class="flex items-end h-full">
             <NuxtLink :to='`/item/${item.id}`' class="w-full">
                 <Button 

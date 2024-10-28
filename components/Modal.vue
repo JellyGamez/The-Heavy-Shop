@@ -38,11 +38,9 @@ const isOpen = defineModel()
 								>
 									<IconsClose class="text-white hover:text-gray-lightest transition duration-200" />
 								</button>
-
 								<HeadlessDialogTitle as="h3" class="text-xl sm:text-2xl text-center max-w-xs sm:max-w-sm mx-auto mb-4">
 									<slot name="title" />
 								</HeadlessDialogTitle>
-
 								<slot name="content" /> 
 							</HeadlessDialogPanel>
 						</HeadlessTransitionChild>
