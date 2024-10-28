@@ -107,7 +107,7 @@ const techStack = [
             description="Learn about the development of the project"
         >
             <NuxtLink 
-                to="https://github.com/JellyGamez/The-Heavy-Shop" 
+                to="https://github.com/alex-croitoriu/The-Heavy-Shop" 
                 target="_blank"
             >
                 <div class="flex items-center gap-1 rounded-2xl bg-gray-dark font-light text-white hover:text-gray-lightest transition duration-200 py-1.5 lg:py-2 px-2 lg:px-2.5">

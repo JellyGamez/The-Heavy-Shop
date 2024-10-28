@@ -14,7 +14,7 @@ The result was a well-polished web application with a minimalistic UI, an intuit
 ### 1. Clone the project
 
 ```bash
-git clone https://github.com/JellyGamez/The-Heavy-Shop.git
+git clone https://github.com/alex-croitoriu/The-Heavy-Shop.git
 ```
 
 ### 2. Go to the project directory

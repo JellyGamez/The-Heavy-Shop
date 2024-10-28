@@ -8,7 +8,7 @@
                 </p>
                 <div class="flex items-center gap-2.5 md:gap-3.5">
                     <NuxtLink 
-                        to="https://github.com/JellyGamez" 
+                        to="https://github.com/alex-croitoriu" 
                         target="_blank" 
                         aria-label="github"
                         class="text-white hover:text-gray-lightest transition duration-200"
