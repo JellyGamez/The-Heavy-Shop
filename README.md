@@ -34,7 +34,7 @@ Create an **.env** file and provide the required environment variables (refer to
 
 ```bash
 # You can generate a secret by running
-# 'node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"'
+# node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 AUTH_SECRET=
 AUTH_ORIGIN="http://localhost:3000"
 
